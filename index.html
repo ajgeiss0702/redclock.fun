@@ -24,29 +24,67 @@
       defer
       ></script>
 
+      <script src="/js/stylehelper.js" defer></script>
+      <script src="/js/base.js"></script>
+      <script src="/js/pageloader.js" defer></script>
+
 
     <link rel='icon' type="image/png" href='/img/red_clock.png'>
   </head>
 
 
-  <div id='schoolselect'>
-    <div class='select-welcome'>
-      <h1>Welcome</h1>
-      This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
+  <body onload="rcf.emit('load')">
+    <div id='scheduleloaderror' class='errorbox hidden'>
+      The schedule could not be loaded. Try again later.
     </div>
-    <div id='school-list'>
-      <div class='schoolbox' style='background-image: url("/img/schools/rmhs.png");'>
-        <span></span>
-        <div class='schooltext'>
-          Red Mountain High School
-        </div>
-      </div>
-      <div class='schoolbox' style='background-image: url("/img/red_clock.png");'>
-        <div class='schooltext'>
-          test
-        </div>
-      </div>
-    </div>
+    <div id='schoolselector'></div>
+    <div id='countdown'></div>
+  </body>
 
-  </div>
+
+  <script>
+  var rcf = {};
+  rcf.on = function(name, func) {
+    if(name == 'load' && rcf.loaded) {
+      func();
+      return;
+    }
+    this._subscriptions[name] = this._subscriptions[name] || [];
+    this._subscriptions[name].push(func)
+  }
+  rcf.off = function(name, func){
+    this._subscriptions[name] = this._subscriptions[name].filter(f=>f!==func)
+  }
+  rcf._subscriptions = {}
+  rcf.emit = function(name, ...args){
+    if(!this._subscriptions[name]){return; }
+    this._subscriptions[name].forEach(f=>f(...args))
+  }
+
+
+  rcf.loaded = false;
+  rcf.on('load', () => {
+    rcf.loaded = true;
+  });
+
+  if(typeof localStorage.getItem('school') != 'undefined') {
+    rcf.school = localStorage.getItem('school');
+    rcf.schedule = localStorage.getItem('schedule');
+  }
+
+  httpGet('/api/schedule.php?school=list').then((a) => {
+    try {
+      rcf.schoolList = JSON.parse(a);
+    } catch(e) {
+      console.error(e);
+      $('#scheduleloaderror').removeClass('hidden');
+    }
+  }).catch((e) => {
+    console.error(e);
+    $('#scheduleloaderror').removeClass('hidden');
+    $('#scheduleloaderror').addClass('fadeIn');
+  })
+  </script>
+
+
 </html>

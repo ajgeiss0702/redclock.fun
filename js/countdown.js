@@ -2,7 +2,9 @@ var cd = {};
 
 async function getTimeString() {
   if(typeof cd.cdd != 'object') {
-    setTimeout(tick, 100);
+    setTimeout(() => {
+      tick()
+    }, 500);
     return "Finding next bell..";
   }
   var distance = getTime();
@@ -153,13 +155,21 @@ async function getScheduleFor(now, orig = true) {
   }
 
   if(orig) {
-    var temp = now;
-    temp.setDate(temp.getDate()+1)
+    var temp = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()+1,
+      now.getHours(),
+      now.getMinutes(),
+      now.getSeconds(),
+      now.getMilliseconds()
+    )
+    tmr = undefined;
     var tmr = await getScheduleFor(temp, false);
     var tmrkeys = Object.keys(tmr);
     var tmrkeysl = tmrkeys.length;
-    tmr[tmrkeys[0]][0]++;
-    tmr[tmrkeys[0]][1]++;
+    tmr[tmrkeys[0]][0] = 1;
+    tmr[tmrkeys[0]][1] = 1;
     foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
     foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
   }

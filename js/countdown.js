@@ -65,21 +65,21 @@ function calibrateCountdown() {
     $('#calibration').text('Calibrating timer..');
     $('#calibration').removeClass('done');
     $('#calibration').removeClass('hidden');
-    $('#calibration').removeClass('fadeOutFast');
+    $('#calibration').removeClass('fadeOut');
     $('#calibration').addClass('fadeInFast');
   } else {
     cd.calibratedBefore = true;
   }
   calibratingInterval = setInterval(() => {
     var ms = new Date().getMilliseconds();
-    if(ms <= 50 || ms >= 950) {
+    if(ms <= 50) {
       setCountdownInterval();
       $('#calibration').text('Timer calibrated!');
       $('#calibration').removeClass('fadeInFast');
       $('#calibration').addClass('done');
       setTimeout(() => {
-        $('#calibration').addClass('fadeOutFast');
-      }, 500)
+        $('#calibration').addClass('fadeOut');
+      }, 1e3)
     }
   }, 25);
 }

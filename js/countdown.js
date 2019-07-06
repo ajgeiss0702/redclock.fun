@@ -44,7 +44,20 @@ async function recalcCdd() {
   cd.period = skeys[cd.i];
 }
 
-function makeDate(raw) {
+function makeDate(raw, ahead_debug = false) {
+  if(ahead_debug) {
+    var now = new Date();
+    cd.cdd = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      now.getHours(),
+      now.getMinutes(),
+      now.getSeconds()+3,
+      now.getMilliseconds()
+    );
+    return;
+  }
   var now = new Date();
   return new Date(now.getFullYear(), now.getMonth(), now.getDate()+raw[0], raw[1], raw[2], raw[3], 0);
 }

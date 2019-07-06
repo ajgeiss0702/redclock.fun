@@ -16,7 +16,7 @@ async function getTimeString() {
   var dayss = days > 0 ? days+"d " : "";
   var hourss = hours > 0 ? hours+"h " : "";
   var minutess = minutes > 0 ? minutes+"m " : "";
-  var secondss = seconds > 0 ? seconds+"s " : "";
+  var secondss = seconds+"s ";
   return dayss+hourss+minutess+secondss;
 }
 

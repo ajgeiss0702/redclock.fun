@@ -82,7 +82,7 @@ function calibrateCountdown() {
       $('#calibration').addClass('done');
       setTimeout(() => {
         $('#calibration').addClass('fadeOut');
-      }, 1e3)
+      }, 1.5e3)
     }
   }, 25);
 }

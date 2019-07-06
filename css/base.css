@@ -18,13 +18,32 @@
   text-align: center;
 }
 
-@keyframes fadeOut{
-    0% { opacity:1; }
-    100% { opacity:0; display: none; }
+@keyframes fadeOut {
+  0% { opacity:1; }
+  100% { opacity:0; display: none; }
 }
-@keyframes fadeIn{
-    0% { opacity:0; display: inherit; }
-    100% { opacity:1; }
+@keyframes fadeIn {
+  0% { opacity:0; display: inherit; }
+  100% { opacity:1; }
+}
+
+@keyframes bell {
+  0% {
+    transform-origin: top center;
+    transform: rotate(30deg);
+  }
+  50% {
+    transform-origin: top center;
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform-origin: top center;
+    transform: rotate(30deg);
+  }
+}
+
+.bell-animation {
+  animation: bell 1.5s ease-in-out infinite;
 }
 
 body,html {

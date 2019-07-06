@@ -2,5 +2,21 @@
   font-size: 10em;
 }
 #countdown-period {
-  font-size: 5em;
+  font-size: 4em;
 }
+.countdown-container {
+  width: 76vw;
+  height: 50vh;
+  line-height: 50vh;
+  display: inline-block;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  background-color: silver;
+}
+#countdown-text, #countdown-period {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0.8em;
+}
+

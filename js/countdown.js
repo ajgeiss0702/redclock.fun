@@ -160,6 +160,7 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
+  //If no special dates/days, return normal schedule
   if(!found) {
     foundsched = sched.normal[rcf.schedule]
   }
@@ -194,26 +195,44 @@ var schedCache = {
   lastGet: 0
 };
 
-async function getSchedule() {
+async function getSchedule(override = false) {
   if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
-  if((new Date().getTime() - schedCache.lastGet) < 300e3) {
-    console.debug("[getSchedule] Returned cached schedule.");
-    return schedCache.lastResp;
+  if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
+    var keys = Object.keys(schedCache.lastResp.normal);
+    //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
+    return copy(schedCache.lastResp);
   }
   schedCache.lastGet = new Date().getTime();
   if(typeof rcf.school == 'undefined') {
     cd.error = "No school."
     schedCache.lastResp = false;
+    console.debug("getSchedule() returning false!");
     return false;
   }
   if(await schoolExists(rcf.school)) {
     var raw = await httpGet('/api/schedule.php?school='+rcf.school);
     var parsed = JSON.parse(raw)[rcf.school];
-    schedCache.lastResp = parsed;
-    return parsed;
+    //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
+    schedCache.lastResp = copy(parsed);
+    return copy(parsed);
   } else {
     cd.error = "School does not exist."
     schedCache.lastResp = false;
+    console.debug("getSchedule() returning false!");
     return false;
+  }
+}
+
+function copy(v) {
+  switch (typeof v) {
+    case 'object':
+      return JSON.parse(JSON.stringify(v));
+    case 'string':
+      return new String(v).toString();
+    case 'number':
+      return Number(new Number(v));
+    default:
+      var tmp = [v];
+      return JSON.parse(JSON.stringify(tmp))[0];
   }
 }

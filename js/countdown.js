@@ -33,6 +33,7 @@ async function recalcCdd() {
     cd.i++;
     cd.cdd = makeDate(sched[skeys[cd.i]]);
   }
+  cd.period = skeys[cd.i];
 }
 
 function makeDate(raw) {
@@ -99,8 +100,17 @@ function setCountdownInterval() {
 function tick() {
   getTimeString().then((s) => {
     $('#countdown-text').text(s);
+    var period = cd.period;
+    if(period+"" == "undefined") {
+      period = undefined;
+    } else {
+      period = "until " + cd.period;
+    }
+    $('#countdown-period').text(period);
+    document.title = s + period + " - Red Clock";
   }).catch((e) => {
-    $('#countdown-text').text("An error occured: "+e);
+    $('#countdown-text').text('');
+    $('#countdown-period').text("An error occured: "+e);
     console.error(e);
   })
 }

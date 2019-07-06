@@ -5,7 +5,8 @@ async function getTimeString() {
     setTimeout(() => {
       tick()
     }, 500);
-    return "Finding next bell..";
+    $('#countdown-period').text("Finding next bell..")
+    return undefined;
   }
   var distance = getTime();
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -42,13 +43,12 @@ function makeDate(raw) {
 }
 
 async function init() {
-  $('#countdown-text').text('Loading times..');
+  $('#countdown-period').text('Loading times..');
   var sched = (await getSchedule());
   if(!sched) {
     await delay(500);
     sched = (await getSchedule());
   }
-  console.log(sched);
   sched = sched.normal;
   var schedules = Object.keys(sched);
   cd.scheduleList = schedules;

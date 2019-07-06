@@ -17,6 +17,7 @@ rcf.on('load', () => {
   for (schoolCode in schools) {
     var school = rcf.schoolList[schools[schoolCode]];
     console.debug(schoolCode + school);
+    if(schools[schoolCode] == 'example (this is the school name)') continue;
     var name = school.display;
     var icon = school.logo;
     ah += `<div class='schoolbox' style='background-image: url("`+icon+`");' onclick='schoolselector.clicked("`+schools[schoolCode]+`")'>

@@ -176,18 +176,15 @@ async function getScheduleFor(now, orig = true) {
     )
     tmr = undefined;
     var tmr = await getScheduleFor(temp, false);
+    tmr = copy(tmr);
     var tmrkeys = Object.keys(tmr);
     var tmrkeysl = tmrkeys.length;
     tmr[tmrkeys[0]][0] = 1;
-    tmr[tmrkeys[0]][1] = 1;
+    tmr[tmrkeys[1]][0] = 1;
     foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
     foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
   }
 
-
-
-
-  //If no special dates/days, return normal schedule
   return foundsched;
 
 }

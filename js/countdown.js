@@ -1,5 +1,7 @@
 var cd = {};
 
+console.debug("Loaded countdown script!")
+
 async function getTimeString() {
   if(typeof cd.cdd != 'object') {
     setTimeout(() => {

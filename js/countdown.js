@@ -117,9 +117,13 @@ function setCountdownInterval() {
   tick();
 }
 
+var titletext;
 function tick() {
   getTimeString().then((s) => {
-    $('#countdown-text').text(s);
+    //console.debug($('#countdown-text').html() + "\n" + s)
+    if(s != $('#countdown-text').html()) {
+      $('#countdown-text').html(s);
+    }
     var period = cd.period;
     if(period+"" == "undefined") {
       period = undefined;

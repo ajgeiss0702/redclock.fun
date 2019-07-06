@@ -131,7 +131,15 @@ function tick() {
       period = "until " + cd.period;
     }
     $('#countdown-period').text(period);
-    document.title = s + period + " - Red Clock";
+    titletext = s + period;
+    if(typeof titletext == 'string') {
+      if(titletext.indexOf('<img') != -1) {
+        titletext = "Bell is ringing!"
+      }
+    } else {
+      titletext = "Loading countdown.."
+    }
+    document.title = titletext + " - Red Clock";
   }).catch((e) => {
     $('#countdown-text').text('');
     $('#countdown-period').text("An error occured: "+e);

@@ -109,7 +109,7 @@ function calibrateCountdown() {
   }, 25);
 }
 
-setInterval(calibrateCountdown, 300e3);
+setInterval(calibrateCountdown, 600e3);
 
 function setCountdownInterval() {
   clearInterval(calibratingInterval);

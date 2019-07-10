@@ -7,12 +7,15 @@
 .countdown-container {
   width: 76vw;
   height: 50vh;
-  line-height: 50vh;
   display: inline-block;
   position: absolute;
   top: 1em;
   left: 1em;
   background-color: silver;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #countdown-text, #countdown-period {
   display: inline-block;

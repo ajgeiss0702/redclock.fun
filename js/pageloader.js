@@ -10,6 +10,9 @@ function loadContent(pageName) {
     elem.slideDown();
     elem[0].classList = 'fadein'
     elem.html(c);
+    if(pageName == 'countdown') {
+      insertNews();
+    }
   })
 }
 

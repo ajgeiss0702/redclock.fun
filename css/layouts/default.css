@@ -5,21 +5,71 @@
   font-size: 4em;
 }
 .countdown-container {
-  width: 76vw;
+  width: 65vw;
   height: 50vh;
   display: inline-block;
-  position: absolute;
-  top: 1em;
-  left: 1em;
-  background-color: silver;
+  position: fixed;
+  top: 1vh;
+  left: 1vw;
+  background-color: #e6e6e6;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-radius: 7.5px;
+
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 #countdown-text, #countdown-period {
   display: inline-block;
   vertical-align: middle;
   line-height: 0.8em;
 }
+
+.sidebar {
+  width: 32vw;
+  min-height: 100vh;
+  margin-left: 66.5vw;
+  margin-top: 1vh;
+
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+}
+
+
+
+#news-container {
+  margin-top: 1em;
+}
+
+.newsbox {
+  display: inline-block;
+
+  box-shadow: 0 0 25px -15px rgba(0,0,0,0.75);
+
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1.5em;
+
+  padding-left: 1em;
+  padding-right: 1em;
+
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.newsdate {
+  color: grey;
+  text-align: right;
+  display: block;
+  padding: 0;
+  margin-right: 0.5em;
+}
+
+.newsbox > p {
+  font-size: 0.95em;
+}
+
 

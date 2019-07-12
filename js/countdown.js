@@ -270,3 +270,25 @@ function copy(v) {
       return JSON.parse(JSON.stringify(tmp))[0];
   }
 }
+
+
+function string12hour(date) {
+  var d;
+
+  if(Object.prototype.toString.call(date) === '[object Array]') {
+    d = makeDate(date);
+  } else if(date instanceof Date) {
+    d = date;
+  } else {
+    d = new Date(date);
+  }
+
+  var ap = 'AM';
+  var hour = d.getHours();
+  var min = d.getMinutes();
+  var sec = d.getSeconds();
+
+  if(hour > 12) {
+    ap = 'PM';
+  }
+}

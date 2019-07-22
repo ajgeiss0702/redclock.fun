@@ -5,16 +5,14 @@ $('html').ready(() => {
   }, 500)
 })
 
-settings.create('enableWeather', true);
+settings.create('enableWeather', true, 'Enable Weather', 'If the weather is disabled, battery will be saved.');
 
 
 var skycons;
 function updateWeather(last = false) {
-  if(typeof fs == 'undefined') {
-    if(settings.get('enableWeather')) {
-      console.debug("[weather.js] Skipping weather because its disabled");
-      return;
-    }
+  if(!settings.get('enableWeather')) {
+    console.debug("[weather.js] Skipping weather because its disabled");
+    return;
   }
   try {
     var au = ''
@@ -71,7 +69,7 @@ function updateWeather(last = false) {
             <tr>
               <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
               <td style='padding-left:0.25em;'>
-                <h1>`+d.temperature+`&deg;</h1>
+                <h1 style='font-size: 2.5em;'>`+d.temperature+`&deg;</h1>
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
                   `+d.mindesc+"<br>"+d.desc+`<br>
                   <table>

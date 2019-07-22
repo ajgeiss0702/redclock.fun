@@ -19,11 +19,13 @@ settings.set = (name, content) => {
   return true;
 }
 
-settings.create = (name, content) => {
+settings.create = (name, content, display, desc) => {
   if(typeof rawSettings[name] == 'undefined') {
     rawSettings[name] = {
       content: content,
-      type: typeof content
+      type: typeof content,
+      display: display,
+      desc: desc
     }
     settings.save();
   }
@@ -35,5 +37,14 @@ settings.save = () => {
 settings.load = () => {
   if(typeof localStorage.settings != 'undefined') {
     rawSettings = JSON.parse(localStorage.settings);
+  }
+}
+
+settings.update = () => {
+  var ah = "";
+  for (var setting in rawSettings) {
+    if (rawSettings.hasOwnProperty(setting)) {
+      
+    }
   }
 }

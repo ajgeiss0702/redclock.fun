@@ -19,8 +19,27 @@
 
   border-radius: 7.5px;
 
-  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+  box-shadow: 0 0 30px -15px rgba(0,0,0,0.75);
 }
+
+#weather {
+  width: 65vw;
+  height: 45vh;
+  display: inline-block;
+  position: fixed;
+  top: 53vh;
+  left: 1vw;
+  background-color: #e6e6e6;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 7.5px;
+
+  box-shadow: 0 0 30px -15px rgba(0,0,0,0.75);
+}
+
 #countdown-text, #countdown-period {
   display: inline-block;
   vertical-align: middle;
@@ -35,6 +54,7 @@
 
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
+
 
 
 

@@ -11,7 +11,7 @@
   position: fixed;
   top: 1vh;
   left: 1vw;
-  background-color: #e6e6e6;
+  background-color: rgba(242, 242, 242, 0.9);
 
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@
 
   border-radius: 7.5px;
 
-  box-shadow: 0 0 30px -15px rgba(0,0,0,0.75);
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
 #weather {
@@ -29,7 +29,8 @@
   position: fixed;
   top: 53vh;
   left: 1vw;
-  background-color: #e6e6e6;
+  background-color: rgba(242, 242, 242, 0.9);
+
 
   display: flex;
   justify-content: center;
@@ -37,7 +38,10 @@
 
   border-radius: 7.5px;
 
-  box-shadow: 0 0 30px -15px rgba(0,0,0,0.75);
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+}
+#weatherdiv {
+  font-size: 10vh;
 }
 
 #countdown-text, #countdown-period {

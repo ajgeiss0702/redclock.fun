@@ -2,13 +2,18 @@ var cd = {};
 
 console.debug("Loaded countdown script!")
 
+var lastGood = false;
 async function getTimeString() {
   if(typeof cd.cdd != 'object') {
     setTimeout(() => {
       tick()
     }, 500);
+    lastGood = false;
     $('#countdown-period').text("Finding next bell..")
     return undefined;
+  }
+  if(!lastGood) {
+    updateScheduleTable();
   }
   var distance = getTime();
   if(distance < 0) {
@@ -32,6 +37,10 @@ function getTime() {
     recalcCdd();
   }
   return distance;
+}
+
+async function updateScheduleTable() {
+  // TODO: schedule table
 }
 
 async function recalcCdd() {
@@ -130,6 +139,7 @@ function setCountdownInterval() {
 }
 
 var titletext;
+var ticki = 0;
 function tick() {
   getTimeString().then((s) => {
     //console.debug($('#countdown-text').html() + "\n" + s)
@@ -152,11 +162,23 @@ function tick() {
       titletext = "Loading countdown.."
     }
     document.title = titletext + " - Red Clock";
+
+    $('#exact-time').text(dateString());
+    ticki++;
+    if(ticki > 15) {
+      slowTick();
+    }
+
   }).catch((e) => {
     $('#countdown-text').text('');
     $('#countdown-period').text("An error occured: "+e);
     console.error(e);
   })
+}
+
+
+async function slowTick() {
+  updateScheduleTable();
 }
 
 async function getCurrentSchedule() {
@@ -282,7 +304,7 @@ function copy(v) {
 }
 
 
-function string12hour(date) {
+function dateString(date = new Date()) {
   var d;
 
   if(Object.prototype.toString.call(date) === '[object Array]') {
@@ -300,5 +322,16 @@ function string12hour(date) {
 
   if(hour > 12) {
     ap = 'PM';
+    hour = hour - 12;
   }
+  if(min < 10) {
+    min = "0"+min
+  }
+  if(sec < 10) {
+    sec = "0"+sec
+  }
+
+  return hour+":"+min+":"+sec+" "+ap;
+
+
 }

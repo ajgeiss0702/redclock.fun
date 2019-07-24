@@ -12,12 +12,19 @@
   <nav>
     <div class='nav nav-tabs' id='sidebar-tabs'>
       <a class='nav-item nav-link active' id='sidebar-tab-news' data-toggle='tab' href='#news-container'>News</a>
+      <a class='nav-item nav-link' id='sidebar-tab-times' data-toggle='tab' href='#times-container'>Schedule</a>
       <a class='nav-item nav-link' id='sidebar-tab-settings' data-toggle='tab' href='#settings-container'>Settings</a>
     </div>
   </nav>
 
   <div class='tab-content'>
     <div id='news-container' class='tab-pane fade show active'></div>
+    <div id='times-container' class='tab-pane fade'>
+      <br>
+      <h1 id="exact-time"></h1>
+      <br>
+      <span id="schedule-table">Loading..</span>
+    </div>
     <div id='settings-container' class='tab-pane fade'>settings</div>
   </div>
 </div>

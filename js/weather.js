@@ -62,7 +62,7 @@ function updateWeather(last = false) {
       if(d.todayrain > 0) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
-
+ 
       $('#weatherdiv').html(`
         <div align='center'>
           <table>

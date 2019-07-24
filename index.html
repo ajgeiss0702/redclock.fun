@@ -6,21 +6,25 @@
 
     <link rel='stylesheet' href='/css/base.css'>
 
+    <link rel='stylesheet' id='layout-changer' href='/css/layouts/default.css'>
+
 
     <script src="/js/jquery.min.js" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       defer
+      async
       ></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
       defer
+      async
       ></script>
 
       <script src="/js/base.js"></script>
-      <script src="/js/pageloader.js" defer></script>
+      <script src="/js/pageloader.js" defer async></script>
 
 
     <link rel='icon' type="image/png" href='/img/red_clock.png'>
@@ -28,11 +32,14 @@
 
 
   <body onload="rcf.emit('load')">
+    <div id='load'></div>
     <div id='scheduleloaderror' class='errorbox hidden'>
       The schedule could not be loaded. Try again later.
     </div>
-    <div id='schoolselector'></div>
-    <div id='countdown'></div>
+    <div id='dummy' class='hidden' hidden></div>
+    <div id='schoolselector' class='content-container'></div>
+    <div id='countdown' class='content-container'></div>
+    <div id='about' class='content-container'></div>
   </body>
 
 

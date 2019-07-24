@@ -113,10 +113,11 @@ body,html {
   cursor: pointer;
 
 }
-.schooltext:hover {
+.schooltext:hover, .schooltext.show {
   color: rgba(255, 255, 255, 1);
   background-color: rgba(5, 5, 5, 0.4);
 }
+
 
 .select-welcome {
   max-width: 50%;
@@ -165,4 +166,28 @@ body,html {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 900px) {
+  .schoolbox {
+    height: 30.25vw;
+    width: 30.25vw;
+  }
+  .schoolbox:hover {
+    height: 30.25vw;;
+    width: 30.25vw;
+  }
+  .schooltext {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(5, 5, 5, 0.4);
+  }
+
+  #schoolselector {
+    padding-bottom: 5em;
+    font-size: 5vw;
+  }
+  .select-welcome {
+    max-width: 95%;
+  }
 }

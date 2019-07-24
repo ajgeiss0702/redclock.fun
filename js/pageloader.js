@@ -13,9 +13,11 @@ function loadContent(pageName) {
     elem[0].classList = 'fadeIn'
     if(pageName == 'countdown') {
       insertNews();
+      updateWeather();
     }
     location.hash = "#"+pageName;
     $('#load').slideUp('fast');
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   })
 }
 

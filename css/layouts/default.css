@@ -6,7 +6,7 @@
 }
 .countdown-container {
   width: 65vw;
-  height: 50vh;
+  min-height: 50vh;
   display: inline-block;
   position: fixed;
   top: 1vh;
@@ -24,7 +24,9 @@
 
 #weather {
   width: 65vw;
-  height: 45vh;
+  min-height: 45vh;
+  padding-top: 1em;
+  padding-bottom: 1em;
   display: inline-block;
   position: fixed;
   top: 53vh;
@@ -97,3 +99,25 @@
 }
 
 
+@media (max-width: 900px) {
+
+  .countdown-container {
+    position: static;
+    width: auto;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
+
+  #weather {
+    position: static;
+    width: auto;
+    margin-bottom: 1em;
+  }
+
+  .sidebar {
+    width: auto !important;
+    margin: auto;
+  }
+
+}

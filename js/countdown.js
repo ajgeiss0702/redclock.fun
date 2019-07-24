@@ -64,6 +64,16 @@ function makeDate(raw, ahead_debug = false) {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate()+raw[0], raw[1], raw[2], raw[3], 0);
 }
 
+rcf.on('load', () => {
+  if(rcf.school == "rmhs") { // TODO: weather for other schools
+    var weatherInterval;
+    clearInterval(weatherInterval);
+    weatherInterval = setInterval(updateWeather, 30000);
+  } else {
+    $('#weatherdiv').html("Weather display for your school coming soon<sup>tm</sup>")
+  }
+})
+
 async function init() {
   $('#countdown-period').text('Loading times..');
   var sched = (await getSchedule());

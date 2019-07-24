@@ -55,6 +55,23 @@ async function changeSchool(key) {
   }
 }
 
+
+function reload_js(src, nore = false) {
+  try {
+    var p = $('head')[0];
+    $('script[src="' + src + '"]').remove();
+    if(!nore) {
+      var script = document.createElement('script');
+      var sched = localStorage.getItem('schedule')
+      script.src = src;
+      p.appendChild(script);
+      console.debug("Loading script: " + src);
+    }
+  } catch(error) {
+    console.error(errer);
+  }
+}
+
 function changeSchedule(key) {
   localStorage.setItem('schedule', key);
   rcf.schedule = key;

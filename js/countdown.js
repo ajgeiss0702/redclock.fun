@@ -41,7 +41,34 @@ function getTime() {
 }
 
 async function updateScheduleTable() {
-  // TODO: schedule table
+  var sched = await getCurrentSchedule();
+  var ah = ``;
+  for (var until in sched) {
+    if (sched.hasOwnProperty(until)) {
+      var time = makeDate(sched[until]);
+      var special = time.toString() == cd.cdd.toString() ? " class='current-target'" : "";
+      if(special != "") console.log('Special!');
+      ah += `
+      <tr`+special+`>
+        <td>`+until+`</td><td>`+dateString(time)+`</td>
+      </tr>
+      `
+    }
+  }
+  $('#schedule-table').html(`<div class='scroller'>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class='themecolor'>Time</th>
+          <th class='themecolor'>Hour</th>
+        </tr>
+      </thead>
+      <tbody>`+
+      ah+
+      `</tbody>
+    </table>
+  </div>
+  `);
 }
 
 async function recalcCdd() {

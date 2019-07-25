@@ -18,6 +18,13 @@
   text-align: center;
 }
 
+tr, td {
+  align: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 @keyframes fadeOut {
   0% { opacity:1; }
   100% { opacity:0; display: none; }

@@ -168,6 +168,7 @@ function tick() {
     ticki++;
     if(ticki > 15) {
       slowTick();
+      ticki = 0;
     }
 
   }).catch((e) => {

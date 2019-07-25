@@ -9,12 +9,13 @@ async function getTimeString() {
       tick()
     }, 500);
     lastGood = false;
-    $('#countdown-period').text("Finding next bell..")
+    $('#countdown-period').text("Downloading additional data..")
     return undefined;
   }
   if(!lastGood) {
     updateScheduleTable();
   }
+  lastGood = true;
   var distance = getTime();
   if(distance < 0) {
     return "<img src=\"/img/bell.svg\" style=\"height: 1em;\" class=\"bell-animation\">"

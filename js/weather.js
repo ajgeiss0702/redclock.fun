@@ -14,6 +14,10 @@ function updateWeather(last = false) {
     console.debug("[weather.js] Skipping weather because its disabled");
     return;
   }
+  if($('#weatherdiv').length <= 0) {
+    console.debug('[weather.js] Skipping weather because the div cannot be found.');
+    return;
+  }
   try {
     var au = ''
     if(last) au = '?last'

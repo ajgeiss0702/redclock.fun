@@ -1,4 +1,4 @@
-ErrorDocument 404 /index.html?404
+ErrorDocument 404 /index.php?404
 
 # Should deny viewing git files
 RedirectMatch 403 ^/\.git/.*$

@@ -1,3 +1,8 @@
+<?php
+if(isset($_GET['404'])) {
+  die("<script>location.href='/?error=404'</script>");
+}
+?>
 <html>
   <head>
     <title>Red Clock - Bell Countdown</title>

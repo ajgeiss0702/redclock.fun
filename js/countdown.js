@@ -47,7 +47,6 @@ async function updateScheduleTable() {
     if (sched.hasOwnProperty(until)) {
       var time = makeDate(sched[until]);
       var special = time.toString() == cd.cdd.toString() ? " class='current-target'" : "";
-      if(special != "") console.log('Special!');
       ah += `
       <tr`+special+`>
         <td>`+until+`</td><td>`+dateString(time)+`</td>

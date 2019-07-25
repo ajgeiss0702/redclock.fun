@@ -17,6 +17,7 @@ function loadContent(pageName) {
     }
     location.hash = "#"+pageName;
     $('#load').slideUp('fast');
+    rcf.emit('pageload');
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   })
 }

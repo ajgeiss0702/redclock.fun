@@ -29,3 +29,18 @@
   </div>
 </div>
 <div class='calibration hidden' id='calibration'>Calibrating timer..</div>
+
+<script>
+
+$('#sidebar-tabs a').on('click', function (e) {
+  localStorage.tabId = this.id;
+})
+
+rcf.on('load', () => {
+  var tab = localStorage.tabId
+  if(typeof tab != 'undefined') {
+    $('#'+tab).tab('show');
+  }
+})
+
+</script>

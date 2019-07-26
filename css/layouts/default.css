@@ -24,6 +24,14 @@
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
+.sett-table {
+  text-align: center;
+  width: 100%;
+}
+.sett-title {
+  font-weight: bold;
+}
+
 #weather {
   width: 65vw;
   min-height: 45vh;
@@ -89,7 +97,7 @@
 }
 
 tr.current-target {
-  background-color: grey;
+  background-color: grey !important;
   color: white;
 }
 

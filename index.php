@@ -10,6 +10,7 @@ if(isset($_GET['404'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <link rel='stylesheet' href='/css/base.css'>
+    <link rel='stylesheet' href='/css/checkboxes.css'>
 
     <link rel='stylesheet' id='layout-changer' href='/css/layouts/default.css'>
 
@@ -20,14 +21,12 @@ if(isset($_GET['404'])) {
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       defer
-      async
       ></script>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
       defer
-      async
       ></script>
 
       <script src="/js/base.js"></script>

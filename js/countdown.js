@@ -80,6 +80,7 @@ async function recalcCdd() {
     cd.cdd = makeDate(sched[skeys[cd.i]]);
   }
   cd.period = skeys[cd.i];
+  updateScheduleTable();
 }
 
 function makeDate(raw, ahead_debug = false) {
@@ -280,6 +281,13 @@ async function getScheduleFor(now, orig = true) {
     foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
   }
 
+  for (var until in foundsched) {
+    if (foundsched.hasOwnProperty(until)) {
+      var data = foundsched[until];
+      data[3] += await getOffset();
+    }
+  }
+
   return foundsched;
 
 }
@@ -309,6 +317,34 @@ async function getSchedule(override = false) {
     //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
     schedCache.lastResp = copy(parsed);
     return copy(parsed);
+  } else {
+    cd.error = "School does not exist."
+    schedCache.lastResp = false;
+    console.debug("getSchedule() returning false!");
+    return false;
+  }
+}
+
+async function getOffset(override = false) {
+  if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
+  if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
+    var keys = Object.keys(schedCache.lastResp.normal);
+    //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
+    return copy(schedCache.lastResp.offset);
+  }
+  schedCache.lastGet = new Date().getTime();
+  if(typeof rcf.school == 'undefined') {
+    cd.error = "No school."
+    schedCache.lastResp = false;
+    console.debug("getOffset() returning false!");
+    return false;
+  }
+  if(await schoolExists(rcf.school)) {
+    var raw = await httpGet('/api/schedule.php?school='+rcf.school);
+    var parsed = JSON.parse(raw)[rcf.school];
+    //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
+    schedCache.lastResp = copy(parsed);
+    return copy(parsed).offset;
   } else {
     cd.error = "School does not exist."
     schedCache.lastResp = false;

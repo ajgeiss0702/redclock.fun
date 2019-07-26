@@ -45,14 +45,33 @@ settings.update = () => {
   for (var settingID in rawSettings) {
     if (rawSettings.hasOwnProperty(settingID)) {
       var setting = rawSettings[settingID];
+      var changebox = "";
+
+      switch(setting.type) {
+        case 'boolean':
+          var checked = setting.value ? " checked" : "";
+          changebox = `
+          <label class="tgl">
+            <input type="checkbox"`+checked+`>
+            <span data-on="On" data-off="Off"></span>
+          </label>
+          `;
+      }
+
       ah += `
-      <table>
-      <td class='sett-title'>`+setting.display+`</td><td class='sett-desc'>`+setting.desc+`</td>
+      <table data-toggle="tooltip" data-placement="top" title="`+setting.desc+`" class='sett-table'>
+      <td class='sett-title'>`+setting.display+`</td>
+      <td class='sett-change'>
+        `+changebox+`
+      </td>
       </table>
-      `
+      `;
     }
   }
   $('#settings-container').html(ah);
+  $(() => {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 }
 
 rcf.on('pageload', settings.update);

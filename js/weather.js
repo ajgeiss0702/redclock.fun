@@ -5,23 +5,45 @@ $('html').ready(() => {
   }, 500)
 })
 
-settings.create('enableWeather', true, 'Enable Weather', 'If the weather is disabled, battery will be saved.');
+settings.create('enableWeather', true, 'Enable Weather', 'Disabling this will save battery (disable the animated weather icon, that\'s the thing that sucks the most battery)');
+settings.create('animatedWeatherIcon', true, "Animated weather icon 🔋", "The animated weather icon looks cool, but it sucks the most power of everything on the page. Disabling it will help save battery")
 
 
 var skycons;
 function updateWeather(last = false) {
   if(!settings.get('enableWeather')) {
+    var disabledHtml = `<!--disabledWeather-->
+      <a onclick="$('#sidebar-tab-settings').tab('show')" style='cursor: pointer;'>
+        <img src='/img/weather-disabled.svg' style='width: 25%'><br>
+        <span style='font-size: 15%;'>Weather has been disabled in settings</span>
+      </a>
+      `;
+      if($('#weatherdiv').html().indexOf("<!--disabledWeather-->") != 0) {
+        $('#weatherdiv').slideUp(100);
+      }
     console.debug("[weather.js] Skipping weather because its disabled");
+    setTimeout(() => {
+      $('#weatherdiv').html(disabledHtml);
+      setTimeout(() => {
+        $('#weatherdiv').slideDown();
+      }, 50)
+    }, 150)
     return;
   }
   if($('#weatherdiv').length <= 0) {
     console.debug('[weather.js] Skipping weather because the div cannot be found.');
     return;
   }
+
+  if($('#weatherdiv').html().indexOf(`<!--weather!-->`) != 0) {
+    $('#weatherdiv').slideUp(100)
+  }
+
   try {
     var au = ''
     if(last) au = '?last'
     httpGet('/api/weather/get.php'+au, data => {
+
       var scc = 'black'
       if(rcf.theme == 'dark') {
         scc = 'white';
@@ -67,7 +89,7 @@ function updateWeather(last = false) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
 
-      $('#weatherdiv').html(`
+      $('#weatherdiv').html(`<!--weather!-->
         <div align='center'>
           <table>
             <tr>
@@ -97,9 +119,13 @@ function updateWeather(last = false) {
           </table>
         </div>
       `);
+      setTimeout(() => {
+        $('#weatherdiv').slideDown();
+      }, 100);
       skycons.set($('#weather-icon')[0], d['icon']);
-      skycons.play()
-      //$('#weatherhere').html(ah);
+      if(settings.get('animatedWeatherIcon')) {
+        skycons.play();
+      }
     });
   } catch(e) {
     console.error(e);

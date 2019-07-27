@@ -33,6 +33,7 @@ if(isset($_GET['404'])) {
       <script src="/js/settings.js" defer></script>
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js" defer></script>
+      <script src="/js/analytics.js" defer></script>
 
 
     <link rel='icon' type="image/png" href='/img/red_clock.png'>

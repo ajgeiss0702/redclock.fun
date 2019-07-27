@@ -1,18 +1,26 @@
-function report() {
+var analytics = {};
+analytics.lastRl = -1;
+analytics.report = () => {
   $.post({
     url: 'https://api.redclock.fun/checkin/'+rcf.school+'/'+rcf.schedule,
     data: {
       id: localStorage.id
     },
-    success: (d) => {
-      var data = JSON.parse(d);
+    success: (data) => {
       localStorage.id = data.id;
       console.log(data);
+      if(analytics.lastRl >= 0) {
+        if(analytics.lastRl < data.rel) {
+          console.log("Reload number is higher than before! Reloading..")
+          location.href="";
+        }
+      }
+      analytics.lastRl = data.rel;
     }
   })
 }
 
 rcf.on('load', () => {
-  setInterval(report, 30e3);
-  report();
+  setInterval(analytics.report, 30e3);
+  setTimeout(analytics.report, 1e3);
 })

@@ -7,6 +7,7 @@ $('html').ready(() => {
 
 settings.create('enableWeather', true, 'Enable Weather', 'Disabling this will save battery (disable the animated weather icon, that\'s the thing that sucks the most battery)');
 settings.create('animatedWeatherIcon', true, "Animated weather icon 🔋", "The animated weather icon looks cool, but it sucks the most power of everything on the page. Disabling it will help save battery")
+settings.create('exactTemp', false, "Exact temperature", "If enabled, will round to two decimal places on the temperature. If disabled, wiil round to the nearest whole number.")
 
 
 var skycons;
@@ -89,13 +90,18 @@ function updateWeather(last = false) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
 
+      var temperature = d.temperature;
+      if(!settings.get('exactTemp')) {
+        temperature = Math.round(temperature);
+      }
+
       $('#weatherdiv').html(`<!--weather!-->
         <div align='center'>
           <table>
             <tr>
               <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
               <td style='padding-left:0.25em;'>
-                <h1 style='font-size: 2.5em;'>`+d.temperature+`&deg;</h1>
+                <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
                   `+d.mindesc+"<br>"+d.desc+`<br>
                   <table>

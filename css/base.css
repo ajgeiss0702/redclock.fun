@@ -149,6 +149,11 @@ body,html {
   padding: 1em;
 }
 
+.weather-tr {
+  border-top: 0.25em solid transparent;
+    border-bottom: 0.25em solid transparent;
+}
+
 .calibration {
   display: inline-block;
   margin: auto;

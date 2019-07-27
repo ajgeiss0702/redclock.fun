@@ -105,15 +105,15 @@ function updateWeather(last = false) {
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
                   `+d.mindesc+"<br>"+d.desc+`<br>
                   <table>
-                    <tr>
+                    <tr class='weather-tr'>
                       <td>🌧️</td>
                       <td>`+Math.round(Number(d.todayrain) * 100)+`% chance of rain today<br>`+rainAdd+`</td>
                     </tr>
-                    <tr>
+                    <tr class='weather-tr'>
                       <td>💧</td>
                       <td>`+Math.round(d.humidity * 100)+`% humidity<br></td>
                     </tr>
-                    <tr>
+                    <tr class='weather-tr'>
                       <td>☀️</td>
                       <td>UV index: <span class='badge badge-pill badge-`+uvClass+`'>`+d.uvIndex+` (`+uvState+`)</span></td>
                     </tr>

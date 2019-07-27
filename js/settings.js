@@ -67,6 +67,8 @@ settings.update = () => {
       var setting = rawSettings[settingID];
       var changebox = "";
 
+      if(typeof setting.display == 'undefined') continue;
+
 
       switch(setting.type) {
         case 'boolean':

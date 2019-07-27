@@ -13,6 +13,8 @@ settings.set = (name, content) => {
   if(typeof rawSettings[name] == 'undefined') {
     return false;
   }
+
+  console.log("[Settings] "+name+": "+rawSettings[name].content+"  -->  "+content)
   rawSettings[name].content = content;
   rawSettings[name].type = typeof content;
   settings.save();
@@ -20,6 +22,12 @@ settings.set = (name, content) => {
 }
 
 settings.create = (name, content, display, desc) => {
+  if(!settings.ready) {
+    setTimeout(() => {
+      settings.create(name, content, display, desc);
+    }, 50)
+    return;
+  }
   if(typeof rawSettings[name] == 'undefined') {
     rawSettings[name] = {
       content: content,
@@ -27,6 +35,10 @@ settings.create = (name, content, display, desc) => {
       display: display,
       desc: desc
     }
+    settings.save();
+  } else {
+    rawSettings[name].display = display;
+    rawSettings[name].desc = desc;
     settings.save();
   }
 }
@@ -40,39 +52,58 @@ settings.load = () => {
   }
 }
 
+settings.setFromCheckbox = (setting, e) => {
+  var elem = $(e);
+  settings.set(setting, elem[0].checked);
+  updateWeather();
+  settings.save();
+}
+
 settings.update = () => {
-  var ah = "<h1>Settings</h1>";
+  settings.load();
+  var ah = "<h1>Settings</h1><small>The 🔋 icon means that setting will save battery if disabled.<br></small><br><table class='sett-table'>";
   for (var settingID in rawSettings) {
     if (rawSettings.hasOwnProperty(settingID)) {
       var setting = rawSettings[settingID];
       var changebox = "";
 
+
       switch(setting.type) {
         case 'boolean':
-          var checked = setting.value ? " checked" : "";
+          var checked = setting.content ? " checked" : "";
           changebox = `
           <label class="tgl">
-            <input type="checkbox"`+checked+`>
+            <input type="checkbox"`+checked+` onchange="settings.setFromCheckbox('`+settingID+`', this)">
             <span data-on="On" data-off="Off"></span>
           </label>
           `;
       }
 
       ah += `
-      <table data-toggle="tooltip" data-placement="top" title="`+setting.desc+`" class='sett-table'>
+      <tr data-toggle="tooltip" data-placement="top" title="`+setting.desc+`">
       <td class='sett-title'>`+setting.display+`</td>
       <td class='sett-change'>
         `+changebox+`
       </td>
-      </table>
+      </tr>
       `;
     }
   }
+  ah += "</table>"
   $('#settings-container').html(ah);
   $(() => {
     $('[data-toggle="tooltip"]').tooltip()
   })
 }
 
-rcf.on('pageload', settings.update);
-rcf.on('load', settings.update);
+
+settings.ready = false;
+(function(){
+  function init() {
+    settings.load();
+    settings.update();
+    settings.ready = true;
+  }
+  rcf.on('pageload', init);
+  rcf.on('load', init);
+})()

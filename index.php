@@ -13,6 +13,7 @@ if(isset($_GET['404'])) {
     <link rel='stylesheet' href='/css/checkboxes.css'>
 
     <link rel='stylesheet' id='layout-changer' href='/css/layouts/default.css'>
+    <link rel='stylesheet' id='theme-changer' href='/css/themes/light.css'>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

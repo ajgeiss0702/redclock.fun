@@ -91,7 +91,7 @@ settings.update = () => {
       `;
     }
   }
-  ah += "</table>"
+  ah += "</table><br><a class='btn btn-primary' href='#schoolselector'>Select a different school</a>"
   $('#settings-container').html(ah);
   $(() => {
     $('[data-toggle="tooltip"]').tooltip()

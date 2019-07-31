@@ -74,7 +74,7 @@ settings.update = () => {
         case 'boolean':
           var checked = setting.content ? " checked" : "";
           changebox = `
-          <label class="tgl">
+          <label class="tgl tgl-gray">
             <input type="checkbox"`+checked+` onchange="settings.setFromCheckbox('`+settingID+`', this)">
             <span data-on="On" data-off="Off"></span>
           </label>

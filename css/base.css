@@ -180,7 +180,29 @@ body,html {
   display: none;
 }
 
+#blur {
+  transition: 0.4s;
+}
+
+#layout-selector {
+  width: 75vw;
+  max-height: 85vh;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: inline-block;
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+}
+
 @media (max-width: 900px) {
+  #layout-selector {
+    width: 95vw;
+  }
   .schoolbox {
     height: 30.25vw;
     width: 30.25vw;

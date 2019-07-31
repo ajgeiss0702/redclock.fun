@@ -1,35 +1,48 @@
 <script src='/js/countdown-utils.js'></script>
 <script src='/js/countdown.js'></script>
-<div class='countdown-container'>
-  <div class='countdown-inner-container'>
-    <div id='countdown-text'></div><br>
-    <div id='countdown-period'>The countdown is not loading for some reason..</div>
-  </div>
-</div>
-<div id='weather'>
-  <div id='weatherdiv'></div>
-</div>
-<div class='sidebar'>
-  <nav>
-    <div class='nav nav-tabs' id='sidebar-tabs'>
-      <a class='nav-item nav-link active' id='sidebar-tab-news' data-toggle='tab' href='#news-container'>News</a>
-      <a class='nav-item nav-link' id='sidebar-tab-times' data-toggle='tab' href='#times-container'>Schedule</a>
-      <a class='nav-item nav-link' id='sidebar-tab-settings' data-toggle='tab' href='#settings-container'>Settings</a>
+<div id="blur">
+  <div class='countdown-container'>
+    <div class='countdown-inner-container'>
+      <div id='countdown-text'></div><br>
+      <div id='countdown-period'>The countdown is not loading for some reason..</div>
     </div>
-  </nav>
+  </div>
+  <div id='weather'>
+    <div id='weatherdiv'></div>
+  </div>
+  <div class='sidebar'>
+    <nav>
+      <div class='nav nav-tabs' id='sidebar-tabs'>
+        <a class='nav-item nav-link active' id='sidebar-tab-news' data-toggle='tab' href='#news-container'>News</a>
+        <a class='nav-item nav-link' id='sidebar-tab-times' data-toggle='tab' href='#times-container'>Schedule</a>
+        <a class='nav-item nav-link' id='sidebar-tab-settings' data-toggle='tab' href='#settings-container'>Settings</a>
+      </div>
+    </nav>
 
-  <div class='tab-content'>
-    <div id='news-container' class='tab-pane fade show active'></div>
-    <div id='times-container' class='tab-pane fade'>
-      <br>
-      <h1 id="exact-time"></h1>
-      <br>
-      <span id="schedule-table">Loading..</span>
+    <div class='tab-content'>
+      <div id='news-container' class='tab-pane fade show active'></div>
+      <div id='times-container' class='tab-pane fade'>
+        <br>
+        <h1 id="exact-time"></h1>
+        <br>
+        <span id="schedule-table">Loading..</span>
+      </div>
+      <div id='settings-container' class='tab-pane fade'></div>
     </div>
-    <div id='settings-container' class='tab-pane fade'></div>
   </div>
+  <div class='calibration hidden' id='calibration'>Calibrating timer..</div>
 </div>
-<div class='calibration hidden' id='calibration'>Calibrating timer..</div>
+
+
+<div id="layout-selector" style='display: none;'>
+  <h2>Theme</h2>
+  <label class="tgl tgl-gray-both">
+    <input type="checkbox" id='themeCheckBox' onchange="layout.changeTheme()">
+    <span data-on="Dark" data-off="Light"></span>
+  </label>
+</div>
+
+
 
 <script>
 

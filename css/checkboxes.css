@@ -105,6 +105,7 @@ EXAMPLE
 .tgl input[type="checkbox"]:read-only + span {
   cursor: not-allowed;
 }
+
 .tgl-gray input[type="checkbox"]:not(:checked) + span {
   background: #e3e3e3;
   color: #999999;
@@ -115,6 +116,18 @@ EXAMPLE
 .tgl-gray input[type="checkbox"]:not(:checked) + span:after {
   background: #ffffff;
 }
+
+.tgl-gray-both input[type="checkbox"] + span {
+  background: #e3e3e3 !important;
+  color: #999999 !important;
+}
+.tgl-gray-both input[type="checkbox"] + span:before {
+  color: #999999 !important;
+}
+.tgl-gray-both input[type="checkbox"] + span:after {
+  background: #ffffff !important;
+}
+
 .tgl-inline {
   display: inline-block !important;
   vertical-align: top;

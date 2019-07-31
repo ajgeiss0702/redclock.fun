@@ -168,3 +168,21 @@ function copy(v) {
       return JSON.parse(JSON.stringify(tmp))[0];
   }
 }
+
+function openThemeMenu() {
+  $('#layout-selector').fadeIn();
+  blur();
+}
+
+function closeThemeMenu() {
+  $('#layout-selector').fadeOut();
+  unblur();
+}
+
+function blur() {
+  document.getElementById('blur').style.filter = 'blur(2px)';
+}
+
+function unblur() {
+  document.getElementById('blur').style.filter = 'blur(0)';
+}

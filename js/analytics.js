@@ -8,7 +8,7 @@ analytics.report = () => {
     },
     success: (data) => {
       localStorage.id = data.id;
-      console.log(data);
+      console.debug(data);
       if(analytics.lastRl >= 0) {
         if(analytics.lastRl < data.rel) {
           console.log("Reload number is higher than before! Reloading..")

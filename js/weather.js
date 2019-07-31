@@ -129,9 +129,15 @@ function updateWeather(last = false) {
         $('#weatherdiv').slideDown();
       }, 100);
       skycons.set($('#weather-icon')[0], d['icon']);
-      if(settings.get('animatedWeatherIcon')) {
-        skycons.play();
+      if(typeof debug != 'undefined') {
+        console.log(skycons);
       }
+      skycons.play();
+      setTimeout(() => {
+        if(!settings.get('animatedWeatherIcon')) {
+          skycons.pause();
+        }
+      }, 250);
     });
   } catch(e) {
     console.error(e);

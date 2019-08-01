@@ -36,6 +36,10 @@ function updateWeather(last = false) {
     return;
   }
 
+  if(typeof Skycons == 'undefined') {
+    console.debug("[weather.js] Skipping weather because skycons arent ready yet.")
+  }
+
   if($('#weatherdiv').html().indexOf(`<!--weather!-->`) != 0) {
     $('#weatherdiv').slideUp(100)
   }
@@ -50,10 +54,7 @@ function updateWeather(last = false) {
         scc = 'white';
       }
       skycons = new Skycons({"color": scc});
-      //$('#wea-btn')[0].classList = 'smooth btn btn-success';
-      //$('#wea-btn').text('Update Weather');
       var d = JSON.parse(data);
-      console.debug("[widget.js] AU: " + d.au);
       if(d.error) {
         $('#weatherdiv').html(`
           <h1 class='text text-danger'>An error occured</h1>

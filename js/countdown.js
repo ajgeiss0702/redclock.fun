@@ -174,10 +174,12 @@ function openLayoutMenu() {
   $('#layout-selector').fadeIn();
   blur();
   $('#layouts').html(`
-  <div class='layout layout-selected'>
-    <iframe src='/?layout=default' class='layout-iframe'></iframe>
-    Default
-  </div>`)
+    <div class="layout layout-selected card" style="width: 25vw;">
+      <iframe src='/?layout=default' class='layout-iframe card-img-top'></iframe>
+      <div class="card-body">
+        <p class="card-text">Default</p>
+      </div>
+    </div>`)
 }
 
 function closeLayoutMenu() {

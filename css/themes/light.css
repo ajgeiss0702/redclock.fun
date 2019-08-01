@@ -1,3 +1,7 @@
+* {
+  color: black;
+}
+
 .countdown-container {
   background-color: rgba(242, 242, 242, 0.9);
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);

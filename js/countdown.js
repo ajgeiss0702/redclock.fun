@@ -169,14 +169,25 @@ function copy(v) {
   }
 }
 
-function openThemeMenu() {
+function openLayoutMenu() {
   $('#layout-selector').fadeIn();
   blur();
 }
 
-function closeThemeMenu() {
+function closeLayoutMenu() {
   $('#layout-selector').fadeOut();
   unblur();
+}
+
+rcf.theme = 'light';
+rcf.changeTheme = (theme) => {
+  $('#theme-changer')[0].href = '/css/themes/'+theme+'.css';
+  rcf.theme = theme;
+  setCookie('theme', theme)
+  updateWeather();
+}
+if(getCookie('theme') != '') {
+  rcf.changeTheme(getCookie('theme'));
 }
 
 function blur() {

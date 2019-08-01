@@ -1,3 +1,7 @@
+* {
+  transition: 0.4s;
+}
+
 
 .schoolbox {
   display: inline-block;

@@ -13,7 +13,13 @@ if(isset($_GET['404'])) {
     <link rel='stylesheet' href='/css/checkboxes.css'>
 
     <link rel='stylesheet' id='layout-changer' href='/css/layouts/default.css'>
-    <link rel='stylesheet' id='theme-changer' href='/css/themes/light.css'>
+    <link rel='stylesheet' id='theme-changer' href='/css/themes/<?php
+    if(isset($_COOKIE['theme'])) {
+      echo($_COOKIE['theme']);
+    } else {
+      echo('light');
+    }
+    ?>.css'>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

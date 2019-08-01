@@ -170,16 +170,29 @@ function copy(v) {
 }
 
 
+var layouts = [
+  'Default',
+  'Mirrored'
+]
 function openLayoutMenu() {
   $('#layout-selector').fadeIn();
   blur();
-  $('#layouts').html(`
-    <div class="layout layout-selected card" style="width: 25vw;">
-      <iframe src='/?layout=default' class='layout-iframe card-img-top'></iframe>
+  var ah = "";
+  for (layout of layouts) {
+    ah += `
+    <div class="layout card" style="width: 25vw;" onclick='changeLayout("`+layout+`")'>
+      <iframe src='/?layout=`+layout+`' class='layout-iframe card-img-top'></iframe>
       <div class="card-body">
-        <p class="card-text">Default</p>
+        <p class="card-text">`+layout+`</p>
       </div>
-    </div>`)
+    </div>`
+  }
+  $('#layouts').html(ah)
+}
+
+function changeLayout(layout) {
+  setCookie('layout', layout);
+  $('#layout-changer')[0].href = '/css/layouts/'+layout+'.css';
 }
 
 function closeLayoutMenu() {

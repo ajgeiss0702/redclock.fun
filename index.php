@@ -12,7 +12,17 @@ if(isset($_GET['404'])) {
     <link rel='stylesheet' href='/css/base.css'>
     <link rel='stylesheet' href='/css/checkboxes.css'>
 
-    <link rel='stylesheet' id='layout-changer' href='/css/layouts/default.css'>
+    <link rel='stylesheet' id='layout-changer' href='/css/layouts/<?php
+    if(isset($_GET['layout'])) {
+      echo($_GET['layout']);
+    } else {
+      if(isset($_COOKIE['layout'])) {
+        echo($_COOKIE['layout']);
+      } else {
+        echo('default');
+      }
+    }
+    ?>.css'>
     <link rel='stylesheet' id='theme-changer' href='/css/themes/<?php
     if(isset($_COOKIE['theme'])) {
       echo($_COOKIE['theme']);

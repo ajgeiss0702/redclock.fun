@@ -169,14 +169,21 @@ function copy(v) {
   }
 }
 
+
 function openLayoutMenu() {
   $('#layout-selector').fadeIn();
   blur();
+  $('#layouts').html(`
+  <div class='layout layout-selected'>
+    <iframe src='/?layout=default' class='layout-iframe'></iframe>
+    Default
+  </div>`)
 }
 
 function closeLayoutMenu() {
   $('#layout-selector').fadeOut();
   unblur();
+  $('#layouts').html('');
 }
 
 rcf.theme = 'light';
@@ -188,6 +195,20 @@ rcf.changeTheme = (theme) => {
 }
 if(getCookie('theme') != '') {
   rcf.changeTheme(getCookie('theme'));
+}
+
+
+rcf.on('load', () => {
+  if(rcf.theme == 'dark') {
+    $('#themeCheckBox')[0].checked = true;
+  }
+})
+function checkTheme() {
+  if($('#themeCheckBox')[0].checked) {
+    rcf.changeTheme('dark');
+  } else {
+    rcf.changeTheme('light');
+  }
 }
 
 function blur() {

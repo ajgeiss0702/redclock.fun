@@ -91,8 +91,13 @@ settings.update = () => {
       `;
     }
   }
-  ah += "</table><br><a class='btn btn-primary' href='#schoolselector'>Select a different school</a>"
+  ah += `</table><br>
+  <a class='btn btn-primary' onclick='openLayoutMenu()'>Themes and Layouts</a><br>
+  <br>
+  <a class='btn btn-secondary' href='#schoolselector'>Select a different school</a>
+  `
   $('#settings-container').html(ah);
+
   $(() => {
     $('[data-toggle="tooltip"]').tooltip()
   })

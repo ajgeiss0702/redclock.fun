@@ -35,11 +35,15 @@
 
 
 <div id="layout-selector" style='display: none;'>
+  <a class='layout-selector-close' onclick='closeLayoutMenu()'>x</a>
   <h2>Theme</h2>
-  <label class="tgl tgl-gray-both">
-    <input type="checkbox" id='themeCheckBox' onchange="layout.changeTheme()">
+  <label class="tgl tgl-themes">
+    <input type="checkbox" id='themeCheckBox' onchange="checkTheme()">
     <span data-on="Dark" data-off="Light"></span>
   </label>
+
+  <br>
+  <div class='layouts' id='layouts'></div>
 </div>
 
 

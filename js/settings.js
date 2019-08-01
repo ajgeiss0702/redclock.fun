@@ -6,6 +6,9 @@ settings.get = (name) => {
   if(typeof rawSettings[name] == 'undefined') {
     return undefined;
   }
+  if(name == 'animatedWeatherIcon' && _GET('layout') != null) {
+    return false;
+  }
   return rawSettings[name].content;
 }
 

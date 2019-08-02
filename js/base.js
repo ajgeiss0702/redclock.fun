@@ -98,7 +98,9 @@ function schoolExists(key) {
   })
 }
 
-
+function commas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 

@@ -4,7 +4,8 @@ analytics.report = () => {
   $.post({
     url: 'https://api.redclock.fun/checkin/'+rcf.school+'/'+rcf.schedule,
     data: {
-      id: localStorage.id
+      id: localStorage.id,
+      tab: localStorage.tabId
     },
     success: (data) => {
       localStorage.id = data.id;

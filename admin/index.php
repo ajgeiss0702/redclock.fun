@@ -1,12 +1,18 @@
 <html>
   <head>
+    <style>
+    body,html {
+      padding: 0;
+      margin: 0;
+    }
+    </style>
     <script src='/js/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
     <script src="/js/base.js"></script>
   </head>
   <body onload='load()'>
     <div style='text-align: center;margin-left:auto;margin-right:auto;'>
-      <canvas id='usergraph' style='width: 100vw;height: 85vh;padding:0;margin:0;'></canvas>
+      <canvas id='usergraph' style='width: 100vw;height: 85vh;padding:0;margin:0;margin-bottom: -2vh;'></canvas>
       <h1 id='usercount' style='line-height: 15vh;font-size:15vh;padding:0;margin:0;'>0</h1>
     </div>
   </body>

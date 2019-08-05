@@ -181,7 +181,7 @@ function openLayoutMenu() {
   for (layout of layouts) {
     ah += `
     <div class="layout card" style="width: 25vw;" onclick='changeLayout("`+layout+`")'>
-      <iframe src='/?layout=`+layout+`' class='layout-iframe card-img-top'></iframe>
+      <iframe src='/?layout=`+layout.toLowerCase()+`' class='layout-iframe card-img-top'></iframe>
       <div class="card-body">
         <p class="card-text">`+layout+`</p>
       </div>
@@ -191,8 +191,8 @@ function openLayoutMenu() {
 }
 
 function changeLayout(layout) {
-  setCookie('layout', layout);
-  $('#layout-changer')[0].href = '/css/layouts/'+layout+'.css';
+  setCookie('layout', layout.toLowerCase());
+  $('#layout-changer')[0].href = '/css/layouts/'+layout.toLowerCase()+'.css';
 }
 
 function closeLayoutMenu() {
@@ -203,7 +203,7 @@ function closeLayoutMenu() {
 
 rcf.theme = 'light';
 rcf.changeTheme = (theme) => {
-  $('#theme-changer')[0].href = '/css/themes/'+theme+'.css';
+  $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css';
   rcf.theme = theme;
   setCookie('theme', theme)
   updateWeather();

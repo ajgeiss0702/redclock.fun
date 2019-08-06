@@ -78,7 +78,7 @@
       first = false;
       $('#usercount').text(data+"");
     } else {
-      numberSlide(data, $('#usercount'))
+      numberSlide(data, $('#usercount'), 10)
     }
   }
 

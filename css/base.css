@@ -223,6 +223,7 @@ body,html {
   width: 0.25vw;
   display: inline-block;
   margin: 1em;
+  max-height: 0.5vh;
 }
 
 .layout .card-body {

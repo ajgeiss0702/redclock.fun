@@ -105,7 +105,7 @@ async function getScheduleFor(now, orig = true) {
   }
 
   //If no special dates/days, return normal schedule
-  if(found == false) {
+  if(found == false && typeof foundsched != 'object') {
     console.debug("Special schedule not found, using default.");
     foundsched = sched.normal[rcf.schedule]
   }

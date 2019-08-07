@@ -39,6 +39,10 @@
         }]
       },
       options: {
+        hover: {
+          enabled: true,
+          intersect: false
+        },
         elements: {
           point: 'line'
         },

@@ -91,6 +91,7 @@ async function getScheduleFor(now, orig = true) {
   for (var day in specialdays) {
     if (specialdays.hasOwnProperty(day)) {
       var nowday = now.getDay()+1;
+      console.debug(nowday)
       var parts = day.split(',');
       for (var part in parts) {
         if (parts.hasOwnProperty(part)) {

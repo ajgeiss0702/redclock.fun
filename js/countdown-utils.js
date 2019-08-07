@@ -87,7 +87,7 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
-
+  console.debug(specialdays)
   for (var day in specialdays) {
     if (specialdays.hasOwnProperty(day)) {
       var nowday = now.getDay();

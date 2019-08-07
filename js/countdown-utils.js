@@ -94,8 +94,8 @@ async function getScheduleFor(now, orig = true) {
     var parts = day.split(',');
     for (var part in parts) {
       if (parts.hasOwnProperty(part)) {
-        console.debug(part.toString()+" : " + nowday.toString())
-        if(part.toString() == nowday.toString()) {
+        console.debug(parts[part].toString()+" : " + nowday.toString())
+        if(parts[part].toString() == nowday.toString()) {
           found = true;
           foundsched = sched.specials.day[day][rcf.schedule];
         }

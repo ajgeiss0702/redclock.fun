@@ -44,7 +44,7 @@ if(isset($_GET['404'])) {
       gtag('config', 'UA-106568388-2');
     </script>
 
-
+    <script src='/js/countdown-utils.js'></script>
     <script src="/js/jquery.min.js" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

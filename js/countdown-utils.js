@@ -87,14 +87,11 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
-  console.debug(specialdays);
   for (var day in specialdays) {
     var nowday = now.getDay();
-    console.debug(nowday)
     var parts = day.split(',');
     for (var part in parts) {
       if (parts.hasOwnProperty(part)) {
-        console.debug(parts[part].toString()+" : " + nowday.toString())
         if(parts[part].toString() == nowday.toString()) {
           found = true;
           foundsched = sched.specials.day[day][rcf.schedule];
@@ -105,7 +102,6 @@ async function getScheduleFor(now, orig = true) {
 
   //If no special dates/days, return normal schedule
   if(found == false && typeof foundsched != 'object') {
-    console.debug("Special schedule not found, using default.");
     foundsched = sched.normal[rcf.schedule]
   }
 

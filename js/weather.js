@@ -13,9 +13,10 @@ settings.create('exactTemp', false, "Exact temperature", "If enabled, will round
 var skycons;
 function updateWeather(last = false) {
   if(!settings.get('enableWeather')) {
+    var disWeaIcon = rcf.theme == "light" ? '/img/weather-disabled.svg' : '/img/weather-disabled-white.svg';
     var disabledHtml = `<!--disabledWeather-->
       <a onclick="$('#sidebar-tab-settings').tab('show')" style='cursor: pointer;'>
-        <img src='/img/weather-disabled.svg' style='width: 25%'><br>
+        <img src='`+disWeaIcon+`' style='width: 25%'><br>
         <span style='font-size: 15%;'>Weather has been disabled in settings</span>
       </a>
       `;

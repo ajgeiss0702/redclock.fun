@@ -218,6 +218,8 @@ body,html {
   width: 99vw;
   transform: scale(0.25) !important;
 
+  padding:0;
+
   max-height: 99vh;
 
   transition: 0 !important;
@@ -278,6 +280,13 @@ body,html {
     font-size: 0.9em;
     color: rgba(255, 255, 255, 1);
     background-color: rgba(5, 5, 5, 0.4);
+  }
+
+  .layout-iframe {
+    margin-left: -37.5vw;
+    margin-right: -37.5vw;
+    margin-top: -37.5vh;
+    margin-bottom: -37.5vh;
   }
 
   .layout {

@@ -125,8 +125,16 @@ async function getScheduleFor(now, orig = true) {
     var tmrkeysl = tmrkeys.length;
     tmr[tmrkeys[0]][0] = 1;
     tmr[tmrkeys[1]][0] = 1;
-    foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
-    foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
+    if(tmrkeys[0].indexOf("monday") != -1) {
+      foundsched[tmrkeys[0]] = tmr[tmrkeys[0]];
+    } else {
+      foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
+    }
+    if(tmrkeys[1].indexOf("monday") != -1) {
+      foundsched[tmrkeys[1]] = tmr[tmrkeys[1]];
+    } else {
+      foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
+    }
   }
 
   for (var until in foundsched) {

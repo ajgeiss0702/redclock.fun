@@ -224,6 +224,8 @@ body,html {
   display: inline-block;
   margin: 1em;
   max-height: 0.5vh;
+
+  transition: 0s;
 }
 
 .layout .card-body {

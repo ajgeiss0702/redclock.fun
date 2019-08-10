@@ -218,6 +218,8 @@ body,html {
   width: 99vw;
   transform: scale(0.25) !important;
 
+  max-height: 99vh;
+
   transition: 0 !important;
 }
 

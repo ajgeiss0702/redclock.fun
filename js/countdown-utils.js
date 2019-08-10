@@ -89,12 +89,15 @@ async function getScheduleFor(now, orig = true) {
 
   for (var day in specialdays) {
     var nowday = now.getDay();
-    var parts = day.split(',');
+    var parts = specialdays[day].split(',');
     for (var part in parts) {
       if (parts.hasOwnProperty(part)) {
+        if(typeof specialdebug != 'undefined') {
+          console.debug(nowday + " : " + parts[part] + " / " + part + " : " + specialdays[day] + "["+day+"]");
+        }
         if(parts[part].toString() == nowday.toString()) {
           found = true;
-          foundsched = sched.specials.day[day][rcf.schedule];
+          foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
         }
       }
     }

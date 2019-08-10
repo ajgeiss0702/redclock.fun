@@ -274,6 +274,10 @@ body,html {
     background-color: rgba(5, 5, 5, 0.4);
   }
 
+  .layout {
+    margin: 1vw;
+  }
+
   #schoolselector {
     padding-bottom: 5em;
     font-size: 5vw;

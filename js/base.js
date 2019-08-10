@@ -143,3 +143,18 @@ function setCookie(cname, cvalue) {
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    console.debug("[getBase64] file: %o", file)
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      resolve(reader.result);
+    };
+    reader.onerror = function (error) {
+      reject(error);
+    };
+  })
+}

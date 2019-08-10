@@ -67,6 +67,11 @@ body,html {
   padding: 0;
 }
 
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .fadeOut {
   animation: 0.5s ease 0s normal forwards 1 fadeOut;
 }
@@ -203,6 +208,10 @@ body,html {
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
   padding-left: 1em;
   padding-right: 1em;
+  padding-bottom: 1em;
+
+  overflow-y: scroll;
+  color: black;
 }
 
 #layout-selector * {
@@ -251,6 +260,9 @@ body,html {
   display: block;
   width: 2em;
   margin-left: auto;
+  position: relative;
+  top:0;
+  left:0;
 
   color: red !important;
   font-size: 1.5em;

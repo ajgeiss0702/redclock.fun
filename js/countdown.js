@@ -187,7 +187,10 @@ function openLayoutMenu() {
       </div>
     </div>`
   }
-  $('#layouts').html(ah)
+  $('#layouts').html(ah);
+  setTimeout(() => {
+    $('#layout-selector').scrollTop(0);
+  }, 400);
 }
 
 function changeLayout(layout) {
@@ -233,3 +236,38 @@ function blur() {
 function unblur() {
   document.getElementById('blur').style.filter = 'blur(0)';
 }
+
+$('#custom-background-file').change(() => {
+  fileSelected();
+})
+$('#background-fill-screen').change(() => {
+  updateCustomBackground()
+})
+
+async function fileSelected() {
+  var files = $('#custom-background-file')[0].files;
+  var result = await getBase64(files[0]);
+  console.log(result);
+  localStorage.customBackground = result;
+  updateCustomBackground();
+}
+
+function updateCustomBackground() {
+  if(typeof localStorage.customBackground != 'undefined') {
+    changeBackground(localStorage.customBackground);
+    $('#removeBackground').html("<a onclick='localStorage.removeItem(\"customBackground\");updateCustomBackground()' class='btn btn-outline-danger'>Remove</a>")
+  } else {
+    $('body').css("background-image", "");
+    $('#removeBackground').html('');
+  }
+  if($('#background-fill-screen')[0].checked == true) {
+    $('body').css("background-size", "cover");
+  } else {
+    $('body').css("background-size", "contain");
+  }
+}
+function changeBackground(base64) {
+  $('body').css("background-image", "url('"+base64+"')");
+}
+
+rcf.on('load', updateCustomBackground)

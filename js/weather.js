@@ -12,6 +12,10 @@ settings.create('exactTemp', false, "Exact temperature", "If enabled, will round
 
 var skycons;
 function updateWeather(last = false) {
+  if(typeof $('#weatherdiv').html() != 'string') {
+    console.debug("[weather.js] Skipping weather because the element is not ready");
+    return;
+  }
   if(!settings.get('enableWeather')) {
     var disWeaIcon = rcf.theme == "light" ? '/img/weather-disabled.svg' : '/img/weather-disabled-white.svg';
     var disabledHtml = `<!--disabledWeather-->

@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['404'])) {
-  die("<script>location.href='/?error=404'</script>");
+  die("<script>location.href='/?error=404&from='+encodeURIComponent(location.href)</script>");
 }
 ?>
 <html>

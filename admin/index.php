@@ -78,11 +78,9 @@
       return;
     }
 
+    numberSlide(data, $('#usercount'), 1);
     if(first) {
       first = false;
-      $('#usercount').text(data+"");
-    } else {
-      numberSlide(data, $('#usercount'), 1)
     }
   }
 

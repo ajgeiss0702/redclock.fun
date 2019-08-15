@@ -234,7 +234,7 @@ function blur() {
 }
 
 function unblur() {
-  document.getElementById('blur').style.filter = 'blur(0)';
+  document.getElementById('blur').style.filter = '';
 }
 
 $('#custom-background-file').change(() => {

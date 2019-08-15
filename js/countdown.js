@@ -74,13 +74,17 @@ rcf.on('load', () => {
   calibrateCountdown();
 });
 
+settings.create('calibratedBox', true, "Show calibrated box", "Disabling this will not show the 'Countdown Calibrated!' box. The countdown will still be calibrated in the background.")
 function calibrateCountdown() {
+  var box = settings.get('calibratedBox');
   if(typeof cd.calibratedBefore != 'undefined') {
-    $('#calibration').text('Calibrating timer..');
-    $('#calibration').removeClass('done');
-    $('#calibration').removeClass('hidden');
-    $('#calibration').removeClass('fadeOut');
-    $('#calibration').addClass('fadeInFast');
+    if(box) {
+      $('#calibration').text('Calibrating timer..');
+      $('#calibration').removeClass('done');
+      $('#calibration').removeClass('hidden');
+      $('#calibration').removeClass('fadeOut');
+      $('#calibration').addClass('fadeInFast');
+    }
   } else {
     cd.calibratedBefore = true;
   }
@@ -88,11 +92,15 @@ function calibrateCountdown() {
     var ms = new Date().getMilliseconds();
     if(ms <= 50) {
       setCountdownInterval();
-      $('#calibration').text('Timer calibrated!');
-      $('#calibration').removeClass('fadeInFast');
-      $('#calibration').addClass('done');
+      if(box) {
+        $('#calibration').text('Timer calibrated!');
+        $('#calibration').removeClass('fadeInFast');
+        $('#calibration').addClass('done');
+      }
       setTimeout(() => {
-        $('#calibration').addClass('fadeOut');
+        if(box) {
+          $('#calibration').addClass('fadeOut');
+        }
       }, 1.5e3)
     }
   }, 25);

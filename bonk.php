@@ -10,7 +10,7 @@ if(!file_exists("BonkLiveVersion2.swf")) {
 <html>
 	<head>
 		<title>Bonk.io - Just bonk!</title>
-		<meta name="Description" content="Bonk without ads. Only bonk. Works with game links (just change .io to .fun in url). ">
+		<meta name="Description" content="Bonk without ads. Only bonk. Works with game links. ">
 		<link rel="icon" type="image/png" href="https://bonk.io/tt/favicon-32x32.png">
 		<style>
 		body, html {

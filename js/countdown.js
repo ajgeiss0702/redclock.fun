@@ -257,17 +257,17 @@ function updateCustomBackground() {
     changeBackground(localStorage.customBackground);
     $('#removeBackground').html("<a onclick='localStorage.removeItem(\"customBackground\");updateCustomBackground()' class='btn btn-outline-danger'>Remove</a>")
   } else {
-    $('body').css("background-image", "");
+    $('#custom-background').css("background-image", "");
     $('#removeBackground').html('');
   }
   if($('#background-fill-screen')[0].checked == true) {
-    $('body').css("background-size", "cover");
+    $('#custom-background').css("background-size", "cover");
   } else {
-    $('body').css("background-size", "contain");
+    $('#custom-background').css("background-size", "contain");
   }
 }
 function changeBackground(base64) {
-  $('body').css("background-image", "url('"+base64+"')");
+  $('#custom-background').css("background-image", "url('"+base64+"')");
 }
 
 rcf.on('load', updateCustomBackground)

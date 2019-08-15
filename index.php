@@ -73,10 +73,10 @@ if(isset($_GET['404'])) {
     <div id='scheduleloaderror' class='errorbox hidden'>
       The schedule could not be loaded. Try again later.
     </div>
-    <div id='dummy' class='hidden' hidden></div>
-    <div id='schoolselector' class='content-container' style="display: none;"></div>
-    <div id='countdown' class='content-container'></div>
-    <div id='about' class='content-container'></div>
+    <div id='dummy-ct' class='hidden' hidden></div>
+    <div id='schoolselector-ct' class='content-container' style="display: none;"></div>
+    <div id='countdown-ct' class='content-container'></div>
+    <div id='about-ct' class='content-container'></div>
   </body>
 
 

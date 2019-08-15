@@ -2,11 +2,11 @@ var activePage = "dummy";
 
 function loadContent(pageName) {
   $('#load').slideDown('fast');
-  $('#'+activePage).slideUp()
-  $('#'+activePage).removeClass('fadeIn');
-  $('#'+activePage).addClass('fadeOut');
+  $('#'+activePage+'-ct').slideUp()
+  $('#'+activePage+'-ct').removeClass('fadeIn');
+  $('#'+activePage+'-ct').addClass('fadeOut');
   httpGet('/pages/'+pageName+'.html').then((c) => {
-    var elem = $('#'+pageName);
+    var elem = $('#'+pageName+'-ct');
     elem.html(c);
     activePage = pageName;
     elem.slideDown();

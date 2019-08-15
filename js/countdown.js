@@ -175,7 +175,6 @@ var layouts = [
   'Mirrored'
 ]
 function openLayoutMenu() {
-  $('#layout-selector').fadeIn();
   blur();
   var ah = "";
   for (layout of layouts) {
@@ -188,9 +187,7 @@ function openLayoutMenu() {
     </div>`
   }
   $('#layouts').html(ah);
-  setTimeout(() => {
-    $('#layout-selector').scrollTop(0);
-  }, 400);
+  $('#layout-selector')[0].style.display = 'block';
 }
 
 function changeLayout(layout) {

@@ -1,11 +1,3 @@
-<?php
-if(!file_exists("BonkLiveVersion2.swf")) {
-  $raw = file_get_contents("https://bonk.io/BonkLiveVersion2.swf");
-  $file = fopen("BonkLiveVersion2.swf", "w");
-  fwrite($file, $raw);
-  fclose($file);
-}
- ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,8 +22,8 @@ if(!file_exists("BonkLiveVersion2.swf")) {
 		</script>
 	</head>
 	<body>
-		<object type="application/x-shockwave-flash" data="BonkLiveVersion2.swf" style="width: 100%; height: 100vh;">
-				<param name="movie" value="BonkLiveVersion2.swf">
+		<object type="application/x-shockwave-flash" data="//cache.armorgames.com/files/games/bonkio-18093.swf" style="width: 100%; height: 100vh;">
+				<param name="movie" value="//cache.armorgames.com/files/games/bonkio-18093.swf">
 				<param name="FlashVars" value="autoconnectroomid=<?php
 				if(isset($_GET['r'])) {
 					print($_GET['r']);

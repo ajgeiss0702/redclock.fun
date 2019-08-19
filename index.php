@@ -2,6 +2,11 @@
 if(isset($_GET['404'])) {
   die("<script>location.href='/?error=404&from='+encodeURIComponent(location.href)</script>");
 }
+if(isset($_GET['error'])) {
+  if($_GET['error'] == "404" && $_GET['from'] == "https%3A%2F%2Fredclock.fun%2Fabout") {
+    die("<script>location.href='/#about'</script>");
+  }
+}
 if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.astrohub.us") {
   header("HTTP/1.1 301 Permanantly moved");
   header("Location: https://redclock.fun");

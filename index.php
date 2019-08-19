@@ -3,7 +3,7 @@ if(isset($_GET['404'])) {
   die("<script>location.href='/?error=404&from='+encodeURIComponent(location.pathname)</script>");
 }
 if(isset($_GET['error'])) {
-  if($_GET['error'] == "404" && $_GET['from'] == "https%3A%2F%2Fredclock.fun%2Fabout") {
+  if($_GET['error'] == "404" && ($_GET['from'] == "%2Fabout" || $_GET['from'] == "/about")) {
     die("<script>location.href='/#about'</script>");
   }
 }

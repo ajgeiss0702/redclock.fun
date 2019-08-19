@@ -1,3 +1,6 @@
+<?php
+die("<script>location.href='/'</script>");
+ ?>
 <!DOCTYPE html>
 <html>
 	<head>

@@ -12,10 +12,6 @@ settings.create('exactTemp', false, "Exact temperature", "If enabled, will round
 
 var skycons;
 function updateWeather(last = false) {
-  if(rcf.school != "rmhs") {
-    $('#weatherdiv').html("<small>Weather display for your school coming soon<sup>tm</sup></small>");
-    return;
-  }
   if(typeof $('#weatherdiv').html() != 'string') {
     console.debug("[weather.js] Skipping weather because the element is not ready");
     return;
@@ -38,6 +34,10 @@ function updateWeather(last = false) {
         $('#weatherdiv').slideDown();
       }, 50)
     }, 150)
+    return;
+  }
+  if(rcf.school != "rmhs") {
+    $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
     return;
   }
   if($('#weatherdiv').length <= 0) {

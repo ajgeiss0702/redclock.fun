@@ -14,6 +14,8 @@
     <div style='text-align: center;margin-left:auto;margin-right:auto;'>
       <canvas id='usergraph' style='width: 100vw;height: 85vh;padding:0;margin:0;margin-bottom: -2vh;'></canvas>
       <h1 id='usercount' style='line-height: 15vh;font-size:15vh;padding:0;margin:0;'>0</h1>
+      <span id="uusercountyesterday" style='color:grey;'></span> &nbsp;
+      <span id="uusercount"></span>
     </div>
   </body>
   <script defer>
@@ -83,10 +85,31 @@
       first = false;
     }
   }
+  async function updateUniqueUserCount() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/today");
+    var data = Number(raw)
+    if(data+"" == 'NaN') {
+      console.error(raw);
+      return;
+    }
+    numberSlide(data, $('#uusercount'), 1);
+  }
+
+  async function updateYesterdayUniqueUsers() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/yesterday");
+    var data = Number(raw)
+    if(data+"" == 'NaN') {
+      console.error(raw);
+      return;
+    }
+    numberSlide(data, $('#uusercountyesterday'), 1);
+  }
 
   function update() {
     updateUserChart();
     updateUserCount();
+    updateUniqueUserCount();
+    updateYesterdayUniqueUsers();
   }
   setInterval(update, 10e3);
 

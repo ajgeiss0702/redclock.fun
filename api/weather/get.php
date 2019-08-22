@@ -25,7 +25,7 @@ function cached() {
   die(json_encode($last['currently']));
 }
 
-if($lastcheck > $current-60 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
+if($lastcheck > $current-120 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
   cached();
   die();
 }

@@ -54,6 +54,7 @@ rcf.on('load', () => {
 })
 
 async function init() {
+  schedCache = {lastGet: 0}
   $('#countdown-period').text('Loading times..');
   var sched = (await getSchedule());
   if(!sched) {

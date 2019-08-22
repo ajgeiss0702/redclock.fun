@@ -49,7 +49,7 @@ rcf.on('load', () => {
     clearInterval(weatherInterval);
     weatherInterval = setInterval(updateWeather, 30000);
   } else {
-    $('#weatherdiv').html("Weather display for your school coming soon<sup>tm</sup>")
+    $('#weatherdiv').html("<small>Weather display for your school coming soon<sup>tm</sup></small>");
   }
 })
 

@@ -1,4 +1,6 @@
-
+if((typeof rcf.school != 'string')) {
+  location.href='#schoolselector';
+}
 console.debug("Loaded countdown script!")
 
 function getTime() {

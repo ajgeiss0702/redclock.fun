@@ -107,7 +107,11 @@ function calibrateCountdown() {
   }, 25);
 }
 
-setInterval(calibrateCountdown, 600e3);
+setInterval(calibrateCountdown, 1800e3);
+
+rcf.on('focus', () => {
+  calibrateCountdown();
+})
 
 function setCountdownInterval() {
   clearInterval(calibratingInterval);

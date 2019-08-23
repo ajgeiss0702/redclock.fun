@@ -79,7 +79,7 @@ async function getScheduleFor(now, orig = true) {
       //console.log(date);
       for (var part in parts) {
         if (parts.hasOwnProperty(part)) {
-          console.debug(part+" / "+nowdate);
+          //console.debug(part+" / "+nowdate);
           if(parts[part] == nowdate) {
             found = true;
             foundsched = sched.specials.date[specialdates[date]][rcf.schedule]

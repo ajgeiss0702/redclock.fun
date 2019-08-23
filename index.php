@@ -108,6 +108,18 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     this._subscriptions[name].forEach(f=>f(...args))
   }
 
+  var lastHadFocus = true;
+  setInterval(() => {
+    if(!document.hasFocus()) {
+      lastHadFocus = false;
+    } else {
+      if(!lastHadFocus) {
+        rcf.emit('focus');
+      }
+      lastHadFocus = true;
+    }
+  }, 2500)
+
 
   rcf.loaded = false;
   rcf.on('load', () => {

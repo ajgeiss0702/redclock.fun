@@ -75,12 +75,14 @@ async function getScheduleFor(now, orig = true) {
   for (var date in specialdates) {
     if (specialdates.hasOwnProperty(date)) {
       var nowdate = now.getMonth()+1+"/"+now.getDate();
-      var parts = date.split(',');
+      var parts = specialdates[date].split(',');
+      //console.log(date);
       for (var part in parts) {
         if (parts.hasOwnProperty(part)) {
-          if(part == nowdate) {
+          console.debug(part+" / "+nowdate);
+          if(parts[part] == nowdate) {
             found = true;
-            foundsched = sched.specials.date[date][rcf.schedule]
+            foundsched = sched.specials.date[specialdates[date]][rcf.schedule]
           }
         }
       }
@@ -93,7 +95,7 @@ async function getScheduleFor(now, orig = true) {
     for (var part in parts) {
       if (parts.hasOwnProperty(part)) {
         if(typeof specialdebug != 'undefined') {
-          console.debug(nowday + " : " + parts[part] + " / " + part + " : " + specialdays[day] + "["+day+"]");
+          //console.debug(nowday + " : " + parts[part] + " / " + part + " : " + specialdays[day] + "["+day+"]");
         }
         if(parts[part].toString() == nowday.toString()) {
           found = true;

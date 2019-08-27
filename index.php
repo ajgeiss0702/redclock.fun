@@ -108,7 +108,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     this._subscriptions[name].forEach(f=>f(...args))
   }
 
-  var lastFocusTime = new Date();
+  var lastFocusTime = new Date(); 
   var lastHadFocus = true;
   setInterval(() => {
     if(!document.hasFocus()) {

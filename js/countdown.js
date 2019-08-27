@@ -187,7 +187,8 @@ function copy(v) {
 
 var layouts = [
   'Default',
-  'Mirrored'
+  'Mirrored',
+  "Large"
 ]
 function openLayoutMenu() {
   blur();

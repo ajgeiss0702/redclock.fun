@@ -16,7 +16,11 @@
       <h1 id='usercount' style='line-height: 15vh;font-size:15vh;padding:0;margin:0;'>0</h1>
       <span id="uusercountyesterday" style='color:grey;'></span> &nbsp;
       <span id="uusercount"></span>
+      <br>
+      <br>
+      <iframe style="height: 100vh;width:90vw;" src="https://astrophoenix.com/~aiden/api/rmf/change/"></iframe>
     </div>
+
   </body>
   <script defer>
   var userchart;

@@ -108,15 +108,17 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     this._subscriptions[name].forEach(f=>f(...args))
   }
 
+  var lastFocusTime = new Date();
   var lastHadFocus = true;
   setInterval(() => {
     if(!document.hasFocus()) {
       lastHadFocus = false;
     } else {
-      if(!lastHadFocus) {
+      if(!lastHadFocus || (lastFocusTime.getTime() < new Date().getTime()-5000)) {
         rcf.emit('focus');
       }
       lastHadFocus = true;
+      lastFocusTime = new Date();
     }
   }, 2500)
 

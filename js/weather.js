@@ -45,8 +45,9 @@ function updateWeather(last = false) {
     return;
   }
 
-  if(typeof Skycons == 'undefined') {
-    console.debug("[weather.js] Skipping weather because skycons arent ready yet.")
+  if(typeof Skycons != 'function') {
+    console.debug("[weather.js] Skipping weather because skycons arent ready yet.");
+    return;
   }
 
   if($('#weatherdiv').html().indexOf(`<!--weather!-->`) != 0) {

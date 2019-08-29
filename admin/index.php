@@ -5,6 +5,14 @@
       padding: 0;
       margin: 0;
     }
+    td {
+      text-align: center;
+    }
+    .center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
     </style>
     <script src='/js/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
@@ -16,6 +24,18 @@
       <h1 id='usercount' style='line-height: 15vh;font-size:15vh;padding:0;margin:0;'>0</h1>
       <span id="uusercountyesterday" style='color:grey;'></span> &nbsp;
       <span id="uusercount"></span>
+      <br><br>
+      <div class='center'>
+        <table class='center'>
+          <tr>
+            <td id="hc-s0">0</td>
+            <td id='hc-s1'>1</td>
+          </tr>
+          <tr>
+            <td id='hc-l0' colspan='2'>l</td>
+          <tr>
+        </table>
+      </div>
       <br>
       <br>
       <iframe style="height: 100vh;width:90vw;" src="https://astrophoenix.com/~aiden/api/rmf/change/"></iframe>
@@ -114,6 +134,7 @@
     updateUserCount();
     updateUniqueUserCount();
     updateYesterdayUniqueUsers();
+    healthCheck();
   }
   setInterval(update, 10e3);
 
@@ -134,6 +155,29 @@
       },
       duration: delay * 1e3
     });
+  }
+
+
+  function healthCheck() {
+    hci = 0;
+    hcCheck(8000, 0);
+    hcCheck(8001, 1)
+  }
+  function hcCheck(b, num) {
+    var backend = Number(b);
+    console.log(backend+" : "+num);
+    httpGet('http://149.248.20.246:'+backend+'/hc.php').then((d) => {
+      if(d.indexOf('+') == 0) {
+        console.log(num+" good");
+        $('#hc-s'+num).css('background-color', 'lime');
+      } else {
+        console.log(num+" bad");
+        $('#hc-s'+num).css('background-color', 'red');
+      }
+    }).catch(() => {
+      console.log(num+" network error");
+      $('#hc-s'+num).css('background-color', 'red');
+    })
   }
 
   </script>

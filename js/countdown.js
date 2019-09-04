@@ -204,6 +204,7 @@ function openLayoutMenu() {
   }
   $('#layouts').html(ah);
   $('#layout-selector')[0].style.display = 'block';
+  $("body").scrollTop(0)
 }
 
 function changeLayout(layout) {

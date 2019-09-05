@@ -3,17 +3,18 @@
 }
 
 .countdown-container {
-  background-color: rgba(242, 242, 242, 0.9);
+  background-color: rgba(242, 242, 242, 0.5);
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
 #weather {
-  background-color: rgba(242, 242, 242, 0.9);
+  background-color: rgba(242, 242, 242, 0.5);
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
 .sidebar {
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+  background-color: rgba(242, 242, 242, 0.5);
 }
 
 .newsbox {

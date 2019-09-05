@@ -31,10 +31,10 @@
             <td id="hc-s0">0</td>
             <td id='hc-s1'>1</td>
           </tr>
-          <tr>
-            <td id='hc-l0' colspan='2'>l</td>
-          <tr>
         </table>
+      </div>
+      <div class='center'>
+        <canvas id="schoolpie" height="100"></canvas>
       </div>
       <br>
       <br>
@@ -44,6 +44,7 @@
   </body>
   <script defer>
   var userchart;
+  var schoolpie;
   var onetwenty = [];
   (() => {
     var i = 119;
@@ -53,6 +54,20 @@
     }
   })()
   function load() {
+    schoolpie = new Chart(document.getElementById("schoolpie").getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          label: 'Users',
+          backgroundColor: ['rgb(255, 99, 132)', 'yellow'],
+          data: []
+        }],
+        labels: [
+          "Red Mountain",
+          "AAEC RM"
+        ]
+      }
+    })
     userchart = new Chart(document.getElementById('usergraph').getContext('2d'), {
       type: 'line',
       data: {
@@ -129,16 +144,30 @@
     numberSlide(data, $('#uusercountyesterday'), 1);
   }
 
+  async function updateSchoolChart() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/schools");
+    var data = JSON.parse(raw);
+    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["aaec-rm"])]
+    schoolpie.update();
+  }
+
   function update() {
     updateUserChart();
     updateUserCount();
     updateUniqueUserCount();
     updateYesterdayUniqueUsers();
     healthCheck();
+    updateSchoolChart();
   }
   setInterval(update, 10e3);
 
-
+  function toNum(a) {
+    if(typeof a != 'object') {
+      return 0;
+    } else {
+      return a.length;
+    }
+  }
 
 
   function numberSlide(number, element, delay = 5) {

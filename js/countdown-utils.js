@@ -1,5 +1,5 @@
 
-var cd = {};
+var cd = {offset:0};
 
 var lastGood = false;
 async function getTimeString() {
@@ -188,6 +188,7 @@ async function getOffset(override = false) {
   if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
     var keys = Object.keys(schedCache.lastResp.normal);
     //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
+    cd.offset = copy(schedCache.lastResp.offset);
     return copy(schedCache.lastResp.offset);
   }
   schedCache.lastGet = new Date().getTime();

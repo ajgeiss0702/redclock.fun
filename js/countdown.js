@@ -266,7 +266,13 @@ async function fileSelected() {
   updateCustomBackground();
 }
 
+var cbFirst = true;
 function updateCustomBackground() {
+  if(cbFirst) {
+    if(typeof localStorage.customBackgroundFill == 'string');
+    $('#background-fill-screen')[0].checked = localStorage.customBackgroundFill == "true"
+    cbFirst = false;
+  }
   if(typeof localStorage.customBackground != 'undefined') {
     changeBackground(localStorage.customBackground);
     $('#removeBackground').html("<a onclick='localStorage.removeItem(\"customBackground\");updateCustomBackground()' class='btn btn-outline-danger'>Remove</a>")
@@ -274,6 +280,7 @@ function updateCustomBackground() {
     $('#custom-background').css("background-image", "");
     $('#removeBackground').html('');
   }
+  localStorage.customBackgroundFill = $('#background-fill-screen')[0].checked;
   if($('#background-fill-screen')[0].checked == true) {
     $('#custom-background').css("background-size", "cover");
   } else {

@@ -28,6 +28,7 @@ async function getTimeString() {
 }
 
 async function recalcCdd() {
+  console.debug('recalc!');
   var sched = await getCurrentSchedule();
   var skeys = Object.keys(sched);
   cd.cdd = makeDate(sched[skeys[0]]);

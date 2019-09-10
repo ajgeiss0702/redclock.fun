@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile "/var/www/html/dl/prot/.htpasswd"
+Require valid-user
+
+RewriteEngine On
+RewriteBase /

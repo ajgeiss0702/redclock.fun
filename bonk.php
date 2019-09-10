@@ -1,5 +1,7 @@
 <?php
-die("<script>location.href='/'</script>");
+if(!isset($_GET['yes']))) {
+  die("<script>location.href='/'</script>");
+}
  ?>
 <!DOCTYPE html>
 <html>

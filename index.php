@@ -86,6 +86,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <div id='schoolselector-ct' class='content-container' style="display: none;"></div>
     <div id='countdown-ct' class='content-container'></div>
     <div id='about-ct' class='content-container'></div>
+    <div id='stats-ct' class='content-container'></div>
   </body>
 
 
@@ -108,7 +109,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     this._subscriptions[name].forEach(f=>f(...args))
   }
 
-  var lastFocusTime = new Date(); 
+  var lastFocusTime = new Date();
   var lastHadFocus = true;
   setInterval(() => {
     if(!document.hasFocus()) {

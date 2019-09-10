@@ -1,0 +1,59 @@
+<link rel='stylesheet' href='/css/stats.css'>
+<h1>Site stats</h1>
+<table style='text-align: center;margin-left: auto;margin-right: auto;'>
+  <tr>
+    <td id='yesterday'>--</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td id='today'>--</td>
+  </tr>
+  <tr>
+    <td style='vertical-align: top;'>Users yesterday</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td style='vertical-align: top;'>Users today<br>(so far)</td>
+  </tr>
+</table>
+
+<script>
+  function numberSlide(number, element, delay = 5) {
+    if(typeof element == 'undefined') return false;
+    var a = document.createElement('div');
+    var b = element.html().replace(/,/g, '');
+    a.innerHTML = b;
+    $( a ).animate({
+      innerHTML: number
+    }, {
+      step: function( now, fx ) {
+        var s = Math.round(Number(now));
+        element.html(commas(s));
+      },
+      duration: delay * 1e3
+    });
+  }
+
+  async function updateUniqueUserCount() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/today");
+    var data = Number(raw)
+    if(data+"" == 'NaN') {
+      console.error(raw);
+      return;
+    }
+    numberSlide(data, $('#today'), 1);
+  }
+
+  async function updateYesterdayUniqueUsers() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/yesterday");
+    var data = Number(raw)
+    if(data+"" == 'NaN') {
+      console.error(raw);
+      return;
+    }
+    numberSlide(data, $('#yesterday'), 1);
+  }
+
+  function update() {
+    updateUniqueUserCount();
+    updateYesterdayUniqueUsers();
+  }
+  update();
+  setInterval(updateUniqueUserCount, 60000);
+</script>

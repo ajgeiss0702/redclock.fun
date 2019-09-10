@@ -13,6 +13,10 @@
   background-color: rgba(52, 52, 52, 0.5);
 }
 
+hr {
+  border-color: darkgray;
+}
+
 .calibration {
   color: black;
 }

@@ -1,5 +1,5 @@
 <?php
-if(!isset($_GET['yes']))) {
+if(!isset($_GET['yes'])) {
   die("<script>location.href='/'</script>");
 }
  ?>

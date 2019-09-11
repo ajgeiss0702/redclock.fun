@@ -87,6 +87,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <div id='countdown-ct' class='content-container'></div>
     <div id='about-ct' class='content-container'></div>
     <div id='stats-ct' class='content-container'></div>
+    <div id='extensions-ct' class='content-container'></div>
   </body>
 
 

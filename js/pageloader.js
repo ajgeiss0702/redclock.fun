@@ -19,6 +19,7 @@ function loadContent(pageName) {
     $('#load').slideUp('fast');
     rcf.emit('pageload');
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    document.title = caps(pageName) + " - Red Clock";
   })
 }
 

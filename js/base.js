@@ -47,6 +47,10 @@ function httpGet(url, callback = false) {
   }
 }
 
+function caps(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function _GET(parameterName) {
     var result = null,
         tmp = [];

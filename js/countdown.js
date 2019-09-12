@@ -3,14 +3,6 @@ if((typeof rcf.school != 'string')) {
 }
 console.debug("Loaded countdown script!")
 
-function getTime() {
-  var distance = cd.cdd.getTime() - new Date().getTime();
-  if(distance <= (-2500)) {
-    recalcCdd();
-  }
-  return distance;
-}
-
 async function updateScheduleTable() {
   var sched = await getCurrentSchedule();
   var ah = ``;

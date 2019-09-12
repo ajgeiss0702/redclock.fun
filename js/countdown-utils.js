@@ -1,6 +1,17 @@
 
 var cd = {offset:0};
 
+
+function getTime() {
+  var distance = cd.cdd.getTime() - new Date().getTime();
+  if(distance <= (-2500)) {
+    cd.cdd = undefined;
+    recalcCdd();
+    return undefined;
+  }
+  return distance;
+}
+
 var lastGood = false;
 async function getTimeString() {
   if(typeof cd.cdd != 'object') {
@@ -12,7 +23,7 @@ async function getTimeString() {
   }
   lastGood = true;
   var distance = getTime();
-  if(distance < 0) {
+  if(distance < 0 || typeof distance == 'undefined') {
     return "<!--bell--><img src=\"/img/bell.svg\" style=\"height: 1em;\" class=\"bell-animation\">"
   }
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));

@@ -10,7 +10,7 @@ function loadContent(pageName) {
     elem.html(c);
     activePage = pageName;
     elem.slideDown();
-    elem[0].classList = 'fadeIn'
+    elem[0].classList = 'fadeIn';
     if(pageName == 'countdown') {
       insertNews();
       updateWeather();

@@ -100,6 +100,7 @@ function updateWeather(last = false) {
       if(d.todayrain > 0) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
+      rainAdd = "";
 
       var temperature = d.temperature;
       if(!settings.get('exactTemp')) {
@@ -114,7 +115,7 @@ function updateWeather(last = false) {
               <td style='padding-left:0.25em;'>
                 <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
-                  `+d.mindesc+"<br>"+d.desc+`<br>
+                  `+/*d.mindesc+*/"<br>"+d.desc+`<br>
                   <table>
                     <tr class='weather-tr'>
                       <td>🌧️</td>

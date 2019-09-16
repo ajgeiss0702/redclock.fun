@@ -38,6 +38,16 @@ async function getTimeString() {
   return dayss+hourss+minutess+secondss;
 }
 
+
+if(typeof settings == 'object') {
+  settings.create('skipAHour', false, 'Skip A Hour', 'Will skip the countdown for A hour');
+} else if(typeof rcf == 'object') {
+  rcf.on('load', () => {
+    settings.create('skipAHour', false, 'Skip A Hour', 'Will skip the countdown for A hour');
+  })
+} else {
+  console.warn("No settings! " + typeof settings + " " + typeof rcf)
+}
 async function recalcCdd() {
   console.debug('recalc!');
   var sched = await getCurrentSchedule();
@@ -46,6 +56,11 @@ async function recalcCdd() {
   cd.i = 0;
   while(cd.cdd.getTime() < new Date().getTime()) {
     cd.i++;
+    if(typeof settings == 'object') {
+      if(settings.get('skipAHour') && skeys[cd.i].indexOf("A hour starts") != -1) {
+        continue;
+      }
+    }
     cd.cdd = makeDate(sched[skeys[cd.i]]);
   }
   cd.period = skeys[cd.i];

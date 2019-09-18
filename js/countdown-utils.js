@@ -101,13 +101,14 @@ async function getScheduleFor(now, orig = true) {
 
   for (var date in specialdates) {
     if (specialdates.hasOwnProperty(date)) {
-      var nowdate = now.getMonth()+1+"/"+now.getDate();
+      var nowdate = now.getMonth()+1+"/"+(now.getDate());
       var parts = specialdates[date].split(',');
       //console.log(date);
       for (var part in parts) {
         if (parts.hasOwnProperty(part)) {
-          //console.debug(part+" / "+nowdate);
+          //console.debug(parts[part]+" / "+nowdate);
           if(parts[part] == nowdate) {
+            //console.debug("^-----------------------------------------------")
             found = true;
             foundsched = sched.specials.date[specialdates[date]][rcf.schedule]
           }
@@ -116,17 +117,20 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
-  for (var day in specialdays) {
-    var nowday = now.getDay();
-    var parts = specialdays[day].split(',');
-    for (var part in parts) {
-      if (parts.hasOwnProperty(part)) {
-        if(typeof specialdebug != 'undefined') {
-          //console.debug(nowday + " : " + parts[part] + " / " + part + " : " + specialdays[day] + "["+day+"]");
-        }
-        if(parts[part].toString() == nowday.toString()) {
-          found = true;
-          foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
+  if(!found) {
+    for (var day in specialdays) {
+      var nowday = now.getDay();
+      var parts = specialdays[day].split(',');
+      for (var part in parts) {
+        if (parts.hasOwnProperty(part)) {
+          if(typeof specialdebug != 'undefined') {
+            //console.debug(nowday + " : " + parts[part] + " / " + part + " : " + specialdays[day] + "["+day+"]");
+          }
+          if(parts[part].toString() == nowday.toString()) {
+            found = true;
+            foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
+            console.debug(sched.specials.day[specialdays[day]][rcf.schedule]);
+          }
         }
       }
     }

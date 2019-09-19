@@ -38,6 +38,10 @@ async function updateScheduleTable(ele = '#schedule-table', date = new Date(), h
 
 
 function updateDatePreview() {
+  if($('#date-preview_date-select').val() == "") {
+    $('#date-preview-table').text('Please enter a date above');
+    return;
+  }
   var d = new Date($('#date-preview_date-select').val());
   d.setDate(d.getDate()+1);
   updateScheduleTable('#date-preview-table', d, false)

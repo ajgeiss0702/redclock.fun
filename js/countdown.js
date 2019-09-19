@@ -183,7 +183,7 @@ var layouts = [
   "Large"
 ]
 function openLayoutMenu() {
-  blur();
+  blur(closeLayoutMenu);
   var ah = "";
   for (layout of layouts) {
     ah += `
@@ -235,12 +235,23 @@ function checkTheme() {
   }
 }
 
-function blur() {
+var bluri = 0;
+function blur(close) {
   document.getElementById('blur').style.filter = 'blur(2px)';
+  if(typeof close == 'function') {
+    var thisblur = copy(bluri)
+    setTimeout(() => {
+      $('#blur').on('click.themeclose', (e) => {
+        close()
+        $('#blur').off('click.themeclose');
+      })
+    }, 500)
+  }
 }
 
 function unblur() {
   document.getElementById('blur').style.filter = '';
+  $('#blur').off('click.themeclose');
 }
 
 $('#custom-background-file').change(() => {

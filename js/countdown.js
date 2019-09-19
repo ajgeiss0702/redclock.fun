@@ -3,13 +3,16 @@ if((typeof rcf.school != 'string')) {
 }
 console.debug("Loaded countdown script!")
 
-async function updateScheduleTable() {
-  var sched = await getCurrentSchedule();
+async function updateScheduleTable(ele = '#schedule-table', date = new Date(), highlight = true) {
+  var sched = await getScheduleFor(date);
   var ah = ``;
   for (var until in sched) {
     if (sched.hasOwnProperty(until)) {
       var time = makeDate(sched[until]);
-      var special = time.toString() == cd.cdd.toString() ? " class='current-target'" : "";
+      var special = "";
+      if(highlight) {
+        special = time.toString() == cd.cdd.toString() ? " class='current-target'" : "";
+      }
       ah += `
       <tr`+special+`>
         <td>`+until+`</td><td>`+dateString(time)+`</td>
@@ -17,7 +20,7 @@ async function updateScheduleTable() {
       `
     }
   }
-  $('#schedule-table').html(`<div class='scroller'>
+  $(ele).html(`<div class='scroller'>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -208,6 +211,17 @@ function closeLayoutMenu() {
   $('#layout-selector').fadeOut();
   unblur();
   $('#layouts').html('');
+}
+
+
+function openDatePreviewMenu() {
+  blur(closeDatePreviewMenu);
+  $('#date-preview')[0].style.display = 'block';
+  $("body").scrollTop(0)
+}
+function closeDatePreviewMenu() {
+  $('#date-preview').fadeOut();
+  unblur();
 }
 
 rcf.theme = 'light';

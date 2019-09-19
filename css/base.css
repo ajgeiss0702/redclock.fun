@@ -221,6 +221,30 @@ body,html {
   color: black;
 }
 
+#date-preview {
+  width: 75vw;
+  max-height: 85vh;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: inline-block;
+  box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+
+  overflow-y: scroll;
+  color: black;
+}
+
+#date-preview * {
+  color: black;
+}
 #layout-selector * {
   color: black;
 }

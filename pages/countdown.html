@@ -29,7 +29,9 @@
         <br>
         <h1 id="exact-time"></h1>
         <br>
-        <span id="schedule-table">Loading..</span>
+        <span id="schedule-table">Loading..</span><br>
+        <a class='btn btn-primary' onclick='openDatePreviewMenu()'>Date Preview</a><br>
+        <br><br><br><br><br>
       </div>
 
       <div id='settings-container' class='tab-pane fade'></div>
@@ -77,6 +79,15 @@
   <div id="removeBackground"></div>
 </div>
 
+<div id="date-preview" style='display: none;'>
+  <a class='layout-selector-close' onclick='closeDatePreviewMenu()'>x</a>
+  <h2>Schedule preview</h2>
+  View the schedule for whatever day you would like!<br>
+  <small>Sometimes I put in a special schedule the day before it is going to happen.</small><br>
+  <input id='date-preview_date-select' type='date' onchange="updateScheduleTable('#date-preview-table', new Date($('#date-preview_date-select').val()), false)"><br>
+  <br>
+  <div id='date-preview-table'>Please enter a date above</div>
+</div>
 
 
 <script>

@@ -37,7 +37,11 @@ async function updateScheduleTable(ele = '#schedule-table', date = new Date(), h
 }
 
 
-
+function updateDatePreview() {
+  var d = new Date($('#date-preview_date-select').val());
+  d.setDate(d.getDate()+1);
+  updateScheduleTable('#date-preview-table', d, false)
+}
 
 
 rcf.on('load', () => {

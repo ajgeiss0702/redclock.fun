@@ -245,14 +245,34 @@ if(getCookie('theme') != '') {
 
 
 rcf.on('load', () => {
-  if(rcf.theme == 'dark') {
+  if(rcf.theme == 'dark' || rcf.theme == 'black') {
     $('#themeCheckBox')[0].checked = true;
+    if(rcf.theme == 'black') {
+      $('#darkCheckBox')[0].checked = true;
+    }
+  } else {
+    $('#black-checkbox')[0].style.display = 'none';
   }
 })
 function checkTheme() {
   if($('#themeCheckBox')[0].checked) {
-    rcf.changeTheme('dark');
+
+    if($('#black-checkbox')[0].style.display != 'none') {
+
+      if($('#darkCheckBox')[0].checked) {
+        rcf.changeTheme('black');
+      } else {
+        rcf.changeTheme('dark');
+      }
+
+    } else {
+      $('#black-checkbox')[0].style.display = "inline-block";
+      rcf.changeTheme('dark');
+      $('#darkCheckBox')[0].checked = false;
+    }
+
   } else {
+    $('#black-checkbox')[0].style.display = 'none';
     rcf.changeTheme('light');
   }
 }

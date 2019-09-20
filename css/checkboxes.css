@@ -129,9 +129,27 @@ EXAMPLE
   color: white !important;
 }
 .tgl-themes input[type="checkbox"] + span:before {
-  color: #999999 !important;
+  color: white !important;
 }
 .tgl-themes input[type="checkbox"] + span:after {
+  background: #ffffff !important;
+}
+
+.tgl-themes-dark input[type="checkbox"] + span {
+  background: #878787 !important;
+  color: white !important;
+}
+.tgl-themes-dark input[type="checkbox"]:checked + span {
+  background: black !important;
+  color: white !important;
+}
+.tgl-themes-dark input[type="checkbox"]:checked + span:before {
+  color: white !important;
+}
+.tgl-themes-dark input[type="checkbox"] + span:before {
+  color: white !important;
+}
+.tgl-themes-dark input[type="checkbox"] + span:after {
   background: #ffffff !important;
 }
 

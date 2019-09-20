@@ -1,0 +1,40 @@
+.countdown-container {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+}
+
+#weather {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+}
+
+.sidebar {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+}
+
+hr {
+  border-color: darkgray;
+}
+
+.calibration {
+  color: black;
+}
+
+.newsbox {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+}
+
+tr.current-target {
+  background-color: grey !important;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
+* {
+  color: white;
+}

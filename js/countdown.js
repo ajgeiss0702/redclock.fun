@@ -80,9 +80,11 @@ rcf.on('load', () => {
   calibrateCountdown();
 });
 
-settings.create('calibratedBox', true, "Show calibrated box", "Disabling this will not show the 'Countdown Calibrated!' box. The countdown will still be calibrated in the background.")
+//settings.create('calibratedBox', true, "Show calibrated box", "Disabling this will not show the 'Countdown Calibrated!' box. The countdown will still be calibrated in the background.")
+settings.remove("calibratedBox");
 function calibrateCountdown() {
-  var box = settings.get('calibratedBox');
+  //var box = settings.get('calibratedBox');
+  var box = false;
   if(typeof cd.calibratedBefore != 'undefined') {
     if(box) {
       $('#calibration').text('Calibrating timer..');

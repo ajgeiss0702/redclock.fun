@@ -24,6 +24,13 @@ settings.set = (name, content) => {
   return true;
 }
 
+settings.remove = (name) => {
+  rawSettings[name] = undefined;
+  delete rawSettings[name];
+  settings.save();
+  settings.update();
+}
+
 settings.create = (name, content, display, desc) => {
   if(!settings.ready) {
     setTimeout(() => {

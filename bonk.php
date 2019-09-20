@@ -1,6 +1,6 @@
 <?php
 if(!isset($_GET['yes'])) {
-  die("<script>location.href='/'</script>");
+  //die("<script>location.href='/'</script>");
 }
  ?>
 <!DOCTYPE html>

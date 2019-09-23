@@ -4,7 +4,7 @@ var cd = {offset:0};
 
 function getTime() {
   var distance = cd.cdd.getTime() - new Date().getTime();
-  if(distance <= (-2500)) {
+  if(distance <= (-5000)) {
     cd.cdd = undefined;
     recalcCdd();
     return undefined;

@@ -49,6 +49,7 @@ if(typeof settings == 'object') {
   console.warn("No settings! " + typeof settings + " " + typeof rcf)
 }
 async function recalcCdd() {
+  console.trace();
   console.debug('recalc!');
   var sched = await getCurrentSchedule();
   var skeys = Object.keys(sched);

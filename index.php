@@ -80,6 +80,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
 
 
   <body onload="rcf.emit('load')">
+    <div id='rmtv' class='hidden'>www.redclock.fun</div>
     <div id='load'></div>
     <div id='scheduleloaderror' class='errorbox hidden'>
       The schedule could not be loaded. Try again later.
@@ -135,6 +136,10 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
   rcf.on('load', () => {
     rcf.loaded = true;
   });
+
+  if(_GET('rmtv') == "undefined") {
+    document.getElementById('rmtv').classList = "rmtv-ad";
+  }
 
   if(typeof localStorage.getItem('school') != 'undefined') {
     rcf.school = localStorage.getItem('school');

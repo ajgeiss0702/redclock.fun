@@ -76,6 +76,7 @@ body,html {
   text-align: center;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 
@@ -263,6 +264,20 @@ body,html {
   max-height: 99vh;
 
   transition: 0 !important;
+}
+
+.rmtv-ad {
+  font-size: 10vh;
+  display: inline-block;
+  position: absolute;
+  top: -0.3em;
+  left: 0;
+  width: 99vw;
+  text-align: center;
+  padding-top:0;
+  margin:0;
+  font-weight: bold;
+  z-index: 100;
 }
 
 .game-iframe {

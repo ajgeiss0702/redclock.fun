@@ -36,6 +36,7 @@ async function getTimeString() {
   var minutess = minutes > 0 ? minutes+"m " : "";
   var secondss = seconds+"s ";
   if(_GET("rmtv") == "undefined") {
+    var minutess = minutes+"m ";
     secondss = "";
   }
   return dayss+hourss+minutess+secondss;

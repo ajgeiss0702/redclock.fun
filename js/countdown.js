@@ -223,16 +223,26 @@ function closeLayoutMenu() {
   $('#layouts').html('');
 }
 
-
+var datePreviewMenu = false;
 function openDatePreviewMenu() {
+  datePreviewMenu = true;
   blur(closeDatePreviewMenu);
   $('#date-preview')[0].style.display = 'block';
   $("body").scrollTop(0)
 }
 function closeDatePreviewMenu() {
+  datePreviewMenu = false;
   $('#date-preview').fadeOut();
   unblur();
+  $('#game').html('');
 }
+rcf.on('key-71', () => {
+  if(datePreviewMenu) {
+    $('#game').html(`
+      <iframe src="pages/game.html" class='game-iframe'></iframe>
+      `);
+  }
+})
 
 rcf.theme = 'light';
 rcf.changeTheme = (theme) => {

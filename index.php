@@ -110,6 +110,10 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     this._subscriptions[name].forEach(f=>f(...args))
   }
 
+  document.onkeyup = (e) => {
+    rcf.emit("key-"+(e.keyCode || e.which));
+  }
+
   var lastFocusTime = new Date();
   var lastHadFocus = true;
   setInterval(() => {

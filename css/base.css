@@ -265,6 +265,22 @@ body,html {
   transition: 0 !important;
 }
 
+.game-iframe {
+  margin-left: -37.5vw;
+  margin-right: -37.5vw;
+  margin-top: -37.5vh;
+  margin-bottom: -37.5vh;
+  height: 99vh;
+  width: 99vw;
+  transform: scale(0.5) !important;
+
+  padding:0;
+
+  max-height: 99vh;
+
+  transition: 0 !important;
+}
+
 .layout {
   width: 0.25vw;
   display: inline-block;

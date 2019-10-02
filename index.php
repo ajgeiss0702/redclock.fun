@@ -24,6 +24,8 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <link rel='stylesheet' id='layout-changer' href='/css/layouts/<?php
     if(isset($_GET['layout'])) {
       echo($_GET['layout']);
+    } else if(isset($_GET['rmtv'])) {
+      echo("large");
     } else {
       if(isset($_COOKIE['layout'])) {
         echo($_COOKIE['layout']);

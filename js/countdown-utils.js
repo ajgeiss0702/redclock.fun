@@ -100,9 +100,42 @@ async function getScheduleFor(now, orig = true) {
 
   var specialdays = Object.keys(sched.specials.day);
   var specialdates = Object.keys(sched.specials.date);
+  var offdates = Object.keys(sched.off);
 
   var found = false;
   var foundsched;
+
+  for(var offd in offdates) {
+    if(offdates.hasOwnProperty(offd)) {
+      var mon0 = now.getMonth()+1;
+      var day0 = now.getDay();
+      var parts = offdates[offd].split("-");
+      var o = parts[0];
+      var t = parts[1];
+      var mon1 = Number(o.split("/")[0]);
+      var day1 = Number(o.split("/")[1]);
+      var mon2 = Number(t.split("/")[0]);
+      var day1 = Number(t.split("/")[1]);
+      function yes() {
+        console.log("---------------------- Yes!");
+        found = true;
+        var end = getScheduleFor(t+"/"+new Date().getFullYear());
+        end[Object.keys(end)[0]+" after "+sched.off[offdates[offd]]] = end[Object.keys(end)[0]];
+        end[Object.keys(end)[0]] = undefined;
+        foundsched = end
+      }
+      if(mon0 >= mon1 && mon0 <= mon2) {
+        if(mon0 == mon1 && day0 <= day1) {
+          continue;
+        } else if(mon0 == mon2 && day0 >= day2) {
+          continue;
+        } else {
+          yes()
+        }
+      }
+
+    }
+  }
 
   for (var date in specialdates) {
     if (specialdates.hasOwnProperty(date)) {

@@ -4,7 +4,14 @@ if((typeof rcf.school != 'string')) {
 console.debug("Loaded countdown script!")
 
 async function updateScheduleTable(ele = '#schedule-table', date = new Date(), highlight = true) {
-  var sched = await getScheduleFor(date);
+  var sched;
+  try {
+    sched = await getScheduleFor(date);
+  } catch(e) {
+    $(ele).text("An error occured.");
+    console.error(e);
+    return;
+  }
   var ah = ``;
   for (var until in sched) {
     if (sched.hasOwnProperty(until)) {

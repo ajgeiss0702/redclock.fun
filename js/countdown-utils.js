@@ -52,8 +52,11 @@ if(typeof settings == 'object') {
 } else {
   console.warn("No settings! " + typeof settings + " " + typeof rcf)
 }
+var shutup = false;
 async function recalcCdd() {
-  console.trace();
+  if(shutup) {
+    console.trace();
+  }
   console.debug('recalc!');
   var sched = await getCurrentSchedule();
   var skeys = Object.keys(sched);
@@ -66,6 +69,7 @@ async function recalcCdd() {
         continue;
       }
     }
+    console.log(sched[skeys[cd.i]]);
     cd.cdd = makeDate(sched[skeys[cd.i]]);
   }
   cd.period = skeys[cd.i];
@@ -87,7 +91,11 @@ function makeDate(raw, ahead_debug = false) {
     return;
   }
   var now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), now.getDate()+raw[0], raw[1], raw[2], raw[3], 0);
+  try {
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()+raw[0], raw[1], raw[2], raw[3], 0);
+  } catch (e) {
+    console.trace("error");
+  }
 }
 
 async function getCurrentSchedule() {
@@ -104,51 +112,63 @@ async function getScheduleFor(now, orig = true) {
 
   var found = false;
   var foundsched;
+  var skipTomorrow = false;
 
   for(var offd in offdates) {
     if(offdates.hasOwnProperty(offd)) {
+
       var mon0 = now.getMonth()+1;
       var day0 = now.getDay();
       var parts = offdates[offd].split("-");
+
       var o = parts[0];
       var t = parts[1];
+
       var mon1 = Number(o.split("/")[0]);
       var day1 = Number(o.split("/")[1]);
       var mon2 = Number(t.split("/")[0]);
-      var day1 = Number(t.split("/")[1]);
-      function yes() {
-        console.log("---------------------- Yes!");
-        found = true;
-        var end = getScheduleFor(t+"/"+new Date().getFullYear());
-        end[Object.keys(end)[0]+" after "+sched.off[offdates[offd]]] = end[Object.keys(end)[0]];
-        end[Object.keys(end)[0]] = undefined;
-        foundsched = end
-      }
+      var day2 = Number(t.split("/")[1]);
+
       if(mon0 >= mon1 && mon0 <= mon2) {
-        if(mon0 == mon1 && day0 <= day1) {
+        if(mon0 == mon1 && day0 < day1) {
           continue;
-        } else if(mon0 == mon2 && day0 >= day2) {
+        } else if(mon0 == mon2 && day0 > day2) {
           continue;
         } else {
-          yes()
+          console.log("---------------------- Yes! "+mon0+"/"+day0);
+          found = true;
+          var enddate = new Date(mon2+"/"+(day2+1)+"/"+new Date().getFullYear());
+          var end = await getScheduleFor(enddate);
+          var fin = {};
+
+          var k = Object.keys(end)[0]+" after "+sched.off[offdates[offd]]
+          var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)); // 1*60*60*24*1000
+          console.log("n: "+n);
+          fin[k] = end[Object.keys(end)[0]];
+          fin[k][0] += n;
+
+          foundsched = copy(fin);
+          skipTomorrow = true;
         }
       }
 
     }
   }
 
-  for (var date in specialdates) {
-    if (specialdates.hasOwnProperty(date)) {
-      var nowdate = now.getMonth()+1+"/"+(now.getDate());
-      var parts = specialdates[date].split(',');
-      //console.log(date);
-      for (var part in parts) {
-        if (parts.hasOwnProperty(part)) {
-          //console.debug(parts[part]+" / "+nowdate);
-          if(parts[part] == nowdate) {
-            //console.debug("^-----------------------------------------------")
-            found = true;
-            foundsched = sched.specials.date[specialdates[date]][rcf.schedule]
+  if(!found) {
+    for (var date in specialdates) {
+      if (specialdates.hasOwnProperty(date)) {
+        var nowdate = now.getMonth()+1+"/"+(now.getDate());
+        var parts = specialdates[date].split(',');
+        //console.log(date);
+        for (var part in parts) {
+          if (parts.hasOwnProperty(part)) {
+            //console.debug(parts[part]+" / "+nowdate);
+            if(parts[part] == nowdate) {
+              //console.debug("^-----------------------------------------------")
+              found = true;
+              foundsched = sched.specials.date[specialdates[date]][rcf.schedule]
+            }
           }
         }
       }
@@ -179,7 +199,8 @@ async function getScheduleFor(now, orig = true) {
     foundsched = sched.normal[rcf.schedule]
   }
 
-  if(orig) {
+
+  if(orig && !skipTomorrow) {
     var temp = new Date(
       now.getFullYear(),
       now.getMonth(),
@@ -194,17 +215,19 @@ async function getScheduleFor(now, orig = true) {
     tmr = copy(tmr);
     var tmrkeys = Object.keys(tmr);
     var tmrkeysl = tmrkeys.length;
-    tmr[tmrkeys[0]][0] = tmr[tmrkeys[0]][0]+1;
-    tmr[tmrkeys[1]][0] = tmr[tmrkeys[0]][0]+1;
-    if(tmrkeys[0].indexOf("monday") != -1) {
-      foundsched[tmrkeys[0]] = tmr[tmrkeys[0]];
-    } else {
-      foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
-    }
-    if(tmrkeys[1].indexOf("monday") != -1) {
-      foundsched[tmrkeys[1]] = tmr[tmrkeys[1]];
-    } else {
-      foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
+    if(tmrkeysl > 0) {
+      tmr[tmrkeys[0]][0] = tmr[tmrkeys[0]][0]+1;
+      tmr[tmrkeys[1]][0] = tmr[tmrkeys[0]][0]+1;
+      if(tmrkeys[0].indexOf("monday") != -1) {
+        foundsched[tmrkeys[0]] = tmr[tmrkeys[0]];
+      } else {
+        foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];
+      }
+      if(tmrkeys[1].indexOf("monday") != -1) {
+        foundsched[tmrkeys[1]] = tmr[tmrkeys[1]];
+      } else {
+        foundsched[tmrkeys[1]+" tomorrow"] = tmr[tmrkeys[1]];
+      }
     }
   }
 

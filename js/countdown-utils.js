@@ -142,7 +142,7 @@ async function getScheduleFor(now, orig = true) {
           var fin = {};
 
           var k = Object.keys(end)[0]+" after "+sched.off[offdates[offd]]
-          var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)); // 1*60*60*24*1000
+          var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
           console.log("n: "+n);
           fin[k] = end[Object.keys(end)[0]];
           fin[k][0] += n;

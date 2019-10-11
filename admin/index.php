@@ -59,7 +59,7 @@
       data: {
         datasets: [{
           label: 'Users',
-          backgroundColor: ['rgb(140, 0, 0)', 'yellow'],
+          backgroundColor: ['rgb(255, 99, 132)', 'yellow'],
           data: []
         }],
         labels: [

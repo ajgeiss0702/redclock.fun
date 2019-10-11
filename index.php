@@ -147,7 +147,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     rcf.loaded = true;
     if(_GET('rmtv') == "undefined") {
       document.getElementById('rmtv').classList = "rmtv-ad";
-      $('body').css("background-color", "rgb(125, 29, 15)")
+      $('body').css("background-color", "rgb(140, 0, 0)")
       $('.countdown-container').css("background-color", "rgba(0, 0, 0, 0) !important");
       rcf.changeTheme('rmtv')
     }

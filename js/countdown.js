@@ -251,13 +251,7 @@ rcf.on('key-71', () => {
   }
 })
 
-rcf.theme = 'light';
-rcf.changeTheme = (theme) => {
-  $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css';
-  rcf.theme = theme;
-  setCookie('theme', theme)
-  updateWeather();
-}
+
 if(getCookie('theme') != '') {
   rcf.changeTheme(getCookie('theme'));
 }

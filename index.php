@@ -117,6 +117,14 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     rcf.emit("key-"+(e.keyCode || e.which));
   }
 
+  rcf.theme = 'light';
+  rcf.changeTheme = (theme) => {
+    $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css';
+    rcf.theme = theme;
+    setCookie('theme', theme)
+    updateWeather();
+  }
+
   var lastFocusTime = new Date();
   var lastHadFocus = true;
   setInterval(() => {
@@ -135,11 +143,14 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
   rcf.loaded = false;
   rcf.on('load', () => {
     rcf.loaded = true;
+    if(_GET('rmtv') == "undefined") {
+      document.getElementById('rmtv').classList = "rmtv-ad";
+      $('body').css("background-color", "rgb(125, 29, 15)")
+      $('.countdown-container').css("background-color", "rgba(0, 0, 0, 0) !important");
+      rcf.changeTheme('rmtv')
+    }
   });
 
-  if(_GET('rmtv') == "undefined") {
-    document.getElementById('rmtv').classList = "rmtv-ad";
-  }
 
   if(typeof localStorage.getItem('school') != 'undefined') {
     rcf.school = localStorage.getItem('school');

@@ -30,4 +30,7 @@ rcf.on('load', () => {
   $(e).html(ah);
   e.classList.add('fadeIn');
   e.style.display = '';
+  if(_GET('rmtv') == "undefined") {
+    schoolselector.clicked("rmhs");
+  }
 })

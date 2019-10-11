@@ -13,7 +13,7 @@ analytics.report = () => {
       if(analytics.lastRl >= 0) {
         if(analytics.lastRl < data.rel) {
           console.log("Reload number is higher than before! Reloading..")
-          location.href="/reload.php?go="+encodeURIComponent(location.pathname+location.hash);
+          location.href="/reload.php?go="+encodeURIComponent(location.href.split("https://redclock.fun/")[1]);
         }
       }
       analytics.lastRl = data.rel;

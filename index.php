@@ -119,7 +119,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
 
   rcf.theme = 'light';
   rcf.changeTheme = (theme) => {
-    $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css';
+    $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css?r=1';
     rcf.theme = theme;
     if(theme.toLowerCase() != "rmtv") {
       setCookie('theme', theme)

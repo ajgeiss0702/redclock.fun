@@ -60,7 +60,7 @@ function updateWeather(last = false) {
     httpGet('/api/weather/get.php'+au, data => {
 
       var scc = 'black'
-      if(rcf.theme == 'dark') {
+      if(rcf.theme == 'dark' || rcf.theme == 'black') {
         scc = 'white';
       }
       skycons = new Skycons({"color": scc});

@@ -123,7 +123,7 @@ function updateWeather(last = false) {
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
                   `+/*d.mindesc+*/d.desc+`<br><br>
                   <div style='text-align: left;'>
-                    <a id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</a>
+                    <span id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</span>
                   </div>
                   <table id='we-info-table'>
                     <tr class='weather-tr'>

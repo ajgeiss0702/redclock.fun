@@ -60,6 +60,7 @@ $result['currently']['mindesc'] = $weather['minutely']['summary'];
 $result['currently']['desc'] = $weather['hourly']['summary'];
 $result['currently']['timezone'] = $weather['timezone'];
 $result['currently']['todayrain'] = $weather['daily']['data'][0]['precipProbability'];
+$result['currently']['week-forecast'] = $weather['daily']['data'];
 file_put_contents('lastweather.temp', json_encode($result));
 file_put_contents('lastcheck.temp', $current);
 $result['currently']['cached'] = false;

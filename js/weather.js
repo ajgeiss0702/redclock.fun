@@ -10,6 +10,10 @@ settings.create('animatedWeatherIcon', true, "Animated weather icon 🔋", "The 
 settings.create('exactTemp', false, "Exact temperature", "If enabled, will round to two decimal places on the temperature. If disabled, will round to the nearest whole number.")
 
 
+var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+var lastData;
+
 var skycons;
 function updateWeather(last = false) {
   if(typeof $('#weatherdiv').html() != 'string') {
@@ -65,6 +69,8 @@ function updateWeather(last = false) {
       }
       skycons = new Skycons({"color": scc});
       var d = JSON.parse(data);
+
+      lastData = d;
       if(d.error) {
         $('#weatherdiv').html(`
           <h1 class='text text-danger'>An error occured</h1>
@@ -115,8 +121,11 @@ function updateWeather(last = false) {
               <td style='padding-left:0.25em;'>
                 <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
                 <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
-                  `+/*d.mindesc+*/"<br>"+d.desc+`<br>
-                  <table>
+                  `+/*d.mindesc+*/d.desc+`<br><br>
+                  <div style='text-align: left;'>
+                    <a id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</a>
+                  </div>
+                  <table id='we-info-table'>
                     <tr class='weather-tr'>
                       <td>🌧️</td>
                       <td>`+Math.round(Number(d.todayrain) * 100)+`% chance of rain today<br>`+rainAdd+`</td>
@@ -137,6 +146,7 @@ function updateWeather(last = false) {
           </table>
         </div>
       `);
+      toggleWeeklyWeather(true);
       setTimeout(() => {
         $('#weatherdiv').slideDown();
       }, 100);
@@ -144,12 +154,9 @@ function updateWeather(last = false) {
       if(typeof debug != 'undefined') {
         console.log(skycons);
       }
-      skycons.play();
-      setTimeout(() => {
-        if(!settings.get('animatedWeatherIcon')) {
-          skycons.pause();
-        }
-      }, 250);
+      if(settings.get('animatedWeatherIcon')) {
+        skycons.play();
+      }
     });
   } catch(e) {
     console.error(e);
@@ -157,3 +164,56 @@ function updateWeather(last = false) {
     setTimeout(updateWeather, 10000);
   }
 }
+
+var weeklyToggled;
+if(typeof localStorage.weeklyWeather != 'string') {
+  weeklyToggled = false;
+} else {
+  weeklyToggled = localStorage.weeklyWeather == "true";
+}
+function toggleWeeklyWeather(update = false) {
+  if(!weeklyToggled && update) return;
+  if((weeklyToggled && !update)) {
+    if(!update) {
+      weeklyToggled = false;
+      localStorage.weeklyWeather = weeklyToggled+"";
+      updateWeather();
+    }
+    $('#we-wf-toggle').text("Today");
+    return;
+  }
+  $('#we-wf-toggle').text("This Week");
+  var ahDays = "";
+  var ahDeg = "";
+  var ahRain = "";
+  var i = 0;
+  for (var day in lastData["week-forecast"]) {
+    if (lastData["week-forecast"].hasOwnProperty(day)) {
+      i++;
+      if(i > 7) break;
+      var t = lastData["week-forecast"][day]
+      ahDays += "<td class='we-wf-day'>"+dayNames[new Date(t.time * 1000).getDay()]+"</td>"
+
+      var htemp = settings.get("exactTemp") ? t.temperatureHigh : Math.round(t.temperatureHigh);
+      var ltemp = settings.get("exactTemp") ? t.temperatureLow : Math.round(t.temperatureLow);
+      ahDeg += "<td><span class='we-wf-htemp'>"+htemp+"</span>&deg;<br><span class='we-wf-ltemp'>"+ltemp+"&deg;</span></td>"
+      ahRain += "<td class='we-wf-precip'>🌧️"+Math.round(t.precipProbability*10000)/100+"%</td>";
+    }
+  }
+  if(!update) {
+    weeklyToggled = true;
+    localStorage.weeklyWeather = weeklyToggled+"";
+  }
+  $('#we-info-table').html(`
+    <tr>
+      `+ahDays+`
+    </tr>
+    <tr>
+      `+ahDeg+`
+    </tr>
+    <tr>
+      `+ahRain+`
+    </tr>
+    `);
+}
+

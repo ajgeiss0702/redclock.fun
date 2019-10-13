@@ -337,6 +337,28 @@ body,html {
   background-color: rgba(255, 0, 0, 0.75);
 }
 
+.we-wf-htemp {
+  font-size: 1.35em;
+}
+.we-wf-ltemp {
+  font-size: 0.75em;
+}
+.we-wf-day {
+  padding-right: 0.5em;
+}
+.we-wf td {
+  text-align: center;
+  vertical-align: middle;
+}
+.we-wf-precip {
+  font-size: 0.9em;
+}
+.we-wf-toggle-btn:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+
 
 @media (max-width: 900px) {
   #layout-selector {

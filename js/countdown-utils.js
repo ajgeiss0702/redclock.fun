@@ -135,7 +135,7 @@ async function getScheduleFor(now, orig = true) {
         } else if(mon0 == mon2 && day0 > day2) {
           continue;
         } else {
-          console.log("---------------------- Yes! "+mon0+"/"+day0);
+          //console.log("---------------------- Yes! "+mon0+"/"+day0);
           found = true;
           var enddate = new Date(mon2+"/"+(day2+1)+"/"+new Date().getFullYear());
           var end = await getScheduleFor(enddate);
@@ -143,7 +143,7 @@ async function getScheduleFor(now, orig = true) {
 
           var k = Object.keys(end)[0]+" after "+sched.off[offdates[offd]]
           var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
-          console.log("n: "+n);
+          //console.log("n: "+n);
           fin[k] = end[Object.keys(end)[0]];
           fin[k][0] += n;
 

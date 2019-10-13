@@ -21,6 +21,10 @@ hr {
   color: black;
 }
 
+.we-wf-toggle-btn {
+  color: rgba(255, 255, 255, 0.05) !important;
+}
+
 .newsbox {
   border-color: rgba(255, 255, 255, 0.15);
   border-style: solid;

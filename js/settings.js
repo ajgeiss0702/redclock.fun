@@ -2,12 +2,19 @@ var settings = {};
 
 var rawSettings = {};
 
+var rmtvSpecials = {
+  enableWeather: false
+}
+
 settings.get = (name) => {
   if(typeof rawSettings[name] == 'undefined') {
     return undefined;
   }
   if(name == 'animatedWeatherIcon' && _GET('layout') != null) {
     return false;
+  }
+  if(Object.keys(rmtvSpecials).indexOf(name) != -1) {
+    return rmtvSpecials[name];
   }
   return rawSettings[name].content;
 }

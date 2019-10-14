@@ -1,8 +1,19 @@
 var activePage = "dummy";
 
 function loadContent(pageName) {
+  var oldPage = activePage;
+  if(typeof calibratingInterval != 'undefined') {
+    clearInterval(calibratingInterval);
+    calibratingInterval = undefined;
+  }
+  if(typeof countdownMainInterval != 'undefined') {
+    clearInterval(countdownMainInterval);
+    countdownMainInterval = undefined;
+  }
   $('#load').slideDown('fast');
-  $('#'+activePage+'-ct').slideUp()
+  $('#'+activePage+'-ct').slideUp(400, () => {
+    $('#'+oldPage+'-ct').html('');
+  })
   $('#'+activePage+'-ct').removeClass('fadeIn');
   $('#'+activePage+'-ct').addClass('fadeOut');
   httpGet('/pages/'+pageName+'.html').then((c) => {

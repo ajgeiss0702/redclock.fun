@@ -31,8 +31,8 @@ async function updateScheduleTable(ele = '#schedule-table', date = new Date(), h
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class='themecolor'>Time</th>
           <th class='themecolor'>Hour</th>
+          <th class='themecolor'>Time</th>
         </tr>
       </thead>
       <tbody>`+

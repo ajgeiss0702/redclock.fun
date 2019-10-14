@@ -13,7 +13,7 @@ settings.get = (name) => {
   if(name == 'animatedWeatherIcon' && _GET('layout') != null) {
     return false;
   }
-  if(Object.keys(rmtvSpecials).indexOf(name) != -1) {
+  if(Object.keys(rmtvSpecials).indexOf(name) != -1 && _GET('rmtv') == "undefined") {
     return rmtvSpecials[name];
   }
   return rawSettings[name].content;

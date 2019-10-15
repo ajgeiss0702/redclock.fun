@@ -135,7 +135,7 @@ async function getScheduleFor(now, orig = true) {
         } else if(mon0 == mon2 && day0 > day2) {
           continue;
         } else {
-          console.log("---------------------- Yes! "+mon0+"/"+day0);
+          //console.log("---------------------- Yes! "+mon0+"/"+day0);
           found = true;
           var enddate = new Date(mon2+"/"+(day2+1)+"/"+new Date().getFullYear());
           var end = await getScheduleFor(enddate);

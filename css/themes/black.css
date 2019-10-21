@@ -42,3 +42,37 @@ body {
 * {
   color: white;
 }
+
+
+
+#layout-selector {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+
+  color: white;
+}
+
+#date-preview {
+
+  background-color: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-style: solid;
+
+  color: white;
+}
+
+
+#date-preview * {
+  color: white;
+}
+#layout-selector *:not(p) {
+  color: white;
+}
+
+#date-preview > input {
+  color: black;
+}
+#layout-selector > #card-text {
+  color: black !important;
+}

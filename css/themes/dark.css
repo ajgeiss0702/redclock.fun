@@ -42,3 +42,33 @@ body {
 * {
   color: white;
 }
+
+#layout-selector {
+  box-shadow: 0 0 33px -15px rgba(255,255,255,0.75);
+  background-color: rgba(52, 52, 52, 0.99);
+
+  color: white;
+}
+
+#date-preview {
+
+  box-shadow: 0 0 33px -15px rgba(255,255,255,0.75);
+  background-color: rgba(52, 52, 52, 0.99);
+
+  color: white;
+}
+
+
+#date-preview * {
+  color: white;
+}
+#layout-selector *:not(p) {
+  color: white;
+}
+
+#date-preview > input {
+  color: black;
+}
+#layout-selector > #card-text {
+  color: black !important;
+}

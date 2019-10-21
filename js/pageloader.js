@@ -22,15 +22,19 @@ function loadContent(pageName) {
     activePage = pageName;
     elem.slideDown();
     elem[0].classList = 'fadeIn';
-    if(pageName == 'countdown') {
-      insertNews();
-      updateWeather();
-    }
     location.hash = "#"+pageName;
     $('#load').slideUp('fast');
     rcf.emit('pageload');
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     document.title = caps(pageName) + " - Red Clock";
+    if(pageName == 'countdown') {
+      setTimeout(() => {
+        rcf.on('load', () => {
+          insertNews();
+          updateWeather();
+        })
+      }, 500)
+    }
   })
 }
 

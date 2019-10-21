@@ -108,22 +108,6 @@ function commas(x) {
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
-async function insertNews() {
-  if($('#news-container').length > 0) {
-    var news = await httpGet('https://astrophoenix.com/~aiden/api/rmf/news.html');
-    news = news.replace('<script', '&ltscript');
-    news = news.replace('</script', '&lt/script');
-
-    news = news.replace('<link', '&ltlink');
-    news = news.replace('</link', '&lt/link');
-
-    $('#news-container').html(news);
-  }
-}
-
-setInterval(insertNews, 300e3);
-
-
 
 function getCookie(cname) {
   var name = cname + "=";

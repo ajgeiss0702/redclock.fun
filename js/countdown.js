@@ -178,6 +178,44 @@ function tick() {
 }
 
 
+async function insertNews() {
+  if($('#news-container').length > 0) {
+    var news = await httpGet('https://astrophoenix.com/~aiden/api/rmf/news.html');
+    news = news.replace('<script', '&ltscript');
+    news = news.replace('</script', '&lt/script');
+
+    news = news.replace('<link', '&ltlink');
+    news = news.replace('</link', '&lt/link');
+
+    $('#news-container').html(news);
+    checkReadNews();
+  }
+}
+
+async function checkReadNews() {
+  var before = localStorage.lastReadNews || 0;
+  var after = $('#news-container > div').length;
+  var diff = after-before;
+  if(diff != 0 && $('#sidebar-tab-news')[0].classList.value.indexOf("active") != -1) {
+    // check if tab is already in focus. if it is, mark new news as already read.
+    localStorage.lastReadNews = after;
+    return;
+  }
+  if(diff != 0) {
+    $('#newsnotif').html("<a class='badge badge-pill badge-danger'>"+diff+"</a>")
+  } else {
+    $('#newsnotif').html("");
+  }
+}
+
+async function readNews() {
+  localStorage.lastReadNews = $('#news-container > div').length;
+  checkReadNews();
+}
+
+setInterval(insertNews, 300e3);
+
+
 async function slowTick() {
   updateScheduleTable();
 }

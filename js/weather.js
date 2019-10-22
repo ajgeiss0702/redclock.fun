@@ -29,15 +29,15 @@ function updateWeather(last = false) {
       </a>
       `;
       if($('#weatherdiv').html().indexOf("<!--disabledWeather-->") != 0) {
-        $('#weatherdiv').slideUp(100);
+        $('#weatherdiv')[0].style.height = "0em";
       }
     console.debug("[weather.js] Skipping weather because its disabled");
     setTimeout(() => {
       $('#weatherdiv').html(disabledHtml);
       setTimeout(() => {
-        $('#weatherdiv').slideDown();
-      }, 50)
-    }, 150)
+        $('#weatherdiv')[0].style.height = "1em";
+      }, 25)
+    }, 725)
     return;
   }
   if(rcf.school != "rmhs") {
@@ -55,7 +55,7 @@ function updateWeather(last = false) {
   }
 
   if($('#weatherdiv').html().indexOf(`<!--weather!-->`) != 0) {
-    $('#weatherdiv').slideUp(100)
+    $('#weatherdiv')[0].style.height = "0em"
   }
 
   try {
@@ -113,50 +113,53 @@ function updateWeather(last = false) {
         temperature = Math.round(temperature);
       }
 
-      $('#weatherdiv').html(`<!--weather!-->
-        <div align='center'>
-          <table>
-            <tr>
-              <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
-              <td style='padding-left:0.25em;'>
-                <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
-                <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
-                  `+/*d.mindesc+*/d.desc+`<br><br>
-                  <div style='text-align: left;'>
-                    <span id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</span>
-                  </div>
-                  <table id='we-info-table'>
-                    <tr class='weather-tr'>
-                      <td>🌧️</td>
-                      <td>`+Math.round(Number(d.todayrain) * 100)+`% chance of rain today<br>`+rainAdd+`</td>
-                    </tr>
-                    <tr class='weather-tr'>
-                      <td>💧</td>
-                      <td>`+Math.round(d.humidity * 100)+`% humidity<br></td>
-                    </tr>
-                    <tr class='weather-tr'>
-                      <td>☀️</td>
-                      <td>UV index: <span class='badge badge-pill badge-`+uvClass+`'>`+d.uvIndex+` (`+uvState+`)</span></td>
-                    </tr>
-                  </table>
-                </p>
-              </td>
+      setTimeout(() => {
+        $('#weatherdiv').html(`<!--weather!-->
+          <div align='center'>
+            <table>
+              <tr>
+                <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
+                <td style='padding-left:0.25em;'>
+                  <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
+                  <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
+                    `+/*d.mindesc+*/d.desc+`<br><br>
+                    <div style='text-align: left;'>
+                      <span id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</span>
+                    </div>
+                    <table id='we-info-table'>
+                      <tr class='weather-tr'>
+                        <td>🌧️</td>
+                        <td>`+Math.round(Number(d.todayrain) * 100)+`% chance of rain today<br>`+rainAdd+`</td>
+                      </tr>
+                      <tr class='weather-tr'>
+                        <td>💧</td>
+                        <td>`+Math.round(d.humidity * 100)+`% humidity<br></td>
+                      </tr>
+                      <tr class='weather-tr'>
+                        <td>☀️</td>
+                        <td>UV index: <span class='badge badge-pill badge-`+uvClass+`'>`+d.uvIndex+` (`+uvState+`)</span></td>
+                      </tr>
+                    </table>
+                  </p>
+                </td>
 
-            </tr>
-          </table>
-        </div>
-      `);
+              </tr>
+            </table>
+          </div>
+        `);
+        skycons.set($('#weather-icon')[0], d['icon']);
+        if(typeof debug != 'undefined') {
+          console.log(skycons);
+        }
+        if(settings.get('animatedWeatherIcon')) {
+          skycons.play();
+        }
+      }, 350)
       toggleWeeklyWeather(true);
       setTimeout(() => {
-        $('#weatherdiv').slideDown();
-      }, 100);
-      skycons.set($('#weather-icon')[0], d['icon']);
-      if(typeof debug != 'undefined') {
-        console.log(skycons);
-      }
-      if(settings.get('animatedWeatherIcon')) {
-        skycons.play();
-      }
+        $('#weatherdiv')[0].style.height = "3.5em"
+      }, 750);
+
     });
   } catch(e) {
     console.error(e);

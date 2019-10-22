@@ -200,6 +200,9 @@ body,html {
 #blur {
   transition: 0.4s;
 }
+#weatherdiv {
+  transition: 0.75s !important;
+}
 
 #layout-selector {
   width: 75vw;

@@ -192,7 +192,11 @@ function toggleWeeklyWeather(update = false) {
       i++;
       if(i > 7) break;
       var t = lastData["week-forecast"][day]
-      ahDays += "<td class='we-wf-day'>"+dayNames[new Date(t.time * 1000).getDay()]+"</td>"
+      var dayname = (i == 1) ? "Today" : dayNames[new Date(t.time * 1000).getDay()]
+      if(i == 2) {
+        dayname = "Tomorrow";
+      }
+      ahDays += "<td class='we-wf-day'>"+dayname+"</td>"
 
       var htemp = settings.get("exactTemp") ? t.temperatureHigh : Math.round(t.temperatureHigh);
       var ltemp = settings.get("exactTemp") ? t.temperatureLow : Math.round(t.temperatureLow);
@@ -216,4 +220,3 @@ function toggleWeeklyWeather(update = false) {
     </tr>
     `);
 }
-

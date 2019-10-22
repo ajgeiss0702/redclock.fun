@@ -202,7 +202,7 @@ async function checkReadNews() {
     return;
   }
   if(diff != 0) {
-    $('#newsnotif').html("<a class='badge badge-pill badge-danger'>"+diff+"</a>")
+    $('#newsnotif').html("<a class='badge badge-pill badge-danger' data-toggle='tab' href='#news-container'>"+diff+"</a>")
   } else {
     $('#newsnotif').html("");
   }
@@ -302,13 +302,13 @@ rcf.on('load', () => {
       $('#darkCheckBox')[0].checked = true;
     }
   } else {
-    $('#black-checkbox')[0].style.display = 'none';
+    $('#slide-blacktheme-checkbox')[0].style.height = "0em";
   }
 })
 function checkTheme() {
   if($('#themeCheckBox')[0].checked) {
 
-    if($('#black-checkbox')[0].style.display != 'none') {
+    if($('#slide-blacktheme-checkbox')[0].style.height != '0em') {
 
       if($('#darkCheckBox')[0].checked) {
         rcf.changeTheme('black');
@@ -317,13 +317,13 @@ function checkTheme() {
       }
 
     } else {
-      $('#black-checkbox')[0].style.display = "inline-block";
+      $('#slide-blacktheme-checkbox')[0].style.height = "2em";
       rcf.changeTheme('dark');
       $('#darkCheckBox')[0].checked = false;
     }
 
   } else {
-    $('#black-checkbox')[0].style.display = 'none';
+    $('#slide-blacktheme-checkbox')[0].style.height = "0em";
     rcf.changeTheme('light');
   }
 }

@@ -69,7 +69,7 @@ async function recalcCdd() {
         continue;
       }
     }
-    console.log(sched[skeys[cd.i]]);
+    //console.log(sched[skeys[cd.i]]);
     cd.cdd = makeDate(sched[skeys[cd.i]]);
   }
   cd.period = skeys[cd.i];

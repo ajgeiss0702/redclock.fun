@@ -202,7 +202,7 @@ async function checkReadNews() {
     return;
   }
   if(diff != 0) {
-    $('#newsnotif').html("<a class='badge badge-pill badge-danger'>"+diff+"</a>")
+    $('#newsnotif').html("<a class='badge badge-pill badge-danger' data-toggle='tab' href='#news-container'>"+diff+"</a>")
   } else {
     $('#newsnotif').html("");
   }

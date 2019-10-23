@@ -56,12 +56,14 @@ function updateDatePreview() {
 
 
 rcf.on('load', () => {
-  if(rcf.school == "rmhs") { // TODO: weather for other schools
-    var weatherInterval;
-    clearInterval(weatherInterval);
-    weatherInterval = setInterval(updateWeather, 30000);
-  } else {
-    $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
+  if(typeof $ != 'undefined') {
+    if(rcf.school == "rmhs") { // TODO: weather for other schools
+      var weatherInterval;
+      clearInterval(weatherInterval);
+      weatherInterval = setInterval(updateWeather, 30000);
+    } else {
+      $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
+    }
   }
 })
 

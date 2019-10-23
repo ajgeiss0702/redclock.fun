@@ -376,6 +376,9 @@ async function fileSelected() {
 
 var cbFirst = true;
 function updateCustomBackground() {
+  if(typeof $('#background-fill-screen')[0] == 'undefined') {
+    return;
+  }
   if(cbFirst) {
     if(typeof localStorage.customBackgroundFill == 'string');
     $('#background-fill-screen')[0].checked = localStorage.customBackgroundFill == "true"

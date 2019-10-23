@@ -1,5 +1,3 @@
-$ = window.$;
-
 if((typeof rcf.school != 'string')) {
   location.href='#schoolselector';
 }
@@ -58,14 +56,12 @@ function updateDatePreview() {
 
 
 rcf.on('load', () => {
-  if(typeof $ != 'undefined') {
-    if(rcf.school == "rmhs") { // TODO: weather for other schools
-      var weatherInterval;
-      clearInterval(weatherInterval);
-      weatherInterval = setInterval(updateWeather, 30000);
-    } else {
-      $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
-    }
+  if(rcf.school == "rmhs") { // TODO: weather for other schools
+    var weatherInterval;
+    clearInterval(weatherInterval);
+    weatherInterval = setInterval(updateWeather, 30000);
+  } else {
+    $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
   }
 })
 
@@ -302,15 +298,13 @@ if(getCookie('theme') != '') {
 
 
 rcf.on('load', () => {
-  if(typeof $ != 'undefined') {
-    if(rcf.theme == 'dark' || rcf.theme == 'black') {
-      $('#themeCheckBox')[0].checked = true;
-      if(rcf.theme == 'black') {
-        $('#darkCheckBox')[0].checked = true;
-      }
-    } else {
-      $('#slide-blacktheme-checkbox')[0].style.height = "0em";
+  if(rcf.theme == 'dark' || rcf.theme == 'black') {
+    $('#themeCheckBox')[0].checked = true;
+    if(rcf.theme == 'black') {
+      $('#darkCheckBox')[0].checked = true;
     }
+  } else {
+    $('#slide-blacktheme-checkbox')[0].style.height = "0em";
   }
 })
 function checkTheme() {
@@ -355,14 +349,13 @@ function unblur() {
   $('#blur').off('click.themeclose');
 }
 
-if(typeof $ != 'undefined') {
+if(typeof $ != undefined) {
   $('#custom-background-file').change(() => {
     fileSelected();
   })
   $('#background-fill-screen').change(() => {
     updateCustomBackground()
   })
-  rcf.on('load', updateCustomBackground)
 }
 
 async function fileSelected() {
@@ -397,3 +390,5 @@ function updateCustomBackground() {
 function changeBackground(base64) {
   $('#custom-background').css("background-image", "url('"+base64+"')");
 }
+
+rcf.on('load', updateCustomBackground)

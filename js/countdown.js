@@ -349,7 +349,7 @@ function unblur() {
   $('#blur').off('click.themeclose');
 }
 
-if(typeof $ != undefined) {
+if(typeof $ != 'undefined') {
   $('#custom-background-file').change(() => {
     fileSelected();
   })

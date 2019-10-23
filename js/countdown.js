@@ -349,12 +349,15 @@ function unblur() {
   $('#blur').off('click.themeclose');
 }
 
-$('#custom-background-file').change(() => {
-  fileSelected();
-})
-$('#background-fill-screen').change(() => {
-  updateCustomBackground()
-})
+if(typeof $ != undefined) {
+  $('#custom-background-file').change(() => {
+    fileSelected();
+  })
+  $('#background-fill-screen').change(() => {
+    updateCustomBackground()
+  })
+  rcf.on('load', updateCustomBackground)
+}
 
 async function fileSelected() {
   var files = $('#custom-background-file')[0].files;
@@ -388,5 +391,3 @@ function updateCustomBackground() {
 function changeBackground(base64) {
   $('#custom-background').css("background-image", "url('"+base64+"')");
 }
-
-rcf.on('load', updateCustomBackground)

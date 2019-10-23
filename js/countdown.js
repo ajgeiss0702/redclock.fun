@@ -88,7 +88,9 @@ rcf.on('load', () => {
 });
 
 //settings.create('calibratedBox', true, "Show calibrated box", "Disabling this will not show the 'Countdown Calibrated!' box. The countdown will still be calibrated in the background.")
-settings.remove("calibratedBox");
+if(typeof settings == 'object') {
+  settings.remove("calibratedBox");
+}
 function calibrateCountdown() {
   //var box = settings.get('calibratedBox');
   var box = false;

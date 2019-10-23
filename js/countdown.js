@@ -1,3 +1,5 @@
+$ = window.$;
+
 if((typeof rcf.school != 'string')) {
   location.href='#schoolselector';
 }

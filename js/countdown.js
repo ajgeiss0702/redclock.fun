@@ -300,7 +300,7 @@ if(getCookie('theme') != '') {
 
 
 rcf.on('load', () => {
-  if(typeof $ == 'undefined') {
+  if(typeof $ != 'undefined') {
     if(rcf.theme == 'dark' || rcf.theme == 'black') {
       $('#themeCheckBox')[0].checked = true;
       if(rcf.theme == 'black') {

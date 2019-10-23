@@ -342,3 +342,13 @@ function dateString(date = new Date()) {
 
   return hour+":"+min+":"+sec+" "+ap;
 }
+
+function schoolExists(key) {
+  return new Promise((resolve, reject) => {
+    httpGet(fileAdd+'/api/schedule.php?exists='+key).then((response) => {
+      resolve(JSON.parse(response).exists);
+    }).catch((e) => {
+      reject(e);
+    })
+  })
+}

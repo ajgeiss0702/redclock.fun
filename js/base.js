@@ -92,16 +92,6 @@ function changeSchedule(key) {
   rcf.schedule = key;
 }
 
-function schoolExists(key) {
-  return new Promise((resolve, reject) => {
-    httpGet('/api/schedule.php?exists='+key).then((response) => {
-      resolve(JSON.parse(response).exists);
-    }).catch((e) => {
-      reject(e);
-    })
-  })
-}
-
 function commas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

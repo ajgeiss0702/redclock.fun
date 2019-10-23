@@ -253,7 +253,7 @@ var schedCache = {
 
 var fileAdd = "";
 if(location.origin.indexOf("file://") != -1) {
-  filAdd = "https://redclock.fun";
+  fileAdd = "https://redclock.fun";
 }
 
 async function getSchedule(override = false) {

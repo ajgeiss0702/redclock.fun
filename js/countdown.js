@@ -300,6 +300,9 @@ if(getCookie('theme') != '') {
 
 
 rcf.on('load', () => {
+  if(typeof $('#themeCheckBox')[0] == 'undefined') {
+    return;
+  }
   if(rcf.theme == 'dark' || rcf.theme == 'black') {
     $('#themeCheckBox')[0].checked = true;
     if(rcf.theme == 'black') {
@@ -310,6 +313,9 @@ rcf.on('load', () => {
   }
 })
 function checkTheme() {
+  if(typeof $('#themeCheckBox')[0] == 'undefined') {
+    return;
+  }
   if($('#themeCheckBox')[0].checked) {
 
     if($('#slide-blacktheme-checkbox')[0].style.height != '0em') {

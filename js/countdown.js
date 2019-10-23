@@ -300,13 +300,15 @@ if(getCookie('theme') != '') {
 
 
 rcf.on('load', () => {
-  if(rcf.theme == 'dark' || rcf.theme == 'black') {
-    $('#themeCheckBox')[0].checked = true;
-    if(rcf.theme == 'black') {
-      $('#darkCheckBox')[0].checked = true;
+  if(typeof $ == 'undefined') {
+    if(rcf.theme == 'dark' || rcf.theme == 'black') {
+      $('#themeCheckBox')[0].checked = true;
+      if(rcf.theme == 'black') {
+        $('#darkCheckBox')[0].checked = true;
+      }
+    } else {
+      $('#slide-blacktheme-checkbox')[0].style.height = "0em";
     }
-  } else {
-    $('#slide-blacktheme-checkbox')[0].style.height = "0em";
   }
 })
 function checkTheme() {

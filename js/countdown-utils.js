@@ -251,6 +251,11 @@ var schedCache = {
   lastGet: 0
 };
 
+var fileAdd = "";
+if(location.origin.indexOf("file://") != -1) {
+  filAdd = "https://redclock.fun";
+}
+
 async function getSchedule(override = false) {
   if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
   if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
@@ -266,7 +271,7 @@ async function getSchedule(override = false) {
     return false;
   }
   if(await schoolExists(rcf.school)) {
-    var raw = await httpGet('/api/schedule.php?school='+rcf.school);
+    var raw = await httpGet(fileAdd+'/api/schedule.php?school='+rcf.school);
     var parsed = JSON.parse(raw)[rcf.school];
     //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
     schedCache.lastResp = copy(parsed);
@@ -295,7 +300,7 @@ async function getOffset(override = false) {
     return false;
   }
   if(await schoolExists(rcf.school)) {
-    var raw = await httpGet('/api/schedule.php?school='+rcf.school);
+    var raw = await httpGet(fileAdd+'/api/schedule.php?school='+rcf.school);
     var parsed = JSON.parse(raw)[rcf.school];
     //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
     schedCache.lastResp = copy(parsed);

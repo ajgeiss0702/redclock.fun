@@ -9,7 +9,8 @@ if(!isset($_GET['yes'])) {
 		<title>Bonk.io - Just bonk!</title>
 		<meta name="Description" content="Bonk without ads. Only bonk. Works with game links. ">
 		<link rel="icon" type="image/png" href="https://bonk.io/tt/favicon-32x32.png">
-		<style>
+    <meta name="robots" content="noindex" />
+    <style>
 		body, html {
 			margin: 0;
 			min-height: 100%;

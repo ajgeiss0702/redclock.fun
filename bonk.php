@@ -10,6 +10,7 @@ if(!isset($_GET['yes'])) {
 		<meta name="Description" content="Bonk without ads. Only bonk. Works with game links. ">
 		<link rel="icon" type="image/png" href="https://bonk.io/tt/favicon-32x32.png">
     <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 		body, html {
 			margin: 0;

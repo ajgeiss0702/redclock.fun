@@ -55,7 +55,7 @@ function updateWeather(last = false) {
   }
 
   if($('#weatherdiv').html().indexOf(`<!--weather!-->`) != 0) {
-    $('#weatherdiv')[0].style.height = "0em"
+    $('#weatherdiv')[0].style.height = "0em";
   }
 
   try {

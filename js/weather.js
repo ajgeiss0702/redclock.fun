@@ -154,8 +154,8 @@ function updateWeather(last = false) {
         if(settings.get('animatedWeatherIcon')) {
           skycons.play();
         }
+        toggleWeeklyWeather(true);
       }, 350)
-      toggleWeeklyWeather(true);
       setTimeout(() => {
         $('#weatherdiv')[0].style.height = "3.5em"
       }, 750);

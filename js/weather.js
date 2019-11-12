@@ -203,7 +203,7 @@ function toggleWeeklyWeather(update = false) {
 
       var htemp = settings.get("exactTemp") ? t.temperatureHigh : Math.round(t.temperatureHigh);
       var ltemp = settings.get("exactTemp") ? t.temperatureLow : Math.round(t.temperatureLow);
-      ahDeg += "<td><span class='we-wf-htemp'>"+htemp+"</span>&deg;<br><span class='we-wf-ltemp'>"+ltemp+"&deg;</span></td>"
+      ahDeg += "<td><span class='we-wf-htemp'><span id='we-wf-htemp-"+i+"'>"+htemp+"</span>&deg;</span><br><span class='we-wf-ltemp'>"+ltemp+"&deg;</span></td>"
       ahRain += "<td class='we-wf-precip'>🌧️"+Math.round(t.precipProbability*10000)/100+"%</td>";
     }
   }

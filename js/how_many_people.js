@@ -1,11 +1,18 @@
 var analytics = {};
 analytics.lastRl = -1;
 analytics.report = () => {
+  var d = false;
+  if(typeof rcf.desktop != "undefined") {
+    if(rcf.desktop) {
+      d = true;
+    }
+  }
   $.post({
     url: 'https://api.redclock.fun/checkin/'+rcf.school+'/'+rcf.schedule,
     data: {
       id: localStorage.id,
-      tab: localStorage.tabId
+      tab: localStorage.tabId,
+      desktop: d
     },
     success: (data) => {
       localStorage.id = data.id;

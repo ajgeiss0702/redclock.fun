@@ -8,10 +8,13 @@
     td {
       text-align: center;
     }
-    .center {
+    .center > * {
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+    }
+    .pie {
+      display: inline-block;
     }
     </style>
     <script src='/js/jquery.min.js'></script>
@@ -34,7 +37,12 @@
         </table>
       </div>
       <div class='center'>
-        <canvas id="schoolpie" height="100"></canvas>
+        <table>
+          <tr>
+            <td><canvas class="pie" id="schoolpie" height="400" width="400"></canvas></td>
+            <td><canvas class="pie" id="desktoppie" height="400" width="400"></canvas></td>
+          </tr>
+        </table>
       </div>
       <br>
       <br>
@@ -65,6 +73,20 @@
         labels: [
           "Red Mountain",
           "AAEC RM"
+        ]
+      }
+    })
+    desktoppie = new Chart(document.getElementById("desktoppie").getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          label: 'Users',
+          backgroundColor: ['darkgreen', 'orange'],
+          data: []
+        }],
+        labels: [
+          "Yes",
+          "No"
         ]
       }
     })
@@ -150,6 +172,12 @@
     schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["aaec-rm"])]
     schoolpie.update();
   }
+  async function updateDesktopChart() {
+    var raw = await httpGet("https://api.redclock.fun/checkin/desktop");
+    var data = JSON.parse(raw);
+    desktoppie.data.datasets[0].data = [toNum(data["true"]), toNum(data["false"])]
+    desktoppie.update();
+  }
 
   function update() {
     updateUserChart();
@@ -158,6 +186,7 @@
     updateYesterdayUniqueUsers();
     healthCheck();
     updateSchoolChart();
+    updateDesktopChart();
   }
   setInterval(update, 10e3);
 

@@ -12,7 +12,7 @@ analytics.report = () => {
     data: {
       id: localStorage.id,
       tab: localStorage.tabId,
-      desktop: d
+      desktop: d+""
     },
     success: (data) => {
       localStorage.id = data.id;

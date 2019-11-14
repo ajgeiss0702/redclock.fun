@@ -23,7 +23,8 @@ async function getTimeString() {
   lastGood = true;
   var distance = getTime();
   if(distance < 0 || typeof distance == 'undefined') {
-    return "<!--bell--><img src=\"/img/bell.svg\" style=\"height: 1em;\" class=\"bell-animation\">"
+    var sl = (rcf.desktop) ? "" : "/"
+    return "<!--bell--><img src=\""+sl+"img/bell.svg\" style=\"height: 1em;\" class=\"bell-animation\">"
   }
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

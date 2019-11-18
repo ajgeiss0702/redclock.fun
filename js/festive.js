@@ -1,0 +1,13 @@
+rcf.on('load', festive);
+settings.create("festive", true, "Festive", "Holiday Festiveness");
+function festive() {
+  if(typeof _GET("rmhs") != "string") {
+    if(settings.get("festive")) {
+      $('#festive').html(`
+        <img src="/img/lights.gif" class='festive-image'>
+        `);
+    } else {
+      $('#festive').html(``);
+    }
+  }
+}

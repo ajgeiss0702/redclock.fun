@@ -361,9 +361,23 @@ body,html {
   cursor: pointer;
 }
 
+#festive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15vw;
+}
+
+.festive-image {
+  width: 100%;
+}
+
 
 
 @media (max-width: 900px) {
+  #festive {
+    width: 40vw;
+  }
   #layout-selector {
     width: 95vw;
   }

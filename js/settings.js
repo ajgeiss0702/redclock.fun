@@ -28,6 +28,14 @@ settings.set = (name, content) => {
   rawSettings[name].content = content;
   rawSettings[name].type = typeof content;
   settings.save();
+
+  if(name == "skipAHour") {
+    recalcCdd();
+  }
+  if(name == "festive") {
+    festive();
+  }
+
   return true;
 }
 

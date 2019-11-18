@@ -74,7 +74,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js" defer></script>
       <script src="/js/how_many_people.js" defer></script>
-      <script src="/js/festive.js" charset="utf-8" defer async></script>
+      <script src="/js/festive.js" defer async></script>
 
 
     <link rel='icon' type="image/png" href='/img/red_clock.png'>

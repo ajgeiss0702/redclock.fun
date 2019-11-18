@@ -1,4 +1,4 @@
-rcf.on('load', festive);
+rcf.on('pageload', festive);
 settings.create("festive", true, "Festive", "Holiday Festiveness");
 function festive() {
   if(typeof _GET("rmhs") != "string") {

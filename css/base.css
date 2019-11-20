@@ -374,6 +374,11 @@ body,html {
   width: 100%;
 }
 
+.festive-purpleribbon {
+  max-width: 7vw;
+  transform: rotate(-10deg) translateX(-3vw);
+}
+
 
 
 @media (max-width: 900px) {

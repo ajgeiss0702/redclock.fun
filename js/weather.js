@@ -200,6 +200,11 @@ function toggleWeeklyWeather(update = false) {
         dayname = "Tomorrow";
       }
       ahDays += "<td class='we-wf-day'>"+dayname+"</td>"
+      if(!settings.get("exactTemp")) {
+        if(t.temperatureHigh >= 67.5 && t.temperatureHigh < 70.5) {
+          t.temperatureHigh = 69;
+        }
+      }
 
       var htemp = settings.get("exactTemp") ? t.temperatureHigh : Math.round(t.temperatureHigh);
       var ltemp = settings.get("exactTemp") ? t.temperatureLow : Math.round(t.temperatureLow);

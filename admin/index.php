@@ -85,8 +85,8 @@
           data: []
         }],
         labels: [
-          "Yes",
-          "No"
+          "Desktop",
+          "Browser"
         ]
       }
     })

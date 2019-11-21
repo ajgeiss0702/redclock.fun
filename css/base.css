@@ -385,6 +385,10 @@ body,html {
   #festive {
     width: 40vw;
   }
+  .festive-purpleribbon {
+    max-width: 9vw;
+    transform: rotate(-10deg) translateX(-15vw) translateY(-2vw);
+  }
   #layout-selector {
     width: 95vw;
   }

@@ -141,7 +141,7 @@ async function getScheduleFor(now, orig = true) {
           var end = await getScheduleFor(enddate);
           var fin = {};
 
-          var k = Object.keys(end)[0]+" after "+sched.off[offdates[offd]]
+          var k = (Object.keys(end)[0].replace(/tomorrow/g, ""))+" after "+sched.off[offdates[offd]]
           var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
           //console.log("n: "+n);
           fin[k] = end[Object.keys(end)[0]];
@@ -219,7 +219,7 @@ async function getScheduleFor(now, orig = true) {
       if(Object.keys(tmr).indexOf(tmrkeys[1]) != -1) {
         tmr[tmrkeys[1]][0] = 1//tmr[tmrkeys[0]][0]+1;
       }
-      if(tmrkeys[0].indexOf("monday") != -1) {
+      if(tmrkeys[0].indexOf("monday") != -1 || tmrkeys[0].indexOf("after") != -1) {
         foundsched[tmrkeys[0]] = tmr[tmrkeys[0]];
       } else {
         foundsched[tmrkeys[0]+" tomorrow"] = tmr[tmrkeys[0]];

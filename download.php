@@ -9,8 +9,10 @@ $opts = [
 ];
 
 $context = stream_context_create($opts);
+$content = file_get_contents($url, false, $context);
 
 header("Content-type: application/exe");
 header("Content-Disposition: attachment; filename=Red Clock Installer.exe");
+header("Content-Length: ".strlen($content));
 
-echo file_get_contents($url, false, $context);
+echo $content;

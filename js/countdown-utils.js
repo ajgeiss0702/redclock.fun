@@ -215,9 +215,9 @@ async function getScheduleFor(now, orig = true) {
     var tmrkeys = Object.keys(tmr);
     var tmrkeysl = tmrkeys.length;
     if(tmrkeysl > 0) {
-      tmr[tmrkeys[0]][0] = 1//tmr[tmrkeys[0]][0]+1;
+      tmr[tmrkeys[0]][0] += 1//tmr[tmrkeys[0]][0]+1;
       if(Object.keys(tmr).indexOf(tmrkeys[1]) != -1) {
-        tmr[tmrkeys[1]][0] = 1//tmr[tmrkeys[0]][0]+1;
+        tmr[tmrkeys[1]][0] += 1//tmr[tmrkeys[0]][0]+1;
       }
       if(tmrkeys[0].indexOf("monday") != -1 || tmrkeys[0].indexOf("after") != -1) {
         foundsched[tmrkeys[0]] = tmr[tmrkeys[0]];

@@ -136,3 +136,27 @@ function getBase64(file) {
     };
   })
 }
+
+
+setTimeout(() => {
+  rcf.on('load', () => {
+    if(typeof moment == "function") {
+      setInterval(updateMoments, 1e3);
+    }
+  })
+}, 100)
+
+async function updateMoments() {
+  $('.moments').each((i) => {
+    var t = $($(".moments")[i])
+    var ms = t.attr("data-ms");
+    if(typeof ms != "string" && typeof ms != "number") {
+      console.log("[moments] "+typeof ms);
+      return;
+    }
+    if(typeof ms != "number") {
+      ms = Number(ms);
+    }
+    t.text(moment(ms).fromNow());
+  })
+}

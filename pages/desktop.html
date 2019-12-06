@@ -24,15 +24,6 @@
 </div>
 <script>
 httpGet("/download.php?date").then((d)=>{
-  var raw = new Date(d);
-  var res = new Date();
-  res.setUTCDate(raw.getDate());
-  res.setUTCHours(raw.getHours());
-  res.setUTCMilliseconds(raw.getMilliseconds());
-  res.setUTCMinutes(raw.getMinutes());
-  res.setUTCMonth(raw.getMonth());
-  res.setUTCSeconds(raw.getSeconds());
-  res.setUTCFullYear(raw.getFullYear());
-  $('#dkt-last-updated').text(moment(raw).calendar());
+  $('#dkt-last-updated').text(moment(d).calendar());
 })
 </script>

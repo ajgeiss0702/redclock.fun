@@ -9,6 +9,14 @@ $opts = [
 ];
 
 $context = stream_context_create($opts);
+
+if(isset($_GET['date'])) {
+  $url = "https://gitlab.com/api/v4/projects/12062202/jobs/";
+  $jobs = json_decode(file_get_contents($url, false, $context), true);
+  die($jobs[0]["commit"]["created_at"]);
+}
+
+
 $content = file_get_contents($url, false, $context);
 
 header("Content-type: application/exe");

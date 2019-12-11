@@ -1,7 +1,7 @@
 
 var lastQuote = "";
 async function updateQuote() {
-  var d = await httpGet("/api/quotes/");
+  var d = await httpGet("/api/quotes/index");
   lastQuote = d;
   setQuote(lastQuote);
 }

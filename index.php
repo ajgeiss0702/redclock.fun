@@ -75,6 +75,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       <script src="/js/weather.js" defer></script>
       <script src="/js/how_many_people.js" defer></script>
       <script src="/js/festive.js?r=2" defer async></script>
+      <script src="/js/quotes.js?r=2" defer async></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" defer async></script>
 
 
@@ -97,6 +98,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <div id='desktop-ct' class='content-container'></div>
 
     <div id="festive"></div>
+    <input style="position: fixed;bottom: -10vh;" type="text" value="" id="copy-input">
   </body>
 
 

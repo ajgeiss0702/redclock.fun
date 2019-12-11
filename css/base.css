@@ -384,6 +384,21 @@ body,html {
   transform: rotate(-10deg) translateX(-4.5vw);
 }
 
+#quote-container {
+  display: inline-block;
+  margin: 0.5em;
+  max-width: 80%;
+}
+
+.quote-button {
+  height: 1em;
+  cursor: pointer;
+}
+.quote-buttons {
+  display: inline-block;
+  text-align: right;
+}
+
 
 
 @media (max-width: 900px) {

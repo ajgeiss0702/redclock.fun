@@ -26,6 +26,8 @@ function setQuote(quote) {
     })
 }
 
+setInterval(updateQuote, 12*60*60e3)
+
 function copyQuote() {
   var copy = $("#copy-input")[0];
   copy.value = $('#quote-text').html().replace("<br>", " \n");

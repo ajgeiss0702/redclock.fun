@@ -14,7 +14,7 @@ function setQuote(quote) {
   $('#quote-reload').popover('hide');
   $('#quote-container').html(`
     <span class="quote-buttons">
-      <a id='quote-copy' data-trigger="hover" data-placement="bottom" data-toggle="popover" data-content="Copy this quote to your keyboard"><img class="quote-button" src="/img/icons/copy-content`+themeadd+`.svg" onclick="copyQuote()"></a>
+      <a id='quote-copy' data-trigger="hover" data-placement="bottom" data-toggle="popover" data-content="Copy this quote to your clipboard"><img class="quote-button" src="/img/icons/copy-content`+themeadd+`.svg" onclick="copyQuote()"></a>
       <a id='quote-reload' data-trigger="hover" data-placement="bottom" data-toggle="popover" data-content="Get a new quote"><img class="quote-button" src="/img/icons/reload`+themeadd+`.svg" onclick="updateQuote()"></a>
     </span><br>
     <span id='quote-text'></span>
@@ -38,7 +38,7 @@ function copyQuote() {
   $('#quote-copy').popover('show');
   setTimeout(() => {
     $('#quote-copy').popover('hide');
-    $('#quote-copy').attr("data-content", "Copy this quote to your keyboard");
+    $('#quote-copy').attr("data-content", "Copy this quote to your clipboard");
     setQuote(lastQuote);
   }, 2e3);
 }

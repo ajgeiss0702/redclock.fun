@@ -386,8 +386,12 @@ body,html {
 
 #quote-container {
   display: inline-block;
-  margin: 0.5em;
+  margin: 0.25em;
+  padding: 0.25em;
   max-width: 80%;
+  border-style: solid;
+  border-radius: 1em;
+  border-color: rgba(127, 127, 127, 0.1);
 }
 
 .quote-button {

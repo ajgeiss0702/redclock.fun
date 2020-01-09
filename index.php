@@ -12,6 +12,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
   header("Location: https://redclock.fun");
 }
 ?>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Red Clock - Bell Countdown</title>
@@ -100,8 +101,6 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <div id="festive"></div>
     <input style="position: fixed;bottom: -10vh;" type="text" value="" id="copy-input">
   </body>
-
-
 
   <script>
   var rcf = {};

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
     body,html {
       padding: 0;
@@ -45,6 +47,9 @@
           </tr>
         </table>
       </div>
+      <br>
+      <br>
+      <a class="btn btn-lg btn-warning" href="#" onclick="reloadAllPages()">Reload</a>
       <br>
       <br>
       <iframe style="height: 100vh;width:90vw;" src="https://astrophoenix.com/~aiden/api/rmf/change/"></iframe>
@@ -123,6 +128,46 @@
     }
     });
     update();
+  }
+
+  async function reloadAllPages() {
+    var r = await swal({
+      title: "Are you sure?",
+      text: "If you do this multiple times, it can be very annoying!",
+      icon: "warning",
+      buttons: ["ok fine i won't", "DO IT!"],
+      dangerMode: true,
+    })
+    if(r) {
+      $.ajax({
+        method: "POST",
+        url: "https://api.redclock.fun/reload",
+        data: {key: "CQy{HQn9=34[r^kht?jyJ4}fr#jHs4MNmCY7QH2fJPkW6xLgXN2Uh*phLhCx=J{2"}
+      }).then((d) => {
+        console.log("[RELOAD] Recieved: %o", d);
+        if(d.success) {
+          swal("Reloading!", "Everyone using the website and desktop app should reload within 30 seconds!", "success")
+        } else {
+          if(d.error) {
+            swal("Something went wrong!", "Error: "+d.message+"", "error")
+          } else {
+            swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+          }
+        }
+      }).catch((e) => {
+        console.log("[RELOAD] response length: "+e.responseText.length)
+        if(e.responseText.length > 5) {
+          var d = JSON.parse(e.responseText);
+          if(d.error) {
+            swal("Something went wrong!", "Error: "+d.message+"", "error")
+          } else {
+            swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+          }
+        } else {
+          swal("Something went wrong!", "Error while sending request! "+JSON.stringify(e), "error")
+        }
+      })
+    }
   }
 
   async function updateUserChart() {

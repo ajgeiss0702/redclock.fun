@@ -23,9 +23,9 @@ function updateWeather(last = false) {
   if(!settings.get('enableWeather')) {
     var disWeaIcon = rcf.theme == "light" ? '/img/weather-disabled.svg' : '/img/weather-disabled-white.svg';
     var disabledHtml = `<!--disabledWeather-->
-      <a onclick="$('#sidebar-tab-settings').tab('show')" style='cursor: pointer;'>
-        <img src='`+disWeaIcon+`' style='width: 25%'><br>
-        <span style='font-size: 15%;'>Weather has been disabled in settings</span>
+      <a onclick="$('#sidebar-tab-settings').tab('show')" style="cursor: pointer;">
+        <img src='`+disWeaIcon+`' style='width: 5rem;display:block;margin-left:auto;margin-right:auto;'>
+        <span style='display:block;font-size: 0.15em;padding-top:0;margin-top:0;'>Weather has been disabled in settings</span>
       </a>
       `;
       if($('#weatherdiv').html().indexOf("<!--disabledWeather-->") != 0) {
@@ -35,7 +35,7 @@ function updateWeather(last = false) {
     setTimeout(() => {
       $('#weatherdiv').html(disabledHtml);
       setTimeout(() => {
-        $('#weatherdiv')[0].style.height = "1em";
+        $('#weatherdiv')[0].style.height = "7rem";
       }, 25)
     }, 725)
     return;
@@ -115,7 +115,7 @@ function updateWeather(last = false) {
 
       setTimeout(() => {
         $('#weatherdiv').html(`<!--weather!-->
-          <div align='center'>
+          <div align='center' style='font-size: 1rem;'>
             <table>
               <tr>
                 <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
@@ -157,7 +157,7 @@ function updateWeather(last = false) {
         toggleWeeklyWeather(true);
       }, 350)
       setTimeout(() => {
-        $('#weatherdiv')[0].style.height = "3.5em"
+        $('#weatherdiv')[0].style.height = "15rem";
       }, 750);
 
     });

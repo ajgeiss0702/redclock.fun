@@ -290,7 +290,7 @@ async function getOffset(override = false) {
     var keys = Object.keys(schedCache.lastResp.normal);
     //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
     cd.offset = copy(schedCache.lastResp.offset);
-    return copy(schedCache.lastResp.offset);
+    return copy(schedCache.lastResp.offset)+getTZChange();
   }
   schedCache.lastGet = new Date().getTime();
   if(typeof rcf.school == 'undefined') {
@@ -304,13 +304,17 @@ async function getOffset(override = false) {
     var parsed = JSON.parse(raw)[rcf.school];
     //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
     schedCache.lastResp = copy(parsed);
-    return copy(parsed).offset;
+    return copy(parsed).offset+getTZChange();
   } else {
     cd.error = "School does not exist."
     schedCache.lastResp = false;
     console.debug("getSchedule() returning false!");
     return false;
   }
+}
+
+function getTZChange() {
+  return (new Date().getTimezoneOffset()-420)*-30;
 }
 
 function dateString(date = new Date()) {

@@ -46,6 +46,8 @@ settings.remove = (name) => {
   settings.update();
 }
 
+settings.displayList = [];
+
 settings.create = (name, content, display, desc) => {
   if(!settings.ready) {
     setTimeout(() => {
@@ -53,6 +55,7 @@ settings.create = (name, content, display, desc) => {
     }, 50)
     return;
   }
+  settings.displayList.push(name);
   if(typeof rawSettings[name] == 'undefined') {
     rawSettings[name] = {
       content: content,
@@ -91,6 +94,8 @@ settings.update = () => {
     if (rawSettings.hasOwnProperty(settingID)) {
       var setting = rawSettings[settingID];
       var changebox = "";
+
+      if(settings.displayList.indexOf(settingID) == -1) continue;
 
       if(typeof setting.display == 'undefined') continue;
 

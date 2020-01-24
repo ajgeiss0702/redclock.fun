@@ -1,5 +1,7 @@
 var activePage = "dummy";
 
+var cascade = 0;
+
 function loadContent(pageName) {
   var oldPage = activePage;
   if(typeof calibratingInterval != 'undefined') {
@@ -35,6 +37,28 @@ function loadContent(pageName) {
         })
       }, 500)
     }
+  }).catch(() => {
+    if(pageName == "error") {
+      var c = `An error occurred. Check your internet.`;
+
+      var elem = $('#'+pageName+'-ct');
+      elem.html(c);
+      activePage = pageName;
+      elem.slideDown();
+      elem[0].classList = 'fadeIn';
+      location.hash = "#"+pageName;
+      $('#load').slideUp('fast');
+      rcf.emit('pageload');
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      document.title = caps(pageName) + " - Red Clock";
+      return;
+    }
+    if(cascade > new Date().getTime()-500) {
+      return;
+    }
+    cascade = new Date().getTime();
+    console.log("Caught error");
+    loadContent("error");
   })
 }
 

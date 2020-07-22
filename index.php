@@ -75,12 +75,14 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js" defer></script>
       <script src="/js/how_many_people.js" defer></script>
-      <script src="/js/festive.js?r=2" defer async></script>
+      <script src="/js/festive.js?r=3" defer async></script>
       <script src="/js/quotes.js?r=2" defer async></script>
+      <script src="/js/clock.js?r=3" defer async></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" defer async></script>
 
 
-    <link rel='icon' type="image/png" href='/img/red_clock.png'>
+    <link id="iconlink" rel='icon' type="image/png" href='/img/red_clock.png'>
+    <canvas height="50" width="50" id="icon-builder" class="hidden"></canvas>
   </head>
 
 

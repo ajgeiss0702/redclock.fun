@@ -81,6 +81,8 @@ async function init() {
   if(schedules.indexOf(rcf.schedule) == -1 || typeof rcf.schedule != 'string' || rcf.schedule+"" == "null") {
     rcf.schedule = schedules[0];
   }
+
+  initClock($("#analog-clock")[0]);
 }
 var countdownMainInterval;
 var calibratingInterval;
@@ -173,6 +175,10 @@ function tick() {
       slowTick();
       ticki = 0;
     }
+
+
+    drawClock($("#analog-clock")[0]);
+
 
   }).catch((e) => {
     $('#countdown-text').text('');

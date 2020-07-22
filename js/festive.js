@@ -1,6 +1,6 @@
 rcf.on('pageload', festive);
 function festive(day = new Date().getDate()) {
-  console.log("day: "+day);
+  //console.log("day: "+day);
   if(typeof _GET("rmhs") != "string") {
     var month = new Date().getMonth();
     if((month == 10 || month == 11)) {

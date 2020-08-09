@@ -95,7 +95,7 @@ function makeDate(raw, ahead_debug = false) {
     if(raw.length == 4) {
       return new Date(now.getFullYear(), now.getMonth(), now.getDate()+raw[0], raw[1], raw[2], raw[3], 0);
     } else {
-      return new Date(now.getFullYear(), now.getMonth(), now.getDate(), raw[1], raw[2], raw[3], 0);
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate(), raw[0], raw[1], raw[2], 0);
     }
   } catch (e) {
     console.trace("error");

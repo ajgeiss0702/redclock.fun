@@ -118,6 +118,7 @@ async function getScheduleFor(now, orig = true) {
   var foundsched;
   var skipTomorrow = false;
 
+  // Off days (e.g. breaks)
   for(var offd in offdates) {
     if(offdates.hasOwnProperty(offd)) {
 
@@ -159,6 +160,7 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
+ // Special dates (e.g. different schedule for a certain day)
   if(!found) {
     for (var date in specialdates) {
       if (specialdates.hasOwnProperty(date)) {
@@ -179,6 +181,7 @@ async function getScheduleFor(now, orig = true) {
     }
   }
 
+  // Special days (e.g. wednesdays)
   if(!found) {
     for (var day in specialdays) {
       var nowday = now.getDay();
@@ -200,20 +203,14 @@ async function getScheduleFor(now, orig = true) {
 
   //If no special dates/days, return normal schedule
   if(found == false && typeof foundsched != 'object') {
+    console.debug("[schedule] Using normal for day" +now.getDay());
     foundsched = sched.normal[rcf.schedule]
   }
 
 
   if(orig && !skipTomorrow) {
-    var temp = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate()+1,
-      now.getHours(),
-      now.getMinutes(),
-      now.getSeconds(),
-      now.getMilliseconds()
-    )
+    var temp = new Date();
+    temp.setDate(temp.getDate()+1);
     tmr = undefined;
     var tmr = copy(await getScheduleFor(temp, false));
     var tmrkeys = Object.keys(tmr);

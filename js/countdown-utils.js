@@ -257,6 +257,15 @@ if(location.origin.indexOf("file://") != -1) {
   fileAdd = "https://redclock.fun";
 }
 
+async function getSchedules() {
+  if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
+  if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
+    var keys = Object.keys(schedCache.lastResp.normal);
+    //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
+    return copy(schedCache.lastResp);
+  }
+}
+
 async function getSchedule(override = false) {
   if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
   if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
@@ -288,7 +297,7 @@ async function getSchedule(override = false) {
 async function getOffset(override = false) {
   if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
   if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
-    var keys = Object.keys(schedCache.lastResp.normal);
+    //var keys = Object.keys(schedCache.lastResp.normal);
     //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
     cd.offset = copy(schedCache.lastResp.offset);
     return copy(schedCache.lastResp.offset)+getTZChange();

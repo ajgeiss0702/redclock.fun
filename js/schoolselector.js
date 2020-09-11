@@ -1,7 +1,7 @@
 var schoolselector = {
   clicked: (school) => {
     changeSchool(school);
-    loadContent('countdown');
+    loadContent('scheduleselect');
   }
 }
 
@@ -12,6 +12,7 @@ rcf.on('load', () => {
     $(e).html('An error occured. See above error message for more details.');
     return;
   }
+  console.log("[SCHOOLLIST] "+rcf.schoolList)
   var ah = "";
   var schools = Object.keys(rcf.schoolList);
   for (schoolCode in schools) {

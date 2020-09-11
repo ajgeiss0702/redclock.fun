@@ -98,6 +98,20 @@ function commas(x) {
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
+function copy(v) {
+  switch (typeof v) {
+    case 'object':
+      return JSON.parse(JSON.stringify(v));
+    case 'string':
+      return new String(v).toString();
+    case 'number':
+      return Number(new Number(v));
+    default:
+      var tmp = [v];
+      return JSON.parse(JSON.stringify(tmp))[0];
+  }
+}
+
 
 function getCookie(cname) {
   var name = cname + "=";

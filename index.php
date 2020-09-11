@@ -21,7 +21,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
 
     <script async src="https://arc.io/widget.js#QKaNEs54"></script>
 
-    <link rel='stylesheet' href='/css/base.css'>
+    <link rel='stylesheet' href='/css/base.css?r=1'>
     <link rel='stylesheet' href='/css/checkboxes.css'>
 
     <link rel='stylesheet' id='layout-changer' href='/css/layouts/<?php

@@ -72,7 +72,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       defer
       ></script>
 
-      <script src="/js/base.js"></script>
+      <script src="/js/base.js?r=1"></script>
       <script src="/js/settings.js" defer></script>
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js" defer></script>

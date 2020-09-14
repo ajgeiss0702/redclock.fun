@@ -3,6 +3,10 @@
   border-style: solid;
 }
 
+.scheduletext {
+  color: rgba(255, 255, 255, 1);
+}
+
 #weather {
   border-color: rgba(255, 255, 255, 0.15);
   border-style: solid;

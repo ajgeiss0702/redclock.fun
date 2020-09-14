@@ -1,7 +1,14 @@
 if((typeof rcf.school != 'string')) {
   location.href='#schoolselector';
 }
-console.debug("Loaded countdown script!")
+
+rcf.on('load', function() {
+  console.debug("[LOAD] localStorage.schedule "+localStorage.schedule+" type " +typeof localStorage.schedule)
+  if(localStorage.schedule == "normal" || localStorage.schedule == null || localStorage.schedule == "0") {
+    location.href='#scheduleselect';
+  }
+});
+console.debug("Loaded countdown script! v2")
 
 async function updateScheduleTable(ele = '#schedule-table', date = new Date(), highlight = true) {
   var sched;

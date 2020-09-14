@@ -21,7 +21,7 @@ rcf.on('load', async () => {
   }
   for (scheduleCode in schedules) {
     var schedule = ss.schedules[schedules[scheduleCode]];
-    ah += `<div class='schoolbox' onclick='scheduleselect.clicked("`+scheduleCode+`")'>
+    ah += `<div class='schoolbox' onclick='scheduleselect.clicked("`+schedules[scheduleCode]+`")'>
       <span></span>
       <div class='scheduletext'>
         `+schedule+`
@@ -32,6 +32,6 @@ rcf.on('load', async () => {
   e.classList.add('fadeIn');
   e.style.display = '';
   if(_GET('rmtv') == "undefined") {
-    schoolselector.clicked("inperson");
+    schoolselector.clicked("rmtv");
   }
 })

@@ -32,6 +32,8 @@ rcf.on('load', async () => {
   e.classList.add('fadeIn');
   e.style.display = '';
   if(_GET('rmtv') == "undefined") {
-    schoolselector.clicked("rmtv");
+    setTimeout(() => {
+      scheduleselect.clicked("rmtv");
+    }, 100);
   }
 })

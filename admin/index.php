@@ -256,6 +256,7 @@
     updateYesterdayUniqueUsers();
     healthCheck();
     updateSchoolChart();
+    updateScheduleChart();
     updateDesktopChart();
   }
   setInterval(update, 10e3);

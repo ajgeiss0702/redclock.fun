@@ -5,10 +5,10 @@ $quotes = explode("\n", $quotesraw);
 
 shuffle($quotes);
 
-if($quotes[50] == "") {
-  die($quotes[10]);
+if($quotes[1] == "") {
+  die($quotes[0]);
 } else {
-  die($quotes[50]);
+  die($quotes[1]);
 }
 
 

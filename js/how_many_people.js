@@ -28,6 +28,19 @@ analytics.report = () => {
         }
       }
       analytics.lastRl = data.rel;
+
+
+      if(typeof data.message != "undefined") {
+        $('body').append(`
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" style='position: absolute;left:1em;bottom:1em;'>
+            <span id="adminmessagebox"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          `);
+          $('#adminmessagebox').text(data.message);
+      }
     }
   })
 }

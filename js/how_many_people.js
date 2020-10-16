@@ -39,7 +39,7 @@ analytics.report = () => {
 
 analytics.recieveMessage = (message) => {
   $('body').append(`
-    <div class="alert alert-info alert-dismissible fade show" role="alert" style='position: absolute;left:1em;bottom:1em;'>
+    <div class="alert alert-info alert-dismissible fade show" role="alert" style='position: absolute;left:1em;bottom:1em;color:black;'>
       <h3>Message from website admin</h3>
       <hr>
       <span id="adminmessagebox"></span>

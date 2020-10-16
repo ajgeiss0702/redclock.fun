@@ -40,11 +40,11 @@ analytics.report = () => {
 analytics.recieveMessage = (message) => {
   $('body').append(`
     <div class="alert alert-info alert-dismissible fade show" role="alert" style='position: absolute;left:1em;bottom:1em;color:black;'>
-      <h4 style="color:black;">Message from website admin</h4>
+      <span style="color:black;font-size:1.5em;">Message from website admin</span>
       <hr>
       <span id="adminmessagebox" style="color:black;"></span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true" style="color:black;">&times;</span>
       </button>
     </div>
     `);

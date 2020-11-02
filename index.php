@@ -43,7 +43,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     } else {
       echo('light');
     }
-    ?>.css'>
+    ?>.css?r=1'>
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">

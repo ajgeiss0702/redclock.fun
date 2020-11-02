@@ -3,6 +3,10 @@
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
+.scheduletext {
+  color: rgba(255, 255, 255, 1);
+}
+
 #weather {
   background-color: rgba(52, 52, 52, 0.5);
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);

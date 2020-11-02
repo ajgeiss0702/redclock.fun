@@ -28,8 +28,27 @@ analytics.report = () => {
         }
       }
       analytics.lastRl = data.rel;
+
+
+      if(typeof data.message != "undefined") {
+        analytics.recieveMessage(data.message)
+      }
     }
   })
+}
+
+analytics.recieveMessage = (message) => {
+  $('body').append(`
+    <div class="alert alert-info alert-dismissible fade show" role="alert" style='position: absolute;left:1em;bottom:1em;color:black;'>
+      <span style="color:black;font-size:1.5em;">Message from website admin</span>
+      <hr>
+      <span id="adminmessagebox" style="color:black;"></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" style="color:black;">&times;</span>
+      </button>
+    </div>
+    `);
+    $('#adminmessagebox').text(message);
 }
 
 rcf.on('load', () => {

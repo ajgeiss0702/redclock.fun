@@ -6,13 +6,17 @@ function festive(day = new Date().getDate()) {
     if((month == 10 || month == 11)) {
       settings.create("festive", true, "Festive", "Holiday Festiveness");
       if(settings.get("festive")) {
-        if(day == 21) {
+        if(day == 21 && false) {
           $('#festive').html(`
             <img src="/img/purple-ribbon.png" class='festive-image festive-purpleribbon'>
             `);
-        } else {
+        } else if(month == 11) {
           $('#festive').html(`
             <img src="/img/lights.gif" class='festive-image'>
+            `);
+        } else if(month == 10) {
+          $('#festive').html(`
+            <img src="/img/turkey.gif" class='festive-image festive-turkey'>
             `);
         }
       } else {

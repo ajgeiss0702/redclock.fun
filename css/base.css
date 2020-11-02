@@ -400,6 +400,10 @@ body,html {
   max-width: 6vw;
   transform: rotate(-10deg) translateX(-4.5vw);
 }
+.festive-turkey {
+  max-width: 9vw;
+  transform: rotate(-10deg) translateX(-2vw);
+}
 
 #quote-container {
   display: inline-block;

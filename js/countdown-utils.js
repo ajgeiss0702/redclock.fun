@@ -328,7 +328,7 @@ if(settings != undefined) {
 }
 function getTZChange() {
   if(settings != undefined) {
-    if(settings.get("enableTzOffset"))
+    if(!settings.get("enableTzOffset")) return 0;
   }
   return (new Date().getTimezoneOffset()-420)*-30;
 }

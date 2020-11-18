@@ -59,7 +59,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       gtag('config', 'UA-106568388-2');
     </script>
 
-    <script src='/js/countdown-utils.js?c=7' defer async></script>
+    <script src='/js/countdown-utils.js?c=8' defer async></script>
     <script src="/js/jquery.min.js" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

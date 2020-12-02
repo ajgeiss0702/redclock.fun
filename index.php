@@ -19,7 +19,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <script async src="https://arc.io/widget.js#QKaNEs54"></script>
+    <script async src="https://arc.io/widget.min.js#QKaNEs54"></script>
 
     <link rel='stylesheet' href='/css/base.css?r=3'>
     <link rel='stylesheet' href='/css/checkboxes.css'>

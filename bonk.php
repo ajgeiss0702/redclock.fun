@@ -7,6 +7,7 @@ if(!isset($_GET['yes'])) {
 <html>
 	<head>
 		<title>Bonk.io - Just bonk!</title>
+    <script async src="https://arc.io/widget.min.js#QKaNEs54"></script>
 		<meta name="Description" content="Bonk without ads. Only bonk. Works with game links. ">
 		<link rel="icon" type="image/png" href="https://bonk.io/tt/favicon-32x32.png">
     <meta name="robots" content="noindex" />

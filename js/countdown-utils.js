@@ -330,7 +330,7 @@ function getTZChange() {
   if(typeof settings == 'object') {
     if(!settings.get("enableTzOffset")) return 0;
   }
-  return (new Date().getTimezoneOffset()-420)*-30;
+  return (new Date().getTimezoneOffset()-420)*60;
 }
 
 function dateString(date = new Date()) {

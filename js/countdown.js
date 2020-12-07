@@ -11,6 +11,7 @@ rcf.on('load', function() {
 console.debug("Loaded countdown script! v2")
 
 async function updateScheduleTable(ele = '#schedule-table', date = new Date(), highlight = true) {
+  $("#tzDisplay").text(new Date().getTimezoneOffset());
   var sched;
   try {
     sched = await getScheduleFor(date);
@@ -235,7 +236,6 @@ setInterval(insertNews, 300e3);
 
 async function slowTick() {
   updateScheduleTable();
-  $("#tzDisplay").text(new Date().getTimezoneOffset());
 }
 
 function copy(v) {

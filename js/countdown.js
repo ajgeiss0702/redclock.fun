@@ -235,6 +235,7 @@ setInterval(insertNews, 300e3);
 
 async function slowTick() {
   updateScheduleTable();
+  $("#tzDisplay").text(new Date().getTimezoneOffset());
 }
 
 function copy(v) {

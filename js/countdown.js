@@ -11,6 +11,7 @@ rcf.on('load', function() {
 console.debug("Loaded countdown script! v2")
 
 async function updateScheduleTable(ele = '#schedule-table', date = new Date(), highlight = true) {
+  $("#tzDisplay").text("TZ: "+new Date().getTimezoneOffset()+"");
   var sched;
   try {
     sched = await getScheduleFor(date);

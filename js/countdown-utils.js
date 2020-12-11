@@ -323,14 +323,14 @@ async function getOffset(override = false) {
   }
 }
 
-if(settings != undefined) {
+if(typeof settings == 'object') {
   settings.create("enableTzOffset", true, "Adjust timezone", "Should we adjust to always be on the school's timezone?");
 }
 function getTZChange() {
-  if(settings != undefined) {
+  if(typeof settings == 'object') {
     if(!settings.get("enableTzOffset")) return 0;
   }
-  return (new Date().getTimezoneOffset()-420)*-30;
+  return (new Date().getTimezoneOffset()-420)*-60;
 }
 
 function dateString(date = new Date()) {

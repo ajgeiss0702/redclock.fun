@@ -81,7 +81,8 @@
         }],
         labels: [
           "Red Mountain",
-          "AAEC RM"
+          "AAEC RM",
+          "Shepherd"
         ]
       }
     })
@@ -233,7 +234,7 @@
   async function updateSchoolChart() {
     var raw = await httpGet("https://api.redclock.fun/checkin/schools");
     var data = JSON.parse(raw);
-    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["aaec-rm"])]
+    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["aaec-rm"]), toNum(data["rmhs"])]
     schoolpie.update();
   }
   async function updateScheduleChart() {

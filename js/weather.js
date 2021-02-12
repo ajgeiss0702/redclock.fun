@@ -103,10 +103,9 @@ function updateWeather(last = false) {
       }
 
       var rainAdd = ""
-      if(d.todayrain > 0) {
+      if(d.todayrain > 0.2) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
-      rainAdd = "";
 
       var temperature = d.temperature;
       if(!settings.get('exactTemp')) {

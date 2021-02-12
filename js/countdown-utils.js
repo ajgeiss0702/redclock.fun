@@ -330,7 +330,7 @@ function getTZChange() {
   if(typeof settings == 'object') {
     if(!settings.get("enableTzOffset")) return 0;
   }
-  return (new Date().getTimezoneOffset()-420)*60;
+  return (new Date().getTimezoneOffset()-420)*-60;
 }
 
 function dateString(date = new Date()) {
@@ -349,9 +349,11 @@ function dateString(date = new Date()) {
   var min = d.getMinutes();
   var sec = d.getSeconds();
 
-  if(hour > 12) {
+  if(hour >= 12) {
     ap = 'PM';
-    hour = hour - 12;
+    if(hour > 12) {
+      hour = hour - 12;
+    }
   }
   if(min < 10) {
     min = "0"+min

@@ -76,7 +76,7 @@
       data: {
         datasets: [{
           label: 'Users',
-          backgroundColor: ['rgb(255, 99, 132)', 'yellow'],
+          backgroundColor: ['rgb(255, 99, 132)', 'yellow', 'aqua'],
           data: []
         }],
         labels: [

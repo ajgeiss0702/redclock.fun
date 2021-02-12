@@ -43,7 +43,7 @@
         <table>
           <tr>
             <td><canvas class="pie" id="schoolpie" height="400" width="400"></canvas></td>
-            <td><canvas class="pie" id="schedulepie" height="400" width="400"></canvas></td>
+            <!--<td><canvas class="pie" id="schedulepie" height="400" width="400"></canvas></td>-->
             <td><canvas class="pie" id="desktoppie" height="400" width="400"></canvas></td>
           </tr>
         </table>
@@ -86,7 +86,7 @@
         ]
       }
     })
-    schedulepie = new Chart(document.getElementById("schedulepie").getContext('2d'), {
+    /*schedulepie = new Chart(document.getElementById("schedulepie").getContext('2d'), {
       type: 'doughnut',
       data: {
         datasets: [{
@@ -100,7 +100,7 @@
           "RMTV"
         ]
       }
-    })
+    })*/
     desktoppie = new Chart(document.getElementById("desktoppie").getContext('2d'), {
       type: 'doughnut',
       data: {
@@ -238,10 +238,10 @@
     schoolpie.update();
   }
   async function updateScheduleChart() {
-    var raw = await httpGet("https://api.redclock.fun/checkin/schedules");
+    /*var raw = await httpGet("https://api.redclock.fun/checkin/schedules");
     var data = JSON.parse(raw);
     schedulepie.data.datasets[0].data = [toNum(data["4lunch"]), toNum(data["5lunch"]), toNum(data["rmtv"])]
-    schedulepie.update();
+    schedulepie.update();*/
   }
   async function updateDesktopChart() {
     var raw = await httpGet("https://api.redclock.fun/checkin/desktop");

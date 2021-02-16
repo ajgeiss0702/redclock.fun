@@ -3,6 +3,10 @@
   box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
 
+.schooltext:hover, .schooltext.show {
+  color: white;
+}
+
 .scheduletext {
   color: rgba(255, 255, 255, 1);
 }

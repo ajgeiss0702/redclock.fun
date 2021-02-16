@@ -3,6 +3,10 @@
   border-style: solid;
 }
 
+.schooltext:hover, .schooltext.show {
+  color: white;
+}
+
 .scheduletext {
   color: rgba(255, 255, 255, 1);
 }

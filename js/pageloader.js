@@ -32,8 +32,10 @@ function loadContent(pageName) {
     if(pageName == 'countdown') {
       setTimeout(() => {
         rcf.on('load', () => {
-          insertNews();
-          updateWeather();
+          setTimeout(() => {
+            insertNews();
+            updateWeather();
+          }, 500)
         })
       }, 500)
     }

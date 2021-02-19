@@ -12,6 +12,7 @@ function loadContent(pageName) {
     clearInterval(countdownMainInterval);
     countdownMainInterval = undefined;
   }
+  
   $('#load').slideDown('fast');
   $('#'+activePage+'-ct').slideUp(400, () => {
     $('#'+oldPage+'-ct').html('');

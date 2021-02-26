@@ -38,9 +38,7 @@ if(file_exists('lastacc.temp')) {
   $lastacc = (int)file_get_contents('lastacc.temp');
 }
 $accs = array(
-  "0cb4b50f1395c55501ed3223f3de0c2e",
-  "76c853621078503b5d33706f5dbb281e",
-  "2f7f991e5f152f246a0b44fa90483f98"
+  "cb58932eee31071ea8b15f7e81c11a92"
 );
 
 if($lastacc+1 >= count($accs)) {
@@ -49,19 +47,20 @@ if($lastacc+1 >= count($accs)) {
   $lastacc = $lastacc + 1;
 }
 file_put_contents('lastacc.temp', $lastacc);
-$json = file_get_contents('https://api.darksky.net/forecast/'.$accs[$lastacc].'/33.435016,-111.673358');
+$json = file_get_contents('https://api.openweathermap.org/data/2.5/onecall?appid='.$accs[$lastacc].'&lat=33.435016&lon=-111.673358&units=imperial');
 //$json = file_get_contents('')
 $weather = json_decode($json, true);
 if($weather == false) {
   cached();
 }
 $result = $weather;
+$result['currently'] = $result["current"];
 $result['currently']['au'] = $lastacc;
 $result['currently']['mindesc'] = $weather['minutely']['summary'];
 $result['currently']['desc'] = $weather['hourly']['summary'];
 $result['currently']['timezone'] = $weather['timezone'];
-$result['currently']['todayrain'] = $weather['daily']['data'][0]['precipProbability'];
-$result['currently']['week-forecast'] = $weather['daily']['data'];
+$result['currently']['todayrain'] = $weather['daily'][0]['pop'];
+$result['currently']['week-forecast'] = $weather['daily'];
 file_put_contents('lastweather.temp', json_encode($result));
 file_put_contents('lastcheck.temp', $current);
 $result['currently']['cached'] = false;

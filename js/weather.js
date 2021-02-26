@@ -12,6 +12,27 @@ settings.create('exactTemp', false, "Exact temperature", "If enabled, will round
 
 var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+var icons = {
+  "01d": "CLEAR_DAY",
+  "01n": "CLEAR_NIGHT",
+  "02d": "PARTLY_CLOUDY_DAY",
+  "02n": "PARTLY_CLOUDY_NIGHT",
+  "03d": "CLOUDY",
+  "03n": "CLOUDY",
+  "04d": "PARTLY_CLOUDY_DAY",
+  "04n": "PARTLY_CLOUDY_NIGHT",
+  "09d": "RAIN",
+  "09n": "RAIN",
+  "10d": "RAIN",
+  "10n": "RAIN",
+  "11d": "RAIN",
+  "11n": "RAIN",
+  "13d": "SNOW",
+  "13n": "SNOW",
+  "50d": "FOG",
+  "50n": "FOG"
+}
+
 var lastData;
 
 var skycons;
@@ -82,7 +103,7 @@ function updateWeather(last = false) {
       var i = 0;
       var ah = '';
 
-      var uv = d.uvIndex;
+      var uv = d.uvi;
       var uvState = "";
       var uvClass = ""
       if(uv >= 11) {
@@ -103,16 +124,17 @@ function updateWeather(last = false) {
       }
 
       var rainAdd = ""
-      if(d.todayrain > 0.2) {
+      if(d.todayrain > 2) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
 
-      var temperature = d.temperature;
+      var temperature = d.temp;
       if(!settings.get('exactTemp')) {
         temperature = Math.round(temperature);
       }
 
       setTimeout(() => {
+        var desc = d.weather[0].description;
         $('#weatherdiv').html(`<!--weather!-->
           <div align='center' style='font-size: 1rem;'>
             <table>
@@ -121,22 +143,22 @@ function updateWeather(last = false) {
                 <td style='padding-left:0.25em;'>
                   <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
                   <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
-                    `+/*d.mindesc+*/d.desc+`<br><br>
+                    `+/*d.mindesc+*/desc.charAt(0).toUpperCase() + desc.slice(1)+`.<br><br>
                     <div style='text-align: left;'>
                       <span id='we-wf-toggle' class="we-wf-toggle-btn" onclick='toggleWeeklyWeather()'>Today</span>
                     </div>
                     <table id='we-info-table'>
                       <tr class='weather-tr'>
                         <td>🌧️</td>
-                        <td>`+Math.round(Number(d.todayrain) * 100)+`% chance of rain today<br>`+rainAdd+`</td>
+                        <td>`+d.todayrain+`% chance of rain today<br>`+rainAdd+`</td>
                       </tr>
                       <tr class='weather-tr'>
                         <td>💧</td>
-                        <td>`+Math.round(d.humidity * 100)+`% humidity<br></td>
+                        <td>`+d.humidity+`% humidity<br></td>
                       </tr>
                       <tr class='weather-tr'>
                         <td>☀️</td>
-                        <td>UV index: <span class='badge badge-pill badge-`+uvClass+`'>`+d.uvIndex+` (`+uvState+`)</span></td>
+                        <td>UV index: <span class='badge badge-pill badge-`+uvClass+`'>`+d.uvi+` (`+uvState+`)</span></td>
                       </tr>
                     </table>
                   </p>
@@ -146,7 +168,8 @@ function updateWeather(last = false) {
             </table>
           </div>
         `);
-        skycons.set($('#weather-icon')[0], d['icon']);
+        console.debug("[weather] icon should be: "+icons[d.weather[0].icon]+" ("+d.weather[0].icon+")");
+        skycons.set($('#weather-icon')[0], icons[d.weather[0].icon]);
         if(typeof debug != 'undefined') {
           console.log(skycons);
         }
@@ -194,21 +217,21 @@ function toggleWeeklyWeather(update = false) {
       i++;
       if(i > 7) break;
       var t = lastData["week-forecast"][day]
-      var dayname = (i == 1) ? "Today" : dayNames[new Date(t.time * 1000).getDay()]
+      var dayname = (i == 1) ? "Today" : dayNames[new Date(t.dt * 1000).getDay()]
       if(i == 2) {
         dayname = "Tomorrow";
       }
       ahDays += "<td class='we-wf-day'>"+dayname+"</td>"
       if(!settings.get("exactTemp")) {
-        if(t.temperatureHigh >= 67.5 && t.temperatureHigh < 70.5) {
-          t.temperatureHigh = 69;
+        if(t.temp.max >= 67.5 && t.temp.max < 70.5) {
+          t.temp.max = 69;
         }
       }
 
-      var htemp = settings.get("exactTemp") ? t.temperatureHigh : Math.round(t.temperatureHigh);
-      var ltemp = settings.get("exactTemp") ? t.temperatureLow : Math.round(t.temperatureLow);
+      var htemp = settings.get("exactTemp") ? t.temp.max : Math.round(t.temp.max);
+      var ltemp = settings.get("exactTemp") ? t.temp.min : Math.round(t.temp.min);
       ahDeg += "<td><span class='we-wf-htemp'><span id='we-wf-htemp-"+i+"'>"+htemp+"</span>&deg;</span><br><span class='we-wf-ltemp'>"+ltemp+"&deg;</span></td>"
-      ahRain += "<td class='we-wf-precip'>🌧️"+Math.round(t.precipProbability*10000)/100+"%</td>";
+      ahRain += "<td class='we-wf-precip'>🌧️"+t.pop+"%</td>";
     }
   }
   if(!update) {

@@ -247,7 +247,6 @@
     updateUserCount();
     updateUniqueUserCount();
     updateYesterdayUniqueUsers();
-    healthCheck();
     updateSchoolChart();
     updateScheduleChart();
     updateDesktopChart();
@@ -278,13 +277,5 @@
       duration: delay * 1e3
     });
   }
-
-
-  function healthCheck() {
-    hci = 0;
-    hcCheck(8000, 0);
-    hcCheck(8001, 1)
-  }
-
   </script>
 </html>

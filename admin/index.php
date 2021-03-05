@@ -32,14 +32,6 @@
       <span id="uusercount"></span>
       <br><br>
       <div class='center'>
-        <table class='center'>
-          <tr>
-            <td id="hc-s0">0</td>
-            <td id='hc-s1'>1</td>
-          </tr>
-        </table>
-      </div>
-      <div class='center'>
         <table>
           <tr>
             <td><canvas class="pie" id="schoolpie" height="400" width="400"></canvas></td>
@@ -292,22 +284,6 @@
     hci = 0;
     hcCheck(8000, 0);
     hcCheck(8001, 1)
-  }
-  function hcCheck(b, num) {
-    var backend = Number(b);
-    console.log(backend+" : "+num);
-    httpGet('http://149.248.20.246:'+backend+'/hc.php').then((d) => {
-      if(d.indexOf('+') == 0) {
-        console.log(num+" good");
-        $('#hc-s'+num).css('background-color', 'lime');
-      } else {
-        console.log(num+" bad");
-        $('#hc-s'+num).css('background-color', 'red');
-      }
-    }).catch(() => {
-      console.log(num+" network error");
-      $('#hc-s'+num).css('background-color', 'red');
-    })
   }
 
   </script>

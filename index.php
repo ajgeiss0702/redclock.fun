@@ -49,7 +49,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106568388-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -57,7 +57,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       gtag('js', new Date());
 
       gtag('config', 'UA-106568388-2');
-    </script>
+    </script>-->
 
     <script src='/js/countdown-utils.js?c=8' defer async></script>
     <script src="/js/jquery.min.js" defer></script>

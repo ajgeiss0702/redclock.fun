@@ -1,7 +1,11 @@
 
 var lastQuote = "";
-async function updateQuote() {
-  var d = await httpGet("/api/quotes/index.php");
+async function updateQuote(quoteId = -1) {
+  var url = "/api/quotes/index.php";
+  if(quoteId >= 0) {
+    url = "/api/quotes/index.php?id="+quoteId;
+  }
+  var d = await httpGet(url);
   lastQuote = d;
   setQuote(lastQuote);
 }

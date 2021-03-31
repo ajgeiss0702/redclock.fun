@@ -62,6 +62,7 @@ async function recalcCdd() {
   var skeys = Object.keys(sched);
   cd.cdd = makeDate(sched[skeys[0]]);
   cd.i = 0;
+  var i = 0;
   while(cd.cdd.getTime() < new Date().getTime()) {
     cd.i++;
     if(typeof settings == 'object') {
@@ -71,6 +72,8 @@ async function recalcCdd() {
     }
     //console.log(sched[skeys[cd.i]]);
     cd.cdd = makeDate(sched[skeys[cd.i]]);
+    i++;
+    if(i > 1000) break;
   }
   cd.period = skeys[cd.i];
   updateScheduleTable();
@@ -173,7 +176,9 @@ async function getScheduleFor(now, orig = true) {
             if(parts[part] == nowdate) {
               //console.debug("^-----------------------------------------------")
               found = true;
-              foundsched = sched.specials.date[specialdates[date]][rcf.schedule]
+              var spec = sched.specials.date[specialdates[date]];
+              var sched = Object.keys(spec).indexOf("*") != -1 ? "*" : rcf.schedule;
+              foundsched = spec[sched];
             }
           }
         }
@@ -193,8 +198,10 @@ async function getScheduleFor(now, orig = true) {
           }
           if(parts[part].toString() == nowday.toString()) {
             found = true;
-            foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
-            console.debug(sched.specials.day[specialdays[day]][rcf.schedule]);
+            //foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
+            var spec = sched.specials.day[specialdays[day]];
+            var sched = Object.keys(spec).indexOf("*") != -1 ? "*" : rcf.schedule;
+            foundsched = spec[sched];
           }
         }
       }
@@ -204,7 +211,7 @@ async function getScheduleFor(now, orig = true) {
   //If no special dates/days, return normal schedule
   if(found == false && typeof foundsched != 'object') {
     console.debug("[schedule] Using normal for day" +now.getDay());
-    foundsched = sched.normal[rcf.schedule]
+    foundsched = sched.normal[rcf.schedule];
   }
 
 

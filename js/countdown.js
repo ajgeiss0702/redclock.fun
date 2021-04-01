@@ -185,7 +185,7 @@ function tick() {
     }
 
 
-    drawClock($("#analog-clock")[0]);
+    if(!rcf.desktop) drawClock($("#analog-clock")[0]);
 
 
   }).catch((e) => {

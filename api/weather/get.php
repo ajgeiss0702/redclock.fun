@@ -26,7 +26,7 @@ function cached() {
   die(json_encode($last['currently']));
 }
 
-if($lastcheck > $current-120 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
+if($lastcheck <= $current-120 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
   cached();
   die();
 }
@@ -38,7 +38,7 @@ if(file_exists('lastacc.temp')) {
   $lastacc = (int)file_get_contents('lastacc.temp');
 }
 $accs = array(
-  "cb58932eee31071ea8b15f7e81c11a92"
+  "bf26c7abb25893e59cc5a0afeb62b36c"
 );
 
 if($lastacc+1 >= count($accs)) {

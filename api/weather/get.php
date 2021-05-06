@@ -26,7 +26,7 @@ function cached() {
   die(json_encode($last['currently']));
 }
 
-if($lastcheck <= $current-120 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
+if($lastcheck >= $current-600 || isset($_GET['last'])) { // orig 3600 which means 1 update per hour
   cached();
   die();
 }
@@ -38,9 +38,9 @@ if(file_exists('lastacc.temp')) {
   $lastacc = (int)file_get_contents('lastacc.temp');
 }
 $accs = array(
-  "bf26c7abb25893e59cc5a0afeb62b36c"
+  "bf26c7abb25893e59cc5a0afeb62b36c",
+  "f2cfe4c7ea4ff8ab12b151b45c9723a0"
 );
-
 if($lastacc+1 >= count($accs)) {
   $lastacc = 0;
 } else {
@@ -51,6 +51,7 @@ $json = file_get_contents('https://api.openweathermap.org/data/2.5/onecall?appid
 //$json = file_get_contents('')
 $weather = json_decode($json, true);
 if($weather == false) {
+  file_put_contents('error_data.temp', $json);
   cached();
 }
 $result = $weather;

@@ -12,7 +12,7 @@ function loadContent(pageName) {
     clearInterval(countdownMainInterval);
     countdownMainInterval = undefined;
   }
-  
+
   $('#load').slideDown('fast');
   $('#'+activePage+'-ct').slideUp(400, () => {
     $('#'+oldPage+'-ct').html('');
@@ -72,7 +72,16 @@ $(window).on('hashchange', function() {
   }
 });
 
+var pageInitRetryCount = 0;
 async function pageInit() {
+  if((typeof settings != 'object' || typeof rcf != 'object') && pageInitRetryCount < 10) {
+    console.debug("Delaying init: "+typeof settings+" "+typeof rcf);
+    setTimeout(() => {
+      pageInitRetryCount++;
+      pageInit();
+    }, 100);
+    return;
+  }
   if(location.hash != "") {
     loadContent(location.hash.split('#').splice(1).join('#'));
     return;

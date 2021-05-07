@@ -59,7 +59,6 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       gtag('config', 'UA-106568388-2');
     </script>-->
 
-    <script src='/js/countdown-utils.js?c=9' defer async></script>
     <script src="/js/jquery.min.js" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -73,7 +72,118 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       ></script>
 
       <script src="/js/base.js?r=1"></script>
-      <script src="/js/settings.js" defer></script>
+      <script>
+      var rcf = {};
+      rcf.on = function(name, func) {
+        if(name == 'load' && rcf.loaded) {
+          func();
+          return;
+        }
+        this._subscriptions[name] = this._subscriptions[name] || [];
+        this._subscriptions[name].push(func)
+      }
+      rcf.off = function(name, func){
+        this._subscriptions[name] = this._subscriptions[name].filter(f=>f!==func)
+      }
+      rcf._subscriptions = {}
+      rcf.emit = function(name, ...args){
+        if(!this._subscriptions[name]){return; }
+        this._subscriptions[name].forEach(f=>f(...args))
+      }
+
+      document.onkeyup = (e) => {
+        rcf.emit("key-"+(e.keyCode || e.which));
+      }
+
+      rcf.theme = 'light';
+      rcf.changeTheme = (theme) => {
+        $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css?r=1';
+        rcf.theme = theme;
+        if(theme.toLowerCase() != "rmtv") {
+          setCookie('theme', theme)
+        }
+        updateWeather();
+      }
+
+      var lastFocusTime = new Date();
+      var lastHadFocus = true;
+      setInterval(() => {
+        if(!document.hasFocus()) {
+          lastHadFocus = false;
+        } else {
+          if(!lastHadFocus || (lastFocusTime.getTime() < new Date().getTime()-5000)) {
+            rcf.emit('focus');
+          }
+          lastHadFocus = true;
+          lastFocusTime = new Date();
+        }
+      }, 2500)
+
+
+      rcf.loaded = false;
+      rcf.on('load', () => {
+        rcf.loaded = true;
+        if(_GET('rmtv') == "undefined") {
+          document.getElementById('rmtv').classList = "rmtv-ad";
+          $('body').css("background-color", "rgb(140, 0, 0)")
+          $('.countdown-container').css("background-color", "rgba(0, 0, 0, 0) !important");
+          rcf.changeTheme('rmtv')
+        }
+      });
+
+
+      if(typeof localStorage.getItem('school') != 'undefined') {
+        rcf.school = localStorage.getItem('school');
+        rcf.schedule = localStorage.getItem('schedule');
+      }
+
+      httpGet('/api/schedule.php?school=list').then((a) => {
+        try {
+          rcf.schoolList = JSON.parse(a);
+        } catch(e) {
+          console.error(e);
+          $('#scheduleloaderror').removeClass('hidden');
+        }
+      }).catch((e) => {
+        console.error(e);
+        $('#scheduleloaderror').removeClass('hidden');
+        $('#scheduleloaderror').addClass('fadeIn');
+      });
+
+      var logotext = `
+                    \`.-:://////////::-.\`
+               \`.://////:::////-:://////:.\`
+            \`-:////:-.\`   \`///:    \`.-:////:-\`
+          \`-///////-      \`///:      \`:///////-\`
+         -////.\`:///\`     \`///-      .///- .////-
+       \`////-    \`\`\`       :ys        \`\`\`    -////\`
+      .////.               smm.               .////.
+     .///////-             smm.     .oy+    .///////.
+     ///:.-::\`             smm.   .odds-    .:/:.:///
+    -///\`                  smm. .odds-           \`///-
+    ///:                   smm:odds-              :///
+    ///-\`\`\`\`\`\`             smddds-          ......-///
+    //////////-            oo+syyyyyyyyyyyy+//////////
+    ///:------\`             .//+/-.........\`......:///
+    ///:                      .///.               :///
+    -///\`                       .///.            \`///-
+     ///: .--.                    .///.     .::-.:///
+     .////////                      .//-    .///////.
+      .////-.                                 .////.
+       \`////-               \`\`        \`\`     -////\`
+         -////.  .:/:\`     -///\`     .///- .////-
+          \`-////:///:\`     -///.     \`:///////-\`
+            \`-://///-.\`    -///.   \`.-:////:-\`
+               \`.://////::-:///::://////:.\`
+                   \`.-:://////////::-.\`               `; // the logo that is put in console
+
+        console.log("%c"+logotext, "color:red;")
+        console.log("%cRed Clock Bell Countdown", "color: red; font-size: 40px;")
+        console.log("%cMade by Aiden Geiss\n\n", "font-size: 20px;")
+      </script>
+
+      <script src="/js/settings.js"></script>
+      <script src='/js/countdown-utils.js?c=9' defer async></script>
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js?r=1" defer></script>
       <script src="/js/how_many_people.js" defer></script>
@@ -107,116 +217,6 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
     <div id="festive"></div>
     <input style="position: fixed;bottom: -10vh;" type="text" value="" id="copy-input">
   </body>
-
-  <script>
-  var rcf = {};
-  rcf.on = function(name, func) {
-    if(name == 'load' && rcf.loaded) {
-      func();
-      return;
-    }
-    this._subscriptions[name] = this._subscriptions[name] || [];
-    this._subscriptions[name].push(func)
-  }
-  rcf.off = function(name, func){
-    this._subscriptions[name] = this._subscriptions[name].filter(f=>f!==func)
-  }
-  rcf._subscriptions = {}
-  rcf.emit = function(name, ...args){
-    if(!this._subscriptions[name]){return; }
-    this._subscriptions[name].forEach(f=>f(...args))
-  }
-
-  document.onkeyup = (e) => {
-    rcf.emit("key-"+(e.keyCode || e.which));
-  }
-
-  rcf.theme = 'light';
-  rcf.changeTheme = (theme) => {
-    $('#theme-changer')[0].href = '/css/themes/'+theme.toLowerCase()+'.css?r=1';
-    rcf.theme = theme;
-    if(theme.toLowerCase() != "rmtv") {
-      setCookie('theme', theme)
-    }
-    updateWeather();
-  }
-
-  var lastFocusTime = new Date();
-  var lastHadFocus = true;
-  setInterval(() => {
-    if(!document.hasFocus()) {
-      lastHadFocus = false;
-    } else {
-      if(!lastHadFocus || (lastFocusTime.getTime() < new Date().getTime()-5000)) {
-        rcf.emit('focus');
-      }
-      lastHadFocus = true;
-      lastFocusTime = new Date();
-    }
-  }, 2500)
-
-
-  rcf.loaded = false;
-  rcf.on('load', () => {
-    rcf.loaded = true;
-    if(_GET('rmtv') == "undefined") {
-      document.getElementById('rmtv').classList = "rmtv-ad";
-      $('body').css("background-color", "rgb(140, 0, 0)")
-      $('.countdown-container').css("background-color", "rgba(0, 0, 0, 0) !important");
-      rcf.changeTheme('rmtv')
-    }
-  });
-
-
-  if(typeof localStorage.getItem('school') != 'undefined') {
-    rcf.school = localStorage.getItem('school');
-    rcf.schedule = localStorage.getItem('schedule');
-  }
-
-  httpGet('/api/schedule.php?school=list').then((a) => {
-    try {
-      rcf.schoolList = JSON.parse(a);
-    } catch(e) {
-      console.error(e);
-      $('#scheduleloaderror').removeClass('hidden');
-    }
-  }).catch((e) => {
-    console.error(e);
-    $('#scheduleloaderror').removeClass('hidden');
-    $('#scheduleloaderror').addClass('fadeIn');
-  });
-
-  var logotext = `
-                \`.-:://////////::-.\`
-           \`.://////:::////-:://////:.\`
-        \`-:////:-.\`   \`///:    \`.-:////:-\`
-      \`-///////-      \`///:      \`:///////-\`
-     -////.\`:///\`     \`///-      .///- .////-
-   \`////-    \`\`\`       :ys        \`\`\`    -////\`
-  .////.               smm.               .////.
- .///////-             smm.     .oy+    .///////.
- ///:.-::\`             smm.   .odds-    .:/:.:///
--///\`                  smm. .odds-           \`///-
-///:                   smm:odds-              :///
-///-\`\`\`\`\`\`             smddds-          ......-///
-//////////-            oo+syyyyyyyyyyyy+//////////
-///:------\`             .//+/-.........\`......:///
-///:                      .///.               :///
--///\`                       .///.            \`///-
- ///: .--.                    .///.     .::-.:///
- .////////                      .//-    .///////.
-  .////-.                                 .////.
-   \`////-               \`\`        \`\`     -////\`
-     -////.  .:/:\`     -///\`     .///- .////-
-      \`-////:///:\`     -///.     \`:///////-\`
-        \`-://///-.\`    -///.   \`.-:////:-\`
-           \`.://////::-:///::://////:.\`
-               \`.-:://////////::-.\`               `; // the logo that is put in console
-
-    console.log("%c"+logotext, "color:red;")
-    console.log("%cRed Clock Bell Countdown", "color: red; font-size: 40px;")
-    console.log("%cMade by Aiden Geiss\n\n", "font-size: 20px;")
-  </script>
 
 
 </html>

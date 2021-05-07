@@ -135,13 +135,14 @@ function updateWeather(last = false) {
 
       setTimeout(() => {
         var desc = d.weather[0].description;
+        var time = new Date(d.dt*1000);
         $('#weatherdiv').html(`<!--weather!-->
           <div align='center' style='font-size: 1rem;'>
             <table>
               <tr>
                 <td><canvas id='weather-icon' height='100' width='100'></canvas></td>
                 <td style='padding-left:0.25em;'>
-                  <h1 style='font-size: 2.5em;'>`+temperature+`&deg;</h1>
+                  <h1 style='font-size: 2.5em;' title="`+time.toLocaleDateString()+` `+time.toLocaleTimeString()+`">`+temperature+`&deg;</h1>
                   <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
                     `+/*d.mindesc+*/desc.charAt(0).toUpperCase() + desc.slice(1)+`.<br><br>
                     <div style='text-align: left;'>

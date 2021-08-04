@@ -133,8 +133,8 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
 
 
       if(typeof localStorage.getItem('school') != 'undefined') {
-        rcf.school = localStorage.getItem('school');
-        rcf.schedule = localStorage.getItem('schedule');
+        rcf.school = _GET("school") || localStorage.getItem('school');
+        rcf.schedule = _GET("schedule") || localStorage.getItem('schedule');
       }
 
       httpGet('/api/schedule.php?school=list').then((a) => {

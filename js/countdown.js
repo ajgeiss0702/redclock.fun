@@ -90,6 +90,10 @@ async function init() {
     rcf.schedule = schedules[0];
   }
 
+  if(_GET("schedule") != null) {
+    rcf.schedule = _GET("schedule");
+  }
+
   initClock($("#analog-clock")[0]);
 }
 var countdownMainInterval;

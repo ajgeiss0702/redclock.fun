@@ -9,12 +9,14 @@ if(!file_exists("../../schools.json")) {
 }
 $raw = file_get_contents('../../schools.json');
 $schools = JSON_decode($raw, true);
+
 if(isset($_GET['school'])) {
   if($_GET['school'] == "list") {
     foreach ($schools as $key => $value) {
       $schools[$key] = array(
         'display' => $value['display'],
-        'logo' => $value['logo']
+        'logo' => $value['logo'],
+        'schedules' => $value['schedules']
       );
     }
     die(JSON_encode($schools));

@@ -109,7 +109,7 @@ async function getCurrentSchedule() {
   return getScheduleFor(new Date());
 }
 
-async function getScheduleFor(now, orig = true) {
+async function getScheduleFor(now, orig = true, doBreaks = true) {
   now = new Date(now);
   var sched = await getSchedule();
 
@@ -122,46 +122,52 @@ async function getScheduleFor(now, orig = true) {
   var skipTomorrow = false;
 
   // Off days (e.g. breaks)
-  for(var offd in offdates) {
-    if(offdates.hasOwnProperty(offd)) {
+  if(doBreaks) {
+    for(var offd in offdates) {
+      if(offdates.hasOwnProperty(offd)) {
 
-      var mon0 = now.getMonth()+1;
-      var day0 = now.getDate();
-      var parts = offdates[offd].split("-");
+        var mon0 = now.getMonth()+1;
+        var day0 = now.getDate();
+        var parts = offdates[offd].split("-");
 
-      var o = parts[0];
-      var t = parts[1];
+        var o = parts[0];
+        var t = parts[1];
 
-      var mon1 = Number(o.split("/")[0]);
-      var day1 = Number(o.split("/")[1]);
-      var mon2 = Number(t.split("/")[0]);
-      var day2 = Number(t.split("/")[1]);
+        var mon1 = Number(o.split("/")[0]);
+        var day1 = Number(o.split("/")[1]);
+        var mon2 = Number(t.split("/")[0]);
+        var day2 = Number(t.split("/")[1]);
 
-      if(mon0 >= mon1 && mon0 <= mon2) {
-        if(mon0 == mon1 && day0 < day1) {
-          continue;
-        } else if(mon0 == mon2 && day0 > day2) {
-          continue;
-        } else {
-          //console.log("---------------------- Yes! "+mon0+"/"+day0);
-          found = true;
-          var enddate = new Date(mon2+"/"+(day2+1)+"/"+new Date().getFullYear());
-          var end = await getScheduleFor(enddate);
-          var fin = {};
+        if(mon0 >= mon1 && mon0 <= mon2) {
+          if(mon0 == mon1 && day0 < day1) {
+            continue;
+          } else if(mon0 == mon2 && day0 > day2) {
+            continue;
+          } else {
+            console.log("---------------------- Yes! "+mon0+"/"+day0);
+            found = true;
+            console.log("1. Found is now "+found);
+            var enddate = new Date(mon2+"/"+(day2)+"/"+new Date().getFullYear());
+            console.log(enddate);
+            var end = await getScheduleFor(enddate, false, false);
+            var fin = {};
 
-          var k = (Object.keys(end)[0].replace(/tomorrow/g, ""))+" after "+sched.off[offdates[offd]]
-          var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
-          //console.log("n: "+n);
-          fin[k] = end[Object.keys(end)[0]];
-          fin[k][0] += n;
+            var k = (Object.keys(end)[0].replace(/tomorrow/g, ""))+" after "+sched.off[offdates[offd]]
+            var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
+            //console.log("n: "+n);
+            fin[k] = end[Object.keys(end)[0]];
+            fin[k][0] += n;
 
-          foundsched = copy(fin);
-          skipTomorrow = true;
+            foundsched = copy(fin);
+            skipTomorrow = true;
+          }
         }
-      }
 
+      }
     }
   }
+
+  console.log("2. Found is now "+found);
 
  // Special dates (e.g. different schedule for a certain day)
   if(!found) {
@@ -210,7 +216,7 @@ async function getScheduleFor(now, orig = true) {
 
   //If no special dates/days, return normal schedule
   if(found == false && typeof foundsched != 'object') {
-    console.debug("[schedule] Using normal for day" +now.getDay());
+    console.debug("[schedule] Using normal for day " +now.getDay());
     foundsched = sched.normal[rcf.schedule];
   }
 

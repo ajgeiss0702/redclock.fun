@@ -144,17 +144,13 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
           } else if(mon0 == mon2 && day0 > day2) {
             continue;
           } else {
-            console.log("---------------------- Yes! "+mon0+"/"+day0);
             found = true;
-            console.log("1. Found is now "+found);
             var enddate = new Date(mon2+"/"+(day2)+"/"+new Date().getFullYear());
-            console.log(enddate);
             var end = await getScheduleFor(enddate, false, false);
             var fin = {};
 
             var k = (Object.keys(end)[0].replace(/tomorrow/g, ""))+" after "+sched.off[offdates[offd]]
             var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
-            //console.log("n: "+n);
             fin[k] = end[Object.keys(end)[0]];
             fin[k][0] += n;
 
@@ -166,8 +162,6 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
       }
     }
   }
-
-  console.log("2. Found is now "+found);
 
  // Special dates (e.g. different schedule for a certain day)
   if(!found) {
@@ -183,7 +177,7 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
               //console.debug("^-----------------------------------------------")
               found = true;
               var spec = sched.specials.date[specialdates[date]];
-              var sched = Object.keys(spec).indexOf("*") != -1 ? "*" : rcf.schedule;
+              var sched = Object.keys(spec).indexOf(rcf.schedule) == -1 ? "*" : rcf.schedule;
               foundsched = spec[sched];
             }
           }
@@ -206,7 +200,7 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
             found = true;
             //foundsched = sched.specials.day[specialdays[day]][rcf.schedule];
             var spec = sched.specials.day[specialdays[day]];
-            var sched = Object.keys(spec).indexOf("*") != -1 ? "*" : rcf.schedule;
+            var sched = Object.keys(spec).indexOf(rcf.schedule) == -1 ? "*" : rcf.schedule;
             foundsched = spec[sched];
           }
         }

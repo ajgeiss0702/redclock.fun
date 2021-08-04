@@ -256,7 +256,8 @@ function copy(v) {
 var layouts = [
   'Default',
   'Mirrored',
-  "Large"
+  "Large",
+  "Countdown"
 ]
 function openLayoutMenu() {
   blur(closeLayoutMenu);

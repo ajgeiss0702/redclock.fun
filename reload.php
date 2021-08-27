@@ -5,7 +5,7 @@ if(isset($_GET['go'])) {
   //die("<script>location.href='/".$_GET['go']."';</script>");
   header("HTTP/1.1 301 Permanantly moved");
   header("Location: ".$_SERVER["HTTP_REFERER"].$_GET['go']);
-  die();
+  die("Going to: ".$_SERVER["HTTP_REFERER"].$_GET['go']);
 } else {
   header("HTTP/1.1 301 Permanantly moved");
   header("Location: ".$_SERVER["HTTP_REFERER"]);

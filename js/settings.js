@@ -127,7 +127,7 @@ settings.update = () => {
   ah += `</table><br>
   <a class='btn btn-primary' onclick='openLayoutMenu()'>Themes and Layouts</a><br>
   <br>
-  <a class='btn btn-secondary' href='#schoolselector'>Select a different school</a>
+  <a class='btn btn-secondary' href='reload.php?go=#schoolselector'>Select a different school</a>
   `
   $('#settings-container').html(ah);
 

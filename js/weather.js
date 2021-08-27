@@ -63,6 +63,8 @@ function updateWeather(last = false) {
   }
   if(rcf.school != "rmhs") {
     $('#weatherdiv').html("<small style='font-size: 5vh;'>Weather display for your school coming soon<sup>tm</sup></small>");
+    $('#weather')[0].style.display = "none";
+    $('.countdown-container')[0].style["min-height"] = "99vh";
     return;
   }
   if($('#weatherdiv').length <= 0) {

@@ -247,6 +247,7 @@
         ah += school+": "+toNum(data[school])+"<br>";
       }
     }
+    ah += "null: "+toNum(data["null"]);
     $("#schoollist").html(ah);
 
   }

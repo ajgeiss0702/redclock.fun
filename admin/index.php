@@ -75,11 +75,12 @@
       data: {
         datasets: [{
           label: 'Users',
-          backgroundColor: ['rgb(255, 99, 132)', 'yellow', 'aqua'],
+          backgroundColor: ['rgb(255, 99, 132)', 'blue', 'yellow', 'aqua'],
           data: []
         }],
         labels: [
           "Red Mountain",
+          "Mesa Virtual Academy",
           "AAEC RM",
           "Shepherd"
         ]
@@ -233,7 +234,7 @@
   async function updateSchoolChart() {
     var raw = await httpGet("https://api.redclock.fun/checkin/schools");
     var data = JSON.parse(raw);
-    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["aaec-rm"]), toNum(data["shepherd"])]
+    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["mvc"]), toNum(data["aaec-rm"]), toNum(data["shepherd"])]
     schoolpie.update();
   }
   async function updateScheduleChart() {

@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel='stylesheet' id='theme-changer' href='/css/themes/<?php
+    if(isset($_COOKIE['theme'])) {
+      echo($_COOKIE['theme']);
+    } else {
+      echo('light');
+    }
+    ?>.css?r=1'>
     <style>
     body,html {
       padding: 0;
@@ -45,7 +53,6 @@
       <a class="btn btn-lg btn-warning" href="#" onclick="reloadAllPages()">Reload</a>
       <br>
       <br>
-      <iframe style="height: 100vh;width:90vw;" src="https://astrophoenix.com/~aiden/api/rmf/change/"></iframe>
     </div>
 
 

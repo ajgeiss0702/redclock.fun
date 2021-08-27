@@ -16,6 +16,9 @@ settings.get = (name) => {
   if(Object.keys(rmtvSpecials).indexOf(name) != -1 && _GET('rmtv') == "undefined") {
     return rmtvSpecials[name];
   }
+  if(name == "enableWeather" && _GET("school") != null) {
+    return false;
+  }
   return rawSettings[name].content;
 }
 

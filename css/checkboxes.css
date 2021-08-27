@@ -103,7 +103,7 @@ EXAMPLE
 .tgl input[type="checkbox"]:disabled + span,
 .tgl input[type="checkbox"]:read-only,
 .tgl input[type="checkbox"]:read-only + span {
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .tgl-gray input[type="checkbox"]:not(:checked) + span {

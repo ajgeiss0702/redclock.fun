@@ -1,3 +1,3 @@
 <?php
-header('Location: https://mc.redclock.fun/index.php/Rules', true, 301);
+header('Location: https://mc.redclock.fun/rules', true, 301);
 die();

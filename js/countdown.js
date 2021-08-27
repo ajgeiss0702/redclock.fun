@@ -90,6 +90,10 @@ async function init() {
     rcf.schedule = schedules[0];
   }
 
+  if(_GET("schedule") != null) {
+    rcf.schedule = _GET("schedule");
+  }
+
   initClock($("#analog-clock")[0]);
 }
 var countdownMainInterval;
@@ -256,7 +260,8 @@ function copy(v) {
 var layouts = [
   'Default',
   'Mirrored',
-  "Large"
+  "Large",
+  "Countdown"
 ]
 function openLayoutMenu() {
   blur(closeLayoutMenu);

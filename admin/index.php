@@ -50,6 +50,9 @@
       </div>
       <br>
       <br>
+      <div id="schoollist"></div>
+      <br>
+      <br>
       <a class="btn btn-lg btn-warning" href="#" onclick="reloadAllPages()">Reload</a>
       <br>
       <br>
@@ -236,6 +239,16 @@
     var data = JSON.parse(raw);
     schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["mvc"]), toNum(data["aaec-rm"]), toNum(data["shepherd"])]
     schoolpie.update();
+
+    var ah = "";
+    for (var school in data) {
+      if (data.hasOwnProperty(school)) {
+        if(school == "null") continue;
+        ah += school+": "+toNum(data[school])+"<br>";
+      }
+    }
+    $("#schoollist").html(ah);
+
   }
   async function updateScheduleChart() {
     /*var raw = await httpGet("https://api.redclock.fun/checkin/schedules");

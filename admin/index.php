@@ -220,10 +220,23 @@
     while(data.length < 120) {
       data.unshift(0);
     }
-    userchart.data.datasets[0].data = data.total;
-    userchart.data.datasets[1].data = data.rmhs;
-    userchart.data.datasets[2].data = data.shepherd;
-    userchart.data.datasets[3].data = data.mvc;
+
+    var total = [];
+    var rmhs = [];
+    var shepherd = [];
+    var mvc = [];
+
+    for (d of data) {
+      total.push(d.total);
+      rmhs.push(d.rmhs);
+      shepherd.push(d.shepherd);
+      mvc.push(d.mvc);
+    }
+
+    userchart.data.datasets[0].data = total;
+    userchart.data.datasets[1].data = rmhs;
+    userchart.data.datasets[2].data = shepherd;
+    userchart.data.datasets[3].data = mvc;
     userchart.update()
   }
 

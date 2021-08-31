@@ -79,7 +79,7 @@
       data: {
         datasets: [{
           label: 'Users',
-          backgroundColor: ['rgb(255, 99, 132)', 'blue', 'yellow', 'aqua'],
+          backgroundColor: ['rgb(255, 50, 50)', 'blue', 'yellow', 'aqua'],
           data: []
         }],
         labels: [
@@ -126,14 +126,14 @@
         datasets: [
           {
             label: 'Total',
-            backgroundColor: 'rgb(255, 50, 50)',
-            borderColor: 'rgb(255, 50, 50)',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
             data: []
           },
           {
             label: 'RMHS',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 50, 50)',
+            borderColor: 'rgb(255, 50, 50)',
             data: []
           },
           {

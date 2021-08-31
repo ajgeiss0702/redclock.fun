@@ -29,7 +29,8 @@
     }
     </style>
     <script src='/js/jquery.min.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js" defer></script>
     <script src="/js/base.js"></script>
   </head>
   <body onload='load()'>
@@ -122,29 +123,52 @@
       type: 'line',
       data: {
         labels: onetwenty,
-        datasets: [{
-          label: 'Users',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: []
-        }]
+        datasets: [
+          {
+            label: 'Total',
+            backgroundColor: 'rgb(255, 50, 50)',
+            borderColor: 'rgb(255, 50, 50)',
+            data: []
+          },
+          {
+            label: 'RMHS',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: []
+          },
+          {
+            label: 'Shepherd',
+            backgroundColor: 'aqua',
+            borderColor: 'aqua',
+            data: []
+          },
+          {
+            label: 'MVC',
+            backgroundColor: 'blue',
+            borderColor: 'blue',
+            data: []
+          }
+        ]
       },
       options: {
         hover: {
           enabled: true,
           intersect: false
         },
+        interaction: {
+          mode: 'x',
+          intersect: false,
+          axis: 'x'
+        },
         elements: {
           point: 'line'
         },
         scales: {
-            yAxes: [{
-                ticks: {
-                  suggestedMax: 20,
-                  beginAtZero: true
-
-                }
-            }]
+            yAxes: {
+              suggestedMax: 20,
+              suggestedMin: 0,
+              min: 0
+            }
         }
     }
     });
@@ -196,7 +220,10 @@
     while(data.length < 120) {
       data.unshift(0);
     }
-    userchart.data.datasets[0].data = data;
+    userchart.data.datasets[0].data = data.total;
+    userchart.data.datasets[1].data = data.rmhs;
+    userchart.data.datasets[2].data = data.shepherd;
+    userchart.data.datasets[3].data = data.mvc;
     userchart.update()
   }
 

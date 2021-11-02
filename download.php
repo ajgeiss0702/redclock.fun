@@ -1,5 +1,14 @@
 <?php
+ini_set('memory_limit', '512M');
+$filename = "Red Clock Installer.exe";
+$type = "exe";
 $url = 'https://gitlab.com/api/v4/projects/12062202/jobs/artifacts/master/raw/dist/Red%20Clock%20Installer.exe?job=build';
+
+if(isset($_GET["platform"]) && $_GET["platform"] == "linux") {
+  $filename = "Red Clock Desktop.AppImage";
+  $type = "AppImage";
+  $url = 'https://gitlab.com/api/v4/projects/12062202/jobs/artifacts/master/raw/dist/Red%20Clock%20Desktop.AppImage?job=build';
+}
 
 $opts = [
     "http" => [
@@ -19,8 +28,8 @@ if(isset($_GET['date'])) {
 
 $content = file_get_contents($url, false, $context);
 
-header("Content-type: application/exe");
-header("Content-Disposition: attachment; filename=Red Clock Installer.exe");
+header("Content-type: application/$type");
+header("Content-Disposition: attachment; filename=$filename");
 header("Content-Length: ".strlen($content));
 
 echo $content;

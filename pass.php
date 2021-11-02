@@ -39,7 +39,7 @@ function _GET(parameterName) {
       schedule: localStorage.getItem("schedule")
     },
     success: () => {
-      $("#text").html("Your selected school and schedule has been sent.<br>You can close this window now.")
+      $("#text").html("Your selected school and schedule has been sent to the desktop app.<br>You can close this tab now.")
     }
   })
 

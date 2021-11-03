@@ -24,17 +24,20 @@
   <br>
   <br>
   Before downloading, please read the above info<br>
-  <a href="/download?platform=win" class="btn btn-secondary">Windows Download</a>&nbsp
-  <a href="/download?platform=linux" class="btn btn-secondary">Linux Download</a><br>
+  <a id="download-win" href="/download?platform=win" class="btn btn-secondary">Windows Download</a>&nbsp
+  <a id="download-linux" href="/download?platform=linux" class="btn btn-secondary">Linux Download</a><br>
   <span style="font-size: 0.75em;">Last updated: <span id="dkt-last-updated"></span><br>Schedules are updated automatically. You only need to re-download if you are updating the desktop app itself.</span>
 </div>
 <script>
-httpGet("/download.php?date").then((d)=>{
-  var distance = new Date().getTime() - new Date(d).getTime();
-  if(distance < (1000*60*60*21.999)) { //if less than 22 hours ago
-    $('#dkt-last-updated').text(moment(d).fromNow());
-  } else {
-    $('#dkt-last-updated').text(moment(d).calendar());
-  }
-})
+  httpGet("/download.php?date").then((d)=>{
+    var distance = new Date().getTime() - new Date(d).getTime();
+    if(distance < (1000*60*60*21.999)) { //if less than 22 hours ago
+      $('#dkt-last-updated').text(moment(d).fromNow());
+    } else {
+      $('#dkt-last-updated').text(moment(d).calendar());
+    }
+
+    $("#download-win")[0].href = "/download?platform=win&update="+d;
+    $("#download-linux")[0].href = "/download?platform=linux&update="+d;
+  })
 </script>

@@ -145,12 +145,12 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
             continue;
           } else {
             found = true;
-            var enddate = new Date(mon2+"/"+(day2)+"/"+new Date().getFullYear());
+            var enddate = new Date(now.getFullYear(), mon2-1, day2, 0, 0, 0, 0);
             var end = await getScheduleFor(enddate, false, false);
             var fin = {};
 
             var k = (Object.keys(end)[0].replace(/tomorrow/g, ""))+" after "+sched.off[offdates[offd]]
-            var n = Math.floor((enddate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
+            var n = Math.floor((enddate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))+1; // 1*60*60*24*1000
             fin[k] = end[Object.keys(end)[0]];
             fin[k][0] += n;
 

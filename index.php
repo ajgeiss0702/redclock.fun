@@ -183,7 +183,7 @@ if($_SERVER['SERVER_NAME'] == "astrohub.us" || $_SERVER['SERVER_NAME'] == "www.a
       </script>
 
       <script src="/js/settings.js"></script>
-      <script src='/js/countdown-utils.js?c=9' defer async></script>
+      <script src='/js/countdown-utils.js?c=10' defer async></script>
       <script src="/js/pageloader.js" defer></script>
       <script src="/js/weather.js?r=1" defer></script>
       <script src="/js/how_many_people.js" defer></script>

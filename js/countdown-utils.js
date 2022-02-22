@@ -101,7 +101,7 @@ function makeDate(raw, ahead_debug = false) {
       return new Date(now.getFullYear(), now.getMonth(), now.getDate(), raw[0], raw[1], raw[2], 0);
     }
   } catch (e) {
-    console.trace("error");
+    console.trace("error "+e);
   }
 }
 
@@ -142,6 +142,8 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
           if(mon0 == mon1 && day0 < day1) {
             continue;
           } else if(mon0 == mon2 && day0 > day2) {
+            continue;
+          } else if(mon0 == mon2 && day0 == day2) {
             continue;
           } else {
             found = true;

@@ -38,8 +38,8 @@
           if (school.schedules.hasOwnProperty(schedule)) {
             adding += `
             <div class="layout card" style="width: 25vw;"'>
-              <iframe src='/?school=`+schoolName+`&schedule=`+schedule+`&layout=countdown' class='layout-iframe card-img-top'></iframe>
-              <div class="card-body">
+              <iframe src='/?school=`+schoolName+`&schedule=`+schedule+`&layout=countdown' class='countdown-iframe card-img-top'></iframe>
+              <div class="card-body" style="height:2em;">
                 <p class="card-text">`+school.display+` - `+school.schedules[schedule]+`</p>
               </div>
             </div>`

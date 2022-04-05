@@ -13,14 +13,15 @@ rcf.on('load', async () => {
     return;
   }
   var ah = "";
-  var ss = await getSchedule()
-  var schedules = Object.keys(ss.schedules);
+  var schedules = Object.keys(rcf.schoolList[rcf.school].schedules);
   if(schedules.length == 0) {
     loadContent('countdown');
     return;
   }
+  console.debug(schedules);
   for (scheduleCode in schedules) {
-    var schedule = ss.schedules[schedules[scheduleCode]];
+    var schedule = rcf.schoolList[rcf.school].schedules[schedules[scheduleCode]];
+    console.debug(schedule)
     ah += `<div class='schoolbox' onclick='scheduleselect.clicked("`+schedules[scheduleCode]+`")'>
       <span></span>
       <div class='scheduletext'>

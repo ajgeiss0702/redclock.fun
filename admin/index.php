@@ -79,14 +79,15 @@
       data: {
         datasets: [{
           label: 'Users',
-          backgroundColor: ['rgb(255, 50, 50)', 'blue', 'yellow', 'aqua'],
+          backgroundColor: ['rgb(255, 50, 50)', 'blue', 'yellow', 'aqua', 'rgb(114,32,50)'],
           data: []
         }],
         labels: [
           "Red Mountain",
           "Mesa Virtual Academy",
           "AAEC RM",
-          "Shepherd"
+          "Shepherd",
+          "E Gaston"
         ]
       }
     })
@@ -147,7 +148,13 @@
             backgroundColor: 'blue',
             borderColor: 'blue',
             data: []
-          }
+          },
+          {
+              label: 'E Gaston',
+              backgroundColor: 'rgb(114,32,50)',
+              borderColor: 'rgb(114,32,50)',
+              data: []
+          },
         ]
       },
       options: {
@@ -225,18 +232,21 @@
     var rmhs = [];
     var shepherd = [];
     var mvc = [];
+    var eghs = [];
 
     for (d of data) {
       total.push(d.total);
       rmhs.push(d.rmhs);
       shepherd.push(d.shepherd);
       mvc.push(d.mvc);
+      eghs.push(d.eghs);
     }
 
     userchart.data.datasets[0].data = total;
     userchart.data.datasets[1].data = rmhs;
     userchart.data.datasets[2].data = shepherd;
     userchart.data.datasets[3].data = mvc;
+    userchart.data.datasets[4].data = eghs;
     userchart.update()
   }
 
@@ -277,7 +287,7 @@
   async function updateSchoolChart() {
     var raw = await httpGet("https://api.redclock.fun/checkin/schools");
     var data = JSON.parse(raw);
-    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["mvc"]), toNum(data["aaec-rm"]), toNum(data["shepherd"])]
+    schoolpie.data.datasets[0].data = [toNum(data["rmhs"]), toNum(data["mvc"]), toNum(data["aaec-rm"]), toNum(data["shepherd"]), toNum(data["eghs"])]
     schoolpie.update();
 
     var ah = "";

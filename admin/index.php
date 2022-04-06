@@ -4,6 +4,7 @@
     <script src="/js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel='stylesheet' href='/css/base.css?r=3'>
     <link rel='stylesheet' id='theme-changer' href='/css/themes/<?php
     if(isset($_COOKIE['theme'])) {
       echo($_COOKIE['theme']);
@@ -58,7 +59,12 @@
       <br>
       <br>
     </div>
-
+    <div class="hidden">
+        <div id="credentials">
+            <input id="username" class="swal-content__input" style="color:black" type="text" placeholder="Username">
+            <input id="password" class="swal-content__input" style="color:black" type="password" placeholder="Password">
+        </div>
+    </div>
 
   </body>
   <script defer>
@@ -182,44 +188,54 @@
     update();
   }
 
+  var credentials = document.getElementById("credentials");
   async function reloadAllPages() {
-    var r = await swal({
+    var el = document.createElement("div");
+    el.id = "credtemp";
+    el.innerHTML = credentials.innerHTML;
+    swal({
       title: "Are you sure?",
       text: "If you do this multiple times, it can be very annoying!",
+      content: el,
       icon: "warning",
       buttons: ["ok fine i won't", "DO IT!"],
       dangerMode: true,
     })
-    if(r) {
-      $.ajax({
-        method: "POST",
-        url: "https://api.redclock.fun/reload",
-        data: {key: "CQy{HQn9=34[r^kht?jyJ4}fr#jHs4MNmCY7QH2fJPkW6xLgXN2Uh*phLhCx=J{2"}
-      }).then((d) => {
-        console.log("[RELOAD] Recieved: %o", d);
-        if(d.success) {
-          swal("Reloading!", "Everyone using the website and desktop app should reload within 30 seconds!", "success")
-        } else {
-          if(d.error) {
-            swal("Something went wrong!", "Error: "+d.message+"", "error")
+    .then(result => {
+        if(!result) throw null;
+
+        var p = $("#credtemp > #password")[0].value;
+
+        return $.ajax({
+            method: "POST",
+            url: "https://api.redclock.fun/reload",
+            data: {key: p}
+        });
+    })
+    .then((d) => {
+          console.log("[RELOAD] Recieved: %o", d);
+          if(d.success) {
+              swal("Reloading!", "Everyone using the website and desktop app should reload within 30 seconds!", "success")
           } else {
-            swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+              if(d.error) {
+                  swal("Something went wrong!", "Error: "+d.message+"", "error")
+              } else {
+                  swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+              }
           }
-        }
       }).catch((e) => {
-        console.log("[RELOAD] response length: "+e.responseText.length)
-        if(e.responseText.length > 5) {
-          var d = JSON.parse(e.responseText);
-          if(d.error) {
-            swal("Something went wrong!", "Error: "+d.message+"", "error")
+          console.log("[RELOAD] response: "+e)
+          if(e.responseText.length > 5) {
+              var d = JSON.parse(e.responseText);
+              if(d.error) {
+                  swal("Something went wrong!", "Error: "+d.message+"", "error")
+              } else {
+                  swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+              }
           } else {
-            swal("Something went wrong!", "But there is no error! Raw data: "+JSON.stringify(d), "error")
+              swal("Something went wrong!", "Error while sending request! "+JSON.stringify(e), "error")
           }
-        } else {
-          swal("Something went wrong!", "Error while sending request! "+JSON.stringify(e), "error")
-        }
       })
-    }
   }
 
   async function updateUserChart() {

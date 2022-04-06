@@ -309,7 +309,7 @@ async function getOffset(override = false) {
     //var keys = Object.keys(schedCache.lastResp.normal);
     //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
     cd.offset = copy(schedCache.lastResp.offset);
-    return copy(schedCache.lastResp.offset)+getTZChange();
+    return copy(schedCache.lastResp.offset)+ await getTZChange();
   }
   schedCache.lastGet = new Date().getTime();
   if(typeof rcf.school == 'undefined') {
@@ -323,7 +323,7 @@ async function getOffset(override = false) {
     var parsed = JSON.parse(raw)[rcf.school];
     //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
     schedCache.lastResp = copy(parsed);
-    return copy(parsed).offset+getTZChange();
+    return copy(parsed).offset+ await getTZChange();
   } else {
     cd.error = "School does not exist."
     schedCache.lastResp = false;
@@ -335,11 +335,36 @@ async function getOffset(override = false) {
 if(typeof settings == 'object') {
   settings.create("enableTzOffset", true, "Adjust timezone", "Should we adjust to always be on the school's timezone?");
 }
-function getTZChange() {
+async function getTZChange() {
   if(typeof settings == 'object') {
     if(!settings.get("enableTzOffset")) return 0;
   }
-  return (new Date().getTimezoneOffset()-420)*-60;
+  var tz = 420;
+  if(typeof schedCache == 'undefined') schedCache = {lastGet:0}
+  if((new Date().getTime() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
+    //var keys = Object.keys(schedCache.lastResp.normal);
+    //console.debug("[getSchedule] Returned cached schedule ("+typeof schedCache.lastResp.normal[rcf.schedule]["A hour starts tomorrow"]+"): %o", schedCache.lastResp);
+    cd.offset = copy(schedCache.lastResp.offset);
+    tz =  copy(schedCache.lastResp.tz);
+  }
+  schedCache.lastGet = new Date().getTime();
+  if(typeof rcf.school == 'undefined') {
+    cd.error = "No school."
+    schedCache.lastResp = false;
+    return -1;
+  }
+  if(await schoolExists(rcf.school)) {
+    var raw = await httpGet(fileAdd+'/api/schedule.php?school='+rcf.school);
+    var parsed = JSON.parse(raw)[rcf.school];
+    //console.debug("Got schedule from api ("+rcf.school+"): %o", parsed);
+    schedCache.lastResp = copy(parsed);
+    tz =  copy(parsed).tz;
+  } else {
+    cd.error = "School does not exist."
+    schedCache.lastResp = false;
+    return -1;
+  }
+  return (new Date().getTimezoneOffset()-tz)*-60;
 }
 
 function dateString(date = new Date()) {

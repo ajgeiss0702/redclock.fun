@@ -289,7 +289,7 @@ body,html {
 }
 
 .countdown-iframe {
-  margin: -43.5vh -100.5vw;
+  margin: -43.5vh -150.5vw;
   height: 99vh;
   width: 150vw;
   transform: scale(0.15) !important;

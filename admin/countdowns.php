@@ -13,6 +13,7 @@
     ?>.css?r=1'>
 
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/base.js"></script>
 
     <link rel='stylesheet' href='/css/base.css?r=3'>
 
@@ -36,13 +37,23 @@
 
         for (var schedule in school.schedules) {
           if (school.schedules.hasOwnProperty(schedule)) {
-            adding += `
-            <div class="layout card" style="width: 25vw;"'>
+            if(_GET("fast") == null) {
+                adding += `
+            <div class="layout card" style="width: 20vw;margin: 1em 0;"'>
               <iframe src='/?school=`+schoolName+`&schedule=`+schedule+`&layout=countdown' class='countdown-iframe card-img-top'></iframe>
               <div class="card-body" style="height:2em;">
                 <p class="card-text">`+school.display+` - `+school.schedules[schedule]+`</p>
               </div>
             </div>`
+            } else {
+                adding += `
+            <div class="layout card" style="width: 20vw;margin: 1em 0;"'>
+              <div class='countdown-iframe card-img-top' style="height: 100vh;width:100vw;border: medium solid #878787 !important;">a</div>
+              <div class="card-body" style="height:2em;">
+                <p class="card-text">`+school.display+` - `+school.schedules[schedule]+`</p>
+              </div>
+            </div>`
+            }
           }
         }
         adding += `<br><br>`;

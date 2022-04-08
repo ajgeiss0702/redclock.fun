@@ -245,10 +245,12 @@ async function getScheduleFor(now, orig = true, doBreaks = true) {
     }
   }
 
-  for (var until in foundsched) {
-    if (foundsched.hasOwnProperty(until)) {
-      var data = foundsched[until];
-      data[3] += await getOffset();
+  if(orig) {
+    for (var until in foundsched) {
+      if (foundsched.hasOwnProperty(until)) {
+        var data = foundsched[until];
+        data[3] += await getOffset();
+      }
     }
   }
 

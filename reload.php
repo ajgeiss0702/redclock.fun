@@ -6,6 +6,8 @@ if(isset($_GET['go'])) {
   header("HTTP/1.1 301 Permanantly moved");
   if(strpos($_SERVER['HTTP_HOST'], "localhost") !== false) {
     header("Location: http://localhost.redclock.fun/".$_GET['go']);
+  } else if(strpos($_SERVER['HTTP_HOST'], "folly.local") !== false) {
+    header("Location: http://folly.local/".$_GET['go']);
   } else {
     header("Location: https://redclock.fun/".$_GET['go']);
   }

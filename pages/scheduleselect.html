@@ -1,5 +1,8 @@
 <script src='/js/scheduleselect.js' async></script>
-<img src='/img/red_clock.png' style='height: 10vh; margin-top: 2em;margin-bottom: 1em;'></img>
+<div id="select-new" class="alert alert-warning hidden">
+  Your previously selected schedule is no longer available. Please select a new one.
+</div>
+<img src='/img/red_clock.png' style='height: 10vh; margin-top: 2em;margin-bottom: 1em;'>
 <div class='select-welcome'>
   <h1>Schedule</h1>
   Please select which schedule you are on.<br>
@@ -8,6 +11,7 @@
 
   <a class="btn btn-outline-secondary" href="#schoolselector">< Back</a>
 </div>
+<span style="font-size: 0.75em;">At <span id="school-name">..</span></span>
 <div id='schedule-list'>
   <div class='schoolbox'>
     <span></span>

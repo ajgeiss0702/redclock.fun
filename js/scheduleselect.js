@@ -7,11 +7,18 @@ var scheduleselect = {
 
 $('#schedule-list')[0].style.display = 'none';
 rcf.on('load', async () => {
+  if(_GET("reselect")) {
+    $("#select-new")[0].classList.remove("hidden");
+  }
   var e = $('#schedule-list')[0]
   if(typeof rcf.schoolList == 'undefined') {
     $(e).html('An error occured. See above error message for more details.');
     return;
   }
+  if(typeof rcf.school == 'undefined' || rcf.school == null) {
+    location.href="/reload.php?go=#schoolselector";
+  }
+  $("#school-name").text(rcf.schoolList[rcf.school].display);
   var ah = "";
   var schedules = Object.keys(rcf.schoolList[rcf.school].schedules);
   if(schedules.length == 0) {

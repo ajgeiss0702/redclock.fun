@@ -36,6 +36,13 @@ if(isset($_GET['school'])) {
     }
   }
   die('{"exists": false, "debug":"'.str_replace("\n", " ", print_r($keys, true)).'"}');
+/*
+} else if(isset($_GET['debug'])) {
+    die(json_encode(array(
+        "parsed" => str_replace("\n", " ", print_r($schools, true)),
+        "raw" => $raw
+    )));
+//*/
 } else {
   header('HTTP/1.1 400 Invalid Key');
   die('{"error": "Invalid key."}');

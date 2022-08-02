@@ -87,7 +87,9 @@ async function init() {
   var schedules = Object.keys(sched);
   cd.scheduleList = schedules;
   if(schedules.indexOf(rcf.schedule) == -1 || typeof rcf.schedule != 'string' || rcf.schedule+"" == "null") {
-    rcf.schedule = schedules[0];
+    if(!rcf.desktop) {
+      location.href="/reload.php?go=?reselect#scheduleselect";
+    }
   }
 
   if(_GET("schedule") != null) {

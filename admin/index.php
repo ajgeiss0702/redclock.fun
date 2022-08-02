@@ -198,7 +198,22 @@
       text: "If you do this multiple times, it can be very annoying!",
       content: el,
       icon: "warning",
-      buttons: ["ok fine i won't", "DO IT!"],
+      buttons: {
+        cancel: {
+          text: "ok fine i won't",
+          value: null,
+          visible: true,
+          closeModal: true,
+          className: "swal-button--cancel"
+        },
+        doit: {
+          text: "DO IT!",
+          value: true,
+          visible: true,
+          closeModal: false,
+          className: "swal-button--danger"
+        }
+      },
       dangerMode: true,
     })
     .then(result => {

@@ -67,6 +67,8 @@ async function changeSchool(key) {
   if(exists) {
     localStorage.setItem('school', key);
     rcf.school = key;
+  } else {
+    console.log("invalid school")
   }
 }
 

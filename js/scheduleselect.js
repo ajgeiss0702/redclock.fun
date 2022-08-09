@@ -16,6 +16,7 @@ rcf.on('load', async () => {
     return;
   }
   if(typeof rcf.school == 'undefined' || rcf.school == null) {
+    console.log("Going back to school selector because rcf.school is "+rcf.school)
     location.href="/reload.php?go=#schoolselector";
   }
   $("#school-name").text(rcf.schoolList[rcf.school].display);

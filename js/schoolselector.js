@@ -1,6 +1,6 @@
 var schoolselector = {
-  clicked: (school) => {
-    changeSchool(school);
+  clicked: async (school) => {
+    await changeSchool(school);
     loadContent('scheduleselect');
   }
 }

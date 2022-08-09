@@ -1,7 +1,2 @@
-AuthType Basic
-AuthName "Restricted Content"
-AuthUserFile "/var/www/html/admin/.htpasswd"
-Require valid-user
-
 RewriteEngine On
 RewriteBase /

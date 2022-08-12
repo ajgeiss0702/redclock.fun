@@ -30,8 +30,17 @@
         text-align: center;
       }
       .today {
-        background-color: aliceblue;
-          border-color: orange;
+          background-color: <?php
+              if(isset($_COOKIE['theme'])) {
+                if($_COOKIE['theme'] == "black" || $_COOKIE['theme'] == "dark") {
+                    echo("rgb(49, 53, 55)");
+                } else {
+                    echo("lightgray");
+                }
+              } else {
+                echo('lightgray');
+              }
+              ?>;
       }
       .weekdays > td {
         border: 1px solid black;

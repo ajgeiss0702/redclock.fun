@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    export const ssr = false;
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        if(typeof localStorage.school === 'undefined') {
+            location.href = "/schools";
+        } else if(typeof localStorage.schedule === 'undefined') {
+            location.href = "/schedules";
+        }
+    })
+</script>

@@ -13,7 +13,8 @@
     .school-list {
         width: 100vw;
         background-color: rgba(240, 240, 240, 0.65);
-        min-height: 7em;
+        min-height: 6em;
+        padding: 0;
     }
     :global(.dark) .school-list {
         background-color: rgba(240, 240, 240, 0.1);
@@ -32,11 +33,24 @@
     import {onMount} from "svelte";
     import School from "$lib/schoolselector/School.svelte";
 
+
+    export let data;
+
     let first = true;
 
     onMount(() => {
         first = localStorage.school === undefined;
-    })
+    });
+
+    /**
+     * Sets the school and proceeds to schedule selection
+     * @param key The key for the school
+     */
+    function setSchool(key) {
+        localStorage.setItem("school", key);
+        location.href = "/schedules";
+    }
+
 </script>
 <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
 
@@ -56,5 +70,8 @@
 <br>
 
 <div class="school-list">
-    <School name="Red Mountain High School" image="https://redclock.fun/img/schools/rmhs.png"/>
+    {#each Object.keys(data) as key}
+        <School name="{data[key].display}" image="{data[key].logo}" on:click={() => setSchool(key)}/>
+        &nbsp;
+    {/each}
 </div>

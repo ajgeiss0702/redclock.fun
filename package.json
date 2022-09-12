@@ -21,8 +21,9 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.44.0",
+		"svelte": "^3.50.1",
 		"svelte-check": "^2.7.1",
+		"sveltestrap": "github:ClapClap-app/sveltestrap",
 		"typescript": "^4.7.4",
 		"vite": "^3.1.0"
 	},

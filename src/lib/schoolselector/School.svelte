@@ -7,7 +7,7 @@
     let divElement;
 
     onMount(() => {
-        $: divElement.style.backgroundImage = "url(\"" + image + "\")";
+        divElement.style.backgroundImage = "url(\"" + image + "\")";
     })
 </script>
 <style>
@@ -25,6 +25,7 @@
         margin: 1em;
 
 
+
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -35,8 +36,9 @@
         background-color: rgba(5, 5, 5, 0.4);
     }
     span {
+        position: absolute;
         display: inline-block;
-        width: 100%;
+        width: 10em;
         color: rgba(0, 0, 0, 0);
     }
     div.container:hover > span {
@@ -50,13 +52,14 @@
         width: 100%;
 
         border-radius: 1em;
+        padding: 0;
 
         align-items: center;
     }
 
 </style>
 
-<div class="background" bind:this={divElement}>
+<div class="background" bind:this={divElement} on:click>
     <div class="container">
         <span>{name}</span>
     </div>

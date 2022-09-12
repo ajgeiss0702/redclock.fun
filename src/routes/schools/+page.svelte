@@ -32,6 +32,7 @@
 <script>
     import {onMount} from "svelte";
     import School from "$lib/schoolselector/School.svelte";
+    import {goto} from "$app/navigation";
 
 
     export let data;
@@ -48,7 +49,7 @@
      */
     function setSchool(key) {
         localStorage.setItem("school", key);
-        location.href = "/schedules";
+        goto("/schedules")
     }
 
 </script>

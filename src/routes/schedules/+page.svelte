@@ -5,10 +5,11 @@
 
     import {onMount} from "svelte";
     import {Button, Icon} from "sveltestrap";
+    import {goto} from "$app/navigation";
 
     onMount(() => {
         if(typeof localStorage.school === 'undefined') {
-            location.href = "/schools";
+            goto("/schools");
         }
     })
 </script>
@@ -51,4 +52,4 @@ Please select which schedule you are on.<br>
 <br>
 <br>
 <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
-<Button outline secondary on:click={() => location.href="/schools"}><Icon name="arrow-left-circle"/> Back</Button>
+<Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>

@@ -1,12 +1,16 @@
 <script>
+    import {goto} from "$app/navigation";
+
     export const ssr = false;
     import {onMount} from "svelte";
 
     onMount(() => {
         if(typeof localStorage.school === 'undefined') {
-            location.href = "/schools";
+            goto("/schools")
         } else if(typeof localStorage.schedule === 'undefined') {
-            location.href = "/schedules";
+            goto("/schedules")
+        } else {
+            goto("countdown")
         }
     })
 </script>

@@ -8,7 +8,6 @@
 
     onMount(() => {
         if(typeof localStorage.school === 'undefined') {
-            debugger;
             location.href = "/schools";
         }
     })

@@ -10,7 +10,7 @@
         } else if(typeof localStorage.schedule === 'undefined') {
             goto("/schedules")
         } else {
-            goto("countdown")
+            goto("/countdown")
         }
     })
 </script>

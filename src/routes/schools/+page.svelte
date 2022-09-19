@@ -14,7 +14,8 @@
         width: 100vw;
         background-color: rgba(240, 240, 240, 0.65);
         min-height: 6em;
-        padding: 0;
+        padding-top: 1em;
+        padding-bottom: 0.75em;
     }
     :global(.dark) .school-list {
         background-color: rgba(240, 240, 240, 0.1);
@@ -26,6 +27,11 @@
     a:hover {
         color: #0056b3;
         text-decoration: underline;
+    }
+
+    p {
+        padding-left: 0.75em;
+        padding-right: 0.75em;
     }
 
 </style>
@@ -57,17 +63,18 @@
 <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
 
 <span class="header">Welcome</span><br>
-<br>
-{#if first}
-    This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
-{:else}
-    Please select a school
-{/if}
 
-<br>
-<br>
-<small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
-<br>
+<p>
+    {#if first}
+        This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
+    {:else}
+        Please select a school
+    {/if}
+
+    <br>
+    <br>
+    <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
+</p>
 <br>
 <br>
 

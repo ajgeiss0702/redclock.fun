@@ -22,7 +22,7 @@
         border-radius: 1em;
         height: 5em;
         width: 10em;
-        margin: 1em;
+        margin: 0;
 
 
 
@@ -55,6 +55,24 @@
         padding: 0;
 
         align-items: center;
+    }
+
+    @media (orientation: portrait) {
+        div.background {
+            height: 30.25vw;
+            width: 30.25vw;
+            margin: 0;
+        }
+        span {
+            max-width: 30.25vw;
+            padding: 0.25em;
+        }
+        div.container {
+            background-color: rgba(5, 5, 5, 0.4);
+        }
+        div.container > span {
+            color: white;
+        }
     }
 
 </style>

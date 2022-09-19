@@ -4,7 +4,7 @@ export async function handleFetch({ request, fetch }) {
     const rekuest = {
         get(target: Request, prop: string) {
             if (['credentials', 'mode'].includes(prop)) {
-                return 'Not Implemented';
+                return {};
             }
             // @ts-ignore
             return target[prop];

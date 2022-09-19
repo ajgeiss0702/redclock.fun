@@ -32,7 +32,7 @@
 <script>
     import {onMount} from "svelte";
     import School from "$lib/schoolselector/School.svelte";
-    import {goto} from "$app/navigation";
+    import {goto, prefetch} from "$app/navigation";
 
 
     export let data;
@@ -41,6 +41,7 @@
 
     onMount(() => {
         first = localStorage.school === undefined;
+        prefetch("/schedules")
     });
 
     /**

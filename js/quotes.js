@@ -10,7 +10,7 @@ async function updateQuote(quoteId = -1) {
   setQuote(lastQuote);
 }
 function setQuote(quote) {
-  if($('#quote-text').length == 0) return;
+  if($('#quote-container').length === 0) return;
   var themeadd = "";
   if(rcf.theme != "light") {
     themeadd = "-white";

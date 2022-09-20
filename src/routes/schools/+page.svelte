@@ -37,7 +37,7 @@
 </style>
 <script>
     import {onMount} from "svelte";
-    import School from "$lib/schoolselector/School.svelte";
+    import School from "$lib/schools/School.svelte";
     import {goto, prefetch} from "$app/navigation";
 
 

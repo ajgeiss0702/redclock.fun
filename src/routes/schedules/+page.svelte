@@ -6,12 +6,24 @@
     import {onMount} from "svelte";
     import {Button, Icon} from "sveltestrap";
     import {goto} from "$app/navigation";
+    import Schedule from "$lib/schedules/Schedule.svelte";
+
+    export let data;
 
     onMount(() => {
         if(typeof localStorage.school === 'undefined') {
             goto("/schools");
         }
     })
+
+    /**
+     * Sets the school and proceeds to schedule selection
+     * @param key The key for the school
+     */
+    function setSchedule(key) {
+        localStorage.setItem("schedule", key);
+        goto("/countdown")
+    }
 </script>
 
 <style>
@@ -27,7 +39,8 @@
         width: 100vw;
         background-color: rgba(240, 240, 240, 0.65);
         min-height: 6em;
-        padding: 0;
+        padding-top: 1em;
+        padding-bottom: 0.75em;
     }
     :global(.dark) .schedule-list {
         background-color: rgba(240, 240, 240, 0.1);
@@ -41,15 +54,32 @@
         text-decoration: underline;
     }
 
+    p {
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+    }
+
 </style>
 <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
 
-<span class="header">Schedule</span><br>
+<span class="header">Schedule</span>
 <br>
-Please select which schedule you are on.<br>
+<p>
+    Please select which schedule you are on.<br>
 
-
+    <br>
+    <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
+    <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
+</p>
 <br>
-<br>
-<small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
-<Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
+<small>At {typeof localStorage === 'undefined' ? '' : data[localStorage.school].display}</small>
+<div class="schedule-list">
+    {#if typeof localStorage === 'undefined'}
+        <img style="height: 4em;" src="/img/loading.svg" alt="loading">
+    {:else}
+        {#each Object.keys(data[localStorage.school].schedules) as key}
+            <Schedule name={data[localStorage.school].schedules[key]} on:click={() => setSchedule(key)}/>
+            &nbsp;
+        {/each}
+    {/if}
+</div>

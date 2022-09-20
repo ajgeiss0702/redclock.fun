@@ -17,8 +17,8 @@
     })
 
     /**
-     * Sets the school and proceeds to schedule selection
-     * @param key The key for the school
+     * Sets the schedule and proceeds to the countdown page
+     * @param key The key for the schedule
      */
     function setSchedule(key) {
         localStorage.setItem("schedule", key);

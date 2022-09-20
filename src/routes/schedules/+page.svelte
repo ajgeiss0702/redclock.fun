@@ -76,10 +76,13 @@
 <div class="schedule-list">
     {#if typeof localStorage === 'undefined'}
         <img style="height: 4em;" src="/img/loading.svg" alt="loading">
-    {:else}
+    {:else if typeof data[localStorage.school].schedules === 'object' && data[localStorage.school].schedules !== null}
         {#each Object.keys(data[localStorage.school].schedules) as key}
             <Schedule name={data[localStorage.school].schedules[key]} on:click={() => setSchedule(key)}/>
             &nbsp;
         {/each}
+    {:else}
+        <br>
+        Invalid data (no schedule object)
     {/if}
 </div>

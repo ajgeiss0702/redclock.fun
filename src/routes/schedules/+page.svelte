@@ -72,9 +72,9 @@
     <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
 </p>
 <br>
-<small>At {typeof localStorage === 'undefined' ? '' : data[localStorage.school].display}</small>
+<small>At {typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined' ? '' : data[localStorage.school].display}</small>
 <div class="schedule-list">
-    {#if typeof localStorage === 'undefined'}
+    {#if typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined'}
         <img style="height: 4em;" src="/img/loading.svg" alt="loading">
     {:else if typeof data[localStorage.school].schedules === 'object' && data[localStorage.school].schedules !== null}
         {#each Object.keys(data[localStorage.school].schedules) as key}

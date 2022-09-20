@@ -1,6 +1,7 @@
 <script>
     import { TabContent, TabPane } from 'sveltestrap';
     import {onMount} from "svelte";
+    import News from "$lib/countdown/sidebar/News.svelte";
 
     let tab = '';
 
@@ -33,7 +34,7 @@
     {#key tab}
         <TabContent on:tab={(e) => {if(e.detail !== '') localStorage.tabId = e.detail}}>
             <TabPane tabId="news" tab="News" active={tab === "news"}>
-                news and stuff
+                <News/>
             </TabPane>
             <TabPane tabId="schedule" tab="Schedule" active={tab === "schedule"}>
                 schedule and stuff

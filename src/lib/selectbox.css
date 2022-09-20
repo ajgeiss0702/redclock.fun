@@ -51,6 +51,7 @@ div.sb-container {
     }
     span.sb {
         max-width: 30.25vw;
+        width: 100%;
         padding: 0.25em;
     }
     div.sb-container {

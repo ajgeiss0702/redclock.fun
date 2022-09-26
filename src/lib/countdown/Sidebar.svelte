@@ -27,6 +27,12 @@
         background-color: rgba(52, 52, 52, 0.5);
         box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
     }
+    @media (orientation: portrait) {
+        .sidebar {
+            width: auto !important;
+            margin: auto !important;
+        }
+    }
 </style>
 <div class="sidebar">
     {#key tab}

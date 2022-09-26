@@ -21,6 +21,14 @@
         background-color: rgba(52, 52, 52, 0.5);
         box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
     }
+
+    @media(orientation: portrait) {
+        .weather-container {
+            position: static !important;
+            width: auto !important;
+            margin-bottom: 1em;
+        }
+    }
 </style>
 <div class="weather-container">
     Weather is cool (but actually hot because its arizona)

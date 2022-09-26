@@ -1,7 +1,8 @@
 <script>
     import {onMount, onDestroy} from "svelte";
+    import './news-styles.css';
 
-    let data = `<img src="/img/loading.svg" style="height: 1em;">`;
+    let data = `<img src="/img/loading.svg" style="height: 1em;" alt="loading">`;
     let failed = false;
 
     function refreshNews() {
@@ -34,32 +35,4 @@
         }
     })
 </script>
-<style>
-    :global(.hidden) {
-        display: none;
-    }
-    :global(.newsbox) {
-        display: inline-block;
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-bottom: 1.5em;
-        padding-left: 1em;
-        padding-right: 1em;
-        border-radius: 10px;
-        border-width: 1px;
-        border-style: solid;
-    }
-
-
-    :global(.newsbox) {
-        background-color: rgba(242, 242, 242, 0.5);
-        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
-        border: none;
-    }
-
-    :global(.dark .newsbox) {
-        background-color: rgba(52, 52, 52, 0.5);
-        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
-    }
-</style>
 {@html data}

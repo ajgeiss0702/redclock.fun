@@ -75,7 +75,7 @@ export function getTime() {
 async function cdTick() {
     let timeString = await getTimeString();
     setTimeString(timeString);
-    if(timeString !== '' && timeString !== "bell") {
+    if(timeString !== '' && timeString !== "bell" && typeof document !== 'undefined') {
         document.title = timeString + period + " - Red Clock";
     }
 }

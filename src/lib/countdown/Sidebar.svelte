@@ -5,8 +5,6 @@
 
     let tab = '';
 
-    $: console.log({tab});
-
     onMount(() => {
         tab =  typeof localStorage.tabId === "undefined" ? "news" : localStorage.tabId;
     })

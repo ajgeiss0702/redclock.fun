@@ -1,7 +1,7 @@
 <script>
     import {onMount, onDestroy} from "svelte";
 
-    let data;
+    let data = `<img src="/img/loading.svg" style="height: 1em;">`;
     let failed = false;
 
     function refreshNews() {

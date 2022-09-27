@@ -20,6 +20,7 @@ let period;
 
 let calibratingInterval;
 export function calibrateCountdown() {
+    clearInterval(calibratingInterval);
     calibratingInterval = setInterval(() => {
         let ms = new Date().getMilliseconds();
         if(ms <= 50) {

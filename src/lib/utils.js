@@ -60,3 +60,23 @@ export function httpGet(url, callback = false) {
         xmlhttp.send();
     }
 }
+
+export function getSchoolCode() {
+    if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
+        throw new Error("Cannot get school from SSR");
+    }
+    if(location.pathname === "/rmtv") {
+        return "rmhs";
+    }
+    return localStorage.school
+}
+
+export function getScheduleCode() {
+    if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
+        throw new Error("Cannot get schedule from SSR");
+    }
+    if(location.pathname === "/rmtv") {
+        return "rmtv";
+    }
+    return localStorage.schedule
+}

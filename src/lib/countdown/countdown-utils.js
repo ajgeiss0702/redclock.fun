@@ -1,4 +1,4 @@
-import {copy, httpGet} from "$lib/utils.js";
+import {copy, getScheduleCode, getSchoolCode, httpGet} from "$lib/utils.js";
 
 export function makeDate(raw) {
     let now = new Date();
@@ -31,14 +31,14 @@ export async function getSchedule() {
         return copy(schedCache.lastResp);
     }
     schedCache.lastGet = new Date().getTime();
-    if(typeof localStorage.school == 'undefined') {
+    if(typeof getSchoolCode() == 'undefined') {
         schedCache.lastResp = false;
         console.debug("getSchedule() returning false!");
         return false;
     }
-    if(await schoolExists(localStorage.school)) {
-        let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+localStorage.school);
-        let parsed = JSON.parse(raw)[localStorage.school];
+    if(await schoolExists(getSchoolCode())) {
+        let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode());
+        let parsed = JSON.parse(raw)[getSchoolCode()];
         //console.debug("Got schedule from api ("+localStorage.school+"): %o", parsed);
         schedCache.lastResp = copy(parsed);
         return copy(parsed);
@@ -122,7 +122,7 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
                         if(parts[part] === nowDate) {
                             found = true;
                             let spec = schedule.specials.date[specialDates[date]];
-                            let scheduleName = Object.keys(spec).indexOf(localStorage.schedule) === -1 ? "*" : localStorage.schedule;
+                            let scheduleName = Object.keys(spec).indexOf(getScheduleCode()) === -1 ? "*" : getScheduleCode();
                             foundSchedule = spec[scheduleName];
                         }
                     }
@@ -142,7 +142,7 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
                         found = true;
 
                         let spec = schedule.specials.day[specialDays[day]];
-                        let scheduleName = Object.keys(spec).indexOf(localStorage.schedule) === -1 ? "*" : localStorage.schedule;
+                        let scheduleName = Object.keys(spec).indexOf(getScheduleCode()) === -1 ? "*" : getScheduleCode();
                         foundSchedule = spec[scheduleName];
                         break;
                     }
@@ -155,7 +155,7 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
     //If no special dates/days, return normal schedule
     if(found === false && typeof foundSchedule != 'object') {
         console.debug("[schedule] Using normal for day " +now.getDay());
-        foundSchedule = schedule.normal[localStorage.schedule];
+        foundSchedule = schedule.normal[getScheduleCode()];
     }
 
 
@@ -205,14 +205,14 @@ export async function getOffset() {
         return copy(schedCache.lastResp.offset)+ await getTZChange();
     }
     schedCache.lastGet = new Date().getTime();
-    if(typeof localStorage.school == 'undefined') {
+    if(typeof getSchoolCode() == 'undefined') {
         schedCache.lastResp = false;
         console.debug("getOffset() returning false!");
         return false;
     }
-    if(await schoolExists(localStorage.school)) {
-        let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+localStorage.school);
-        let parsed = JSON.parse(raw)[localStorage.school];
+    if(await schoolExists(getSchoolCode())) {
+        let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode());
+        let parsed = JSON.parse(raw)[getSchoolCode()];
         schedCache.lastResp = copy(parsed);
         return copy(parsed).offset+ await getTZChange();
     } else {
@@ -229,13 +229,13 @@ async function getTZChange() {
         tz =  copy(schedCache.lastResp.tz);
     } else {
         schedCache.lastGet = new Date().getTime();
-        if(typeof localStorage.school == 'undefined') {
+        if(typeof getSchoolCode() == 'undefined') {
             schedCache.lastResp = false;
             return -1;
         }
-        if(await schoolExists(localStorage.school)) {
-            let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+localStorage.school);
-            let parsed = JSON.parse(raw)[localStorage.school];
+        if(await schoolExists(getSchoolCode())) {
+            let raw = await httpGet('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode());
+            let parsed = JSON.parse(raw)[getSchoolCode()];
             //console.debug("Got schedule from api ("+localStorage.school+"): %o", parsed);
             schedCache.lastResp = copy(parsed);
             tz =  copy(parsed).tz;

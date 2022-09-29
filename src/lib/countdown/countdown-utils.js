@@ -122,8 +122,8 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
                         if(parts[part] === nowDate) {
                             found = true;
                             let spec = schedule.specials.date[specialDates[date]];
-                            let schedule = Object.keys(spec).indexOf(localStorage.schedule) === -1 ? "*" : localStorage.schedule;
-                            foundSchedule = spec[schedule];
+                            let scheduleName = Object.keys(spec).indexOf(localStorage.schedule) === -1 ? "*" : localStorage.schedule;
+                            foundSchedule = spec[scheduleName];
                         }
                     }
                 }
@@ -138,14 +138,17 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
             let parts = specialDays[day].split(',');
             for (let part in parts) {
                 if (parts.hasOwnProperty(part)) {
-                    if(parts[part].toString() === nowDay.toString()) {
+                    if(parts[part] === nowDay.toString()) {
                         found = true;
+
                         let spec = schedule.specials.day[specialDays[day]];
-                        let schedule = Object.keys(spec).indexOf(localStorage.schedule) == -1 ? "*" : localStorage.schedule;
-                        foundSchedule = spec[schedule];
+                        let scheduleName = Object.keys(spec).indexOf(localStorage.schedule) === -1 ? "*" : localStorage.schedule;
+                        foundSchedule = spec[scheduleName];
+                        break;
                     }
                 }
             }
+            if(found) break;
         }
     }
 

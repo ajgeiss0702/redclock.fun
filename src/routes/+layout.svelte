@@ -2,8 +2,6 @@
     import NProgress from 'nprogress';
     import { navigating } from '$app/stores';
 
-    export const prerender = true;
-
     // NProgress css
     import 'nprogress/nprogress.css';
 

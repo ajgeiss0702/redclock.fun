@@ -97,7 +97,7 @@ async function getTimeString() {
     let hourss = hours > 0 ? hours+"h " : "";
     let minutess = minutes > 0 ? minutes+"m " : "";
     let secondss = seconds+"s ";
-    if(location.pathname === "/rmtv") {
+    if(typeof location !== 'undefined' && location.pathname === "/rmtv") {
         minutess = minutes+" minute" + (minutes === 1 ? " " : "s ");
         secondss = "";
     }

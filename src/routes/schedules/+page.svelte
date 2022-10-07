@@ -5,7 +5,7 @@
 
     import {onMount} from "svelte";
     import {Button, Icon} from "sveltestrap";
-    import {goto} from "$app/navigation";
+    import {goto, prefetch} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
 
     export let data;
@@ -13,7 +13,9 @@
     onMount(() => {
         if(typeof localStorage.school === 'undefined') {
             goto("/schools");
+            return;
         }
+        prefetch("/countdown")
     })
 
     /**

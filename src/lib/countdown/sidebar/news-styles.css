@@ -11,6 +11,7 @@
     border-radius: 10px;
     border-width: 1px;
     border-style: solid;
+    text-align: center;
 }
 
 
@@ -23,4 +24,15 @@
 .dark .newsbox {
     background-color: rgba(52, 52, 52, 0.5);
     box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+}
+
+.newsdate {
+    color: grey;
+    text-align: right;
+    display: block;
+    padding: 0;
+    margin-right: 0.5em;
+}
+.newsbox > p {
+    font-size: 0.95em;
 }

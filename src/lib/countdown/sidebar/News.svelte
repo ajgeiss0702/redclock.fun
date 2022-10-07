@@ -35,4 +35,11 @@
         }
     })
 </script>
-{@html data}
+<style>
+    div {
+        text-align: center;
+    }
+</style>
+<div>
+    {@html data}
+</div>

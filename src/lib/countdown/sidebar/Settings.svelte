@@ -37,5 +37,7 @@
         {/each}
     </table>
     <br>
-    <Button color="secondary" href="/schools">Select a different school or schedule</Button>
+    <Button color="primary" href="/settings">More settings</Button><br>
+    <br>
+    <Button color="secondary" on:click={() => location.href = "/schools"}>Select a different school or schedule</Button>
 </div>

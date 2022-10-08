@@ -68,6 +68,7 @@ async function recalcCdd() {
 
 export async function getTime() {
     if(typeof cdd === 'undefined') await recalcCdd();
+    if(typeof cdd === 'undefined') return -1;
     let distance = cdd.getTime() - new Date().getTime();
     if(distance <= (-5000)) {
         cdd = undefined;
@@ -91,6 +92,7 @@ async function cdTick() {
 
 async function getTimeString() {
     if(typeof cdd === 'undefined') await recalcCdd();
+    if(typeof cdd === 'undefined') return 'load';
     let distance = await getTime();
     if(distance < 0 || typeof distance == 'undefined') {
         return "bell";

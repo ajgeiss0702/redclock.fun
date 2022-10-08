@@ -2,6 +2,9 @@
     <title>School Selector - Red Clock</title>
 </svelte:head>
 <style>
+    div {
+        text-align: center;
+    }
     .header-image {
         height: 15vh;
         margin-top: 2em;
@@ -60,27 +63,29 @@
     }
 
 </script>
-<img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
+<div>
+    <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
 
-<span class="header">Welcome</span><br>
+    <span class="header">Welcome</span><br>
 
-<p>
-    {#if first}
-        This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
-    {:else}
-        Please select a school
-    {/if}
+    <p>
+        {#if first}
+            This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
+        {:else}
+            Please select a school
+        {/if}
 
+        <br>
+        <br>
+        <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
+    </p>
     <br>
     <br>
-    <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
-</p>
-<br>
-<br>
 
-<div class="school-list">
-    {#each Object.keys(data) as key}
-        <School name="{data[key].display}" image="{data[key].logo}" on:click={() => setSchool(key)}/>
-        &nbsp;
-    {/each}
+    <div class="school-list">
+        {#each Object.keys(data) as key}
+            <School name="{data[key].display}" image="{data[key].logo}" on:click={() => setSchool(key)}/>
+            &nbsp;
+        {/each}
+    </div>
 </div>

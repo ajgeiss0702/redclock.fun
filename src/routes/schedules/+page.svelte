@@ -29,6 +29,9 @@
 </script>
 
 <style>
+    div {
+        text-align: center;
+    }
     .header-image {
         height: 15vh;
         margin-top: 2em;
@@ -62,29 +65,31 @@
     }
 
 </style>
-<img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
+<div>
+    <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
 
-<span class="header">Schedule</span>
-<br>
-<p>
-    Please select which schedule you are on.<br>
-
+    <span class="header">Schedule</span>
     <br>
-    <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
-    <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
-</p>
-<br>
-<small>At {typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined' ? '' : data[localStorage.school].display}</small>
-<div class="schedule-list">
-    {#if typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined'}
-        <img style="height: 4em;" src="/img/loading.svg" alt="loading">
-    {:else if typeof data[localStorage.school].schedules === 'object' && data[localStorage.school].schedules !== null}
-        {#each Object.keys(data[localStorage.school].schedules) as key}
-            <Schedule name={data[localStorage.school].schedules[key]} on:click={() => setSchedule(key)}/>
-            &nbsp;
-        {/each}
-    {:else}
+    <p>
+        Please select which schedule you are on.<br>
+
         <br>
-        Invalid data (no schedule object)
-    {/if}
+        <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
+        <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
+    </p>
+    <br>
+    <small>At {typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined' ? '' : data[localStorage.school].display}</small>
+    <div class="schedule-list">
+        {#if typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined'}
+            <img style="height: 4em;" src="/img/loading.svg" alt="loading">
+        {:else if typeof data[localStorage.school].schedules === 'object' && data[localStorage.school].schedules !== null}
+            {#each Object.keys(data[localStorage.school].schedules) as key}
+                <Schedule name={data[localStorage.school].schedules[key]} on:click={() => setSchedule(key)}/>
+                &nbsp;
+            {/each}
+        {:else}
+            <br>
+            Invalid data (no schedule object)
+        {/if}
+    </div>
 </div>

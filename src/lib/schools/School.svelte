@@ -5,14 +5,11 @@
     export let name;
     export let image;
 
-    let divElement;
 
-    onMount(() => {
-        divElement.style.backgroundImage = "url(\"" + image + "\")";
-    })
+    let style = "background-image: url(\"" + image + "\")"
 </script>
 
-<div class="sb-background" bind:this={divElement} on:click>
+<div class="sb-background" {style} on:click>
     <div class="sb-container">
         <span class="sb">{name}</span>
     </div>

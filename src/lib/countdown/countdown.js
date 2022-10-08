@@ -17,9 +17,15 @@ export const periodString = readable("", s => {
 let cdd;
 let period;
 
+let first = true;
+
 
 let calibratingInterval;
 export function calibrateCountdown() {
+    if(first) {
+        first = false;
+        cdTick();
+    }
     clearInterval(calibratingInterval);
     calibratingInterval = setInterval(() => {
         let ms = new Date().getMilliseconds();
@@ -35,7 +41,6 @@ let mainCountdownInterval;
 
 function setCountdownInterval() {
     clearInterval(mainCountdownInterval);
-    recalcCdd();
     mainCountdownInterval = setInterval(cdTick, 1e3);
 }
 
@@ -61,8 +66,8 @@ async function recalcCdd() {
     cdTick();
 }
 
-export function getTime() {
-    if(typeof cdd === 'undefined') return -1;
+export async function getTime() {
+    if(typeof cdd === 'undefined') await recalcCdd();
     let distance = cdd.getTime() - new Date().getTime();
     if(distance <= (-5000)) {
         cdd = undefined;
@@ -76,15 +81,17 @@ export function getTime() {
 async function cdTick() {
     let timeString = await getTimeString();
     setTimeString(timeString);
-    if(timeString !== '' && timeString !== "bell" && typeof document !== 'undefined') {
+    if(timeString !== 'load' && timeString !== '' && timeString !== "bell" && typeof document !== 'undefined') {
         document.title = timeString + period + " - Red Clock";
+    } else {
+        document.title = " - Red Clock"
     }
 }
 
 
 async function getTimeString() {
-    if(typeof cdd === 'undefined') return "load";
-    let distance = getTime();
+    if(typeof cdd === 'undefined') await recalcCdd();
+    let distance = await getTime();
     if(distance < 0 || typeof distance == 'undefined') {
         return "bell";
     }

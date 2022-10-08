@@ -1,4 +1,8 @@
 import {copy, getScheduleCode, getSchoolCode, httpGet} from "$lib/utils.js";
+import {create} from "$lib/settings.ts";
+
+create('skipAHour', false, 'Skip A Hour', 'Will skip the countdown for A hour');
+create("enableTzOffset", true, "Adjust timezone", "Should we adjust to always be on the school's timezone?");
 
 export function makeDate(raw) {
     let now = new Date();

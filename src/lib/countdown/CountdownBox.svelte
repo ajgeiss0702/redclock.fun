@@ -1,8 +1,9 @@
 <script>
-    import {calibrateCountdown, periodString, timeString} from "$lib/countdown/countdown.js";
+    import {calibrateCountdown, periodString, recalcCdd, timeString} from "$lib/countdown/countdown.js";
     import {onMount} from "svelte";
 
     onMount(() => {
+        recalcCdd();
         calibrateCountdown();
     })
 </script>

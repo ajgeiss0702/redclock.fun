@@ -7,6 +7,9 @@
     })
 </script>
 <style>
+    div {
+        text-align: center;
+    }
     .countdown-text, .countdown-period {
         display: inline-block;
         vertical-align: middle;
@@ -19,18 +22,20 @@
         font-size: 4em;
     }
 </style>
-<span class="banner">www.redclock.fun</span>
-<br>
-<div class="countdown-text">
-    {#if $timeString === '' || $timeString === 'load'}
-        <img src="/img/loading.svg" alt="loading" style="height: 1em;">
-    {:else if $timeString === 'bell'}
-        <img src="/img/bell.svg" style="height: 1em;" class="bell-animation" alt="Bell ringing">
-    {:else}
-        {$timeString}
-    {/if}
-</div>
-<br>
-<div class="countdown-period">
-    {$periodString}
+<div>
+    <span class="banner">www.redclock.fun</span>
+    <br>
+    <div class="countdown-text">
+        {#if $timeString === '' || $timeString === 'load'}
+            <img src="/img/loading.svg" alt="loading" style="height: 1em;">
+        {:else if $timeString === 'bell'}
+            <img src="/img/bell.svg" style="height: 1em;" class="bell-animation" alt="Bell ringing">
+        {:else}
+            {$timeString}
+        {/if}
+    </div>
+    <br>
+    <div class="countdown-period">
+        {$periodString}
+    </div>
 </div>

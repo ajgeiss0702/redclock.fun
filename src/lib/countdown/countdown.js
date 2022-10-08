@@ -1,5 +1,6 @@
 import {readable} from "svelte/store";
 import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.js";
+import {create, get} from "$lib/settings.ts";
 
 let setTimeString = () => {};
 let setPeriodString = () => {};
@@ -18,7 +19,6 @@ let cdd;
 let period;
 
 let first = true;
-
 
 let calibratingInterval;
 export function calibrateCountdown() {
@@ -44,7 +44,7 @@ function setCountdownInterval() {
     mainCountdownInterval = setInterval(cdTick, 1e3);
 }
 
-async function recalcCdd() {
+export async function recalcCdd() {
     if(typeof localStorage === 'undefined') return;
     console.debug('recalc!');
     let schedule = await getCurrentSchedule();
@@ -53,11 +53,10 @@ async function recalcCdd() {
     let i = 0;
     while(cdd.getTime() < new Date().getTime()) {
         i++;
-        /* if(typeof settings == 'object') { TODO: settings: skip A hour setting
-            if(settings.get('skipAHour') && scheduleKeys[i].indexOf("A hour starts") !== -1) {
-                continue;
-            }
-        } */
+
+        if(get('skipAHour') && scheduleKeys[i].indexOf("A hour starts") !== -1) {
+            continue;
+        }
 
         cdd = makeDate(schedule[scheduleKeys[i]]);
         if(i > 1000) break;
@@ -82,6 +81,7 @@ export async function getTime() {
 async function cdTick() {
     let timeString = await getTimeString();
     setTimeString(timeString);
+    if(typeof document == 'undefined') return;
     if(timeString !== 'load' && timeString !== '' && timeString !== "bell" && typeof document !== 'undefined') {
         document.title = timeString + period + " - Red Clock";
     } else {

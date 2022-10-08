@@ -2,6 +2,7 @@
     import { TabContent, TabPane } from 'sveltestrap';
     import {onMount} from "svelte";
     import News from "$lib/countdown/sidebar/News.svelte";
+    import Settings from "$lib/countdown/sidebar/Settings.svelte";
 
     let tab = '';
 
@@ -44,7 +45,7 @@
                 schedule and stuff
             </TabPane>
             <TabPane tabId="settings" tab="Settings" active={tab === "settings"}>
-                settings and stuff
+                <Settings/>
             </TabPane>
             <TabPane tabId="links" tab="Links" active={tab === "links"}>
                 links and stuff

@@ -1,14 +1,18 @@
 <script>
     import {goto} from "$app/navigation";
-
-    export const ssr = false;
     import {onMount} from "svelte";
     import {paths as oldPaths} from "$lib/oldPaths.js";
+    import {_GET} from "$lib/utils.js";
 
     onMount(() => {
         let hash = location.hash.split('#').splice(1).join('#');
         if(Object.keys(oldPaths).includes(hash)) {
             goto("/" + oldPaths[hash]);
+            return;
+        }
+
+        if(_GET("rmtv") === "undefined") {
+            goto("/rmtv");
             return;
         }
 

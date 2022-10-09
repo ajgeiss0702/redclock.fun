@@ -5,6 +5,10 @@
     export let name;
     export let image;
 
+    if(image.startsWith("https://redclock.fun")) {
+        image = image.substring("https://redclock.fun".length)
+    }
+
 
     let style = "background-image: url(\"" + image + "\")"
 </script>

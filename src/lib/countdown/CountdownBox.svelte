@@ -44,8 +44,13 @@
         box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
     }
 
-    .bell-animation {
+    .bell {
         animation: bell 1.5s ease-in-out infinite;
+    }
+
+    img {
+        height: 1em;
+        width: 1em;
     }
 
     @keyframes bell {
@@ -77,9 +82,9 @@
     <div class="countdown-inner">
         <div class="countdown-text">
             {#if $timeString === '' || $timeString === 'load'}
-                <img src="/img/loading.svg" alt="loading" style="height: 1em;">
+                <img src="/img/loading.svg" alt="loading" height="200" width="200">
             {:else if $timeString === 'bell'}
-                <img src="/img/bell.svg" style="height: 1em;" class="bell-animation" alt="Bell ringing">
+                <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
             {:else}
                 {$timeString}
             {/if}

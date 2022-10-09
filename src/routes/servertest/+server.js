@@ -1,4 +1,4 @@
 export const prerender = false;
-export function get({ url }) {
+export function GET({ url }) {
     return new Response(String(new Date().getTime()))
 }

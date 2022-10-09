@@ -7,6 +7,7 @@
     }
     .header-image {
         height: 15vh;
+        width: 15vh;
         margin-top: 2em;
         margin-bottom: 1em;
     }
@@ -64,7 +65,7 @@
 
 </script>
 <div>
-    <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
+    <img class="header-image" alt="Red Clock logo" src="/red_clock.png" height="300" width="300"><br>
 
     <span class="header">Welcome</span><br>
 

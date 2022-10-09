@@ -2,7 +2,7 @@
     import {goto} from "$app/navigation";
     import {onMount} from "svelte";
     import {paths as oldPaths} from "$lib/oldPaths.js";
-    import {_GET} from "$lib/utils.js";
+    import {_GET, getScheduleCode, getSchoolCode} from "$lib/utils.js";
 
     onMount(() => {
         let hash = location.hash.split('#').splice(1).join('#');
@@ -16,9 +16,9 @@
             return;
         }
 
-        if(typeof localStorage.school === 'undefined') {
+        if(typeof getSchoolCode() === 'undefined') {
             goto("/schools")
-        } else if(typeof localStorage.schedule === 'undefined') {
+        } else if(typeof getScheduleCode() === 'undefined') {
             goto("/schedules")
         } else {
             goto("/countdown")

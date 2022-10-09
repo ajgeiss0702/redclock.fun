@@ -7,11 +7,12 @@
     import {Button, Icon} from "sveltestrap";
     import {goto, prefetch} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
+    import {getSchoolCode} from "$lib/utils.js";
 
     export let data;
 
     onMount(() => {
-        if(typeof localStorage.school === 'undefined') {
+        if(typeof getSchoolCode() === 'undefined') {
             goto("/schools");
             return;
         }

@@ -40,7 +40,7 @@
 
 </style>
 <script>
-    import {onMount} from "svelte";
+    import {onDestroy, onMount} from "svelte";
     import School from "$lib/schools/School.svelte";
     import {goto, prefetch} from "$app/navigation";
 
@@ -49,10 +49,16 @@
 
     let first = true;
 
+    let prefetchTimeout;
+
     onMount(() => {
         first = localStorage.school === undefined;
-        prefetch("/schedules")
+        prefetchTimeout = setTimeout(() => prefetch("/schedules"), 500)
     });
+
+    onDestroy(() => {
+        clearTimeout(prefetchTimeout);
+    })
 
     /**
      * Sets the school and proceeds to schedule selection

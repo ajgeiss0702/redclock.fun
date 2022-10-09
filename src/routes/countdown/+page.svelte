@@ -9,7 +9,7 @@
 
     onMount(() => {
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {
-            goto("/");
+            //goto("/");
             return;
         }
     })

@@ -1,3 +1,5 @@
+import {makeDate} from "$lib/countdown/countdown-utils.js";
+
 export function copy(v) {
     switch (typeof v) {
         case 'object':
@@ -90,4 +92,36 @@ export function getScheduleCode() {
         return "rmtv";
     }
     return localStorage.schedule
+}
+
+export function dateString(date = new Date()) {
+    var d;
+
+    if(Object.prototype.toString.call(date) === '[object Array]') {
+        d = makeDate(date);
+    } else if(date instanceof Date) {
+        d = date;
+    } else {
+        d = new Date(date);
+    }
+
+    var ap = 'AM';
+    var hour = d.getHours();
+    var min = d.getMinutes();
+    var sec = d.getSeconds();
+
+    if(hour >= 12) {
+        ap = 'PM';
+        if(hour > 12) {
+            hour = hour - 12;
+        }
+    }
+    if(min < 10) {
+        min = "0"+min
+    }
+    if(sec < 10) {
+        sec = "0"+sec
+    }
+
+    return hour+":"+min+":"+sec+" "+ap;
 }

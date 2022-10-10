@@ -4,6 +4,7 @@ import {create, get} from "$lib/settings.ts";
 
 let setTimeString = () => {};
 let setPeriodString = () => {};
+let setCurrentTime = () => {};
 
 export const timeString = readable("", s => {
     setTimeString = s;
@@ -13,6 +14,9 @@ export const periodString = readable("", s => {
         s(p);
         period = p;
     };
+})
+export const currentTime = readable(new Date(), s => {
+    setCurrentTime = s;
 })
 
 let cdd;
@@ -87,6 +91,8 @@ async function cdTick() {
     } else {
         document.title = " - Red Clock"
     }
+
+    setCurrentTime(new Date());
 }
 
 
@@ -111,4 +117,8 @@ async function getTimeString() {
         secondss = "";
     }
     return dayss+hourss+minutess+secondss;
+}
+
+export async function getCdd() {
+    return cdd;
 }

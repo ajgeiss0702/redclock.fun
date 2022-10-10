@@ -33,6 +33,7 @@
 		"@sveltejs/adapter-cloudflare": "^1.0.0-next.32",
 		"@sveltejs/adapter-static": "^1.0.0-next.44",
 		"bootstrap": "^5.2.2",
+		"svelte-preprocess": "^4.10.7",
 		"wrangler": "^2.1.0"
 	}
 }

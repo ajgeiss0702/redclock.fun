@@ -23,7 +23,6 @@
     <tbody>
     {#each Object.keys(schedule) as className}
         <tr class:table-secondary={$periodString.substring("until ".length) === className}>
-            {(() => {console.log("'" + className + "'c"); return "";})()}
             <td>{className}</td>
             <td>{dateString(makeDate(schedule[className]))}</td>
         </tr>

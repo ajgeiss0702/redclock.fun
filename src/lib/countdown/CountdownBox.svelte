@@ -9,6 +9,9 @@
 </script>
 
 <style>
+    div {
+        text-align: center;
+    }
     :global(.default) .countdown-container {
         width: 65vw;
         min-height: 50vh;

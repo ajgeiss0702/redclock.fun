@@ -47,7 +47,7 @@
 	<body class="default predark">
 		<div>%sveltekit.body%</div>
 	</body>
-	<script>
+	<script data-cfasync="false">
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			document.body.classList.add("dark");
 		}

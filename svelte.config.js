@@ -1,10 +1,18 @@
-import adapter from '@sveltejs/adapter-static';
+import multiAdapter from '@macfja/svelte-multi-adapter'
+import staticAdapter from '@sveltejs/adapter-static';
+import nodeAdapter from '@sveltejs/adapter-node';
 import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: multiAdapter([
+			staticAdapter(),
+			nodeAdapter({
+				out: "build-node",
+				precompress: true
+			})
+		]),
 		inlineStyleThreshold: 1000
 	},
 	preprocess: preprocess()

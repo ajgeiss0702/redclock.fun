@@ -2,10 +2,12 @@
     import {calibrateCountdown, periodString, recalcCdd, timeString} from "$lib/countdown/countdown.js";
     import {onMount} from "svelte";
 
+    export let withWeather = true;
+
     onMount(() => {
         recalcCdd();
         calibrateCountdown();
-    })
+    });
 </script>
 
 <style>
@@ -56,6 +58,10 @@
         width: 1em;
     }
 
+    .no-weather {
+        min-height: 97vh !important;
+    }
+
     @keyframes bell {
         0% {
             transform-origin: top center;
@@ -81,7 +87,7 @@
         }
     }
 </style>
-<div class="countdown-container">
+<div class="countdown-container" class:no-weather={!withWeather}>
     <div class="countdown-inner">
         <div class="countdown-text">
             {#if $timeString === '' || $timeString === 'load'}

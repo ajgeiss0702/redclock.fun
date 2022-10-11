@@ -39,9 +39,13 @@ export function set(name: string, content: boolean): void {
         throw new Error("Setting " + name + " does not exist!");
     }
 
-    console.log("[Settings] "+name+": "+settings[name].content+"  -->  "+content)
+    let before = settings[name].content
+
+    console.debug("[Settings] "+name+": "+settings[name].content+"  -->  "+content)
     settings[name].content = content;
     save();
+
+    emit(name, {to: content, before: before});
 
     if(name == "skipAHour") {
         recalcCdd();
@@ -85,7 +89,6 @@ export function load(): void {
             settings[rawKey].content = setting.content;
             continue;
         }
-        console.log(rawKey + ":" + typeof settings[rawKey])
 
         if(setting.desc) {
             setting.description = setting.desc;
@@ -99,10 +102,23 @@ export function load(): void {
 if(typeof window !== "undefined") {
     // @ts-ignore
     window.setFromCheckbox = (element: HTMLInputElement) => {
-        console.log(element)
         // @ts-ignore
         set(element.dataset.setting, element.checked);
     }
+}
+
+let _subscriptions: {[key: string]: any[]} = {}
+
+export function onChange(name: string, func: any) {
+    _subscriptions[name] = _subscriptions[name] || [];
+    _subscriptions[name].push(func)
+}
+export function off(name: string, func: any){
+    _subscriptions[name] = _subscriptions[name].filter(f=>f!==func)
+}
+function emit(name: string, ...args: any){
+    if(!_subscriptions[name]){return; }
+    _subscriptions[name].forEach(f=>f(...args))
 }
 
 load()

@@ -49,7 +49,7 @@ function update(res) {
     exec("git pull", (out, err) => {
         res.json({error: false, response: "Success"});
         res.end();
-        console.log(out.stdout+out.stderr);
+        console.log(out);
         if(err) {
             console.log(err);
         }

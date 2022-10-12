@@ -1,5 +1,10 @@
 import {exec} from 'child_process';
 import express from 'express';
+import bcrypt from 'bcrypt';
+
+let server;
+
+let hashedToken = "$2b$15$/wfCzPaons.QED6QVROqe.idCnHwN6GylRHfZzsAFXf1IW8KaiAqW";
 
 console.log("Building server");
 exec("npm run build", async () => {
@@ -7,6 +12,17 @@ exec("npm run build", async () => {
     const app = express();
 
     // note to self: custom endpoints go HERE, not below
+
+    app.post("/update", (req, res) => {
+        let token = req.get("X-Gitlab-Token");
+        res.set("Content-Type", "application/json");
+        if(typeof token === "string" && bcrypt.compareSync(token, hashedToken)) {
+            update(res);
+        } else {
+            res.status(401).json({error: true, message: "Invalid Token"});
+            res.end();
+        }
+    })
 
     app.get('/healthcheck', (req, res) => {
         res.end('ok');
@@ -16,7 +32,7 @@ exec("npm run build", async () => {
     app.use(handler);
 
 
-    const server = app.listen(3000, () => {
+    server = app.listen(3000, () => {
         console.log('Listening on port 3000');
     });
 
@@ -26,4 +42,24 @@ exec("npm run build", async () => {
             console.debug('HTTP server closed')
         })
     })
-})
+});
+
+function update(res) {
+    console.log("\nUpdating from repository..\n");
+    exec("git pull", (out, err) => {
+        res.json({error: false, response: "Success"});
+        res.end();
+        console.log(out.stdout+out.stderr);
+        if(err) {
+            console.log(err);
+        }
+        console.log("Updated from repository, finishing requests..");
+        setTimeout(() => {
+            process.exit();
+        }, 10e3)
+        server.close(() => {
+            console.log("Finished all requests, shutting down.");
+            process.exit();
+        })
+    })
+}

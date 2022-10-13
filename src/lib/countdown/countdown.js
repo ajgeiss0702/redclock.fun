@@ -49,7 +49,6 @@ function setCountdownInterval() {
 }
 
 export async function recalcCdd() {
-    if(typeof localStorage === 'undefined') return;
     console.debug('recalc!');
     let schedule = await getCurrentSchedule();
     let scheduleKeys = Object.keys(schedule);
@@ -96,7 +95,7 @@ async function cdTick() {
 }
 
 
-async function getTimeString() {
+export async function getTimeString() {
     if(typeof cdd === 'undefined') await recalcCdd();
     if(typeof cdd === 'undefined') return 'load';
     let distance = await getTime();

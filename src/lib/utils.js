@@ -1,5 +1,8 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
 
+let serverSchool;
+let serverSchedule;
+
 export function copy(v) {
     switch (typeof v) {
         case 'object':
@@ -16,6 +19,18 @@ export function copy(v) {
 
 export function httpGet(url, callback = false) {
     if(!callback) {
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => response.text())
+                .then(text => resolve(text))
+                .catch(e => reject(e));
+        })
+    } else {
+        fetch(url)
+            .then(response => response.text())
+            .then(text => callback(text));
+    }
+    /*if(!callback) {
         return new Promise((resolve, reject) => {
             let xmlhttp = new XMLHttpRequest();
             try {
@@ -60,7 +75,7 @@ export function httpGet(url, callback = false) {
         };
         xmlhttp.open("get", url, true);
         xmlhttp.send();
-    }
+    }*/
 }
 
 export function _GET(parameterName) {
@@ -76,7 +91,8 @@ export function _GET(parameterName) {
 
 export function getSchoolCode() {
     if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
-        throw new Error("Cannot get school from SSR");
+        return serverSchool;
+        //throw new Error("Cannot get school from SSR");
     }
     if(location.pathname === "/rmtv") {
         return "rmhs";
@@ -86,7 +102,8 @@ export function getSchoolCode() {
 
 export function getScheduleCode() {
     if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
-        throw new Error("Cannot get schedule from SSR");
+        return serverSchedule;
+        //throw new Error("Cannot get schedule from SSR");
     }
     if(location.pathname === "/rmtv") {
         return "rmtv";
@@ -124,4 +141,9 @@ export function dateString(date = new Date()) {
     }
 
     return hour+":"+min+":"+sec+" "+ap;
+}
+
+export function setServerData(school, schedule) {
+    serverSchool = school;
+    serverSchedule = schedule;
 }

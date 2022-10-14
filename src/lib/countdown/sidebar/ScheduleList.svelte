@@ -40,6 +40,12 @@
     <br>
 
     <ScheduleTable {schedule}/>
+    <br>
+    Issue with the schedule? Notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
+    <br>
+    <br>
+    <br>
+    <br>
 
     TZ: {new Date().getTimezoneOffset()}
 

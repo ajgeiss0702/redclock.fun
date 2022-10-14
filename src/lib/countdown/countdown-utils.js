@@ -62,8 +62,8 @@ export async function getScheduleFor(now, orig = true, doBreaks = true) {
     now = new Date(now);
     let schedule = await getSchedule();
 
-    let specialDays = Object.keys(schedule.specials.day);
-    let specialDates = Object.keys(schedule.specials.date);
+    let specialDays = typeof schedule.specials !== "undefined" ? Object.keys(schedule.specials.day) : [];
+    let specialDates = typeof schedule.specials !== "undefined" ? Object.keys(schedule.specials.date) : [];
     let offDates = Object.keys(schedule.off);
 
     let found = false;

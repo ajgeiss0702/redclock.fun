@@ -48,8 +48,20 @@
             <TabPane tabId="settings" tab="Settings" active={tab === "settings"}>
                 <Settings/>
             </TabPane>
-            <TabPane tabId="links" tab="Links" active={tab === "links"}>
-                links and stuff
+            <TabPane class="text-center" tabId="links" tab="Links" active={tab === "links"}>
+                <h1>Links</h1>
+
+                <a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank">
+                    <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
+                </a><br>
+                <br>
+                <a class="btn btn-outline-primary" href="/extensions">Allowed extensions</a><br>
+                <br>
+                <a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
+                    Suggest a feature
+                </a><br>
+                <br>
+                <a class="btn btn-outline-danger" href="/desktop">Desktop App</a>
             </TabPane>
         </TabContent>
     {/key}

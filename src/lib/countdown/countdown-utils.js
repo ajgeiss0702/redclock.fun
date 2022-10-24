@@ -61,10 +61,13 @@ export async function getCurrentSchedule() {
 export async function getScheduleFor(now, orig = true, doBreaks = true) {
     now = new Date(now);
     let schedule = await getSchedule();
+    if(!schedule.specials || !schedule.normal) {
+        return {};
+    }
 
     let specialDays = typeof schedule.specials !== "undefined" ? Object.keys(schedule.specials.day) : [];
     let specialDates = typeof schedule.specials !== "undefined" ? Object.keys(schedule.specials.date) : [];
-    let offDates = Object.keys(schedule.off);
+    let offDates = typeof schedule.specials !== "undefined" ? Object.keys(schedule.off) : [];
 
     let found = false;
     let foundSchedule;

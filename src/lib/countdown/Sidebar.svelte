@@ -55,8 +55,6 @@
                     <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
                 </a><br>
                 <br>
-                <a class="btn btn-outline-primary" href="/extensions">Allowed extensions</a><br>
-                <br>
                 <a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
                     Suggest a feature
                 </a><br>

@@ -114,6 +114,7 @@ export function onChange(name: string, func: any) {
     _subscriptions[name].push(func)
 }
 export function off(name: string, func: any){
+    if(!_subscriptions[name]) return;
     _subscriptions[name] = _subscriptions[name].filter(f=>f!==func)
 }
 function emit(name: string, ...args: any){

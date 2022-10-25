@@ -2,8 +2,22 @@
     import {periodString} from "$lib/countdown/countdown.js";
     import {makeDate} from "$lib/countdown/countdown-utils.js";
     import {dateString} from "$lib/utils.js";
+    import {onDestroy, onMount} from "svelte";
+    import {onChange, off} from "$lib/settings";
 
     export let schedule;
+
+    let update = () => {
+        schedule = schedule;
+    }
+
+    onMount(() => {
+        onChange("24hourTime", update);
+    })
+
+    onDestroy(() => {
+        off("24hourTime", update);
+    })
 </script>
 <style>
     table {

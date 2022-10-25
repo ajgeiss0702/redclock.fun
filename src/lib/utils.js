@@ -1,4 +1,5 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
+import {create, get} from "$lib/settings";
 
 let serverSchool;
 let serverSchedule;
@@ -111,8 +112,9 @@ export function getScheduleCode() {
     return localStorage.schedule
 }
 
+create("24hourTime", false, "24-hour time", "Display times in 24-hour format instead of 12-hour (AM/PM) format");
 export function dateString(date = new Date()) {
-    var d;
+    let d;
 
     if(Object.prototype.toString.call(date) === '[object Array]') {
         d = makeDate(date);
@@ -122,10 +124,14 @@ export function dateString(date = new Date()) {
         d = new Date(date);
     }
 
-    var ap = 'AM';
-    var hour = d.getHours();
-    var min = d.getMinutes();
-    var sec = d.getSeconds();
+    let ap = 'AM';
+    let hour = d.getHours();
+    let min = d.getMinutes();
+    let sec = d.getSeconds();
+
+    if(get("24hourTime")) {
+        return hour+":"+min+":"+sec;
+    }
 
     if(hour >= 12) {
         ap = 'PM';

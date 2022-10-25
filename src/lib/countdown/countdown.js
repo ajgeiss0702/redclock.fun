@@ -1,6 +1,7 @@
 import {readable} from "svelte/store";
 import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.js";
 import {create, get} from "$lib/settings.ts";
+import {browser} from "$app/environment";
 
 let setTimeString = () => {};
 let setPeriodString = () => {};
@@ -26,6 +27,7 @@ let first = true;
 
 let calibratingInterval;
 export function calibrateCountdown() {
+    if(!browser) return;
     if(first) {
         first = false;
         cdTick();
@@ -40,10 +42,11 @@ export function calibrateCountdown() {
     }, 25);
 }
 
-let calibrateInterval = setInterval(calibrateCountdown, 300e3);
+let calibrateInterval = browser ? setInterval(calibrateCountdown, 300e3) : false;
 let mainCountdownInterval;
 
 function setCountdownInterval() {
+    if(browser) return;
     clearInterval(mainCountdownInterval);
     mainCountdownInterval = setInterval(cdTick, 1e3);
 }

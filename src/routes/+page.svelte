@@ -3,27 +3,22 @@
     import {onMount} from "svelte";
     import {paths as oldPaths} from "$lib/oldPaths.js";
     import {_GET, getScheduleCode, getSchoolCode} from "$lib/utils.js";
+    import {browser} from "$app/environment";
 
-    onMount(() => {
+    if(browser) {
         let hash = location.hash.split('#').splice(1).join('#');
         if(Object.keys(oldPaths).includes(hash)) {
             goto("/" + oldPaths[hash]);
-            return;
-        }
-
-        if(_GET("rmtv") === "undefined") {
+        } else if(_GET("rmtv") === "undefined") {
             goto("/rmtv");
-            return;
-        }
-
-        if(typeof getSchoolCode() === 'undefined') {
+        } else if(typeof getSchoolCode() === 'undefined') {
             goto("/schools")
         } else if(typeof getScheduleCode() === 'undefined') {
             goto("/schedules")
         } else {
             goto("/countdown")
         }
-    })
+    }
 </script>
 
 <style>

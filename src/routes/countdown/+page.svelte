@@ -1,6 +1,6 @@
 <script>
     import CountdownBox from "$lib/countdown/CountdownBox.svelte";
-    import Weather from "$lib/countdown/Weather.svelte";
+    import Weather from "$lib/countdown/weather/Weather.svelte";
     import Sidebar from "$lib/countdown/Sidebar.svelte";
     import {onMount} from "svelte";
     import {getScheduleCode, getSchoolCode} from "$lib/utils.js";

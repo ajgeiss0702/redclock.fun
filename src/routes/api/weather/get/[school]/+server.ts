@@ -44,12 +44,21 @@ export async function GET({params, url}: RequestEvent) {
         let weatherData = await fetch("https://api.openweathermap.org/data/2.5/onecall?appid=" + accounts[lastAccount] + "&lat=33.435016&lon=-111.673358&units=imperial")
             .then(r => r.json())
 
-        response = {
-            account: accounts[lastAccount].substring(0, 2),
-            weatherData
-        }
+        if(weatherData.message) {
+            response = {
+                cached: "error",
+                weatherAPIError: weatherData.message,
+                lastFetch: lastFetch[schoolCode],
+                ...lastFetchData[schoolCode]
+            };
+        } else {
+            response = {
+                account: accounts[lastAccount].substring(0, 2),
+                weatherData
+            }
 
-        lastFetchData[schoolCode] = response;
+            lastFetchData[schoolCode] = response;
+        }
     }
 
     return new Response(JSON.stringify(response), {

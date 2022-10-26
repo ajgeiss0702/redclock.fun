@@ -153,3 +153,17 @@ export function setServerData(school, schedule) {
     serverSchool = school;
     serverSchedule = schedule;
 }
+
+export const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
+
+export function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

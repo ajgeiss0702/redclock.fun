@@ -48,6 +48,9 @@
             <!--<td><canvas class="pie" id="schedulepie" height="400" width="400"></canvas></td>-->
             <td><canvas class="pie" id="desktoppie" height="400" width="400"></canvas></td>
           </tr>
+            <tr>
+                <td><canvas class="pie" id="hostpie" height="400" width="400"></canvas></td>
+            </tr>
         </table>
       </div>
       <br>
@@ -71,6 +74,7 @@
   var userchart;
   var schoolpie;
   var schedulepie;
+  var hostpie
   var onetwenty = [];
   (() => {
     var i = 119;
@@ -97,6 +101,17 @@
         ]
       }
     })
+      hostpie = new Chart(document.getElementById("hostpie").getContext('2d'), {
+          type: 'doughnut',
+          data: {
+              datasets: [{
+                  label: 'Users',
+                  backgroundColor: ['rgb(255, 50, 50)', 'blue', 'yellow', 'aqua', 'rgb(114,32,50)', 'purple', 'white'],
+                  data: []
+              }],
+              labels: []
+          }
+      })
     /*schedulepie = new Chart(document.getElementById("schedulepie").getContext('2d'), {
       type: 'doughnut',
       data: {
@@ -332,6 +347,20 @@
     $("#schoollist").html(ah);
 
   }
+
+  async function updateHostPie() {
+      let hostData = await fetch("https://api.redclock.fun/checkin/host")
+          .then(r => r.json());
+
+      hostpie.data.labels = Object.keys(hostData);
+      hostpie.data.datasets[0].data = [];
+      for (const host in hostData) {
+          hostpie.data.datasets[0].data.push(toNum(hostData[host]));
+      }
+
+      hostpie.update();
+  }
+
   async function updateScheduleChart() {
     /*var raw = await httpGet("https://api.redclock.fun/checkin/schedules");
     var data = JSON.parse(raw);
@@ -353,6 +382,7 @@
     updateSchoolChart();
     updateScheduleChart();
     updateDesktopChart();
+    updateHostPie();
   }
   setInterval(update, 10e3);
 

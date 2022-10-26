@@ -40,6 +40,7 @@
         text-align: center;
     }
 </style>
+<br>
 <div>
     {@html data}
 </div>

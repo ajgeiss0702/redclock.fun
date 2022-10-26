@@ -27,7 +27,7 @@
 
     let weatherData = new Promise(() => {});
 
-    const apiUrlPrefix = dev ? "" : "https://ul.redeclock.fun"
+    const apiUrlPrefix = dev ? "" : "https://ul.redclock.fun"
 
     onMount(() => {
         calcShown()

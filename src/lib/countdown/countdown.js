@@ -46,7 +46,7 @@ let calibrateInterval = browser ? setInterval(calibrateCountdown, 300e3) : false
 let mainCountdownInterval;
 
 function setCountdownInterval() {
-    if(browser) return;
+    if(!browser) return;
     clearInterval(mainCountdownInterval);
     mainCountdownInterval = setInterval(cdTick, 1e3);
 }

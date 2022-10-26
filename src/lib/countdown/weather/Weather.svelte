@@ -30,12 +30,9 @@
     const apiUrlPrefix = dev ? "" : "https://ul.redclock.fun"
 
     onMount(() => {
-        calcShown()
-
         updateInterval = setInterval(update, 10 * 60 * 1000);
 
-        weatherData = fetch(apiUrlPrefix + "/api/weather/get/" + getSchoolCode())
-            .then(r => r.json());
+        update();
     });
     onDestroy(() => {
         clearInterval(updateInterval)

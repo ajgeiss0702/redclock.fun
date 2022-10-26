@@ -6,6 +6,11 @@
     import 'nprogress/nprogress.css';
 
     import 'bootstrap/dist/css/bootstrap.min.css';
+    import {browser} from "$app/environment";
+
+    if(browser) {
+        import("$lib/how_many_people.js")
+    }
 
     NProgress.configure({
         // Full list: https://github.com/rstacruz/nprogress#configuration

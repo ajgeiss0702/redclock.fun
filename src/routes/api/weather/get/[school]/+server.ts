@@ -45,6 +45,7 @@ export async function GET({params, url}: RequestEvent) {
             .then(r => r.json())
 
         if(weatherData.message) {
+            console.warn(weatherData);
             response = {
                 cached: "error",
                 weatherAPIError: weatherData.message,

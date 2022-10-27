@@ -1,5 +1,6 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
 import {create, get} from "$lib/settings";
+import {browser} from "$app/environment";
 
 let serverSchool;
 let serverSchedule;
@@ -112,7 +113,13 @@ export function getScheduleCode() {
     return localStorage.schedule
 }
 
-create("24hourTime", false, "24-hour time", "Display times in 24-hour format instead of 12-hour (AM/PM) format");
+if(browser) {
+    (async () => {
+        let sett = await import("$lib/settings.ts")
+        sett.create("24hourTime", false, "24-hour time", "Display times in 24-hour format instead of 12-hour (AM/PM) format");
+    })();
+}
+
 export function dateString(date = new Date()) {
     let d;
 

@@ -12,7 +12,11 @@ let rmtvSpecials: {[key: string]: boolean} = {
     enableWeather: false
 }
 
-export let settings: {[key: string]: Setting} = {};
+let settings: {[key: string]: Setting} = {};
+
+export function getSettings() {
+    return settings;
+}
 
 export function get(name: string): boolean|undefined {
     if(typeof settings[name] == 'undefined') {

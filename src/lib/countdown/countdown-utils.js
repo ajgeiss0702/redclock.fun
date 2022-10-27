@@ -1,8 +1,13 @@
 import {copy, getScheduleCode, getSchoolCode, httpGet} from "$lib/utils.js";
-import {create} from "$lib/settings.ts";
+import {browser} from "$app/environment";
 
-create('skipAHour', false, 'Skip A Hour', 'Will skip the countdown for A hour');
-create("enableTzOffset", true, "Adjust timezone", "Should we adjust to always be on the school's timezone?");
+if(browser) {
+    (async () => {
+        let sett = await import("$lib/settings.ts");
+        sett.create('skipAHour', false, 'Skip A Hour', 'Will skip the countdown for A hour');
+        sett.create("enableTzOffset", true, "Adjust timezone", "Should we adjust to always be on the school's timezone?");
+    })();
+}
 
 export function makeDate(raw) {
     let now = new Date();

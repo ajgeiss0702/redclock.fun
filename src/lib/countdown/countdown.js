@@ -51,6 +51,12 @@ function setCountdownInterval() {
     mainCountdownInterval = setInterval(cdTick, 1e3);
 }
 
+export function stopCountdown() {
+    clearInterval(mainCountdownInterval);
+    clearInterval(calibratingInterval);
+    clearInterval(calibratingInterval);
+}
+
 export async function recalcCdd() {
     console.debug('recalc!');
     let schedule = await getCurrentSchedule();

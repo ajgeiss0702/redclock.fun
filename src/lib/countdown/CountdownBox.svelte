@@ -1,6 +1,6 @@
 <script>
-    import {calibrateCountdown, periodString, recalcCdd, timeString} from "$lib/countdown/countdown.js";
-    import {onMount} from "svelte";
+    import {calibrateCountdown, periodString, recalcCdd, timeString, stopCountdown} from "$lib/countdown/countdown.js";
+    import {onDestroy, onMount} from "svelte";
 
     export let withWeather = true;
 
@@ -8,6 +8,10 @@
         recalcCdd();
         calibrateCountdown();
     });
+
+    onDestroy(() => {
+        stopCountdown();
+    })
 </script>
 
 <style>

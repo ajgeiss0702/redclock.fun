@@ -1,7 +1,7 @@
 <script>
     import {create, get, onChange} from "$lib/settings.ts";
     import {onDestroy, onMount} from "svelte";
-    import {getSchoolCode, daysOfWeek, capitalize} from "$lib/utils";
+    import {getSchoolCode, daysOfWeek, capitalize, getAPIPrefix} from "$lib/utils";
     import LoadingText from "$lib/LoadingText.svelte";
     import WeatherIcon from "$lib/countdown/weather/WeatherIcon.svelte";
     import {browser, dev} from "$app/environment";
@@ -26,8 +26,6 @@
     let updateInterval;
 
     let weatherData = new Promise(() => {});
-
-    const apiUrlPrefix = dev ? "" : "https://ul.redclock.fun"
 
     onMount(() => {
         updateInterval = setInterval(update, 10 * 60 * 1000);
@@ -57,7 +55,7 @@
 
         if(!enabled) return;
 
-        fetch(apiUrlPrefix + "/api/weather/get/" + getSchoolCode())
+        fetch(getAPIPrefix() + "/api/weather/get/" + getSchoolCode())
             .then(r => r.json())
             .then(d => {
                 weatherData = new Promise((resolve) => resolve(d));

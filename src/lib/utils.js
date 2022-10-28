@@ -1,6 +1,6 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
 import {create, get} from "$lib/settings";
-import {browser} from "$app/environment";
+import {browser, dev} from "$app/environment";
 
 let serverSchool;
 let serverSchedule;
@@ -173,4 +173,8 @@ export const daysOfWeek = [
 
 export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function getAPIPrefix() {
+    return dev ? "" : "https://ul.redclock.fun"
 }

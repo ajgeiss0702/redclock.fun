@@ -3,6 +3,7 @@
     import {getSettings} from '$lib/settings';
 
     export let expand = false;
+    export let bars = expand;
 </script>
 <style>
     table {
@@ -17,7 +18,7 @@
         padding-left: 2em;
         padding-right: 2em;
     }
-    tr {
+    .bars tr {
         border-bottom: 1px solid;
         border-top: 1px solid;
     }
@@ -25,7 +26,7 @@
         vertical-align: center;
     }
 </style>
-<table>
+<table class:bars={bars}>
     {#each Object.keys(getSettings()) as settingKey (settingKey)}
         <tr data-toggle="tooltip" data-placement="top" title="{getSettings()[settingKey].description}">
             <td class="title">

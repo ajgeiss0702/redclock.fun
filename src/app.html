@@ -89,10 +89,8 @@
 
 		function getThemeName() {
 			if(shouldSyncThemeWithSystem()) {
-				console.log("system")
 				return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
 			} else {
-				console.log("cookie")
 				return getCookie("theme") || "light";
 			}
 		}

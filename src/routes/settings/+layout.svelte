@@ -8,6 +8,7 @@
 <style>
     .slot {
         width: 100%;
+        text-align: center;
     }
     .s-nav {
         min-width: 12em;
@@ -42,6 +43,7 @@
         </Nav>
     </div>
     <div class="slot">
+        <br>
         <slot/>
     </div>
 </div>

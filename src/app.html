@@ -47,16 +47,77 @@
 		<div>%sveltekit.body%</div>
 	</body>
 	<script data-cfasync="false">
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			document.body.classList.add("dark");
-		}
+
+		updateTheme();
 		document.body.classList.remove("predark");
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+			if(!shouldSyncThemeWithSystem()) return;
 			if(event.matches) {
 				document.body.classList.add("dark");
 			} else {
 				document.body.classList.remove("dark");
 			}
 		});
+
+		function updateTheme() {
+			if(shouldSyncThemeWithSystem()) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.body.classList.add("dark");
+				} else {
+					document.body.classList.remove("dark");
+				}
+			} else {
+				let theme = getThemeName();
+				if(theme === "light") {
+					document.body.classList.remove("dark");
+					document.body.classList.remove("black");
+				} else if(theme === "dark") {
+					document.body.classList.add("dark");
+					document.body.classList.remove("black");
+				} else if(theme === "black") {
+					document.body.classList.add("dark");
+					document.body.classList.add("black");
+				} else {
+					console.warn("Invalid theme name " + theme);
+				}
+			}
+		}
+
+		function shouldSyncThemeWithSystem() {
+			return localStorage.getItem("followSystemTheme") ? localStorage.getItem("followSystemTheme") === "true" : true;
+		}
+
+		function getThemeName() {
+			if(shouldSyncThemeWithSystem()) {
+				console.log("system")
+				return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
+			} else {
+				console.log("cookie")
+				return getCookie("theme") || "light";
+			}
+		}
+
+		function getCookie(cname) {
+			let name = cname + "=";
+			let decodedCookie = decodeURIComponent(document.cookie);
+			let ca = decodedCookie.split(';');
+			for(let i = 0; i <ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) === ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) === 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		function setCookie(cname, cvalue, exdays = 1e5) {
+			const d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			let expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
 	</script>
 </html>

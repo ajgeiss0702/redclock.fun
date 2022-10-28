@@ -30,7 +30,7 @@
     }
 </style>
 <div>
-    <Alert class="d-inline-block" color="warning" dismissible>
+    <Alert class="d-inline-block" color="warning" fade={false} dismissible>
         <h1>Settings page WIP</h1>
         Other than themes and layouts (and the settings that are in the settings tab), im not sure what settings I should have here.<br>
         <br>

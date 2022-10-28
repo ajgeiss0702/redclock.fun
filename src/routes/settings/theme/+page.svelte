@@ -10,7 +10,7 @@
 
     let theme = "light";
     if(browser) {
-        theme = getThemeName();
+        theme = getCookie("theme") || "light";
     }
 
     let initialTheme = theme;

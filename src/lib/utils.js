@@ -178,3 +178,32 @@ export function capitalize(string) {
 export function getAPIPrefix() {
     return dev ? "" : "https://ul.redclock.fun";
 }
+
+export const shortMonths = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+];
+
+export function yesterday() {
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    return date;
+}
+
+export function isSameDay(a, b) {
+    return (
+        a.getDate() === b.getDate() &&
+        a.getMonth() === b.getMonth() &&
+        a.getFullYear() === b.getFullYear()
+    );
+}

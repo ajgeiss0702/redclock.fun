@@ -19,6 +19,7 @@
     function drawClock() {
         if(typeof canvas === "undefined") return;
         let ctx = canvas.getContext("2d");
+        ctx.moveTo(radius, radius);
         drawFace(ctx, radius);
         drawNumbers(ctx, radius);
         drawTime(ctx, radius);

@@ -1,6 +1,6 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
 import {create, get} from "$lib/settings";
-import {browser, dev} from "$app/environment";
+import {browser, dev, prerendering} from "$app/environment";
 
 let serverSchool;
 let serverSchedule;
@@ -176,7 +176,7 @@ export function capitalize(string) {
 }
 
 export function getAPIPrefix() {
-    return dev ? "" : "https://ul.redclock.fun";
+    return dev || prerendering ? "" : "https://ul.redclock.fun";
 }
 
 export const shortMonths = [

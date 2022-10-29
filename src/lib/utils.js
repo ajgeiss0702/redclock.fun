@@ -176,5 +176,5 @@ export function capitalize(string) {
 }
 
 export function getAPIPrefix() {
-    return dev ? "" : "https://ul.redclock.fun"
+    return dev ? "" : "https://ul.redclock.fun";
 }

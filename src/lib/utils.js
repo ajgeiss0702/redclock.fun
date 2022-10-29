@@ -175,8 +175,8 @@ export function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function getAPIPrefix() {
-    return dev || prerendering ? "" : "https://ul.redclock.fun";
+export function getAPIPrefix(pre = true) {
+    return (pre ? dev || prerendering : dev) ? "" : "https://ul.redclock.fun";
 }
 
 export const shortMonths = [

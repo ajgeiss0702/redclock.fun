@@ -49,8 +49,8 @@
     <br>
     <br>
     Before downloading, please read the above info<br>
-    <a data-sveltekit-reload href={getAPIPrefix() + "/api/desktop/download/win"} class="btn btn-secondary">Windows Download</a>&nbsp
-    <a data-sveltekit-reload href={getAPIPrefix() + "/api/desktop/download/linux"} class="btn btn-secondary">Linux Download</a><br>
+    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/win"} class="btn btn-secondary">Windows Download</a>&nbsp
+    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/linux"} class="btn btn-secondary">Linux Download</a><br>
     <span style="font-size: 0.75em;">
         Last updated: <DateStamp date={new Date(data.lastUpdate)}/><br>
         Schedules are updated automatically. You only need to re-download if you are updating the desktop app itself.

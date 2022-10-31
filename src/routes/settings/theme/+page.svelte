@@ -2,6 +2,8 @@
 
     import '$lib/checkboxes.css'
     import {browser} from "$app/environment";
+    import CustomBackground from "$lib/CustomBackground.svelte";
+    import CustomBackgroundSelect from "$lib/settings/CustomBackgroundSelect.svelte";
 
     let followSystem = true;
     if(browser) {
@@ -29,6 +31,9 @@
         setCookie("theme", themeSelectBox.value);
         updateTheme();
     }
+
+    let previewCustomBackground = false;
+    let customBackgroundComponent;
 </script>
 <style>
     table {
@@ -63,6 +68,7 @@
         }
     }
 </style>
+<CustomBackground preview={previewCustomBackground} bind:this={customBackgroundComponent}/>
 <h1>Theme Settings</h1>
 
 <div class="table-container">
@@ -89,4 +95,10 @@
             </td>
         </tr>
     </table>
+    <br>
+    <br>
+    <h2>Custom Background</h2>
+    Set a custom background on the countdown page<br>
+    <br>
+    <CustomBackgroundSelect bind:preview={previewCustomBackground} {customBackgroundComponent}/>
 </div>

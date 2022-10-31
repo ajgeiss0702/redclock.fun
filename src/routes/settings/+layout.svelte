@@ -9,10 +9,12 @@
     .slot {
         width: 100%;
         text-align: center;
+        padding-bottom: 20em;
     }
     .s-nav {
         min-width: 12em;
     }
+
     @media (min-width: 900px) {
         .s-container {
             display: flex;

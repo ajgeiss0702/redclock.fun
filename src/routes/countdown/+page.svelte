@@ -5,6 +5,7 @@
     import {onMount} from "svelte";
     import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
     import {goto} from "$app/navigation";
+    import CustomBackground from "$lib/CustomBackground.svelte";
 
     onMount(() => {
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {
@@ -16,6 +17,7 @@
     let withWeather = true;
 </script>
 
+<CustomBackground/>
 <CountdownBox bind:withWeather={withWeather}/>
 <Weather bind:shown={withWeather}/>
 <Sidebar/>

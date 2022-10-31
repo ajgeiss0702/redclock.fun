@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Red Clock Desktop App</title>
+</svelte:head>
 <script>
     import {getAPIPrefix} from "$lib/utils.js";
     import {Icon} from "sveltestrap";

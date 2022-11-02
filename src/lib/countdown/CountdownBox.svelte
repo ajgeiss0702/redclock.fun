@@ -4,6 +4,8 @@
 
     export let withWeather = true;
 
+    export let box = true;
+
     onMount(() => {
         recalcCdd();
         calibrateCountdown();
@@ -97,8 +99,8 @@
         }
     }
 </style>
-<div class="countdown-container" class:no-weather={!withWeather}>
-    <div class="countdown-inner">
+<div class:countdown-container={box} class:no-weather={!withWeather}>
+    <div class:countdown-inner={box}>
         <div class="countdown-text">
             {#if $timeString === '' || $timeString === 'load'}
                 <img src="/img/loading.svg" alt="loading" height="200" width="200">

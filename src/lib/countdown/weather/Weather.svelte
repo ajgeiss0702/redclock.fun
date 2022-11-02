@@ -49,6 +49,9 @@
     onChange("enableWeather", update);
     onChange("exactTemp", update);
 
+    let retryLength = 5;
+    let retryTimeout;
+
     function update() {
         calcShown();
         enabled = get("enableWeather") && shown;
@@ -59,6 +62,13 @@
             .then(r => r.json())
             .then(d => {
                 weatherData = new Promise((resolve) => resolve(d));
+                retryLength = 5;
+            })
+            .catch(e => {
+                console.warn("Failed to fetch weather: " + e + ". Retrying in " + retryLength + " seconds");
+                clearTimeout(retryTimeout);
+                retryTimeout = setTimeout(update, retryLength);
+                retryLength += 5;
             })
     }
 

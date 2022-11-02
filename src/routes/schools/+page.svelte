@@ -21,9 +21,15 @@
         padding-top: 1em;
         padding-bottom: 0.75em;
     }
+
     :global(.dark) .school-list {
         background-color: rgba(240, 240, 240, 0.1);
     }
+
+    :global(.black) .school-list {
+        background-color: rgba(125, 125, 125, 0.1);
+    }
+
     a, a:visited {
         color: #007bff;
         text-decoration: none;

@@ -29,6 +29,13 @@
         background-color: rgba(52, 52, 52, 0.5);
         box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
     }
+
+    :global(.black) .sidebar {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.15);
+        border-style: solid;
+    }
+
     @media (orientation: portrait) {
         .sidebar {
             width: auto !important;

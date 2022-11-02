@@ -53,6 +53,12 @@
         box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
     }
 
+    :global(.black) .countdown-container {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.15);
+        border-style: solid;
+    }
+
     .bell {
         animation: bell 1.5s ease-in-out infinite;
     }

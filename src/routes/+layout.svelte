@@ -2,6 +2,8 @@
     import NProgress from 'nprogress';
     import { navigating } from '$app/stores';
 
+    import '$lib/themes/black.css'
+
     // NProgress css
     import 'nprogress/nprogress.css';
 

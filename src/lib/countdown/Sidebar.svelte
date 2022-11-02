@@ -66,7 +66,9 @@
                     Suggest a feature
                 </a><br>
                 <br>
-                <a class="btn btn-outline-danger" href="/desktop">Desktop App</a>
+                <a class="btn btn-outline-danger" href="/desktop">Desktop App</a><br>
+                <br>
+                <a class="btn btn-outline-secondary" href="/lightweight">Lightweight</a>
             </TabPane>
         </TabContent>
     {/key}

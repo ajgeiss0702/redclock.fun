@@ -52,19 +52,17 @@
 		document.body.classList.remove("predark");
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
 			if(!shouldSyncThemeWithSystem()) return;
-			if(event.matches) {
-				document.body.classList.add("dark");
-			} else {
-				document.body.classList.remove("dark");
-			}
+			updateTheme();
 		});
 
 		function updateTheme() {
 			if(shouldSyncThemeWithSystem()) {
 				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					document.body.classList.add("dark");
+					document.body.classList.remove("black");
 				} else {
 					document.body.classList.remove("dark");
+					document.body.classList.remove("black");
 				}
 			} else {
 				let theme = getThemeName();

@@ -8,7 +8,7 @@ const config = {
 	kit: {
 		adapter: multiAdapter([
 			staticAdapter({
-				fallback: '400.html'
+				fallback: '404.html'
 			}),
 			nodeAdapter({
 				out: "build-node",

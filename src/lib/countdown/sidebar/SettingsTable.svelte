@@ -1,5 +1,5 @@
 <script>
-    import '$lib/checkboxes.css'
+    import '$lib/css/checkboxes.css'
     import {getSettings} from '$lib/settings';
 
     export let expand = false;

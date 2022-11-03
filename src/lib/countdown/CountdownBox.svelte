@@ -1,6 +1,7 @@
 <script>
     import {calibrateCountdown, periodString, recalcCdd, timeString, stopCountdown} from "$lib/countdown/countdown.js";
     import {onDestroy, onMount} from "svelte";
+    import {browser} from "$app/environment";
 
     export let withWeather = true;
 
@@ -20,18 +21,43 @@
     div {
         text-align: center;
     }
-    :global(.default) .countdown-container {
+    .countdown-container {
         width: 65vw;
         min-height: 50vh;
-        position: fixed;
-        top: 1vh;
-        left: 1vw;
+        padding-top: 1em;
+        padding-bottom: 1em;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-left: 1em;
-        padding-right: 1em;
         border-radius: 8px;
+    }
+    :global(.layout-default) .countdown-container {
+        position: fixed;
+        top: 1vh;
+        left: 1vw;
+    }
+    :global(.layout-mirrored) .countdown-container {
+        position: fixed;
+        top: 1vh;
+        right: 1vw;
+    }
+    :global(.layout-large) .countdown-container {
+        position: static !important;
+        width: auto !important;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+    :global(.layout-countdown) .countdown-container {
+        position: static !important;
+        width: auto !important;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        padding-top: 1em;
+        min-height: 100vh;
+    }
+    :global(.layout-countdown) .countdown-container {
+        font-size: 2em;
     }
     .countdown-text, .countdown-period {
         display: inline-block;
@@ -102,15 +128,23 @@
 <div class:countdown-container={box} class:no-weather={!withWeather}>
     <div class:countdown-inner={box}>
         <div class="countdown-text">
-            {#if $timeString === '' || $timeString === 'load'}
-                <img src="/img/loading.svg" alt="loading" height="200" width="200">
-            {:else if $timeString === 'bell'}
-                <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
+            {#if !browser || !_GET("preview")}
+                {#if $timeString === '' || $timeString === 'load'}
+                    <img src="/img/loading.svg" alt="loading" height="200" width="200">
+                {:else if $timeString === 'bell'}
+                    <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
+                {:else}
+                    {$timeString}
+                {/if}
             {:else}
-                {$timeString}
+                Countdown
             {/if}
         </div>
         <br>
-        <div class="countdown-period">{$periodString}</div>
+        <div class="countdown-period">
+            {#if !browser || !_GET("preview")}
+                {$periodString}
+            {/if}
+        </div>
     </div>
 </div>

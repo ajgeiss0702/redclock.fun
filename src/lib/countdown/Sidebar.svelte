@@ -4,20 +4,32 @@
     import News from "$lib/countdown/sidebar/News.svelte";
     import Settings from "$lib/countdown/sidebar/Settings.svelte";
     import ScheduleList from "$lib/countdown/sidebar/ScheduleList.svelte";
+    import {browser} from "$app/environment";
 
     let tab = '';
 
     onMount(() => {
         tab =  typeof localStorage.tabId === "undefined" ? "news" : localStorage.tabId;
+        if(_GET("layout")) tab = "news";
     })
 </script>
 <style>
-    :global(.default) .sidebar {
+    .sidebar {
         width: 32vw;
         min-height: 97vh;
-        margin-left: 66.5vw;
         margin-top: 1vh;
         border-radius: 8px;
+    }
+    :global(.layout-default) .sidebar {
+        margin-left: 66.5vw;
+    }
+    :global(.layout-mirrored) .sidebar {
+        margin-right: auto;
+        margin-left: 0.5vw;
+    }
+    :global(.layout-large) .sidebar, :global(.layout-countdown) .sidebar {
+        width: auto !important;
+        margin: auto !important;
     }
 
     .sidebar {
@@ -36,6 +48,19 @@
         border-style: solid;
     }
 
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preview-text {
+        display: inline-block;
+        font-size: 9em;
+        transform: rotate(90deg);
+        line-height: 1em;
+    }
+
     @media (orientation: portrait) {
         .sidebar {
             width: auto !important;
@@ -43,33 +68,39 @@
         }
     }
 </style>
-<div class="sidebar">
-    {#key tab}
-        <TabContent on:tab={(e) => {if(e.detail !== '') localStorage.tabId = e.detail}}>
-            <TabPane tabId="news" tab="News" active={tab === "news"}>
-                <News/>
-            </TabPane>
-            <TabPane tabId="schedule" tab="Schedule" active={tab === "schedule"}>
-                <ScheduleList/>
-            </TabPane>
-            <TabPane tabId="settings" tab="Settings" active={tab === "settings"}>
-                <Settings/>
-            </TabPane>
-            <TabPane class="text-center" tabId="links" tab="Links" active={tab === "links"}>
-                <h1>Links</h1>
+<div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
+    {#if !browser || !_GET("preview")}
+        {#key tab}
+            <TabContent on:tab={(e) => {if(e.detail !== '') localStorage.tabId = e.detail}}>
+                <TabPane tabId="news" tab="News" active={tab === "news"}>
+                    <News/>
+                </TabPane>
+                <TabPane tabId="schedule" tab="Schedule" active={tab === "schedule"}>
+                    <ScheduleList/>
+                </TabPane>
+                <TabPane tabId="settings" tab="Settings" active={tab === "settings"}>
+                    <Settings/>
+                </TabPane>
+                <TabPane class="text-center" tabId="links" tab="Links" active={tab === "links"}>
+                    <h1>Links</h1>
 
-                <a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank">
-                    <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
-                </a><br>
-                <br>
-                <a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
-                    Suggest a feature
-                </a><br>
-                <br>
-                <a class="btn btn-outline-danger" href="/desktop">Desktop App</a><br>
-                <br>
-                <a class="btn btn-outline-secondary" href="/lightweight">Lightweight</a>
-            </TabPane>
-        </TabContent>
-    {/key}
+                    <a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank">
+                        <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
+                    </a><br>
+                    <br>
+                    <a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
+                        Suggest a feature
+                    </a><br>
+                    <br>
+                    <a class="btn btn-outline-danger" href="/desktop">Desktop App</a><br>
+                    <br>
+                    <a class="btn btn-outline-secondary" href="/lightweight">Lightweight</a>
+                </TabPane>
+            </TabContent>
+        {/key}
+    {:else}
+        <span class="preview-text">
+            Side bar
+        </span>
+    {/if}
 </div>

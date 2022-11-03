@@ -1,6 +1,6 @@
 <script>
     import {onMount} from "svelte";
-    import '$lib/selectbox.css';
+    import '$lib/css/selectbox.css';
 
     export let name;
     export let image;

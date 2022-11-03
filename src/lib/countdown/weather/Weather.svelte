@@ -54,7 +54,7 @@
 
     function update() {
         calcShown();
-        enabled = get("enableWeather") && shown;
+        enabled = get("enableWeather") && shown && !_GET("preview");
 
         if(!enabled) return;
 
@@ -85,18 +85,31 @@
     table {
         text-align: center;
     }
-    :global(.default) .weather-container {
+    .weather-container {
         width: 65vw;
         min-height: 45vh;
         padding-top: 1em;
         padding-bottom: 1em;
-        position: fixed;
-        top: 53vh;
-        left: 1vw;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 8px;
+    }
+    :global(.layout-default) .weather-container {
+        position: fixed;
+        top: 53vh;
+        left: 1vw;
+    }
+    :global(.layout-mirrored) .weather-container {
+        position: fixed;
+        top: 53vh;
+        right: 1vw;
+    }
+    :global(.layout-large) .weather-container, :global(.layout-countdown) .weather-container {
+        position: static !important;
+        width: auto !important;
+        margin-bottom: 1em;
+        min-height: 47vh;
     }
     .weather-container {
         background-color: rgba(242, 242, 242, 0.5);
@@ -133,6 +146,10 @@
 
     .weekly-low {
         font-size: 0.75em;
+    }
+
+    .preview-text {
+        font-size: 10em;
     }
 
     .precipitation {
@@ -307,7 +324,13 @@
             </tr>
         </table>
     {:else}
-        No weather
+        {#if !_GET("preview")}
+            No weather
+        {:else}
+            <span class="preview-text">
+                Weather
+            </span>
+        {/if}
     {/if}
 
 </div>

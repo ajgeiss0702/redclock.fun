@@ -1,5 +1,5 @@
 <script>
-    import '../selectbox.css';
+    import '../css/selectbox.css';
     export let name;
 </script>
 

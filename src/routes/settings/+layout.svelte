@@ -34,14 +34,18 @@
     :global(.settings-nav > .active) {
         color: inherit;
     }
+
+    .selected {
+        color: inherit;
+    }
 </style>
 <div class="s-container">
     <div class="s-nav">
         <Nav class="settings-nav" vertical>
             <Button outline color="secondary" href="/countdown">Back to countdown</Button>
-            <NavLink href="/settings" active={$page.url.pathname === "/settings"}>Basic Settings</NavLink>
-            <NavLink href="/settings/theme" active={$page.url.pathname === "/settings/theme"}>Theme Settings</NavLink>
-            <NavLink href="/settings/layout" active={$page.url.pathname === "/settings/layout"}>Layout Settings</NavLink>
+            <a class="nav-link selectable" href="/settings" class:selected={$page.url.pathname === "/settings"}>Basic Settings</a>
+            <a class="nav-link selectable" href="/settings/theme" class:selected={$page.url.pathname === "/settings/theme"}>Theme Settings</a>
+            <a class="nav-link selectable" href="/settings/layout" class:selected={$page.url.pathname === "/settings/layout"}>Layout Settings</a>
         </Nav>
     </div>
     <div class="slot">

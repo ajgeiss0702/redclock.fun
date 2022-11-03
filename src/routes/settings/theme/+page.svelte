@@ -1,6 +1,6 @@
 <script>
 
-    import '$lib/checkboxes.css'
+    import '$lib/css/checkboxes.css'
     import {browser} from "$app/environment";
     import CustomBackground from "$lib/CustomBackground.svelte";
     import CustomBackgroundSelect from "$lib/settings/CustomBackgroundSelect.svelte";

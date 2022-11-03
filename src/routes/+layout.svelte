@@ -1,8 +1,7 @@
 <script>
     import NProgress from 'nprogress';
     import { navigating } from '$app/stores';
-
-    import '$lib/themes/black.css'
+    import "$lib/css/misc.css";
 
     // NProgress css
     import 'nprogress/nprogress.css';

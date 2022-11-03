@@ -1,4 +1,3 @@
-import {_GET} from './utils.js';
 import {recalcCdd} from '$lib/countdown/countdown.js';
 
 type Setting = {

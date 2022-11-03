@@ -1,8 +1,7 @@
 <script>
     import {goto} from "$app/navigation";
-    import {onMount} from "svelte";
     import {paths as oldPaths} from "$lib/oldPaths.js";
-    import {_GET, getScheduleCode, getSchoolCode} from "$lib/utils.js";
+    import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
     import {browser} from "$app/environment";
 
     if(browser) {

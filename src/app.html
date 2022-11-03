@@ -22,15 +22,17 @@
 		<title>Red Clock</title>
 		<style>
 			body {
-				transition: background-color .5s, color .5s;
-			}
-			body {
+
 				margin: 0;
 				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 				text-align: center;
 			}
 			body.dark {
 				background-color: #262626;
+				color: white;
+			}
+			body.black {
+				background-color: black;
 				color: white;
 			}
 			@media (prefers-color-scheme: dark) {
@@ -43,7 +45,7 @@
 
 		%sveltekit.head%
 	</head>
-	<body class="default predark" data-sveltekit-prefetch>
+	<body class="layout-default predark" data-sveltekit-prefetch>
 		<div>%sveltekit.body%</div>
 	</body>
 	<script data-cfasync="false">
@@ -82,15 +84,31 @@
 		}
 
 		function shouldSyncThemeWithSystem() {
+			if(_GET("theme")) return false;
 			return localStorage.getItem("followSystemTheme") ? localStorage.getItem("followSystemTheme") === "true" : true;
 		}
 
 		function getThemeName() {
+			if(_GET("theme")) return _GET("theme");
 			if(shouldSyncThemeWithSystem()) {
 				return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
 			} else {
 				return getCookie("theme") || "light";
 			}
+		}
+
+		function updateLayout() {
+			let layout = "layout-" + (getCookie("layout") || "default");
+			if(_GET("layout")) {
+				layout = "layout-" + _GET("layout");
+			}
+			document.body.classList.remove("layout-default", "layout-mirrored", "layout-large", "layout-countdown");
+			document.body.classList.add(layout);
+		}
+		updateLayout()
+		function setLayout(layoutName) {
+			setCookie("layout", layoutName);
+			updateLayout()
 		}
 
 		function getCookie(cname) {
@@ -114,6 +132,17 @@
 			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 			let expires = "expires="+d.toUTCString();
 			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function _GET(parameterName) {
+			let result = null,
+					tmp = [];
+			let items = location.search.substring(1).split("&");
+			for (let index = 0; index < items.length; index++) {
+				tmp = items[index].split("=");
+				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+			}
+			return result;
 		}
 	</script>
 </html>

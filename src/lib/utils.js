@@ -80,17 +80,6 @@ export function httpGet(url, callback = false) {
     }*/
 }
 
-export function _GET(parameterName) {
-    let result = null,
-        tmp = [];
-    let items = location.search.substring(1).split("&");
-    for (let index = 0; index < items.length; index++) {
-        tmp = items[index].split("=");
-        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-    }
-    return result;
-}
-
 export function getSchoolCode() {
     if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
         return serverSchool;

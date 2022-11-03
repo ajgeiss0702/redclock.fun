@@ -1,5 +1,5 @@
 <script>
-    import '$lib/checkboxes.css'
+    import '$lib/css/checkboxes.css'
     import {Button} from "sveltestrap";
     import {browser} from "$app/environment";
     import {getBase64} from "$lib/utils.js";

@@ -126,7 +126,7 @@ function updateWeather(last = false) {
       }
 
       var rainAdd = ""
-      if(d.todayrain > 2) {
+      if(d.todayrain > 0.2) {
         rainAdd = Math.round(d.precipProbability * 100) + `% chance of rain right now`
       }
 
@@ -153,7 +153,7 @@ function updateWeather(last = false) {
                     <table id='we-info-table'>
                       <tr class='weather-tr'>
                         <td>🌧️</td>
-                        <td>`+d.todayrain+`% chance of rain today<br>`+rainAdd+`</td>
+                        <td>`+(d.todayrain * 100)+`% chance of rain today<br>`+rainAdd+`</td>
                       </tr>
                       <tr class='weather-tr'>
                         <td>💧</td>
@@ -234,7 +234,7 @@ function toggleWeeklyWeather(update = false) {
       var htemp = settings.get("exactTemp") ? t.temp.max : Math.round(t.temp.max);
       var ltemp = settings.get("exactTemp") ? t.temp.min : Math.round(t.temp.min);
       ahDeg += "<td><span class='we-wf-htemp'><span id='we-wf-htemp-"+i+"'>"+htemp+"</span>&deg;</span><br><span class='we-wf-ltemp'>"+ltemp+"&deg;</span></td>"
-      ahRain += "<td class='we-wf-precip'>🌧️"+t.pop+"%</td>";
+      ahRain += "<td class='we-wf-precip'>🌧️"+(t.pop * 100)+"%</td>";
     }
   }
   if(!update) {

@@ -5,6 +5,11 @@
     let data = `<img src="/img/loading.svg" style="height: 1em;" alt="loading">`;
     let failed = false;
 
+    export let unreadCount = 0;
+    export let newsLength = 0;
+
+    export let currentTab;
+
     function refreshNews() {
         fetch("https://ajg0702.us/api/rmf/news.html")
             .then(response => response.text())
@@ -14,7 +19,21 @@
 
                 response = response.replace('<link', '&ltlink');
                 response = response.replace('</link', '&lt/link');
-                data = response
+                data = response;
+
+                if(localStorage && newsDiv) {
+                    setTimeout(() => {
+                        newsLength = newsDiv.getElementsByTagName("div").length;
+                        if(currentTab === "news") {
+                            localStorage.setItem("lastReadNews", newsLength)
+                            unreadCount = 0;
+                        } else {
+                            let readNews = localStorage.getItem("lastReadNews") || 0;
+                            unreadCount = newsLength - readNews;
+                        }
+
+                    }, 500)
+                }
             })
             .catch(e => {
                 failed = true;
@@ -28,11 +47,14 @@
         clearInterval(updateInterval);
     })
 
+    let newsDiv;
+
     onMount(() => {
         updateInterval = setInterval(refreshNews, 300e3);
         if(failed) {
             refreshNews();
         }
+
     })
 </script>
 <style>
@@ -41,6 +63,6 @@
     }
 </style>
 <br>
-<div>
+<div bind:this={newsDiv}>
     {@html data}
 </div>

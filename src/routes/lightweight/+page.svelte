@@ -11,5 +11,7 @@
 <br>
 <br>
 <div>
-    <a href="/lightweight/what" class="btn btn-outline-secondary">What is this?</a>
+    <a href="/lightweight/what" class="btn btn-outline-secondary">What is this?</a><br>
+    <br>
+    <a href="/countdown" class="btn btn-outline-secondary">Back to normal countdown</a>
 </div>

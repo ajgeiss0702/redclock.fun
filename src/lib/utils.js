@@ -188,6 +188,14 @@ export function yesterday() {
     date.setDate(date.getDate() - 1);
     return date;
 }
+export function tomorrow(midnight = true) {
+    const date = new Date();
+    if(midnight) {
+        date.setHours(0, 0, 0, 0);
+    }
+    date.setDate(date.getDate() + 1);
+    return date;
+}
 
 export function isSameDay(a, b) {
     return (

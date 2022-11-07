@@ -45,8 +45,6 @@
 
     $: updateCustomBackground($navigating);
     $: updateCustomBackground(preview);
-
-    $: console.log({background})
 </script>
 <style>
     div {

@@ -5,6 +5,7 @@
     import Settings from "$lib/countdown/sidebar/Settings.svelte";
     import ScheduleList from "$lib/countdown/sidebar/ScheduleList.svelte";
     import {browser} from "$app/environment";
+    import Quote from "$lib/countdown/sidebar/Quote.svelte";
 
     let tab = '';
 
@@ -91,6 +92,7 @@
 </style>
 <div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
     {#if !browser || !_GET("preview")}
+        <Quote/>
         {#key tab}
             <TabContent on:tab={changeTab}>
                 <TabPane tabId="news" tab="News" active={tab === "news"}>

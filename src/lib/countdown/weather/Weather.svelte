@@ -4,7 +4,7 @@
     import {getSchoolCode, daysOfWeek, capitalize, getAPIPrefix} from "$lib/utils";
     import LoadingText from "$lib/LoadingText.svelte";
     import WeatherIcon from "$lib/countdown/weather/WeatherIcon.svelte";
-    import {browser, dev} from "$app/environment";
+    import {browser} from "$app/environment";
 
     export let shown = true;
     export let enabled = true;
@@ -17,7 +17,8 @@
     const day = new Date().getDay();
     for (let i = day+2; i !== day; i++) {
         if(i >= 7) {
-            i = 0;
+            i = -1;
+            continue;
         }
 
         orderedDays.push(daysOfWeek[i]);

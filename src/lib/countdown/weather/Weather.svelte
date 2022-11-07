@@ -168,6 +168,29 @@
         cursor: pointer;
     }
 
+    .disabled-icon {
+        width: 5rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .disabled-text {
+        display: block;
+        font-size: 0.9em;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .stealth-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    .stealth-link:hover {
+        color: inherit;
+        text-decoration: underline;
+    }
+
     @media(orientation: portrait) {
         .weather-container {
             position: static !important;
@@ -330,7 +353,16 @@
         </table>
     {:else}
         {#if !_GET("preview")}
-            No weather
+            <a class="stealth-link">
+                <img
+                        class="disabled-icon"
+                        src={getThemeName() === "light" ? "/img/icons/weather-disabled.svg" : "/img/icons/weather-disabled-white.svg"}
+                        alt="Weather disabled icon"
+                >
+                <span class="disabled-text">
+                    Weather has been disabled in settings
+                </span>
+            </a>
         {:else}
             <span class="preview-text">
                 Weather

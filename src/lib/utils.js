@@ -197,6 +197,10 @@ export function tomorrow(midnight = true) {
     return date;
 }
 
+export function commas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function isSameDay(a, b) {
     return (
         a.getDate() === b.getDate() &&

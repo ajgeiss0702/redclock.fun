@@ -1,11 +1,11 @@
 <script>
-    import {periodString} from "$lib/countdown/countdown.js";
     import {makeDate} from "$lib/countdown/countdown-utils.js";
     import {dateString} from "$lib/utils.js";
     import {onDestroy, onMount} from "svelte";
     import {onChange, off} from "$lib/settings";
 
     export let schedule;
+    export let currentPeriod = "";
 
     let update = () => {
         schedule = schedule;
@@ -36,7 +36,7 @@
     </thead>
     <tbody>
     {#each Object.keys(schedule) as className}
-        <tr class:table-secondary={$periodString.substring("until ".length) === className}>
+        <tr class:table-secondary={currentPeriod === className}>
             <td>{className}</td>
             <td>{dateString(makeDate(schedule[className]))}</td>
         </tr>

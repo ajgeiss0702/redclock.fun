@@ -40,7 +40,7 @@
     <h1>{dateString($currentTime)}</h1>
     <br>
 
-    <ScheduleTable {schedule}/>
+    <ScheduleTable {schedule} currentPeriod={$periodString.substring("until ".length)}/>
     <br>
     Issue with the schedule? Notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
     <br>

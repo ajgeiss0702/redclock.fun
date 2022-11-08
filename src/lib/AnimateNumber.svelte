@@ -32,7 +32,6 @@
     let animationInterval;
     function startAnimation() {
         clearInterval(animationInterval);
-        console.log("start")
         start = Date.now();
         end = Date.now() + durationMills;
         animationInterval = setInterval(() => {

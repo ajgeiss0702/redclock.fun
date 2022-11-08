@@ -42,12 +42,14 @@
 		"@sveltejs/adapter-cloudflare": "^1.0.0-next.32",
 		"@sveltejs/adapter-node": "^1.0.0-next.97",
 		"@sveltejs/adapter-static": "^1.0.0-next.44",
+		"@sweetalert2/theme-dark": "^5.0.14",
 		"bcrypt": "^5.1.0",
 		"bootstrap": "^5.2.2",
 		"chart.js": "^3.9.1",
 		"express": "^4.18.2",
 		"svelte-chartjs": "^3.0.1",
 		"svelte-preprocess": "^4.10.7",
+		"sweetalert2": "^11.6.7",
 		"wrangler": "^2.1.0"
 	}
 }

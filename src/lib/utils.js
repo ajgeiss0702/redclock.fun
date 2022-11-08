@@ -222,3 +222,11 @@ export function getBase64(file) {
         };
     })
 }
+
+export function safeLength(a) {
+    if(typeof a != 'object') {
+        return 0;
+    } else {
+        return a.length;
+    }
+}

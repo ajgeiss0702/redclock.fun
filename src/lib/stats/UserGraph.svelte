@@ -3,6 +3,9 @@
     import {oneTwenty} from "$lib/oneTwenty.js";
     import 'chart.js/auto';
     import {onDestroy, onMount} from "svelte";
+    import {Chart as ChartJS, LinearScale} from 'chart.js'
+
+    ChartJS.register(LinearScale)
 
     let chart;
 

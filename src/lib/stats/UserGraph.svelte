@@ -1,7 +1,7 @@
 <script>
     import {Line} from "svelte-chartjs";
     import {oneTwenty} from "$lib/oneTwenty.js";
-    import 'chart.js/auto/auto.js';
+    import 'chart.js/auto';
     import {onDestroy, onMount} from "svelte";
 
     let chart;

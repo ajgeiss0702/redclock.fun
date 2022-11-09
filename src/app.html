@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/red_clock.png" />
+		<meta name="viewport" content="width=device-width" />
+
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> -->
+		<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"></noscript>
+
+
+		<title>Red Clock</title>
+		<style>
+			body {
+
+				margin: 0;
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+				text-align: center;
+			}
+			body.dark {
+				background-color: #262626;
+				color: white;
+			}
+			body.black {
+				background-color: black;
+				color: white;
+			}
+			@media (prefers-color-scheme: dark) {
+				.predark { /* the predark class prevents flashbangs if for some reason the js dark theme detection is slow */
+					background-color: #262626;
+					color: white;
+				}
+			}
+		</style>
+
+		%sveltekit.head%
+	</head>
+	<body class="layout-default predark" data-sveltekit-prefetch>
+		<div>%sveltekit.body%</div>
+	</body>
+	<script data-cfasync="false">
+
+		updateTheme();
+		document.body.classList.remove("predark");
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+			if(!shouldSyncThemeWithSystem()) return;
+			updateTheme();
+		});
+
+		function updateTheme() {
+			if(shouldSyncThemeWithSystem()) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.body.classList.add("dark");
+					document.body.classList.remove("black");
+				} else {
+					document.body.classList.remove("dark");
+					document.body.classList.remove("black");
+				}
+			} else {
+				let theme = getThemeName();
+				if(theme === "light") {
+					document.body.classList.remove("dark");
+					document.body.classList.remove("black");
+				} else if(theme === "dark") {
+					document.body.classList.add("dark");
+					document.body.classList.remove("black");
+				} else if(theme === "black") {
+					document.body.classList.add("dark");
+					document.body.classList.add("black");
+				} else {
+					console.warn("Invalid theme name " + theme);
+				}
+			}
+		}
+
+		function shouldSyncThemeWithSystem() {
+			if(_GET("theme")) return false;
+			return localStorage.getItem("followSystemTheme") ? localStorage.getItem("followSystemTheme") === "true" : true;
+		}
+
+		function getThemeName() {
+			if(_GET("theme")) return _GET("theme");
+			if(shouldSyncThemeWithSystem()) {
+				return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
+			} else {
+				return getCookie("theme") || "light";
+			}
+		}
+
+		function updateLayout() {
+			let layout = "layout-" + (getCookie("layout") || "default");
+			if(_GET("layout")) {
+				layout = "layout-" + _GET("layout");
+			}
+			document.body.classList.remove("layout-default", "layout-mirrored", "layout-large", "layout-countdown");
+			document.body.classList.add(layout);
+		}
+		updateLayout()
+		function setLayout(layoutName) {
+			setCookie("layout", layoutName);
+			updateLayout()
+		}
+
+		function getCookie(cname) {
+			let name = cname + "=";
+			let decodedCookie = decodeURIComponent(document.cookie);
+			let ca = decodedCookie.split(';');
+			for(let i = 0; i <ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) === ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) === 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		function setCookie(cname, cvalue, exdays = 1e5) {
+			const d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			let expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function _GET(parameterName) {
+			let result = null,
+					tmp = [];
+			let items = location.search.substring(1).split("&");
+			for (let index = 0; index < items.length; index++) {
+				tmp = items[index].split("=");
+				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+			}
+			return result;
+		}
+	</script>
+</html>

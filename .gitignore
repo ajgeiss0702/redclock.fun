@@ -1,4 +1,9 @@
-*.temp
-BonkLiveVersion2.swf
-
-test
+.DS_Store
+node_modules
+/build
+/build-node
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example

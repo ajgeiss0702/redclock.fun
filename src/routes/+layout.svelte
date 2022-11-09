@@ -26,6 +26,15 @@
             NProgress.done();
         }
     }
+
+    if(browser && navigator && navigator.serviceWorker) {
+        console.log("Removing service workers")
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                console.log("removing " + registration)
+                registration.unregister()
+            } })
+    }
 </script>
 <style>
     :global(#nprogress .spinner-icon) {

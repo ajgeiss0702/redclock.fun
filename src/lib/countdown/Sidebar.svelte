@@ -17,6 +17,7 @@
     onMount(() => {
         tab =  typeof localStorage.tabId === "undefined" ? "news" : localStorage.tabId;
         if(tab.startsWith("sidebar-tab-")) tab = tab.substring("sidebar-tab-".length); // fix tab data from v3
+        if(tab === "times") tab = "schedule"
         if(_GET("layout")) tab = "news";
 
         currentTab = tab;

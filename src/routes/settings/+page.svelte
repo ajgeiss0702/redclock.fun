@@ -1,7 +1,5 @@
 <script>
-    import {Alert, Button} from "sveltestrap";
     import SettingsTable from "$lib/countdown/sidebar/SettingsTable.svelte";
-    import {browser} from "$app/environment";
 </script>
 <style>
     div {
@@ -30,12 +28,12 @@
     }
 </style>
 <div>
-    <Alert class="d-inline-block" color="warning" fade={false} dismissible>
+    <!--<Alert class="d-inline-block" color="warning" fade={false} dismissible>
         <h1>Settings page WIP</h1>
         Other than themes and layouts (and the settings that are in the settings tab), im not sure what settings I should have here.<br>
         <br>
         If you have ideas for more settings there should be, let me know using any of the contact methods mentioned in the news about this (in the news tab on the main page)
-    </Alert>
+    </Alert>-->
     <h1>Basic Settings</h1>
     These settings are the same settings shows in the settings tab on the countdown page.<br>
     To see more settings, select a category using the list <span class="menu-loc"></span><br>

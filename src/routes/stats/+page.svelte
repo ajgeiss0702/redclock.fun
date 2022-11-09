@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Stats - Red Clock</title>
+</svelte:head>
 <script>
     import UserGraph from "$lib/stats/UserGraph.svelte";
     import UserNumbers from "$lib/stats/UserNumbers.svelte";

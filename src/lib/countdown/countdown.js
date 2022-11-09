@@ -1,6 +1,6 @@
 import {readable} from "svelte/store";
 import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.js";
-import {create, get} from "$lib/settings.ts";
+import {create, get, onChange} from "$lib/settings.ts";
 import {browser} from "$app/environment";
 
 let setTimeString = () => {};
@@ -76,6 +76,8 @@ export async function recalcCdd() {
     setPeriodString("until " + scheduleKeys[i]);
     cdTick();
 }
+
+onChange("skipAHour", recalcCdd);
 
 export async function getTime() {
     if(typeof cdd === 'undefined') await recalcCdd();

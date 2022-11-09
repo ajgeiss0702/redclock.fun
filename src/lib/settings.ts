@@ -1,5 +1,3 @@
-import {recalcCdd} from '$lib/countdown/countdown.js';
-
 type Setting = {
     content: boolean,
     description: string,
@@ -49,13 +47,6 @@ export function set(name: string, content: boolean): void {
     save();
 
     emit(name, {to: content, before: before});
-
-    if(name == "skipAHour") {
-        recalcCdd();
-    }
-    if(name == "festive") {
-        //TODO: festiveness
-    }
 
     settings = settings;
 }

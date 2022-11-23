@@ -18,11 +18,19 @@
         minimum: 0.16
     });
 
+    let progressTimeout;
+
     $: {
         if ($navigating) {
-            NProgress.start();
+            clearTimeout(progressTimeout);
+            progressTimeout = setTimeout(() => {
+                if($navigating) {
+                    NProgress.start();
+                }
+            }, 150);
         }
         if (!$navigating) {
+            clearTimeout(progressTimeout);
             NProgress.done();
         }
     }

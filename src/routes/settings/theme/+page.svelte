@@ -22,6 +22,12 @@
     let initialFollowSystem = followSystem;
 
     function toggleFollowSystem() {
+        // this is before we switch the followSystem, so we need to check the opposite
+        if(followSystem && !getCookie("theme")) {
+            theme = getThemeName();
+            themeSelectBox.value = theme;
+            setCookie("theme", theme)
+        }
         followSystem = !followSystem;
         localStorage.setItem("followSystemTheme", String(followSystem));
         updateTheme();

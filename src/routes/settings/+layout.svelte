@@ -13,6 +13,8 @@
     }
     .s-nav {
         min-width: 12em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
     }
 
     @media (min-width: 900px) {
@@ -28,6 +30,12 @@
     @media (max-width: 900px) {
         .s-nav {
             border-bottom: 1px solid;
+            text-align: center;
+        }
+        .nav-link {
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
         }
     }
 

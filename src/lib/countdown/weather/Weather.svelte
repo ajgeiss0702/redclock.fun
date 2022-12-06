@@ -281,7 +281,7 @@
                                     {/each}
                                 {:then data}
                                     {#each  data.weatherData.daily.slice(0, 7) as day}
-                                        <td class="precipitation">🌧️{day.pop*100}%</td>
+                                        <td class="precipitation">🌧️{Math.round(day.pop*1000)/10}%</td>
                                     {/each}
                                 {/await}
                             </tr>
@@ -295,10 +295,11 @@
                                     {#await weatherData}
                                         <LoadingText length={2}/>% chance of rain today
                                     {:then data}
-                                        {data.weatherData.daily[0].pop * 100}% chance of rain today
+
+                                        {Math.round(data.weatherData.daily[0].pop*1000)/10}% chance of rain today
                                         {#if data.weatherData.daily[0].pop > 0.2}
                                             <br>
-                                            {data.weatherData.hourly[0].pop * 100}% change of rain right now
+                                            {Math.round(data.weatherData.hourly[0].pop*1000)/10}% change of rain right now
                                         {/if}
                                     {/await}
                                 </td>

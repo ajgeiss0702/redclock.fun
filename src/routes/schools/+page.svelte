@@ -48,7 +48,7 @@
 <script>
     import {onDestroy, onMount} from "svelte";
     import School from "$lib/schools/School.svelte";
-    import {goto, prefetch} from "$app/navigation";
+    import {goto, preloadData as prefetch} from "$app/navigation";
 
 
     export let data;

@@ -5,7 +5,7 @@
 
     import {onMount} from "svelte";
     import {Button, Icon} from "sveltestrap";
-    import {goto, prefetch} from "$app/navigation";
+    import {goto, preloadData as prefetch} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
     import {getSchoolCode} from "$lib/utils.js";
 

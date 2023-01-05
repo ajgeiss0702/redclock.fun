@@ -1,6 +1,7 @@
 import multiAdapter from '@macfja/svelte-multi-adapter'
 import staticAdapter from '@sveltejs/adapter-static';
 import nodeAdapter from '@sveltejs/adapter-node';
+import cfAdapter from '@sveltejs/adapter-cloudflare';
 import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -13,7 +14,8 @@ const config = {
 			nodeAdapter({
 				out: "build-node",
 				precompress: true
-			})
+			}),
+			cfAdapter()
 		]),
 		inlineStyleThreshold: 1000
 	},

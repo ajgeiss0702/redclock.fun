@@ -1,6 +1,6 @@
 import {makeDate} from "$lib/countdown/countdown-utils.js";
 import {create, get} from "$lib/settings";
-import {browser, dev, prerendering} from "$app/environment";
+import {browser, dev, building as prerendering} from "$app/environment";
 
 let serverSchool;
 let serverSchedule;

@@ -299,7 +299,7 @@
                                         {Math.round(data.weatherData.daily[0].pop*1000)/10}% chance of rain today
                                         {#if data.weatherData.daily[0].pop > 0.2}
                                             <br>
-                                            {Math.round(data.weatherData.hourly[0].pop*1000)/10}% change of rain right now
+                                            {Math.round(data.weatherData.hourly[0].pop*1000)/10}% chance of rain right now
                                         {/if}
                                     {/await}
                                 </td>

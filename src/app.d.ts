@@ -5,5 +5,15 @@ declare namespace App {
 	// interface Locals {}
 	// interface PageData {}
 	// interface PageError {}
-	// interface Platform {}
+    interface Platform {
+        env?: {
+            FUNC_ANAL: {
+                writeDataPoint: (data: {
+                    'blobs': string[],
+                    'doubles': number[],
+                    'indexes': string[]
+                }) => void
+            };
+        };
+    }
 }

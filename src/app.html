@@ -146,5 +146,15 @@
 			}
 			return result;
 		}
+
+		if(location.pathname === "/") {
+			if(localStorage.school && localStorage.schedule) {
+				location.href = "/countdown";
+			} else if(!localStorage.school) {
+				location.href = "/schools";
+			} else if(!localStorage.schedule) {
+				location.href = "/schedules";
+			}
+		}
 	</script>
 </html>

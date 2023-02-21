@@ -6,6 +6,7 @@
     import ScheduleList from "$lib/countdown/sidebar/ScheduleList.svelte";
     import {browser} from "$app/environment";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
+    import Links from "$lib/countdown/sidebar/Links.svelte";
 
     let tab = '';
 
@@ -111,19 +112,7 @@
                     <Settings/>
                 </TabPane>
                 <TabPane class="text-center" tabId="links" tab="Links" active={tab === "links"}>
-                    <h1>Links</h1>
-
-                    <a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank">
-                        <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
-                    </a><br>
-                    <br>
-                    <a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
-                        Suggest a feature
-                    </a><br>
-                    <br>
-                    <a class="btn btn-outline-danger" href="/desktop">Desktop App</a><br>
-                    <br>
-                    <a class="btn btn-outline-secondary" href="/lightweight">Lightweight</a>
+                    <Links/>
                 </TabPane>
             </TabContent>
         {/key}

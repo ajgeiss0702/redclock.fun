@@ -2,6 +2,7 @@
 /discord https://discord.gg/shSg6r8
 /reload /
 /reload.php /
+/%23countdown /countdown 301
 
 /admin /stats 301
 /admin/ /stats 301

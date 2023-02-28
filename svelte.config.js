@@ -16,7 +16,12 @@ const config = {
 				out: "build-node",
 				precompress: true
 			}),
-			cfAdapter(),
+			cfAdapter({
+				routes: {
+					include: ["/api/*"],
+					exclude: ["/api/schedule.php"]
+				}
+			}),
 			vercelAdapter({
 				edge: true,
 				split: true

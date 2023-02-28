@@ -7,10 +7,9 @@
 
     export let box = true;
 
-    onMount(() => {
-        recalcCdd();
+    if(browser) {
         calibrateCountdown();
-    });
+    }
 
     onDestroy(() => {
         stopCountdown();

@@ -1,10 +1,10 @@
 <h1>Links</h1>
 
-<a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank">
+<a class="btn btn-primary" href="https://discord.gg/shSg6r8" target="_blank" rel="noreferrer">
     <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
 </a><br>
 <br>
-<a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank">
+<a class="btn btn-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank" rel="noreferrer">
     Suggest a feature
 </a><br>
 <br>
@@ -16,7 +16,7 @@
     <br>
     <br>
     <div class="x-container">
-        <div class="x" on:click={() => show = false}>x</div>
+        <button class="x" on:click={() => show = false}>x</button>
     </div>
     <Minesweeper/>
     <br>

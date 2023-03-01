@@ -12,7 +12,7 @@
     }
 </script>
 <style>
-    div {
+    button {
         display: inline-block;
         background-color: #BFBFBF;
         height: 1em;
@@ -20,7 +20,7 @@
         margin: 0;
     }
 
-    div:not(.bomb) {
+    button:not(.bomb) {
         /*box-shadow: inset 0.1em 0.1em 0 0 white, inset -0.1em -0.1em 0 0 #7f7f7f7f;*/
         border-top: 0.1em solid white;
         border-left: 0.1em solid white;
@@ -29,7 +29,7 @@
         border-right: 0.1em solid #7f7f7f;
     }
 
-    div:not(.bomb).mousedown {
+    button:not(.bomb).mousedown {
         background-color: #b0b0b0;
     }
 
@@ -42,11 +42,12 @@
         background-color: red;
     }
 </style>
-<div
+<button
+        class="hidden-button"
         class:bomb={bomb}
         class:clicked={clicked}
         class:mousedown={isMouseDown}
         on:click
         on:mousedown={mouseDown}
         on:mouseleave={cancelMouseDown}
-></div>
+></button>

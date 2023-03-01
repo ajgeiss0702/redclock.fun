@@ -13,8 +13,8 @@
     let style = "background-image: url(\"" + image + "\")"
 </script>
 
-<div class="sb-background" {style} on:click>
+<button class="hidden-button sb-background" {style} on:click>
     <div class="sb-container">
         <span class="sb">{name}</span>
     </div>
-</div>
+</button>

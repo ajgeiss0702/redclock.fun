@@ -1,7 +1,7 @@
 div.sb-container, div.sb-container > * {
     transition: 0.3s;
 }
-div.sb-background {
+.sb-background {
     display: inline-block;
 
     cursor: pointer;
@@ -10,6 +10,7 @@ div.sb-background {
     height: 5em;
     width: 10em;
     margin: 0;
+    padding: 0;
 
 
     background-position: center;

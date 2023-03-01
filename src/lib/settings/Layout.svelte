@@ -37,16 +37,16 @@
         margin: -38.5vh -50vw;
     }
 </style>
-<div class="wrapper" on:click>
+<button class="hidden-button wrapper" on:click>
     <div class="preview layout-preview layout-preview-{layout}">
         {#if browser && useIframe}
-            <iframe src="/countdown?layout={layout}"></iframe>
+            <iframe src="/countdown?layout={layout}" title={layout}></iframe>
         {:else if browser}
-            <img src="/img/layouts/{layout}-{getThemeName()}.png" alt="{capitalize(layout)} layout">
+            <img src="/img/layouts/{layout}-{window.getThemeName()}.png" alt="{capitalize(layout)} layout">
         {/if}
     </div>
     <br>
     <span class="selectable" class:selected={browser && activeLayout === layout}>
         {capitalize(layout)}
     </span>
-</div>
+</button>

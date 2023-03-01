@@ -4,7 +4,7 @@
     import News from "$lib/countdown/sidebar/News.svelte";
     import Settings from "$lib/countdown/sidebar/Settings.svelte";
     import ScheduleList from "$lib/countdown/sidebar/ScheduleList.svelte";
-    import {browser} from "$app/environment";
+    import {browser, dev} from "$app/environment";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import Links from "$lib/countdown/sidebar/Links.svelte";
 
@@ -92,15 +92,15 @@
         }
     }
 </style>
-<div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
-    {#if !browser || !_GET("preview")}
+<div class="sidebar" class:center={!(!browser || !window._GET("preview"))}>
+    {#if !browser || !window._GET("preview")}
         <Quote/>
         {#key tab}
             <TabContent on:tab={changeTab}>
                 <TabPane tabId="news" tab="News" active={tab === "news"}>
                     <span slot="tab">
                         {#if unreadNews > 0}
-                            <a class="badge rounded-pill text-bg-danger">{unreadNews}</a>
+                            <span class="badge rounded-pill text-bg-danger">{unreadNews}</span>
                         {/if}
                     </span>
                     <News bind:unreadCount={unreadNews} bind:newsLength={totalNews} {currentTab}/>

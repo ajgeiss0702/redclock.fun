@@ -97,17 +97,17 @@
             {quote.quote}
         {/await}
         <div class="bottom">
-            <span class="button" id="copy-button" on:click={copy}>
+            <button class="hidden-button button" id="copy-button" on:click={copy}>
                 {#if copied}
                     <Icon name="clipboard-check"/>
                 {:else}
                     <Icon name="clipboard"/>
                 {/if}
-            </span>
+            </button>
             &nbsp;
-            <span class="button reload-button" id="reload-button" bind:this={reloadButton} on:click={fetchQuote}>
+            <button class="hidden-button button reload-button" id="reload-button" bind:this={reloadButton} on:click={fetchQuote}>
                 <Icon name="arrow-clockwise"/>
-            </span>
+            </button>
 
             <span class="author">
                 {#await quote}

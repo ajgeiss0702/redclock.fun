@@ -72,9 +72,4 @@
     }
     console.log(Swal)
 </script>
-<style>
-    div {
-        display: none;
-    }
-</style>
-<a class="btn btn-lg btn-warning" data-sveltekit-reload on:click={ask}>Reload all pages</a>
+<button class="btn btn-lg btn-warning" data-sveltekit-reload on:click={ask}>Reload all pages</button>

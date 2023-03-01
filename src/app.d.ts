@@ -17,3 +17,14 @@ declare namespace App {
         };
     }
 }
+
+declare interface Window {
+    updateTheme: () => void;
+    shouldSyncThemeWithSystem: () => boolean;
+    getThemeName: () => string;
+    updateLayout: () => void;
+    setLayout: (layoutName: string) => void;
+    getCookie: (cname: string) => string;
+    setCookie: (cname: string, cvalue: string, exdays: number) => void;
+    _GET: (parameterName: string) => string;
+}

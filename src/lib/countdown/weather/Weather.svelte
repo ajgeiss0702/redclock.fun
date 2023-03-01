@@ -232,7 +232,7 @@
                         {/await}
                         <br><br>
                     <div style='text-align: left;'>
-                        <span class="weekly-toggle-button" on:click={toggleWeekly}>{weekly ? "This Week" : "Today"}</span>
+                        <button class="hidden-button weekly-toggle-button" on:click={toggleWeekly}>{weekly ? "This Week" : "Today"}</button>
                     </div>
                     {#if weekly}
                         <table>
@@ -353,17 +353,17 @@
             </tr>
         </table>
     {:else}
-        {#if !_GET("preview")}
-            <a class="stealth-link">
+        {#if !window._GET("preview")}
+            <button class="hidden-button stealth-link">
                 <img
                         class="disabled-icon"
-                        src={getThemeName() === "light" ? "/img/icons/weather-disabled.svg" : "/img/icons/weather-disabled-white.svg"}
+                        src={window.getThemeName() === "light" ? "/img/icons/weather-disabled.svg" : "/img/icons/weather-disabled-white.svg"}
                         alt="Weather disabled icon"
                 >
                 <span class="disabled-text">
                     Weather has been disabled in settings
                 </span>
-            </a>
+            </button>
         {:else}
             <span class="preview-text">
                 Weather

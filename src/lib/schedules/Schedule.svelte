@@ -9,8 +9,8 @@
     }
 </style>
 
-<div class="sb-background" on:click>
+<button class="hidden-button sb-background" on:click>
     <div class="sb-container">
         <span class="sb">{name}</span>
     </div>
-</div>
+</button>

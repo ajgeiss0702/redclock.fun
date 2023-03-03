@@ -8,6 +8,7 @@
     import {goto, preloadData as prefetch} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
     import {getSchoolCode} from "$lib/utils.js";
+    import {page} from "$app/stores";
 
     export let data;
 
@@ -18,6 +19,8 @@
         }
         prefetch("/countdown")
     })
+
+    let reSelecting = $page.url.searchParams.has("reselect");
 
     /**
      * Sets the schedule and proceeds to the countdown page
@@ -75,10 +78,15 @@
     <span class="header">Schedule</span>
     <br>
     <p>
-        Please select which schedule you are on.<br>
-
+        {#if reSelecting}
+            <b>The schedule you had selected before no longer exists. Please select a new one.</b>
+        {:else}
+            Please select which schedule you are on.
+            <br>
+            <br>
+            <small>Don't know what this website is? <a href="/about">Read about it</a>.</small>
+        {/if}
         <br>
-        <small>Don't know what this website is? <a href="/about">Read about it</a>.</small><br>
         <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
     </p>
     <br>

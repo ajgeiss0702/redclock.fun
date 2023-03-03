@@ -49,11 +49,14 @@
     import {onDestroy, onMount} from "svelte";
     import School from "$lib/schools/School.svelte";
     import {goto, preloadData as prefetch} from "$app/navigation";
+    import {page} from "$app/stores";
 
 
     export let data;
 
     let first = true;
+
+    let reSelecting = $page.url.searchParams.has("reselect")
 
     let prefetchTimeout;
 
@@ -82,8 +85,10 @@
     <span class="header">Welcome</span><br>
 
     <p>
-        {#if first}
+        {#if first && !reSelecting}
             This seems to be your first time using this site, so you need to select which school you would like to see the countdown for.
+        {:else if reSelecting}
+            <b>The school you had selected before no longer exists. Please select a new one.</b>
         {:else}
             Please select a school
         {/if}

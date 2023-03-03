@@ -32,6 +32,7 @@ export function getSchedule() {
     if((Date.now() - schedCache.lastGet) < 300e3 && typeof schedCache.lastResp != "undefined") {
         return schedCache.lastResp;
     }
+
     schoolExists(getSchoolCode())
         .then(e => {
             if(e) return;
@@ -40,10 +41,18 @@ export function getSchedule() {
 
             location.href = "/schools?reselect";
         });
+
     schedCache.lastGet = Date.now();
     schedCache.lastResp = fetch('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode())
         .then(r => r.json())
         .then(j => j[getSchoolCode()]);
+
+    schedCache.lastResp.then(s => {
+        if(!s.schedules[getScheduleCode()]) {
+            location.href = "/schedules?reselect"
+        }
+    })
+
     return schedCache.lastResp;
 }
 

@@ -34,7 +34,6 @@
         div.style.backgroundSize = localStorage.customBackgroundFill === "true" ? "cover" : "contain";
     }
     function removeBackground() {
-        console.log("removing background")
         div.style.backgroundImage = "none";
         background = false
     }

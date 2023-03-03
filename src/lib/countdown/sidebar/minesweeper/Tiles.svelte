@@ -46,8 +46,6 @@
         }
         return false;
     }
-
-    $: console.log(bombs);
 </script>
 <style>
     div {

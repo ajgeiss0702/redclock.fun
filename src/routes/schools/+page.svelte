@@ -50,13 +50,14 @@
     import School from "$lib/schools/School.svelte";
     import {goto, preloadData as prefetch} from "$app/navigation";
     import {page} from "$app/stores";
+    import {browser} from "$app/environment";
 
 
     export let data;
 
     let first = true;
 
-    let reSelecting = $page.url.searchParams.has("reselect")
+    let reSelecting = browser ? $page.url.searchParams.has("reselect") : false;
 
     let prefetchTimeout;
 

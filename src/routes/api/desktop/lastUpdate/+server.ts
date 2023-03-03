@@ -3,7 +3,7 @@ const token = "glpat-sSHP7KNyoCsxc4x1QwYi";
 
 let cache: string;
 let lastGet = 0;
-export const prerender = false;
+export const prerender = true;
 
 export async function GET() {
 

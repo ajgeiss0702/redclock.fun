@@ -9,6 +9,7 @@
     import Schedule from "$lib/schedules/Schedule.svelte";
     import {getSchoolCode} from "$lib/utils.js";
     import {page} from "$app/stores";
+    import {browser} from "$app/environment";
 
     export let data;
 
@@ -20,7 +21,7 @@
         prefetch("/countdown")
     })
 
-    let reSelecting = $page.url.searchParams.has("reselect");
+    let reSelecting = browser ? $page.url.searchParams.has("reselect") : false;
 
     /**
      * Sets the schedule and proceeds to the countdown page

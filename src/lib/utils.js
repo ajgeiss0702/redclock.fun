@@ -165,7 +165,7 @@ export function capitalize(string) {
 }
 
 export function getAPIPrefix(pre = true) {
-    return (pre ? dev || prerendering : dev) ? "" : "";
+    return (pre ? dev || prerendering : dev) ? "" : "https://ul.redclock.fun";
 }
 
 export const shortMonths = [

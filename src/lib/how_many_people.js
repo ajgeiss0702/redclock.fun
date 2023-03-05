@@ -23,7 +23,10 @@ export function report() {
             console.debug(data);
             if(lastReload >= 0) {
                 if(lastReload < data.rel) {
-                    console.log("Reload number is higher than before! Reloading..")
+                    console.log("Reload number is higher than before! Reloading..");
+                    location.href = "";
+                } else if(lastReload > data.rel && data.rel !== 0) {
+                    console.log("Reload number was reset and is now higher than 0! Reloading..");
                     location.href = "";
                 }
             }

@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
     import {onMount} from "svelte";
     import {getAPIPrefix} from "$lib/utils.js";
     import LoadingText from "$lib/LoadingText.svelte";
-    import {Icon, Popover} from "sveltestrap";
+    import {ClipboardCheck, ArrowClockwise, Clipboard} from "svelte-bootstrap-icons";
+    import {PopupSettings, popup} from "@skeletonlabs/skeleton";
 
-    let quote = new Promise(() => {});
+    type Quote = {
+        quote: string,
+        author: string,
+        quoteNumber: number
+    }
+
+    let quote: Promise<Quote> = new Promise(() => {});
 
     let copied = false;
 
@@ -31,6 +38,18 @@
             clearTimeout(copyTimeout);
             copyTimeout = setTimeout(() => copied = false, 2e3);
         })
+    }
+
+    let copyHoverSettings: PopupSettings = {
+        event: 'hover',
+        target: 'copyHover',
+        placement: 'bottom'
+    }
+
+    let reloadHoverSettings: PopupSettings = {
+        event: 'hover',
+        target: 'reloadHover',
+        placement: 'bottom'
     }
 </script>
 <style>
@@ -97,17 +116,27 @@
             {quote.quote}
         {/await}
         <div class="bottom">
-            <button class="hidden-button button" id="copy-button" on:click={copy}>
+            <button class="hidden-button button" use:popup={copyHoverSettings} on:click={copy}>
                 {#if copied}
-                    <Icon name="clipboard-check"/>
+                    <ClipboardCheck/>
                 {:else}
-                    <Icon name="clipboard"/>
+                    <Clipboard/>
                 {/if}
             </button>
+            <div class="card p-2 whitespace-nowrap shadow-x1" data-popup="copyHover">
+                {#if copied}
+                    Copied to clipboard!
+                {:else}
+                    Copy this quote to your clipboard
+                {/if}
+            </div>
             &nbsp;
-            <button class="hidden-button button reload-button" id="reload-button" bind:this={reloadButton} on:click={fetchQuote}>
-                <Icon name="arrow-clockwise"/>
+            <button class="hidden-button button reload-button" use:popup={reloadHoverSettings} bind:this={reloadButton} on:click={fetchQuote}>
+                <ArrowClockwise/>
             </button>
+            <div class="card p-2 whitespace-nowrap shadow-x1" data-popup="reloadHover">
+                Get a new quote
+            </div>
 
             <span class="author">
                 {#await quote}
@@ -117,23 +146,5 @@
                 {/await}
             </span>
         </div>
-        <Popover
-            trigger="hover"
-            placement="bottom"
-            target="copy-button"
-        >
-            {#if copied}
-                Copied to clipboard!
-            {:else}
-                Copy this quote to your clipboard
-            {/if}
-        </Popover>
-        <Popover
-                trigger="hover"
-                placement="bottom"
-                target="reload-button"
-        >
-            Get a new quote
-        </Popover>
     </div>
 </div>

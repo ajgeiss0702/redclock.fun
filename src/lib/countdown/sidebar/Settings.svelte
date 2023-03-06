@@ -1,5 +1,4 @@
 <script>
-    import {Button} from "sveltestrap";
     import SettingsTable from "$lib/countdown/sidebar/SettingsTable.svelte";
 </script>
 <style>
@@ -13,7 +12,7 @@
     <br>
     <SettingsTable/>
     <br>
-    <Button color="primary" href="/settings">More settings</Button><br>
+    <a class="btn variant-filled-primary" href="/settings">More settings</a><br>
     <br>
-    <Button color="secondary" on:click={() => location.href = "/schools"}>Select a different school or schedule</Button>
+    <a class="btn variant-filled-secondary" on:click={() => location.href = "/schools"}>Select a different school or schedule</a>
 </div>

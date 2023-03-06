@@ -1,5 +1,4 @@
 <script>
-    import { TabContent, TabPane } from 'sveltestrap';
     import {onMount} from "svelte";
     import News from "$lib/countdown/sidebar/News.svelte";
     import Settings from "$lib/countdown/sidebar/Settings.svelte";
@@ -7,10 +6,11 @@
     import {browser, dev} from "$app/environment";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import Links from "$lib/countdown/sidebar/Links.svelte";
+    import {Tab, TabGroup} from "@skeletonlabs/skeleton";
 
     let tab = '';
 
-    let currentTab;
+    let currentTab = "";
 
     let unreadNews = 0;
     let totalNews = 0;
@@ -24,10 +24,9 @@
         currentTab = tab;
     });
 
-    function changeTab(e) {
-        currentTab = e.detail;
-        if(e.detail !== '') localStorage.tabId = e.detail;
-        if(e.detail === "news" && totalNews > 0) {
+    $: {
+        if(currentTab !== '') localStorage.tabId = currentTab;
+        if(currentTab === "news" && totalNews > 0) {
             localStorage.lastReadNews = totalNews;
             unreadNews = 0;
         }
@@ -96,25 +95,36 @@
     {#if !browser || !window._GET("preview")}
         <Quote/>
         {#key tab}
-            <TabContent on:tab={changeTab}>
-                <TabPane tabId="news" tab="News" active={tab === "news"}>
-                    <span slot="tab">
+            <TabGroup>
+                <Tab value="news" name="News" bind:group={currentTab}>
+                    <svelte:fragment slot="lead">
                         {#if unreadNews > 0}
                             <span class="badge rounded-pill text-bg-danger">{unreadNews}</span>
                         {/if}
-                    </span>
-                    <News bind:unreadCount={unreadNews} bind:newsLength={totalNews} {currentTab}/>
-                </TabPane>
-                <TabPane tabId="schedule" tab="Schedule" active={tab === "schedule"}>
-                    <ScheduleList/>
-                </TabPane>
-                <TabPane tabId="settings" tab="Settings" active={tab === "settings"}>
-                    <Settings/>
-                </TabPane>
-                <TabPane class="text-center" tabId="links" tab="Links" active={tab === "links"}>
-                    <Links/>
-                </TabPane>
-            </TabContent>
+                    </svelte:fragment>
+                    News
+                </Tab>
+                <Tab value="schedule" name="Schedule" bind:group={currentTab}>
+                    Schedule
+                </Tab>
+                <Tab value="settings" name="Settings" bind:group={currentTab}>
+                    Settings
+                </Tab>
+                <Tab value="links" name="Links" bind:group={currentTab}>
+                    Links
+                </Tab>
+                <svelte:fragment slot="panel">
+                    {#if currentTab === "news"}
+                        <News bind:unreadCount={unreadNews} bind:newsLength={totalNews} {currentTab}/>
+                    {:else if currentTab === "schedule"}
+                        <ScheduleList/>
+                    {:else if currentTab === "settings"}
+                        <Settings/>
+                    {:else if currentTab === "links"}
+                        <Links/>
+                    {/if}
+                </svelte:fragment>
+            </TabGroup>
         {/key}
     {:else}
         <span class="preview-text">

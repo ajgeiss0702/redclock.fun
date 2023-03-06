@@ -1,6 +1,5 @@
 <script>
     import '$lib/css/checkboxes.css'
-    import {Button} from "sveltestrap";
     import {browser} from "$app/environment";
     import {getBase64} from "$lib/utils.js";
 
@@ -79,7 +78,7 @@
         <input type="file" accept="image/*" bind:this={selectBox} on:change={fileSelect}>
         <br>
         {#if showBackgroundRemoveButton}
-            <Button outline color="danger" on:click={removeBackground}>Remove background</Button>
+            <button class="btn variant-ringed-error" on:click={removeBackground}>Remove background</button>
         {/if}
     </div>
 </div>

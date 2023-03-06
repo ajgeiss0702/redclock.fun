@@ -3,8 +3,8 @@
 </svelte:head>
 <script>
     import {getAPIPrefix} from "$lib/utils.js";
-    import {Icon} from "sveltestrap";
     import DateStamp from "$lib/DateStamp.svelte";
+    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
 
     export let data
 </script>
@@ -26,8 +26,8 @@
         }
     }
 </style>
-<a href="/countdown" class="btn btn-outline-secondary back"><Icon name="arrow-left-circle"/> Back to countdown</a>
-<div class="container">
+<a href="/countdown" class="btn btn-outline-secondary back"><ArrowLeftCircle/> Back to countdown</a>
+<div class="container mx-auto">
     <br>
     <h1>Desktop app</h1>
     The redclock.fun desktop app is here and ready!<br>
@@ -52,8 +52,8 @@
     <br>
     <br>
     Before downloading, please read the above info<br>
-    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/win"} class="btn btn-secondary">Windows Download</a>&nbsp
-    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/linux"} class="btn btn-secondary">Linux Download</a><br>
+    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/win"} class="btn variant-ringed-surface card-hover">Windows Download</a>&nbsp
+    <a data-sveltekit-reload href={getAPIPrefix(false) + "/api/desktop/download/linux"} class="btn variant-ringed-surface card-hover">Linux Download</a><br>
     <span style="font-size: 0.75em;">
         Last updated: <DateStamp date={new Date(data.lastUpdate)}/><br>
         Schedules are updated automatically. You only need to re-download if you are updating the desktop app itself.

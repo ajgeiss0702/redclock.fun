@@ -81,7 +81,7 @@
 
 </script>
 <div>
-    <img class="header-image" alt="Red Clock logo" src="/red_clock.png" height="300" width="300"><br>
+    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.png" height="300" width="300"><br>
 
     <span class="header">Welcome</span><br>
 

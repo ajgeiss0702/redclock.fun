@@ -5,7 +5,7 @@
 </style>
 <div>
     <br>
-    <img src="/red_clock.png" style="min-width: 10vw; max-height: 25vh;" alt="Red Clock logo">
+    <img src="/red_clock.png" class="inline-block" style="min-width: 10vw; max-height: 25vh;" alt="Red Clock logo">
     <br>
     <br>
     <br>

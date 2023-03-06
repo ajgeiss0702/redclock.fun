@@ -1,7 +1,7 @@
 <script>
-    import {Icon} from "sveltestrap";
     import ScheduleTable from "$lib/countdown/sidebar/ScheduleTable.svelte";
     import {getScheduleFor} from "$lib/countdown/countdown-utils.js";
+    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
 
     let dateInput;
 
@@ -39,8 +39,10 @@
         }
     }
 </style>
-<a href="/countdown" class="btn btn-outline-secondary back"><Icon name="arrow-left-circle"/> Back to countdown</a>
-<div class="container">
+<a href="/countdown" class="btn btn-outline-secondary back">
+    <ArrowLeftCircle/> Back to countdown
+</a>
+<div class="container mx-auto">
     <h1>Schedule preview</h1>
 
     Select a date below to see the schedule for that day.<br>

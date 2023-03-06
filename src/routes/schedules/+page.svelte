@@ -4,12 +4,12 @@
 <script>
 
     import {onMount} from "svelte";
-    import {Button, Icon} from "sveltestrap";
     import {goto, preloadData as prefetch} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
     import {getSchoolCode} from "$lib/utils.js";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
+    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
 
     export let data;
 
@@ -74,7 +74,7 @@
 
 </style>
 <div>
-    <img class="header-image" alt="Red Clock logo" src="/red_clock.png"><br>
+    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.png"><br>
 
     <span class="header">Schedule</span>
     <br>
@@ -88,7 +88,9 @@
             <small>Don't know what this website is? <a href="/about">Read about it</a>.</small>
         {/if}
         <br>
-        <Button outline secondary on:click={() => goto("/schools")}><Icon name="arrow-left-circle"/> Back</Button>
+        <a class="btn variant-ringed-surface hidden-link" href="/schools">
+            <ArrowLeftCircle/> &nbsp; Back
+        </a>
     </p>
     <br>
     <small>At {typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined' ? '' : data[localStorage.school].display}</small>

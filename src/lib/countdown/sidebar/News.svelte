@@ -1,7 +1,12 @@
 <script context="module">
     import './news-styles.css';
+    import {writable} from "svelte/store";
 
-    let data = `<img src="/img/loading.svg" style="height: 1em;" alt="loading">`;
+    let data = writable(`
+<div class="text-center">
+    <img src="/img/loading.svg" class="inline-block" style="height: 3em;" alt="loading">
+</div>
+`);
     let failed = false;
 
     let lastFetch = 0;
@@ -17,11 +22,11 @@
 
                 response = response.replace('<link', '&ltlink');
                 response = response.replace('</link', '&lt/link');
-                data = response;
+                data.set(response);
             })
             .catch(e => {
                 failed = true;
-                data = "Failed to fetch news: " + e;
+                data.set("Failed to fetch news: " + e);
             })
     }
     refreshNews()
@@ -51,11 +56,8 @@
         }
     })
 
-
-    // TODO: fix unread news thing
     $: {
         if(localStorage && newsDiv) {
-            // this is to make this reactive block run when lastFetch is updated (when the news is fetched)
             thingLastFetch = lastFetch;
             setTimeout(() => {
                 newsLength = newsDiv.getElementsByTagName("div").length;
@@ -78,5 +80,5 @@
 </style>
 <br>
 <div bind:this={newsDiv}>
-    {@html data}
+    {@html $data}
 </div>

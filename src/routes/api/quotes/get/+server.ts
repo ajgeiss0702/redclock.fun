@@ -1,7 +1,5 @@
 import { quotes } from "$lib/quotes";
 
-
-
 export async function GET() {
     let quoteIndex = Math.floor(Math.random() * quotes.length);
     let quote = quotes[quoteIndex];

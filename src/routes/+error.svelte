@@ -18,7 +18,7 @@
 
 <div class="outer">
     <div class="inner">
-        <img src="/img/broken-clock.png" alt="Broken Clock"><br>
+        <img src="/img/broken-clock.webp" alt="Broken Clock"><br>
         <br>
         <h1>{$page.status}</h1>
         {$page.error.message}

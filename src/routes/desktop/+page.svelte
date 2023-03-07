@@ -26,7 +26,10 @@
         }
     }
 </style>
-<a href="/countdown" class="btn btn-outline-secondary back"><ArrowLeftCircle/> Back to countdown</a>
+<a href="/countdown" class="btn variant-ringed-surface back">
+    <ArrowLeftCircle/> &nbsp;
+    Back to countdown
+</a>
 <div class="container mx-auto">
     <br>
     <h1>Desktop app</h1>

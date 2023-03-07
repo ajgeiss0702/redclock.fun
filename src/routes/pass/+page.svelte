@@ -28,12 +28,8 @@
         }
     }
 </script>
-<style>
-    div {
-        text-align: center;
-        margin-top: 30vh;
-    }
-</style>
-<div>
-    {@html status}
+<div class="flex text-center h-screen items-center">
+    <div class="text-center w-screen inner">
+        {@html status}
+    </div>
 </div>

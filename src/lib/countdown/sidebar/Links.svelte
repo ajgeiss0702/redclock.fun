@@ -4,11 +4,11 @@
     <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
 </a><br>
 <br>
-<a class="btn variant-filled-tertiary" href="https://app.feedbacky.net/p/redclockfun" target="_blank" rel="noreferrer">
+<a class="btn variant-filled-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank" rel="noreferrer">
     Suggest a feature
 </a><br>
 <br>
-<a class="btn variant-ringed-error" href="/desktop">Desktop App</a><br>
+<a class="btn variant-glass-error" href="/desktop">Desktop App</a><br>
 <br>
 <a class="btn variant-ringed-surface" href="/lightweight">Lightweight</a>
 <br>

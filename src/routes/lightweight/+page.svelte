@@ -1,17 +1,13 @@
 <script>
     import CountdownBox from "$lib/countdown/CountdownBox.svelte";
 </script>
-<style>
-    div {
-        text-align: center;
-    }
-</style>
-<CountdownBox box={false}/>
+<div class="p-4">
+    <CountdownBox box={false}/>
+</div>
 <br>
 <br>
-<br>
-<div>
-    <a href="/lightweight/what" class="btn btn-outline-secondary">What is this?</a><br>
+<div class="text-center">
+    <a href="/lightweight/what" class="btn variant-ringed-surface">What is this?</a><br>
     <br>
-    <a href="/countdown" class="btn btn-outline-secondary">Back to normal countdown</a>
+    <a href="/countdown" class="btn variant-ringed-surface">Back to normal countdown</a>
 </div>

@@ -223,6 +223,17 @@ export function getBase64(file) {
     })
 }
 
+export function _GET(parameterName) {
+    let result = null,
+        tmp = [];
+    let items = location.search.substring(1).split("&");
+    for (let index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
 export function safeLength(a) {
     if(typeof a != 'object') {
         return 0;

@@ -7,6 +7,7 @@
     import {browser, dev} from "$app/environment";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import Links from "$lib/countdown/sidebar/Links.svelte";
+    import {_GET} from "$lib/utils";
 
     let tab = '';
 
@@ -92,8 +93,8 @@
         }
     }
 </style>
-<div class="sidebar" class:center={!(!browser || !window._GET("preview"))}>
-    {#if !browser || !window._GET("preview")}
+<div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
+    {#if !browser || !_GET("preview")}
         <Quote/>
         {#key tab}
             <TabContent on:tab={changeTab}>

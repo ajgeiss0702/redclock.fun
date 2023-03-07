@@ -2,6 +2,7 @@
     import {calibrateCountdown, periodString, recalcCdd, timeString, stopCountdown} from "$lib/countdown/countdown.js";
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
+    import {_GET} from "$lib/utils";
 
     export let withWeather = true;
 
@@ -127,7 +128,7 @@
 <div class:countdown-container={box} class:no-weather={!withWeather}>
     <div class:countdown-inner={box}>
         <div class="countdown-text">
-            {#if !browser || !window._GET("preview")}
+            {#if !browser || !_GET("preview")}
                 {#if $timeString === '' || $timeString === 'load'}
                     <img src="/img/loading.svg" alt="loading" height="200" width="200">
                 {:else if $timeString === 'bell'}
@@ -141,7 +142,7 @@
         </div>
         <br>
         <div class="countdown-period">
-            {#if !browser || !window._GET("preview")}
+            {#if !browser || !_GET("preview")}
                 {$periodString}
             {/if}
         </div>

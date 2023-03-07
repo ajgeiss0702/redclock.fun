@@ -5,6 +5,7 @@
     import LoadingText from "$lib/LoadingText.svelte";
     import WeatherIcon from "$lib/countdown/weather/WeatherIcon.svelte";
     import {browser} from "$app/environment";
+    import {_GET} from "$lib/utils";
 
     export let shown = true;
     export let enabled = true;
@@ -353,7 +354,7 @@
             </tr>
         </table>
     {:else}
-        {#if !window._GET("preview")}
+        {#if !_GET("preview")}
             <button class="hidden-button stealth-link">
                 <img
                         class="disabled-icon"

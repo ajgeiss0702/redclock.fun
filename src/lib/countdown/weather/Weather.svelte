@@ -130,6 +130,7 @@
         background-color: transparent;
         border-color: rgba(255, 255, 255, 0.15);
         border-style: solid;
+        border-width: initial;
     }
 
     .weather-icon {

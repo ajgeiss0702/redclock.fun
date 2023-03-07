@@ -35,6 +35,8 @@
             margin-left: auto;
             margin-right: auto;
             display: inline-block;
+            text-align: center;
+            width: 100%;
         }
     }
 

@@ -59,6 +59,7 @@
         max-width: 80%;
         border-style: solid;
         border-radius: 1em;
+        border-width: initial;
         border-color: rgba(127, 127, 127, 0.1);
         max-height: 27vh;
         overflow-y: hidden;

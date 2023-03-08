@@ -25,5 +25,9 @@ export async function GET() {
         r = cache;
     }
 
-    return new Response(r);
+    return new Response(r, {
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
+    });
 }

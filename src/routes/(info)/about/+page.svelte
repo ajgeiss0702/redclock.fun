@@ -5,6 +5,7 @@ import {version} from "$app/environment";
 <style>
     div {
         text-align: center;
+        padding-bottom: 3em;
     }
 </style>
 <svelte:head>

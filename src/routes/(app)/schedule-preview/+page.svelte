@@ -25,6 +25,7 @@
     div {
         text-align: center;
         padding-top: 0.5em;
+        padding-bottom: 5em;
     }
     .back {
         position: fixed;
@@ -38,9 +39,16 @@
             margin-top: 1em;
         }
     }
+
+    input {
+        background-color: white;
+        color: black;
+    }
 </style>
-<a href="/countdown" class="btn btn-outline-secondary back">
-    <ArrowLeftCircle/> Back to countdown
+<a href="/countdown" class="btn variant-outline-surface back">
+    <ArrowLeftCircle/>
+    &nbsp;
+    Back to countdown
 </a>
 <div class="container mx-auto">
     <h1>Schedule preview</h1>
@@ -52,8 +60,13 @@
     If you have the schedule and do not see it in here, please make sure I know about it
     by emailing it to me: <a href="mailto:schedules@redclock.fun">schedules@redclock.fun</a><br>
     <br>
-    <label for="date-preview_date-select">Select a date:</label> <input id="date-preview_date-select" type="date" bind:value={dateInput}>
+    <label for="date-preview_date-select">Select a date:</label>
+    <input id="date-preview_date-select" type="date" bind:value={dateInput}>
     <br>
     <br>
-    <ScheduleTable {schedule}/>
+    {#if dateInput}
+        <ScheduleTable {schedule}/>
+    {/if}
+    <br>
+    <br>
 </div>

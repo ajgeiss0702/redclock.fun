@@ -2,7 +2,9 @@
     import {onMount} from "svelte";
     import {getAPIPrefix} from "$lib/utils.js";
     import LoadingText from "$lib/LoadingText.svelte";
-    import {ClipboardCheck, ArrowClockwise, Clipboard} from "svelte-bootstrap-icons";
+    import ClipboardCheck from "svelte-bootstrap-icons/lib/ClipboardCheck.svelte"
+    import ArrowClockwise from "svelte-bootstrap-icons/lib/ArrowClockwise.svelte"
+    import Clipboard from "svelte-bootstrap-icons/lib/Clipboard.svelte"
     import {PopupSettings, popup} from "@skeletonlabs/skeleton";
 
     type Quote = {

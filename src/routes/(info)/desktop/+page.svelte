@@ -4,7 +4,7 @@
 <script>
     import {getAPIPrefix} from "$lib/utils.js";
     import DateStamp from "$lib/DateStamp.svelte";
-    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
+    import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
 
     export let data
 </script>

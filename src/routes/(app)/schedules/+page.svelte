@@ -9,7 +9,7 @@
     import {getSchoolCode} from "$lib/utils.js";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
-    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
+    import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
 
     export let data;
 

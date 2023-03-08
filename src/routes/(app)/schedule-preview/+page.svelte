@@ -1,7 +1,7 @@
 <script>
     import ScheduleTable from "$lib/countdown/sidebar/ScheduleTable.svelte";
     import {getScheduleFor} from "$lib/countdown/countdown-utils.js";
-    import {ArrowLeftCircle} from "svelte-bootstrap-icons";
+    import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
 
     let dateInput;
 

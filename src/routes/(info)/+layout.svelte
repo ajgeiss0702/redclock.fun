@@ -1,7 +1,7 @@
 <script>
-    import {AppBar, Drawer, drawerStore} from "@skeletonlabs/skeleton";
+    import {AppBar, drawerStore} from "@skeletonlabs/skeleton";
     import NavLinks from "$lib/info/NavLinks.svelte";
-    import {List as MenuIcon} from "svelte-bootstrap-icons";
+    import MenuIcon from "svelte-bootstrap-icons/lib/List.svelte"
     import {browser} from "$app/environment";
 
     let root = "/";

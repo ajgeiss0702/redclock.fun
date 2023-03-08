@@ -1,3 +1,7 @@
+<script>
+import {version} from "$app/environment";
+</script>
+
 <style>
     div {
         text-align: center;
@@ -35,6 +39,16 @@
         <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noreferrer">CC 3.0 BY</a><br>
         <br>
         <div>Copy quote icon made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <br>
+        <br>
+        <br>
+        Red Clock made by
+        <a href="https://about.ajg0702.us" target="_blank">
+            Aiden Geiss
+        </a>
+        <br>
+        Version: {version}
+
     </div>
 
 </div>

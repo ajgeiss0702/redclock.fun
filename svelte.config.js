@@ -28,6 +28,11 @@ const config = {
       }),
     ]),
     inlineStyleThreshold: 1000,
+    version: {
+      name: (await import('child_process'))
+          .execSync('git rev-parse HEAD')
+          .toString().trim()
+    }
   },
   preprocess: [
     preprocess({

@@ -44,7 +44,7 @@
 
 <br>
 <h1>
-    <img src="/red_clock.png" class="inline-block" style="min-width: 10vw; max-height: 25vh;" alt="Red Clock logo"><br>
+    <img src="/red_clock.png" class="inline-block" style="height: 25vh;" alt="Red Clock logo"><br>
     <br>
     <span class="bg-gradient-to-br from-primary-600 via-primary-400 to-primary-500 bg-clip-text text-transparent box-decoration-clone">
         Red Clock

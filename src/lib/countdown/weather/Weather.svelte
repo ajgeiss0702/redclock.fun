@@ -326,10 +326,10 @@
                                         </span>
                                     {:then data}
                                         <span
-                                                class='badge rounded-pill'
-                                                class:text-bg-danger={data.weatherData.current.uvi >= 8}
-                                                class:text-bg-warning={data.weatherData.current.uvi >= 3 && data.weatherData.current.uvi < 8}
-                                                class:text-bg-success={data.weatherData.current.uvi < 3}
+                                                class='badge'
+                                                class:variant-filled-error={data.weatherData.current.uvi >= 8}
+                                                class:variant-filled-warning={data.weatherData.current.uvi >= 3 && data.weatherData.current.uvi < 8}
+                                                class:variant-filled-success={data.weatherData.current.uvi < 3}
                                         >
                                             {#if data.weatherData.current.uvi >= 11}
                                                 Extreme

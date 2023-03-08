@@ -1,10 +1,11 @@
 <script>
-    import {goto} from "$app/navigation";
+    import {goto, preloadData as prefetch} from "$app/navigation";
     import {paths as oldPaths} from "$lib/oldPaths.js";
     import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
     import {browser} from "$app/environment";
     import {SlideToggle} from "@skeletonlabs/skeleton";
     import {page} from "$app/stores";
+    import {onDestroy, onMount} from "svelte";
 
     if(browser && (localStorage.alwaysRedirect || "false") === "true" && !$page.url.searchParams.has("noRedirect")) {
         let hash = location.hash.split('#').splice(1).join('#');
@@ -35,6 +36,17 @@
             }
         }
     }
+
+
+    let prefetchTimeout;
+
+    onMount(() => {
+        prefetchTimeout = setTimeout(() => prefetch(localStorage.school ? "/countdown" : "/schools"), 500)
+    });
+
+    onDestroy(() => {
+        clearTimeout(prefetchTimeout);
+    })
 </script>
 <svelte:head>
     <title>Red Clock</title>

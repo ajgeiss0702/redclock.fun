@@ -13,6 +13,7 @@
 <style>
     img {
         height: 3em;
+        width: 3em;
         align-self: center;
     }
 
@@ -33,7 +34,7 @@
 <div class="text-left">
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3">
         <svelte:fragment slot="lead">
-            <a href={root} role="presentation">
+            <a href={root} aria-label="Red Clock Logo">
                 <img src="/red_clock.png" alt="">
             </a>
             <a href={root}>

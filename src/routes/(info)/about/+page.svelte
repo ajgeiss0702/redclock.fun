@@ -3,6 +3,9 @@
         text-align: center;
     }
 </style>
+<svelte:head>
+    <title>About - Red Clock</title>
+</svelte:head>
 <div>
     <br>
     <h1>About Red Clock</h1>

@@ -36,6 +36,9 @@
         }
     }
 </script>
+<svelte:head>
+    <title>Red Clock</title>
+</svelte:head>
 <style>
     h1 > span {
         font-size: 2em !important;

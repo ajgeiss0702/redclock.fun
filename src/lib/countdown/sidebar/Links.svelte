@@ -10,7 +10,9 @@
 <br>
 <a class="btn variant-glass-error" href="/desktop">Desktop App</a><br>
 <br>
-<a class="btn variant-ringed-surface" href="/lightweight">Lightweight</a>
+<a class="btn variant-ringed-surface" href="/lightweight">Lightweight</a><br>
+<br>
+<a class="btn variant-glass-primary" href="/about">About Red Clock</a><br>
 <br>
 
 

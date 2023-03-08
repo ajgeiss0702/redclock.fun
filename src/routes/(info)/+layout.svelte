@@ -2,6 +2,10 @@
     import {AppBar, Drawer, drawerStore} from "@skeletonlabs/skeleton";
     import NavLinks from "$lib/info/NavLinks.svelte";
     import {List as MenuIcon} from "svelte-bootstrap-icons";
+    import {browser} from "$app/environment";
+
+    let root = "/";
+    if(browser && (localStorage.alwaysRedirect || "false") === "true") root = "/?noRedirect"
 </script>
 <style>
     img {
@@ -26,10 +30,10 @@
 <div class="text-left">
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3">
         <svelte:fragment slot="lead">
-            <a href="/">
+            <a href={root}>
                 <img src="/red_clock.png" alt="">
             </a>
-            <a href="/">
+            <a href={root}>
                 <h2 class="pl-4">Red Clock</h2>
             </a>
         </svelte:fragment>

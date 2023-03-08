@@ -22,10 +22,11 @@
     }
 
     let alwaysRedirect = browser && (localStorage.alwaysRedirect || "false") === "true";
+
     $: {
-        if(browser && !$page.url.searchParams.has("noRedirect")) {
+        if(browser) {
             localStorage.alwaysRedirect = alwaysRedirect;
-            if(alwaysRedirect) {
+            if(alwaysRedirect && !$page.url.searchParams.has("noRedirect")) {
                 if(localStorage.school) {
                     goto("/countdown");
                 } else {

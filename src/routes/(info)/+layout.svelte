@@ -31,7 +31,7 @@
     }
 
 </style>
-<div class="text-left">
+<div class="text-left sticky top-0 w-full">
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3">
         <svelte:fragment slot="lead">
             <a href={root} aria-label="Red Clock Logo">

@@ -28,6 +28,13 @@ exec("npm run build", async () => {
         res.end('ok');
     });
 
+    app.use((req, res, next) => {
+        if(req.path.indexOf("api") !== -1) {
+            res.set("Access-Control-Allow-Origin", "*");
+        }
+        next();
+    })
+
     const handler = (await import('./build-node/handler.js')).handler;
     app.use(handler);
 

@@ -19,6 +19,7 @@
     import {browser} from "$app/environment";
     import NavLinks from "$lib/info/NavLinks.svelte";
     import X from "svelte-bootstrap-icons/lib/X.svelte";
+    import {afterNavigate} from "$app/navigation";
 
     if (browser) {
         import("$lib/how_many_people.js");
@@ -55,6 +56,10 @@
             }
         });
     }
+
+    afterNavigate(() => {
+        drawerStore.close();
+    })
 </script>
 
 <Drawer>

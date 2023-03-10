@@ -11,7 +11,7 @@
 
     let tab = '';
 
-    let currentTab;
+    let currentTab = browser ? (localStorage.tabId || "news") : "";
 
     let unreadNews = 0;
     let totalNews = 0;

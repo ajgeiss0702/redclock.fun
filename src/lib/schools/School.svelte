@@ -14,7 +14,7 @@
 </script>
 
 <button class="hidden-button sb-background" {style} on:click>
-    <div class="sb-container">
+    <span class="sb-container">
         <span class="sb">{name}</span>
-    </div>
+    </span>
 </button>

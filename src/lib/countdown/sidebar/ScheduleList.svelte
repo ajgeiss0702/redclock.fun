@@ -45,7 +45,7 @@
     Issue with the schedule? Notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
     <br>
     <br>
-    <a href="/schedule-preview" class="btn btn-primary">Schedule Preview</a>
+    <a href="/schedule-preview" class="btn variant-glass-secondary">Schedule Preview</a>
     <br>
     <br>
     <br>

@@ -26,17 +26,20 @@
     td {
         color: inherit !important;
     }
+    th {
+        text-align: center;
+    }
 </style>
-<table class="table table-striped">
+<table class="table">
     <thead>
-    <tr>
-        <th>Hour</th>
-        <th>Time</th>
-    </tr>
+        <tr>
+            <th>Hour</th>
+            <th>Time</th>
+        </tr>
     </thead>
     <tbody>
     {#each Object.keys(schedule) as className}
-        <tr class:table-secondary={currentPeriod === className}>
+        <tr class:table-row-checked={currentPeriod === className}>
             <td>{className}</td>
             <td>{dateString(makeDate(schedule[className]))}</td>
         </tr>

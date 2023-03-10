@@ -34,7 +34,7 @@
         height: 100vh;
         transform: scale(25%);
         position: absolute;
-        margin: -38.5vh -50vw;
+        margin: -38vh -37.5vw;
     }
 </style>
 <button class="hidden-button wrapper" on:click>

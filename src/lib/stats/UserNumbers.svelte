@@ -3,7 +3,6 @@
     import {onDestroy, onMount} from "svelte";
     import {commas} from "$lib/utils.js";
     import AnimateNumber from "$lib/AnimateNumber.svelte";
-    import {Popover} from "sveltestrap";
 
     let nowUsers = new Promise(() => {});
     let nowUsersNumber;
@@ -63,9 +62,6 @@
         <AnimateNumber number={nowUsersNumber}/>
     </span>
 </h1>
-<Popover trigger="hover" placement="top" target="nowUsers">
-    Number of users with the site open right now
-</Popover>
 <div class="numbers">
     <span class="text-secondary" id="yesterdayUsers">
         {#await yesterdayUsers}
@@ -74,9 +70,6 @@
             {commas(users)}
         {/await}
     </span>
-    <Popover trigger="hover" placement="top" target="yesterdayUsers">
-        Total number of unique users yesterday
-    </Popover>
     &nbsp;
     <span id="todayUsers">
         {#await todayUsers}
@@ -85,7 +78,4 @@
             {commas(users)}
         {/await}
     </span>
-    <Popover trigger="hover" placement="top" target="todayUsers">
-        Total number of unique users today (so far)
-    </Popover>
 </div>

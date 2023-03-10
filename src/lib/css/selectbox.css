@@ -1,4 +1,4 @@
-div.sb-container, div.sb-container > * {
+.sb-container, div.sb-container > * {
     transition: 0.3s;
 }
 .sb-background {
@@ -19,16 +19,16 @@ div.sb-container, div.sb-container > * {
 
     box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
 }
-div.sb-container:hover {
+.sb-container:hover {
     background-color: rgba(5, 5, 5, 0.4);
 }
-span.sb {
+.sb {
     position: absolute;
     display: inline-block;
     width: 10em;
     color: rgba(0, 0, 0, 0);
 }
-div.sb-container:hover > span {
+.sb-container:hover > span {
     color: white;
 }
 
@@ -36,7 +36,7 @@ div.sb-container:hover > span {
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-div.sb-container {
+.sb-container {
     display: flex;
 
     height: 100%;
@@ -48,21 +48,21 @@ div.sb-container {
     align-items: center;
 }
 
-@media (orientation: portrait) {
-    div.sb-background {
+@media (hover: none) {
+    .sb-background {
         height: 30.25vw;
         width: 30.25vw;
         margin: 0;
     }
-    span.sb {
+    .sb {
         max-width: 30.25vw;
         width: 100%;
         padding: 0.25em;
     }
-    div.sb-container {
-        background-color: rgba(5, 5, 5, 0.4);
+    .sb-container {
+        background-color: rgba(5, 5, 5, 0.6);
     }
-    div.sb-container > span {
+    .sb-container > span {
         color: white;
     }
 }

@@ -43,7 +43,7 @@
         at the top
     {/if}-->
     <br>
-    <div class="settings-table">
+    <div class="settings-table p-4">
         <SettingsTable expand={true}/>
     </div>
 </div>

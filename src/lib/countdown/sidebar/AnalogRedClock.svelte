@@ -95,4 +95,4 @@
     }
 
 </script>
-<canvas height="150" width="150" bind:this={canvas}></canvas>
+<canvas class="mx-auto" height="150" width="150" bind:this={canvas}></canvas>

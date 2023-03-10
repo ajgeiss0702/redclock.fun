@@ -33,6 +33,15 @@ export function getSchedule() {
         return schedCache.lastResp;
     }
 
+    if(!getSchoolCode()) {
+        location.href = "/schools";
+        return;
+    }
+    if(!getScheduleCode()) {
+        location.href = "/schedules";
+        return;
+    }
+
     schoolExists(getSchoolCode())
         .then(e => {
             if(e) return;

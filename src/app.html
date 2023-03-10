@@ -139,7 +139,7 @@
 			return result;
 		}
 
-		if(location.pathname === "/") {
+		if(location.pathname === "/" && (localStorage.alwaysRedirect || "false") === "true" && !_GET("noRedirect")) {
 			if(localStorage.school && localStorage.schedule) {
 				location.href = "/countdown";
 			} else if(!localStorage.school) {

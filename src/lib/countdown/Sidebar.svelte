@@ -26,8 +26,8 @@
     });
 
     $: {
-        if(currentTab !== '') localStorage.tabId = currentTab;
-        if(currentTab === "news" && totalNews > 0) {
+        if(browser && currentTab !== '') localStorage.tabId = currentTab;
+        if(browser && currentTab === "news" && totalNews > 0) {
             localStorage.lastReadNews = totalNews;
             unreadNews = 0;
         }

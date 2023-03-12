@@ -1,4 +1,4 @@
-import {makeDate} from "$lib/countdown/countdown-utils.js";
+import {makeDate} from "$lib/countdown/countdown-utils.ts";
 import {create, get} from "$lib/settings";
 import {browser, dev, building as prerendering} from "$app/environment";
 

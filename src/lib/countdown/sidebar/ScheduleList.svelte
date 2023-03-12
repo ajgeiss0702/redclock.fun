@@ -1,7 +1,7 @@
 <script>
 
     import {currentTime, periodString} from "$lib/countdown/countdown.js";
-    import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.js";
+    import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.ts";
     import {onDestroy, onMount} from "svelte";
     import {dateString} from "$lib/utils.js";
     import ScheduleTable from "$lib/countdown/sidebar/ScheduleTable.svelte";

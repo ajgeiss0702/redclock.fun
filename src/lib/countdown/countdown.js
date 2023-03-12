@@ -1,5 +1,5 @@
 import {readable} from "svelte/store";
-import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.js";
+import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.ts";
 import {create, get, onChange} from "$lib/settings.ts";
 import {browser} from "$app/environment";
 

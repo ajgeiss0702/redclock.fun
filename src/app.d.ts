@@ -14,6 +14,8 @@ declare namespace App {
                     'indexes': string[]
                 }) => void
             };
+
+            D1DB: D1Database
         };
     }
 }

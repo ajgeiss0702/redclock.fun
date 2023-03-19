@@ -33,6 +33,11 @@
                 {form.message}
             </span>
         {/if}
+        {#if form?.ratelimited}
+            <span class="text-primary-500-400-token">
+                You are trying to log in too fast. Wait a minute and try again.
+            </span>
+        {/if}
 
 
         <br>
@@ -42,6 +47,6 @@
 
 <style>
     .signin-box {
-        max-width: 500px;
+        max-width: min(500px, calc(100vw - 1em));
     }
 </style>

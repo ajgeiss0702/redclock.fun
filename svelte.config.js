@@ -18,7 +18,7 @@ const config = {
       }),
       cfAdapter({
         routes: {
-          include: ["/api/*"],
+          include: ["/api/*", "/editor/*"],
           exclude: ["/api/schedule.php"],
         },
       }),

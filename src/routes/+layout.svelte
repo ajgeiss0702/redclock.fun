@@ -20,6 +20,7 @@
     import NavLinks from "$lib/info/NavLinks.svelte";
     import X from "svelte-bootstrap-icons/lib/X.svelte";
     import {afterNavigate} from "$app/navigation";
+    import EditorNavLinks from "$lib/editor/EditorNavLinks.svelte";
 
     if (browser) {
         import("$lib/how_many_people.js");
@@ -63,12 +64,16 @@
 </script>
 
 <Drawer>
-    {#if $drawerStore.id === "sideNavBar"}
+    {#if $drawerStore.id === "sideNavBar" || $drawerStore.id === "editorSideNavBar"}
         <button class="btn p-2 ml-2 closeButton" on:click={() => drawerStore.close()}>
             <X style="height: 3em; width: 3em;"/>
         </button>
         <div class="text-center">
-            <NavLinks vertical={true}/>
+            {#if $drawerStore.id === "sideNavBar"}
+                <NavLinks vertical={true}/>
+            {:else}
+                <EditorNavLinks vertical={true}/>
+            {/if}
         </div>
     {/if}
 </Drawer>

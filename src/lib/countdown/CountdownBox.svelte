@@ -17,6 +17,31 @@
     })
 </script>
 
+<div class:countdown-container={box} class:no-weather={!withWeather}>
+    <div class:countdown-inner={box}>
+        <div class="countdown-text">
+            {#if !browser || !_GET("preview")}
+                {#if $timeString === '' || $timeString === 'load'}
+                    <img src="/img/loading.svg" alt="loading" height="200" width="200">
+                {:else if $timeString === 'bell'}
+                    <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
+                {:else}
+                    {$timeString}
+                {/if}
+            {:else}
+                Countdown
+            {/if}
+        </div>
+        <br>
+        <div class="countdown-period">
+            {#if !browser || !_GET("preview")}
+                {$periodString}
+            {/if}
+        </div>
+    </div>
+</div>
+
+
 <style>
     div {
         text-align: center;
@@ -126,26 +151,3 @@
         }
     }
 </style>
-<div class:countdown-container={box} class:no-weather={!withWeather}>
-    <div class:countdown-inner={box}>
-        <div class="countdown-text">
-            {#if !browser || !_GET("preview")}
-                {#if $timeString === '' || $timeString === 'load'}
-                    <img src="/img/loading.svg" alt="loading" height="200" width="200">
-                {:else if $timeString === 'bell'}
-                    <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
-                {:else}
-                    {$timeString}
-                {/if}
-            {:else}
-                Countdown
-            {/if}
-        </div>
-        <br>
-        <div class="countdown-period">
-            {#if !browser || !_GET("preview")}
-                {$periodString}
-            {/if}
-        </div>
-    </div>
-</div>

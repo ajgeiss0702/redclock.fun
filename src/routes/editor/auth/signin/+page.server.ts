@@ -30,6 +30,8 @@ export const actions = {
                 .bind(username)
                 .first()) ?? {};
 
+            console.log({key, name, user})
+
             if((key && name && user) && await pbkdf2Verify(key, password as string)) {
                 const sessionId = crypto.randomUUID();
                 await (platform.env.D1DB.prepare("insert into sessions (id, created, user) values (?, ?, ?)")

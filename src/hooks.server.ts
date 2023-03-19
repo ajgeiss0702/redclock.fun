@@ -13,7 +13,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
     if(event.url.pathname.startsWith("/editor")) {
         event.locals.user = await getUserFromSession(event?.platform?.env, event.cookies.get("session"))
-        console.log("User is " + JSON.stringify(event.locals.user))
     }
 
 

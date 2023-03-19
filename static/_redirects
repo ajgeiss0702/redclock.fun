@@ -4,5 +4,7 @@
 /reload.php /
 /%23countdown /countdown 301
 
+/_worker.js.map /
+
 /admin /stats 301
 /admin/ /stats 301

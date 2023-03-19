@@ -6,7 +6,5 @@ export const load = (async ({url, locals}) => {
         throw redirect(302, "/editor");
     }
 
-    console.log(locals.user)
-
     return {user: locals.user}
 }) satisfies ServerLoad;

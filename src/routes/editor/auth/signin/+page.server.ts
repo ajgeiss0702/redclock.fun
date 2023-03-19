@@ -1,5 +1,5 @@
 import type {Actions} from "@sveltejs/kit";
-import {fail} from "@sveltejs/kit";
+import {fail, redirect} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 import {pbkdf2Verify} from "$lib/server/crypto-pbkdf2";
 
@@ -26,12 +26,21 @@ export const actions = {
         simpleRateLimit[getClientAddress()] = limits;
 
         if(platform?.env?.D1DB) {
-            const {key, name} = await (platform.env.D1DB.prepare("select password as key,name from users where username=?")
+            const {key, name, user} = await (platform.env.D1DB.prepare("select password as key,name,id as user from users where username=?")
                 .bind(username)
                 .first()) ?? {};
 
-            if((key && name) && await pbkdf2Verify(key, password as string)) {
-                return {username, message: "success!"}
+            if((key && name && user) && await pbkdf2Verify(key, password as string)) {
+                const sessionId = crypto.randomUUID();
+                await (platform.env.D1DB.prepare("insert into sessions (id, created, user) values (?, ?, ?)")
+                    .bind(sessionId, Date.now(), user))
+
+                const futureExpiry = new Date();
+                futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
+
+                cookies.set("session", sessionId, {path: "/", expires: futureExpiry});
+
+                throw redirect(303, "/editor");
             } else {
                 return fail(400, {username, incorrect: true})
             }
@@ -40,8 +49,6 @@ export const actions = {
         } else {
             return fail(500, {username, message: "Server error: Missing DB!"})
         }
-
-        return { username, message: "TODO" }
     }
 } satisfies Actions;
 

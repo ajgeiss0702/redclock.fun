@@ -26,15 +26,19 @@ export const actions = {
         simpleRateLimit[getClientAddress()] = limits;
 
         if(platform?.env?.D1DB) {
-            const {key, name, user} = await (platform.env.D1DB.prepare("select password as key,name,id as user from users where username=?")
+            const {key, name, user} = await (
+                platform.env.D1DB.prepare("select password as key,name,id as user from users where username=?")
                 .bind(username)
-                .first()) ?? {};
+                .first()
+            ) ?? {};
 
             if((key && name && !isNaN(Number(user))) && await pbkdf2Verify(key, password as string)) {
                 const sessionId = crypto.randomUUID();
-                await (platform.env.D1DB.prepare("insert into sessions (id, created, user) values (?, ?, ?)")
+                await (
+                    platform.env.D1DB.prepare("insert into sessions (id, created, user) values (?, ?, ?)")
                     .bind(sessionId, Date.now(), user)
-                    .run())
+                    .run()
+                )
 
                 const futureExpiry = new Date();
                 futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
@@ -46,7 +50,12 @@ export const actions = {
                 return fail(400, {username, incorrect: true})
             }
         } else if(dev) {
-            return {username, message: "dev signin"}
+            const futureExpiry = new Date();
+            futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
+
+            cookies.set("session", "00000000-0000-0000-0000-000000000000", {path: "/"});
+
+            throw redirect(303, "/editor");
         } else {
             return fail(500, {username, message: "Server error: Missing DB!"})
         }

@@ -1,7 +1,7 @@
 import type {Handle} from "@sveltejs/kit";
+import {getUserFromSession} from "./lib/server/users";
 
 export const handle: Handle = async ({ event, resolve }) => {
-    const response = await resolve(event);
 
     if(event.platform?.env?.FUNC_ANAL) {
         event.platform?.env?.FUNC_ANAL.writeDataPoint({
@@ -10,6 +10,14 @@ export const handle: Handle = async ({ event, resolve }) => {
             indexes: []
         })
     }
+
+    if(event.url.pathname.startsWith("/editor")) {
+        event.locals.user = await getUserFromSession(event?.platform?.env, event.cookies.get("session"))
+        console.log("User is " + JSON.stringify(event.locals.user))
+    }
+
+
+    const response = await resolve(event);
 
 
     if(event.url.pathname.startsWith("/api")) {

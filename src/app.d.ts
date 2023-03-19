@@ -2,7 +2,9 @@
 // for information about these interfaces
 // and what to do when importing types
 declare namespace App {
-	// interface Locals {}
+	interface Locals {
+        user: User | null
+    }
 	// interface PageData {}
 	// interface PageError {}
     interface Platform {
@@ -29,4 +31,16 @@ declare interface Window {
     getCookie: (cname: string) => string;
     setCookie: (cname: string, cvalue: string, exdays: number) => void;
     _GET: (parameterName: string) => string;
+}
+
+type User = {
+    id: number,
+    username: string,
+    name: string
+}
+
+type Session = {
+    id: string,
+    created: number,
+    user: number
 }

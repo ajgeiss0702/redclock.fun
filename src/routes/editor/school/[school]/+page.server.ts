@@ -25,7 +25,7 @@ export const load = (async ({params, locals, platform}) => {
         throw error(500, "no db!");
     }
 
-    const {results} = (await (
+    const results = (await (
         platform.env.D1DB.prepare("select * from schools where code=?;")
             .bind(params.school)
             .first()

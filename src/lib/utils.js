@@ -88,7 +88,8 @@ export function getSchoolCode() {
     if(location.pathname === "/rmtv") {
         return "rmhs";
     }
-    return localStorage.school
+    if(!localStorage.school) return new URL(location.href).searchParams.get("school");
+    return localStorage.school;
 }
 
 export function getScheduleCode() {
@@ -99,6 +100,7 @@ export function getScheduleCode() {
     if(location.pathname === "/rmtv") {
         return "rmtv";
     }
+    if(!localStorage.school) return new URL(location.href).searchParams.get("schedule");
     return localStorage.schedule
 }
 

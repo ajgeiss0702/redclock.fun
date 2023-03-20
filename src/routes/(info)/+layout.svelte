@@ -35,7 +35,7 @@
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3">
         <svelte:fragment slot="lead">
             <a href={root} aria-label="Red Clock Logo">
-                <img src="/red_clock.png" alt="">
+                <img src="/red_clock.webp" alt="">
             </a>
             <a href={root}>
                 <h2 class="pl-4">Red Clock</h2>

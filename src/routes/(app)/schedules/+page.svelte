@@ -74,7 +74,7 @@
 
 </style>
 <div>
-    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.png"><br>
+    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.webp"><br>
 
     <span class="header">Schedule</span>
     <br>

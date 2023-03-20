@@ -42,7 +42,7 @@
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3" background="bg-primary-100-800-token">
         <svelte:fragment slot="lead">
             <a href="/editor" aria-label="Red Clock Logo">
-                <img src="/red_clock.png" alt="">
+                <img src="/red_clock.webp" alt="">
             </a>
             <a href="/editor">
                 <h2 class="pl-4">Red Clock Editor</h2>

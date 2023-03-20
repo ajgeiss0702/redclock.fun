@@ -25,7 +25,7 @@ export const load = (async ({locals, platform}) => {
         schools: await (
             platform.env.D1DB.prepare("select * from schools;")
                 .all()
-        )
+        ).results
     }
     
 }) satisfies ServerLoad

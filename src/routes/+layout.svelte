@@ -5,7 +5,7 @@
 
 
     import NProgress from "nprogress";
-    import {navigating} from "$app/stores";
+    import {navigating, page} from "$app/stores";
     import "$lib/css/misc.css";
 
     // For Skeleton's popups
@@ -63,20 +63,22 @@
     })
 </script>
 
-<Drawer>
-    {#if $drawerStore.id === "sideNavBar" || $drawerStore.id === "editorSideNavBar"}
-        <button class="btn p-2 ml-2 closeButton" on:click={() => drawerStore.close()}>
-            <X style="height: 3em; width: 3em;"/>
-        </button>
-        <div class="text-center">
-            {#if $drawerStore.id === "sideNavBar"}
-                <NavLinks vertical={true}/>
-            {:else}
-                <EditorNavLinks vertical={true}/>
-            {/if}
-        </div>
-    {/if}
-</Drawer>
+{#if !$page.url.pathname.startsWith("/editor")}
+    <Drawer>
+        {#if $drawerStore.id === "sideNavBar" || $drawerStore.id === "editorSideNavBar"}
+            <button class="btn p-2 ml-2 closeButton" on:click={() => drawerStore.close()}>
+                <X style="height: 3em; width: 3em;"/>
+            </button>
+            <div class="text-center">
+                {#if $drawerStore.id === "sideNavBar"}
+                    <NavLinks vertical={true}/>
+                {:else}
+                    <EditorNavLinks vertical={true}/>
+                {/if}
+            </div>
+        {/if}
+    </Drawer>
+{/if}
 
 <slot/>
 

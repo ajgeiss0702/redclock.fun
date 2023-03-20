@@ -1,5 +1,11 @@
 <span class:vertical={vertical}>
     <a href="/">Main Site</a>
+    {#if vertical}
+        <br>
+        <hr>
+        <br>
+        <UserInfo {user}/>
+    {/if}
 </span>
 
 
@@ -15,7 +21,11 @@
         font-size: 1.5em;
     }
 </style>
-<script>
-    export let vertical;
+<script lang="ts">
+    import UserInfo from "$lib/editor/UserInfo.svelte";
+
+    export let vertical: boolean;
+
+    export let user: User;
 
 </script>

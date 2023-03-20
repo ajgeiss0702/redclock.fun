@@ -1,7 +1,12 @@
 <script>
-    import {AppBar, drawerStore} from "@skeletonlabs/skeleton";
+    import {AppBar, Drawer, drawerStore} from "@skeletonlabs/skeleton";
     import MenuIcon from "svelte-bootstrap-icons/lib/List.svelte"
     import EditorNavLinks from "$lib/editor/EditorNavLinks.svelte";
+
+    import X from "svelte-bootstrap-icons/lib/X.svelte";
+    import UserInfo from "$lib/editor/UserInfo.svelte";
+
+    export let data;
 </script>
 <svelte:head>
     <meta name="description" content="Red Clock is a website that counts down until the bell rings at your school.">
@@ -13,16 +18,22 @@
         align-self: center;
     }
 
-    :global(.mobileLinkExpander) {
+    .mobileLinkExpander {
         display: none;
+    }
+    .userInfo {
+        display: block;
     }
 
     @media (max-width: 890px) {
         .links {
             display: none;
         }
-        :global(.mobileLinkExpander) {
+        .mobileLinkExpander {
             display: block;
+        }
+        .userInfo {
+            display: none;
         }
     }
 
@@ -50,9 +61,23 @@
                     <MenuIcon style="height: 2.5em; width: 2.5em;"/>
                 </button>
             </div>
+            <div class="userInfo">
+                <UserInfo user={data?.user}/>
+            </div>
         </svelte:fragment>
     </AppBar>
 </div>
 <br>
 
 <slot/>
+
+<Drawer bgDrawer="bg-primary-100-800-token">
+    {#if $drawerStore.id === "editorSideNavBar" || $drawerStore.id === "editorSideNavBar"}
+        <button class="btn p-2 ml-2 block" on:click={() => drawerStore.close()}>
+            <X style="height: 3em; width: 3em;"/>
+        </button>
+        <div class="text-center p-2 ">
+            <EditorNavLinks vertical={true} user={data?.user}/>
+        </div>
+    {/if}
+</Drawer>

@@ -45,7 +45,9 @@ export const actions = {
 
                 cookies.set("session", sessionId, {path: "/", expires: futureExpiry});
 
-                throw redirect(303, "/editor");
+                const to = new URL(request.url).searchParams.get("to");
+
+                throw redirect(303, to == null ? "/editor" : to);
             } else {
                 return fail(400, {username, incorrect: true})
             }
@@ -55,7 +57,9 @@ export const actions = {
 
             cookies.set("session", "00000000-0000-0000-0000-000000000000", {path: "/"});
 
-            throw redirect(303, "/editor");
+            const to = new URL(request.url).searchParams.get("to");
+
+            throw redirect(303, to == null ? "/editor" : to);
         } else {
             return fail(500, {username, message: "Server error: Missing DB!"})
         }

@@ -20,7 +20,6 @@
     import NavLinks from "$lib/info/NavLinks.svelte";
     import X from "svelte-bootstrap-icons/lib/X.svelte";
     import {afterNavigate} from "$app/navigation";
-    import EditorNavLinks from "$lib/editor/EditorNavLinks.svelte";
 
     if (browser) {
         import("$lib/how_many_people.js");

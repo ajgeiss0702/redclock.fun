@@ -22,10 +22,10 @@ export const load = (async ({locals, platform}) => {
     }
 
     return {
-        schools: await (
+        schools: (await (
             platform.env.D1DB.prepare("select * from schools;")
                 .all()
-        ).results
+        )).results
     }
     
 }) satisfies ServerLoad

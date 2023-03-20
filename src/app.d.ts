@@ -44,3 +44,11 @@ type Session = {
     created: number,
     user: number
 }
+
+type EditorSchool = {
+    code: string,
+    timezone: number,
+    logo: string,
+    display: string,
+    offset: number
+}

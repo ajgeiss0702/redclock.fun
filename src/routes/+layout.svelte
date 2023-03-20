@@ -65,16 +65,12 @@
 
 {#if !$page.url.pathname.startsWith("/editor")}
     <Drawer>
-        {#if $drawerStore.id === "sideNavBar" || $drawerStore.id === "editorSideNavBar"}
+        {#if $drawerStore.id === "sideNavBar"}
             <button class="btn p-2 ml-2 closeButton" on:click={() => drawerStore.close()}>
                 <X style="height: 3em; width: 3em;"/>
             </button>
             <div class="text-center">
-                {#if $drawerStore.id === "sideNavBar"}
-                    <NavLinks vertical={true}/>
-                {:else}
-                    <EditorNavLinks vertical={true}/>
-                {/if}
+                <NavLinks vertical={true}/>
             </div>
         {/if}
     </Drawer>

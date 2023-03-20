@@ -1,9 +1,18 @@
 <script lang="ts">
+    import SchoolSelect from "$lib/editor/SchoolSelect.svelte";
+
     export let data;
 </script>
 
 {#if data.user}
     Logged in as {data.user.name}
+    <br>
+    <br>
+    {#each data.schools as school}
+        <SchoolSelect {school}/>
+    {:else}
+        You don't have access to any schools.
+    {/each}
 {:else}
     Not logged in.<br>
     <br>

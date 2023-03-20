@@ -11,11 +11,7 @@ export const GET = (async ({platform, cookies}) => {
             throw error(500, "no db!")
         }
 
-        await (
-            platform.env.D1DB.prepare("delete from sessions where id=?")
-                .bind(sessionId)
-                .run()
-        )
+        await platform.env.SESSION_STORE.delete(sessionId);
     }
 
     cookies.delete("session", {path: "/"});

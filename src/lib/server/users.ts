@@ -22,11 +22,13 @@ export async function getSessionInfo(env: App.Platform["env"], sessionId: string
         return null;
     }
 
-    return await (
-        env.D1DB.prepare("select created,user from sessions where id=?")
-            .bind(sessionId)
-            .first()
-    );
+    const sessionUser = await env.SESSION_STORE.get(sessionId);
+    if(sessionUser == null) return null;
+
+    return {
+        id: sessionId,
+        user: sessionUser
+    }
 }
 
 export async function getUserFromSession(env: App.Platform["env"], sessionId: string | undefined | null): Promise<User | null> {

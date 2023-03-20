@@ -17,7 +17,8 @@ declare namespace App {
                 }) => void
             };
 
-            D1DB: D1Database
+            D1DB: D1Database;
+            SESSION_STORE: KVNamespace;
         };
     }
 }
@@ -41,7 +42,6 @@ type User = {
 
 type Session = {
     id: string,
-    created: number,
     user: number
 }
 

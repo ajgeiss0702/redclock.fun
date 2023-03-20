@@ -34,11 +34,9 @@ export const actions = {
 
             if((key && name && !isNaN(Number(user))) && await pbkdf2Verify(key, password as string)) {
                 const sessionId = crypto.randomUUID();
-                await (
-                    platform.env.D1DB.prepare("insert into sessions (id, created, user) values (?, ?, ?)")
-                    .bind(sessionId, Date.now(), user)
-                    .run()
-                )
+                await platform.env.SESSION_STORE.put(sessionId, user, {
+                    expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
+                })
 
                 const futureExpiry = new Date();
                 futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);

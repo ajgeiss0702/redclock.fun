@@ -4,6 +4,10 @@
     export let data;
 </script>
 
+<svelte:head>
+    <title>Red Clock Editor</title>
+</svelte:head>
+
 {#if data.user}
     Logged in as {data.user.name}
     <br>

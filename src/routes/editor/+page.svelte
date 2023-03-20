@@ -7,5 +7,5 @@
 {:else}
     Not logged in.<br>
     <br>
-    <a href="/editor/auth/signin" class="btn variant-glass-primary">Log in</a>
+    <a href="/editor/auth/signin" class="btn variant-glass-primary">Sign in</a>
 {/if}

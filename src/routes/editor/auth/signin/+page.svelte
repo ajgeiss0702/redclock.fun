@@ -35,7 +35,7 @@
         {/if}
         {#if form?.ratelimited}
             <span class="text-primary-500-400-token">
-                You are trying to log in too fast. Wait a minute and try again.
+                You are trying to sign in too fast. Wait a minute and try again.
             </span>
         {/if}
 

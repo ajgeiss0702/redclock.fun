@@ -1,11 +1,12 @@
 <script lang="ts">
     import type { ActionData } from './$types';
+    import { enhance } from '$app/forms';
     export let form: ActionData;
 </script>
 <h1>Editor Sign-in</h1>
 <br>
 <div class="mx-auto card signin-box p-4">
-    <form method="POST">
+    <form method="POST" use:enhance>
         <label class="label">
             <span>Username</span>
             <input class="input px-3" name="username" type="text" value={form?.username ?? ''}/>

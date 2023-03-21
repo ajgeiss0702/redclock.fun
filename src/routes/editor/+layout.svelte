@@ -38,7 +38,7 @@
     }
 
 </style>
-<div class="text-left sticky top-0 w-full">
+<div class="text-left sticky top-0 w-full mb-2">
     <AppBar padding="p-2" slotTrail="mobileLinkExpander pr-3" background="bg-primary-100-800-token">
         <svelte:fragment slot="lead">
             <a href="/editor" aria-label="Red Clock Logo">
@@ -67,7 +67,6 @@
         </svelte:fragment>
     </AppBar>
 </div>
-<br>
 
 <slot/>
 

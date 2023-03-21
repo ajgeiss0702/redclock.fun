@@ -5,20 +5,17 @@ import {error} from "@sveltejs/kit";
 export const load = (async ({params, locals, platform}) => {
     if(!locals.user) return {};
 
+    if(!params.school) {
+        throw error(400, "school code required!")
+    }
+
     if(dev) {
-        if(params.school == "rmhs") {
-            return {
-                school: {
-                    code: "rmhs",
-                    timezone: 420,
-                    logo: "https://redclock.fun/img/schools/rmhs.webp",
-                    display: "Red Mountain High School",
-                    offset: 0
-                }
-            }
-        } else {
-            throw error(404, "School not found.")
+        // @ts-ignore
+        const {devSchools}: EditorSchool[] = await import("$lib/server/devSchools.js");
+        for (const school of devSchools) {
+            if(school.code == params.school) return {school};
         }
+        throw error(404, "School not found.");
     }
 
     if(!platform?.env?.D1DB) {

@@ -7,13 +7,7 @@ export const load = (async ({locals, platform}) => {
 
     if(dev) {
         return {
-            schools: [{
-                code: "rmhs",
-                timezone: 420,
-                logo: "https://redclock.fun/img/schools/rmhs.webp",
-                display: "Red Mountain High School",
-                offset: 0
-            }]
+            schools: (await import("$lib/server/devSchools.js")).devSchools
         }
     }
 

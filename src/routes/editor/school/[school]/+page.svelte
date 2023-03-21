@@ -5,10 +5,8 @@
 </script>
 
 <svelte:head>
-    <title>{$page.params.school.toUpperCase()} Schedules - Red Clock</title>
+    <title>{data.school.display.length < 10 ? data.school.display : data.school.code.toUpperCase()} Schedules - Red Clock</title>
 </svelte:head>
 
-param: {$page.params.school}<br>
-school code from db: {data.school.code}<br>
-<br>
-{data.school.display}
+school yeah
+

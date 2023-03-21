@@ -9,8 +9,8 @@
         <div class="flex-1 self-center">
             <h2>{school.display}</h2>
             <span class="text-surface-400-500-token">
-        {school.code}
-    </span>
+                {school.code}
+            </span>
         </div>
     </div>
 </a>

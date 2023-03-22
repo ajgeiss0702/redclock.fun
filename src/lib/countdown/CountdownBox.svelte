@@ -148,6 +148,7 @@
             margin-bottom: 1em;
             padding-bottom: 1em;
             padding-top: 1em;
+            font-size: 0.8em;
         }
     }
 </style>

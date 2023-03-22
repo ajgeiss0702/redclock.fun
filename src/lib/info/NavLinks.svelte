@@ -6,6 +6,7 @@
     {/if}
     <a href="/about">About Red Clock</a>
     <a href="/desktop">Desktop App</a>
+    <a href="/discord">Discord</a>
 </span>
 
 

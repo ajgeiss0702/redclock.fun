@@ -72,4 +72,4 @@
     }
     console.log(Swal)
 </script>
-<button class="btn btn-lg btn-warning" data-sveltekit-reload on:click={ask}>Reload all pages</button>
+<button class="btn btn-lg variant-filled-warning" data-sveltekit-reload on:click={ask}>Reload all pages</button>

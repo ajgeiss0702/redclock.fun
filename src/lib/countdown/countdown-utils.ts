@@ -60,7 +60,7 @@ export function getSchedule(): Promise<SchoolData | undefined> {
 
     scheduleCache.lastResp.then((s) => {
         // @ts-ignore
-        if(!s.schedules[getScheduleCode()]) {
+        if(getScheduleCode() != "rmtv" && !s.schedules[getScheduleCode()]) {
             location.href = "/schedules?reselect"
         }
     })

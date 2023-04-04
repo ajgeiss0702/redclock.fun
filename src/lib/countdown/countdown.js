@@ -96,7 +96,12 @@ async function cdTick() {
     let timeString = await getTimeString();
     setTimeString(timeString);
     if(typeof document == 'undefined') return;
-    if(timeString !== 'load' && timeString !== '' && timeString !== "bell" && typeof document !== 'undefined') {
+    if(timeString !== 'load' && timeString !== '' && timeString !== "bell" &&
+        typeof document !== 'undefined' && (
+            location.pathname.startsWith("/countdown") ||
+            location.pathname.startsWith("/lightweight")
+        )
+    ) {
         document.title = timeString + period + " - Red Clock";
     } else {
         document.title = " - Red Clock"

@@ -14,5 +14,5 @@
     <br>
     <a class="btn variant-filled-primary" href="/settings">More settings</a><br>
     <br>
-    <a class="btn variant-filled-secondary" on:click={() => location.href = "/schools"}>Select a different school or schedule</a>
+    <a class="btn variant-filled-secondary" data-sveltekit-reload href="/schools">Select a different school or schedule</a>
 </div>

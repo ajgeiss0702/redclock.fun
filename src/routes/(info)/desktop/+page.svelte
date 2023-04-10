@@ -12,19 +12,6 @@
     div {
         text-align: center;
     }
-
-    .back {
-        position: fixed;
-        top: 1em;
-        left: 1em;
-    }
-    @media (max-width: 600px) {
-        .back {
-            position: static;
-            margin-left: 1em;
-            margin-top: 1em;
-        }
-    }
 </style>
 <div class="container mx-auto">
     <br>

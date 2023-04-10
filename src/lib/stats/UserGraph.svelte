@@ -1,6 +1,6 @@
 <script>
     import {Line} from "svelte-chartjs";
-    import {oneTwenty} from "$lib/oneTwenty.js";
+    import {oneTwenty} from "$lib/stats/oneTwenty.js";
     import 'chart.js/auto';
     import {onDestroy, onMount} from "svelte";
     import {Chart as ChartJS, LinearScale} from 'chart.js'

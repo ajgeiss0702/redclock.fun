@@ -7,7 +7,7 @@ export const load = (async ({locals, platform}) => {
 
     if(dev) {
         return {
-            schools: (await import("$lib/server/devSchools.js")).devSchools
+            schools: (await import("$lib/server/devData.js")).devSchools
         }
     }
 

@@ -1,8 +1,8 @@
 <script>
     import LoadingText from "$lib/LoadingText.svelte";
     import {onDestroy, onMount} from "svelte";
-    import {commas} from "$lib/utils.js";
-    import AnimateNumber from "$lib/AnimateNumber.svelte";
+    import {commas} from "$lib/utils";
+    import AnimateNumber from "$lib/stats/AnimateNumber.svelte";
 
     let nowUsers = new Promise(() => {});
     let nowUsersNumber;

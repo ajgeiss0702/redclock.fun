@@ -11,7 +11,7 @@ export const load = (async ({params, locals, platform}) => {
 
     if(dev) {
         // @ts-ignore
-        const {devSchools}: EditorSchool[] = await import("$lib/server/devSchools.js");
+        const {devSchools}: EditorSchool[] = await import("$lib/server/devData.js");
         for (const school of devSchools) {
             if(school.code == params.school) return {school};
         }

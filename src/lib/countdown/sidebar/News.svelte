@@ -1,12 +1,24 @@
 <script context="module">
     import './news-styles.css';
-    import {writable} from "svelte/store";
+    import {derived, get, readable, readonly, writable} from "svelte/store";
+    import {browser} from "$app/environment";
 
     let data = writable(`
 <div class="text-center">
     <img src="/img/loading.svg" class="inline-block" style="height: 3em;" alt="loading">
 </div>
 `);
+
+    let setUnreadNews;
+
+    const newsCountWrite = writable(0);
+    export const newsCount = readonly(newsCountWrite);
+    export const unreadNewsCount = derived(newsCount, (newsCount, set) => {
+        setUnreadNews = set
+        if(browser) set(newsCount - (Number(localStorage.lastReadNews) || 0));
+    }, 0);
+
+
     let failed = false;
 
     let lastFetch = 0;
@@ -22,14 +34,27 @@
 
                 response = response.replace('<link', '&ltlink');
                 response = response.replace('</link', '&lt/link');
+
                 data.set(response);
+
+                const newsCount = (response.match(/<div/g) || []).length;
+                newsCountWrite.set(newsCount);
             })
             .catch(e => {
                 failed = true;
                 data.set("Failed to fetch news: " + e);
             })
     }
-    refreshNews()
+
+    refreshNews();
+
+    export function readNews() {
+        console.debug("reading news")
+        let nCount = get(newsCountWrite)
+        if(nCount === 0) return
+        localStorage.lastReadNews = nCount;
+        setUnreadNews(0);
+    }
 
     let newsDiv;
 
@@ -37,12 +62,17 @@
 <script>
     import {onDestroy, onMount} from "svelte";
 
-    export let unreadCount = 0;
-    export let newsLength = 0;
-
     export let currentTab;
 
     let thingLastFetch;
+
+    $: if(currentTab === "news") readNews();
+
+    data.subscribe(() => {
+        setTimeout(() => {
+            if(currentTab === "news") readNews();
+        }, 1)
+    })
 
     let updateInterval;
     onDestroy(() => {
@@ -55,23 +85,6 @@
             refreshNews();
         }
     })
-
-    $: {
-        if(localStorage && newsDiv) {
-            thingLastFetch = lastFetch;
-            setTimeout(() => {
-                newsLength = newsDiv.getElementsByTagName("div").length;
-                if(currentTab === "news") {
-                    localStorage.setItem("lastReadNews", newsLength)
-                    unreadCount = 0;
-                } else {
-                    let readNews = localStorage.getItem("lastReadNews") || 0;
-                    unreadCount = newsLength - readNews;
-                }
-
-            }, 500)
-        }
-    }
 </script>
 <style>
     div {

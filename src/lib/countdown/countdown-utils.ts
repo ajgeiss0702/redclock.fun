@@ -260,19 +260,13 @@ export type SchoolData = {
     schedules: {
         [key: string]: string
     },
-    normal: {
-        [schedule: string | "*"]: ClassTimes
-    },
+    normal: ScheduleTimes,
     specials: {
         day: {
-            [dayOfWeek: string]: {
-                [schedule: string | "*"]: ClassTimes
-            }
+            [dayOfWeek: string]: ScheduleTimes
         },
         date: {
-            [date: string]: {
-                [schedule: string | "*"]: ClassTimes
-            }
+            [date: string]: ScheduleTimes
         }
     },
     off: {
@@ -282,4 +276,8 @@ export type SchoolData = {
 
 export type ClassTimes = {
     [period: string]: number[]
+}
+
+export type ScheduleTimes = {
+    [schedule: string | "*"]: ClassTimes
 }

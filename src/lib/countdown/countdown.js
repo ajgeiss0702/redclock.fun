@@ -96,15 +96,17 @@ async function cdTick() {
     let timeString = await getTimeString();
     setTimeString(timeString);
     if(typeof document == 'undefined') return;
-    if(timeString !== 'load' && timeString !== '' && timeString !== "bell" &&
-        typeof document !== 'undefined' && (
-            location.pathname.startsWith("/countdown") ||
-            location.pathname.startsWith("/lightweight")
-        )
-    ) {
-        document.title = timeString + period + " - Red Clock";
-    } else {
-        document.title = " - Red Clock"
+    if((
+        location.pathname.startsWith("/countdown") ||
+        location.pathname.startsWith("/lightweight")
+    )) {
+        if(timeString !== 'load' && timeString !== '' && timeString !== "bell" &&
+            typeof document !== 'undefined'
+        ) {
+            document.title = timeString + period + " - Red Clock";
+        } else {
+            document.title = " - Red Clock"
+        }
     }
 
     setCurrentTime(new Date());

@@ -1,6 +1,6 @@
 <script>
     import {makeDate} from "$lib/countdown/countdown-utils.ts";
-    import {dateString} from "$lib/utils.js";
+    import {dateString} from "$lib/utils";
     import {onDestroy, onMount} from "svelte";
     import {onChange, off} from "$lib/settings";
 

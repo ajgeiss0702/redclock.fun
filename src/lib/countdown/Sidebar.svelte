@@ -1,20 +1,16 @@
 <script>
     import {onMount} from "svelte";
-    import News from "$lib/countdown/sidebar/News.svelte";
+    import News, {unreadNewsCount} from "$lib/countdown/sidebar/News.svelte";
     import Settings from "$lib/countdown/sidebar/Settings.svelte";
     import ScheduleList from "$lib/countdown/sidebar/ScheduleList.svelte";
     import {browser, dev} from "$app/environment";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import Links from "$lib/countdown/sidebar/Links.svelte";
     import {Tab, TabGroup} from "@skeletonlabs/skeleton";
-    import {_GET} from "$lib/utils";
 
     let tab = '';
 
-    let currentTab = browser ? (localStorage.tabId || "news") : "";
-
-    let unreadNews = 0;
-    let totalNews = 0;
+    let currentTab = "";
 
     onMount(() => {
         tab =  typeof localStorage.tabId === "undefined" ? "news" : localStorage.tabId;
@@ -26,11 +22,7 @@
     });
 
     $: {
-        if(browser && currentTab !== '') localStorage.tabId = currentTab;
-        if(browser && currentTab === "news" && totalNews > 0) {
-            localStorage.lastReadNews = totalNews;
-            unreadNews = 0;
-        }
+        if(currentTab !== '') localStorage.tabId = currentTab;
     }
 </script>
 <style>
@@ -81,8 +73,9 @@
         line-height: 1em;
     }
 
-    .badge {
-        text-decoration: none;
+    .none {
+        height: 0;
+        overflow: hidden;
     }
 
     @media (orientation: portrait) {
@@ -92,18 +85,16 @@
         }
     }
 </style>
-<div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
-    {#if !browser || !_GET("preview")}
+<div class="sidebar" class:center={!(!browser || !window._GET("preview"))}>
+    {#if !browser || !window._GET("preview")}
         <Quote/>
         {#key tab}
             <TabGroup>
                 <Tab value="news" name="News" bind:group={currentTab}>
-                    <svelte:fragment slot="lead">
-                        {#if unreadNews > 0}
-                            <span class="badge rounded-pill text-bg-danger">{unreadNews}</span>
-                        {/if}
-                    </svelte:fragment>
                     News
+                    {#if $unreadNewsCount > 0}
+                        <span class="badge-icon variant-filled-error !inline-flex">{$unreadNewsCount}</span>
+                    {/if}
                 </Tab>
                 <Tab value="schedule" name="Schedule" bind:group={currentTab}>
                     Schedule
@@ -115,9 +106,10 @@
                     Links
                 </Tab>
                 <svelte:fragment slot="panel">
-                    {#if currentTab === "news"}
-                        <News bind:unreadCount={unreadNews} bind:newsLength={totalNews} {currentTab}/>
-                    {:else if currentTab === "schedule"}
+                    <div class:none={currentTab !== "news"}>
+                        <News {currentTab}/>
+                    </div>
+                    {#if currentTab === "schedule"}
                         <ScheduleList/>
                     {:else if currentTab === "settings"}
                         <Settings/>

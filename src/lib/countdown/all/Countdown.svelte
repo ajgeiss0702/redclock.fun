@@ -32,6 +32,7 @@
         transform: scale(20%);
         position: absolute;
         margin: -40vh -40vw;
+        z-index: -1;
     }
 </style>
 <div class="wrapper">

@@ -738,5 +738,33 @@ export let quotes = [
     {
         quote: "It doesn’t matter if the glass is half full or half empty, there’s water in the cup. Drink it, and stop complaining.",
         author: "Aron Ralston"
+    },
+    {
+        quote: "The only thing that stands between you and your dream is the will to try and the belief that it is actually possible.",
+        author: "Joel Brown"
+    },
+    {
+        quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+        author: "Winston Churchill"
+    },
+    {
+        quote: "The only limit to our realization of tomorrow will be our doubts of today.",
+        author: "Franklin D. Roosevelt"
+    },
+    {
+        quote: "The only way to achieve the impossible is to believe it is possible.",
+        author: "Charles Kingsleigh"
+    },
+    {
+        quote: "The best way to predict the future is to create it.",
+        author: "Abraham Lincoln"
+    },
+    {
+        quote: "You are never too old to set another goal or to dream a new dream.",
+        author: "C.S. Lewis"
+    },
+    {
+        quote: "In the midst of every crisis, lies great opportunity.",
+        author: "Albert Einstein"
     }
 ];

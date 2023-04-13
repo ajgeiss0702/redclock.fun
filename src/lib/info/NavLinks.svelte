@@ -7,6 +7,13 @@
     <a href="/about">About Red Clock</a>
     <a href="/desktop">Desktop App</a>
     <a href="/discord">Discord</a>
+
+    {#if browser && $page.url.pathname.startsWith("/stats")}
+        &nbsp;
+        &nbsp;
+        <a href="/stats">Stats</a>
+        <a href="/stats/daygraph">Past 30 days</a>
+    {/if}
 </span>
 
 
@@ -23,7 +30,8 @@
     }
 </style>
 <script>
-    export let vertical;
-
+    import {page} from "$app/stores";
     import {browser} from "$app/environment";
+
+    export let vertical = false;
 </script>

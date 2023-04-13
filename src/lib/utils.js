@@ -245,3 +245,13 @@ export function safeLength(a) {
         return a.length;
     }
 }
+
+export function last30() {
+    let date = new Date();
+    let dates = [];
+    for (let i = 0; i < 30; i++) {
+        dates.push((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
+        date.setDate(date.getDate()-1);
+    }
+    return dates.reverse();
+}

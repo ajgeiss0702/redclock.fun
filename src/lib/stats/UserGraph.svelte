@@ -1,7 +1,6 @@
 <script>
     import {Line} from "svelte-chartjs";
-    import {oneTwenty} from "$lib/stats/oneTwenty.js";
-    import 'chart.js/auto';
+    import {oneTwenty} from "$lib/stats/oneTwenty";
     import {onDestroy, onMount} from "svelte";
     import {Chart as ChartJS, LinearScale} from 'chart.js'
 
@@ -94,7 +93,7 @@
 <div>
     <Line
             bind:chart
-            data={data}
+            {data}
             class="usergraph"
             options={{
                 hover: {

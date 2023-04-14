@@ -5,9 +5,9 @@ const cacheTime = 20 * 60 * 1000;
 
 
 const accounts = [
-    "698923a1672a28fdabe4c0d6a23a7fa3",
-    "bf26c7abb25893e59cc5a0afeb62b36c",
-    "f2cfe4c7ea4ff8ab12b151b45c9723a0"
+    "698923a1672a28fdabe4c0d6a23a7fa3", // bill
+    "bf26c7abb25893e59cc5a0afeb62b36c", // ajgeiss72
+    "f2cfe4c7ea4ff8ab12b151b45c9723a0" // aiden
 ];
 
 let lastAccount = 0;
@@ -47,6 +47,7 @@ export async function GET({params, url}: RequestEvent) {
 
         if(weatherData.message) {
             console.warn({account: accounts[lastAccount].substring(0, 5), weatherData});
+            lastFetch[schoolCode] = (Date.now() - cacheTime) + 5000;
             response = {
                 cached: "error",
                 weatherAPIError: weatherData.message,

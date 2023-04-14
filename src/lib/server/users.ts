@@ -42,5 +42,5 @@ export async function getUserFromSession(env: App.Platform["env"], sessionId: st
     const session = await getSessionInfo(env, sessionId);
     if(session == null) return null;
 
-    return await getUser(env, session.user);
+    return await getUser(env, Number(session.user));
 }

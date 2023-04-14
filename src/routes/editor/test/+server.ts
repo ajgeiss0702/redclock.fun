@@ -3,7 +3,7 @@ import {error, json, redirect, text} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 
 export const GET = (async ({platform, url, locals}) => {
-    if(!(typeof locals?.user?.id == "number" && locals?.user?.id != 0)) {
+    if(!(typeof locals?.user?.id == "number" && locals?.user?.id == 0)) {
         return json({error: "Not authorized"});
     }
     const bucket = platform?.env?.SCHEDULE_BUCKET;

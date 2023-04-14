@@ -4,7 +4,7 @@ import {dev} from "$app/environment";
 
 export const GET = (async ({platform, url, locals}) => {
     if(!(typeof locals?.user?.id == "number" && locals?.user?.id == 0)) {
-        return json({error: "Not authorized"});
+        return json({error: "Not authorized", type: typeof locals?.user?.id, id: locals?.user?.id});
     }
     const bucket = platform?.env?.SCHEDULE_BUCKET;
     if(!bucket) {

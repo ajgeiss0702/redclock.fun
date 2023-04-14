@@ -50,6 +50,7 @@ export const actions = {
                 return fail(400, {username, incorrect: true})
             }
         } else if(dev) {
+            console.log("Creating dev session");
             const futureExpiry = new Date();
             futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
 

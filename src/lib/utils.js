@@ -255,3 +255,11 @@ export function last30() {
     }
     return dates.reverse();
 }
+
+export function twoDigits(n) {
+    let s = String(n);
+    if(n < 10 && n > -10) {
+        s = "0" + s;
+    }
+    return s;
+}

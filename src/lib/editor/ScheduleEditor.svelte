@@ -1,8 +1,7 @@
 <script lang="ts">
     import {ScheduleTimes} from "../countdown/countdown-utils";
     import {Accordion, AccordionItem} from "@skeletonlabs/skeleton";
-    import {makeDate} from "$lib/countdown/countdown-utils.ts";
-    import {dateString} from "$lib/utils";
+    import TimeInput from "./TimeInput.svelte";
 
     export let schedule: ScheduleTimes;
     export let schedules: {[key: string]: string} = {};
@@ -51,6 +50,14 @@
     input {
         background-color: transparent;
     }
+    td {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.56);
+        border-top: 1px solid rgba(0, 0, 0, 0.56);
+    }
+    :global(.dark) td {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.56);
+        border-top: 1px solid rgba(255, 255, 255, 0.56);
+    }
 </style>
 
 <!-- TODO: https://svelte.dev/repl/3bf15c868aa94743b5f1487369378cf3?version=3.21.0 -->
@@ -64,8 +71,10 @@
                     <table class="mx-auto">
                         {#each schedule as {name, times}}
                             <tr>
-                                <td class="px-4"><input type="text" bind:value={name}></td>
-                                <td class="px-4">{dateString(makeDate(times))}</td>
+                                <td class="px-4 py-2"><input type="text" bind:value={name}></td>
+                                <td class="px-4 py-2">
+                                    <TimeInput bind:time={times}/>
+                                </td>
                             </tr>
                         {/each}
                     </table>
@@ -76,4 +85,3 @@
         {/each}
     </Accordion>
 </div>
-<pre class="text-left">{JSON.stringify(scheduleOut, null, '\t')}</pre>

@@ -59,4 +59,9 @@ function recieveMessage(message) {
 if(browser) {
     setInterval(report, 30e3);
     setTimeout(report, 1e3);
+
+    // if this user doesn't already have an id, report twice since registration is ignored
+    if(!localStorage.id) {
+        setTimeout(report, 2e3);
+    }
 }

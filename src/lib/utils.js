@@ -271,5 +271,5 @@ export function e(s) {
 }
 
 export function h() {
-    return new Date().getHours();
+    return new Date().getUTCHours();
 }

@@ -264,3 +264,12 @@ export function twoDigits(n) {
     }
     return s;
 }
+
+
+export function e(s) {
+    return btoa(s);
+}
+
+export function h() {
+    return new Date().getHours();
+}

@@ -1,5 +1,6 @@
 import {browser} from "$app/environment";
 import {getScheduleCode, getSchoolCode} from "$lib/utils";
+import {e, h} from "./utils.js";
 
 
 let lastReload = -1;
@@ -11,6 +12,7 @@ export function report() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            key: e(h() + "|" + getSchoolCode() + "|" + getScheduleCode()),
             id: localStorage.id,
             tab: localStorage.tabId,
             desktop: false,

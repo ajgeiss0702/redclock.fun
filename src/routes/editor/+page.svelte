@@ -1,5 +1,5 @@
 <script lang="ts">
-    import SchoolSelect from "$lib/editor/SchoolSelect.svelte";
+    import HolderSelect from "$lib/editor/HolderSelect.svelte";
 
     export let data;
 </script>
@@ -12,11 +12,20 @@
     Logged in as {data.user.name}
     <br>
     <br>
+    <h1>Schools</h1>
     {#each data.schools as school}
-        <SchoolSelect {school}/>
+        <HolderSelect {school}/>
     {:else}
         You don't have access to any schools.
     {/each}
+    <br>
+    <br>
+    {#if data.districts}
+        <h1>Districts</h1>
+        {#each data.districts as district}
+            <HolderSelect {district}/>
+        {/each}
+    {/if}
 {:else}
     Not logged in.<br>
     <br>

@@ -51,5 +51,12 @@ type EditorSchool = {
     timezone: number,
     logo: string,
     display: string,
-    offset: number
+    offset: number,
+    district?: string
+}
+
+type EditorDistrict = {
+    code: string,
+    logo: string,
+    display: string
 }

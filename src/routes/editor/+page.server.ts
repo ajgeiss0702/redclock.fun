@@ -7,7 +7,8 @@ export const load = (async ({locals, platform}) => {
 
     if(dev) {
         return {
-            schools: (await import("$lib/server/devData.js")).devSchools
+            schools: (await import("$lib/server/devData.js")).devSchools,
+            districts: (await import("$lib/server/devData.js")).devDistricts
         }
     }
 

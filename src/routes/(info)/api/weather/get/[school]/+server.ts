@@ -10,7 +10,7 @@ const accounts = [
     "f2cfe4c7ea4ff8ab12b151b45c9723a0" // aiden
 ];
 
-let lastAccount = 0;
+let lastAccount = Math.floor(Math.random() * accounts.length);
 
 let lastFetch: {[index: string]: number} = {};
 let lastFetchData: {[index: string]: any} = {};

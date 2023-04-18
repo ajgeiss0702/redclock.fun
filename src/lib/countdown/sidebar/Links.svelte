@@ -1,5 +1,5 @@
 <h1>Links</h1>
-
+<br>
 <a class="btn variant-filled-surface" href="https://discord.gg/shSg6r8" target="_blank" rel="noreferrer">
     <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
 </a><br>

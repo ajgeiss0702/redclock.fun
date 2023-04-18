@@ -1,4 +1,4 @@
-<script>
+    <script>
 
     import '$lib/css/checkboxes.css'
     import {browser} from "$app/environment";
@@ -93,7 +93,7 @@
             <td class="title">Theme</td>
             <td class="spacer"></td>
             <td class="theme-select-box">
-                <select class="form-select d-inline-block mw-100" class:hidden={followSystem} on:change={changeTheme} bind:this={themeSelectBox}>
+                <select class="select d-inline-block mw-100" class:hidden={followSystem} on:change={changeTheme} bind:this={themeSelectBox}>
                     <option selected={initialTheme === "light"} value="light">Light</option>
                     <option selected={initialTheme === "dark"} value="dark">Dark</option>
                     <option selected={initialTheme === "black"} value="black">Black</option>

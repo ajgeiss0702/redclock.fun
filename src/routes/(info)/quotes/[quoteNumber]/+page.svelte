@@ -3,8 +3,26 @@
     import {quotes} from "$lib/quotes";
     import CaretLeftFill from "svelte-bootstrap-icons/lib/CaretLeftFill.svelte";
 
-    let quote = quotes[$page.params.quoteNumber];
+    let quoteNumber = $page.params.quoteNumber
+    let quote = quotes[quoteNumber];
 </script>
+<svelte:head>
+    <!-- Primary Meta Tags -->
+    <title>Quote #{quoteNumber} - Red Clock</title>
+    <meta name="title" content="Quote #{quoteNumber} - Red Clock">
+    <meta name="description" content="{quote.quote} —{quote.author}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Quote #{quoteNumber} - Red Clock">
+    <meta property="og:description" content="{quote.quote} —{quote.author}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Quote #{quoteNumber} - Red Clock">
+    <meta property="twitter:description" content="{quote.quote} —{quote.author}">
+
+</svelte:head>
 <br>
 <div class="text-left mx-4">
     <a href="/quotes" class="hover-underline">

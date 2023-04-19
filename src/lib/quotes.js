@@ -12,8 +12,8 @@ export let quotes = [
         author: "Albert Einstein"
     },
     {
-        quote: "Two roads diverged in a wood, and I",
-        author: "I took the one less traveled by, And that has made all the difference. "
+        quote: "Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.",
+        author: "Robert Frost"
     },
     {
         quote: "I attribute my success to this: I never gave or took any excuse.",

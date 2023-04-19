@@ -3,7 +3,7 @@ import type {ServerLoad} from "@sveltejs/kit";
 
 
 let vpnIp = "149.28.87.60";
-let vpnIpv6 = "2001:19f0:6001:1ca2:5400:03ff:feac:5f2e";
+let vpnIpv6 = "2001:19f0:6001:1ca2:5400:3ff:feac:5f2e";
 
 export const load = (async ({getClientAddress}) => {
     console.log("got " + getClientAddress())

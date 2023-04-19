@@ -25,6 +25,7 @@ const config = {
       vercelAdapter({
         edge: true,
         split: true,
+        external: ["fs/promises"]
       }),
     ]),
     inlineStyleThreshold: 1000,

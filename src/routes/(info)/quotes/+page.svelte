@@ -45,7 +45,7 @@ This is the same thing that's on the countdown page
 <style>
     div.random {
         max-width: 10in;
-        height: calc(100% - 30vw);
+        height: max(calc(40vh - 40vw), 7em);
     }
     h1,h2,h3,h4,h6 {
         margin-bottom: 0.25em;

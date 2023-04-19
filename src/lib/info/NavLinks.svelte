@@ -1,18 +1,19 @@
 <span class:vertical={vertical}>
     {#if browser && localStorage.school}
-        <a href="/countdown">Go to Countdown</a>
+        <a href={ulRedirect("/countdown")}>Go to Countdown</a>
     {:else}
-        <a href="/schools">Select a School</a>
+        <a href={ulRedirect("/schools")}>Select a School</a>
     {/if}
-    <a href="/about">About Red Clock</a>
-    <a href="/desktop">Desktop App</a>
-    <a href="/discord">Discord</a>
+    <a href={ulRedirect("/about")}>About Red Clock</a>
+    <a href={ulRedirect("/desktop")}>Desktop App</a>
+    <a href={ulRedirect("/quotes")}>Quotes</a>
+    <a href={ulRedirect("/discord")}>Discord</a>
 
     {#if browser && $page.url.pathname.startsWith("/stats")}
         &nbsp;
         &nbsp;
-        <a href="/stats">Stats</a>
-        <a href="/stats/daygraph">Past 30 days</a>
+        <a href={ulRedirect("/stats")}>Stats</a>
+        <a href={ulRedirect("/stats/daygraph")}>Past 30 days</a>
     {/if}
 </span>
 
@@ -34,4 +35,11 @@
     import {browser} from "$app/environment";
 
     export let vertical = false;
+
+    function ulRedirect(url) {
+        if($page.url.hostname === "ul.redclock.fun") {
+            return "https://redclock.fun" + url;
+        }
+        return url;
+    }
 </script>

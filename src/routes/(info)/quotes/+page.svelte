@@ -29,7 +29,11 @@ This is the same thing that's on the countdown page
 <br>
 <h2>Full quote list</h2>
 
-<div class="quotes mx-auto">
+<br>
+Total quotes: {quotes.length}
+<br><br>
+<div class="quotes mx-auto p-2">
+    <hr>
     {#each quotes as quote, i}
         <div>
             <a class="inline-block quote unstyled" href="/quotes/{i}">

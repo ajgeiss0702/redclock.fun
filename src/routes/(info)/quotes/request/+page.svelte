@@ -1,6 +1,9 @@
 <script>
     import CaretLeftFill from "svelte-bootstrap-icons/lib/CaretLeftFill.svelte";
     import {page} from "$app/stores";
+
+    export let data;
+    console.log({data});
 </script>
 <br>
 <div class="text-left mx-4">
@@ -9,6 +12,5 @@
         Back to quotes
     </a>
 </div>
-
 
 Quote Request coming soon

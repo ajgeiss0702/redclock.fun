@@ -14,3 +14,11 @@
 </div>
 
 Quote Request coming soon
+
+{#if data.admin}
+    Hello, aj
+    <h1>All requests</h1>
+    {#each data.list as file}
+        {file}<br>
+    {/each}
+{/if}

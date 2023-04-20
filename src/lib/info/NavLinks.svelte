@@ -1,5 +1,5 @@
 <span class:vertical={vertical}>
-    {#if browser && localStorage.school}
+    {#if $page.data?.school || (browser && localStorage.school)}
         <a href={ulRedirect("/countdown")}>Go to Countdown</a>
     {:else}
         <a href={ulRedirect("/schools")}>Select a School</a>

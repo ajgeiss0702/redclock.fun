@@ -13,6 +13,9 @@
     border-width: 1px;
     border-style: solid;
     text-align: center;
+
+    max-width: 90%;
+    overflow-x: hidden;
 }
 
 

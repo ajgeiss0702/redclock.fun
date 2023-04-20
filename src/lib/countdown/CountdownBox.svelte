@@ -151,4 +151,13 @@
             font-size: 0.8em;
         }
     }
+
+    @media (max-height: 500px) {
+        .countdown-text {
+            font-size: 5em;
+        }
+        .countdown-period {
+            font-size: 3em;
+        }
+    }
 </style>

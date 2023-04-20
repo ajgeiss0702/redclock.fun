@@ -76,6 +76,7 @@
      */
     function setSchool(key) {
         localStorage.setItem("school", key);
+        setCookie("school", key);
         goto("/schedules")
     }
 

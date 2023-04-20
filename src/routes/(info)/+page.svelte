@@ -27,6 +27,7 @@
     $: {
         if(browser) {
             localStorage.alwaysRedirect = alwaysRedirect;
+            setCookie("alwaysRedirect", alwaysRedirect);
             if(alwaysRedirect && !$page.url.searchParams.has("noRedirect")) {
                 if(localStorage.school) {
                     goto("/countdown");

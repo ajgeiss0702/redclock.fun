@@ -139,13 +139,16 @@
 			return result;
 		}
 
-		if(location.pathname === "/" && (localStorage.alwaysRedirect || "false") === "true" && !_GET("noRedirect")) {
-			if(localStorage.school && localStorage.schedule) {
-				location.href = "/countdown";
-			} else if(!localStorage.school) {
-				location.href = "/schools";
-			} else if(!localStorage.schedule) {
-				location.href = "/schedules";
+		if(location.pathname === "/" && (localStorage.alwaysRedirect || "false") === "true") {
+			setCookie("alwaysRedirect", true);
+			if(!_GET("noRedirect")) {
+				if(localStorage.school && localStorage.schedule) {
+					location.href = "/countdown";
+				} else if(!localStorage.school) {
+					location.href = "/schools";
+				} else if(!localStorage.schedule) {
+					location.href = "/schedules";
+				}
 			}
 		}
 	</script>

@@ -11,6 +11,13 @@
     if(browser) {
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {
             goto("/");
+        } else {
+            if(!getCookie("school")) {
+                setCookie("school", getSchoolCode());
+            }
+            if(!getCookie("schedule")) {
+                setCookie("schedule", getScheduleCode())
+            }
         }
     }
 

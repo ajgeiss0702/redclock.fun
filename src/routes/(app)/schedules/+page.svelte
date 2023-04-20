@@ -29,6 +29,7 @@
      */
     function setSchedule(key) {
         localStorage.setItem("schedule", key);
+        setCookie("schedule", key);
         goto("/countdown")
     }
 </script>

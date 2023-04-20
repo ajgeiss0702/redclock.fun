@@ -75,7 +75,7 @@ export async function getCurrentSchedule() {
 
 export async function getScheduleFor(now: Date | string, orig = true, doBreaks = true): Promise<ClassTimes> {
     now = new Date(now);
-    let schedule = await getSchedule();
+    let schedule = copy(await getSchedule());
     if(!schedule || !schedule.specials || !schedule.normal) {
         return {};
     }

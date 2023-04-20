@@ -200,6 +200,11 @@
             margin-bottom: 1em;
         }
     }
+
+    .details {
+        max-width: 70vw;
+        overflow-x: auto;
+    }
 </style>
 <div class="weather-container" class:no-weather={!shown}>
     {#if enabled}
@@ -236,27 +241,28 @@
                     <div style='text-align: left;'>
                         <button class="hidden-button weekly-toggle-button" on:click={toggleWeekly}>{weekly ? "This Week" : "Today"}</button>
                     </div>
-                    {#if weekly}
-                        <table>
-                            <tr>
-                                {#each orderedDays as day}
-                                    <td class="dayName">{day}</td>
-                                {/each}
-                            </tr>
-                            <tr>
-                                {#await weatherData}
+                    <div class="details">
+                        {#if weekly}
+                            <table>
+                                <tr>
                                     {#each orderedDays as day}
-                                        <td>
+                                        <td class="dayName">{day}</td>
+                                    {/each}
+                                </tr>
+                                <tr>
+                                    {#await weatherData}
+                                        {#each orderedDays as day}
+                                            <td>
                                             <span class="weekly-high">
                                                 <LoadingText length={3}/>°
                                             </span>
-                                            <br>
-                                            <span class="weekly-low"><LoadingText length={3}/>°</span>
-                                        </td>
-                                    {/each}
-                                {:then data}
-                                    {#each data.weatherData.daily.slice(0, 7) as day}
-                                        <td>
+                                                <br>
+                                                <span class="weekly-low"><LoadingText length={3}/>°</span>
+                                            </td>
+                                        {/each}
+                                    {:then data}
+                                        {#each data.weatherData.daily.slice(0, 7) as day}
+                                            <td>
                                             <span class="weekly-high">
                                                 {#if get("exactTemp")}
                                                     {day.temp.max}°
@@ -264,68 +270,68 @@
                                                     {Math.round(day.temp.max)}°
                                                 {/if}
                                             </span>
-                                            <br>
-                                            <span class="weekly-low">
+                                                <br>
+                                                <span class="weekly-low">
                                                 {#if get("exactTemp")}
                                                     {day.temp.min}°
                                                 {:else}
                                                     {Math.round(day.temp.min)}°
                                                 {/if}
                                             </span>
-                                        </td>
-                                    {/each}
-                                {/await}
-                            </tr>
-                            <tr>
-                                {#await weatherData}
-                                    {#each orderedDays as day}
-                                        <td class="precipitation">🌧️<LoadingText length={2}/> %</td>
-                                    {/each}
-                                {:then data}
-                                    {#each  data.weatherData.daily.slice(0, 7) as day}
-                                        <td class="precipitation">🌧️{Math.round(day.pop*1000)/10}%</td>
-                                    {/each}
-                                {/await}
-                            </tr>
-                        </table>
-
-                    {:else}
-                        <table id='we-info-table'>
-                            <tr class='weather-tr'>
-                                <td>🌧️</td>
-                                <td>
-                                    {#await weatherData}
-                                        <LoadingText length={2}/>% chance of rain today
-                                    {:then data}
-
-                                        {Math.round(data.weatherData.daily[0].pop*1000)/10}% chance of rain today
-                                        {#if data.weatherData.daily[0].pop > 0.2}
-                                            <br>
-                                            {Math.round(data.weatherData.hourly[0].pop*1000)/10}% chance of rain right now
-                                        {/if}
+                                            </td>
+                                        {/each}
                                     {/await}
-                                </td>
-                            </tr>
-                            <tr class='weather-tr'>
-                                <td>💧</td>
-                                <td>
+                                </tr>
+                                <tr>
                                     {#await weatherData}
-                                        <LoadingText length={2}/>%
+                                        {#each orderedDays as day}
+                                            <td class="precipitation">🌧️<LoadingText length={2}/> %</td>
+                                        {/each}
                                     {:then data}
-                                        {data.weatherData.current.humidity}%
+                                        {#each  data.weatherData.daily.slice(0, 7) as day}
+                                            <td class="precipitation">🌧️{Math.round(day.pop*1000)/10}%</td>
+                                        {/each}
                                     {/await}
-                                    humidity<br>
-                                </td>
-                            </tr>
-                            <tr class='weather-tr'>
-                                <td>☀️</td>
-                                <td>
-                                    UV index:
-                                    {#await weatherData}
+                                </tr>
+                            </table>
+
+                        {:else}
+                            <table id='we-info-table'>
+                                <tr class='weather-tr'>
+                                    <td>🌧️</td>
+                                    <td>
+                                        {#await weatherData}
+                                            <LoadingText length={2}/>% chance of rain today
+                                        {:then data}
+
+                                            {Math.round(data.weatherData.daily[0].pop*1000)/10}% chance of rain today
+                                            {#if data.weatherData.daily[0].pop > 0.2}
+                                                <br>
+                                                {Math.round(data.weatherData.hourly[0].pop*1000)/10}% chance of rain right now
+                                            {/if}
+                                        {/await}
+                                    </td>
+                                </tr>
+                                <tr class='weather-tr'>
+                                    <td>💧</td>
+                                    <td>
+                                        {#await weatherData}
+                                            <LoadingText length={2}/>%
+                                        {:then data}
+                                            {data.weatherData.current.humidity}%
+                                        {/await}
+                                        humidity<br>
+                                    </td>
+                                </tr>
+                                <tr class='weather-tr'>
+                                    <td>☀️</td>
+                                    <td>
+                                        UV index:
+                                        {#await weatherData}
                                         <span class='badge rounded-pill text-bg-secondary'>
                                             <LoadingText length={2}/> (<LoadingText length={5}/>)
                                         </span>
-                                    {:then data}
+                                        {:then data}
                                         <span
                                                 class='badge'
                                                 class:variant-filled-error={data.weatherData.current.uvi >= 8}
@@ -345,12 +351,13 @@
                                             {/if}
                                             ({data.weatherData.current.uvi})
                                         </span>
-                                    {/await}
+                                        {/await}
 
-                                </td>
-                            </tr>
-                        </table>
-                    {/if}
+                                    </td>
+                                </tr>
+                            </table>
+                        {/if}
+                    </div>
                 </td>
             </tr>
         </table>

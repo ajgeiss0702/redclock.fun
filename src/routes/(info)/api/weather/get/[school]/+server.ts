@@ -55,7 +55,7 @@ export async function GET({params, url, platform}: RequestEvent) {
             lastAccount = 0
         }
         if(kv) {
-            await kv.put("rc-weather:lastAccount", lastAccount)
+            await kv.put("rc-weather:lastAccount", lastAccount+"")
         }
 
         let weatherData = await fetch("https://api.openweathermap.org/data/2.5/onecall?appid=" + accounts[lastAccount] + "&lat=33.435016&lon=-111.673358&units=imperial")
@@ -80,11 +80,11 @@ export async function GET({params, url, platform}: RequestEvent) {
             }
 
             lastFetchData[schoolCode] = response;
-            await kv.put("rc-weather:lastFetchData:" + schoolCode, response);
+            await kv.put("rc-weather:lastFetchData:" + schoolCode, JSON.stringify(response));
         }
 
         if(kv) {
-            await kv.put("rc-weather:lastFetch:" + schoolCode, lastFetch[schoolCode]);
+            await kv.put("rc-weather:lastFetch:" + schoolCode, lastFetch[schoolCode]+"");
         }
     }
 

@@ -74,7 +74,7 @@
 
 <div class="inline-block card p-4">
     <h3>Looking for the countdown?</h3>
-    <a class="btn variant-glass-primary" href={browser && localStorage.school ? "/countdown" : "/schools"}>
+    <a class="btn variant-glass-primary" href={data.school || (browser && localStorage.school) ? "/countdown" : "/schools"}>
         {#if data.school || (browser && localStorage.school)}
             Go to Countdown
         {:else}

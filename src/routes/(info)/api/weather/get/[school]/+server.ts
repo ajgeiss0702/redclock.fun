@@ -24,13 +24,10 @@ export async function GET({params, url, platform}: RequestEvent) {
         throw error(400, "No school provided");
     }
 
-    if(kv) {
-        lastAccount = Number(await kv.get("rc-weather:lastAccount")) || lastAccount
-    }
-
     let response;
 
-    if(kv) {
+    // if kv is available, and we don't have a (recent) lastLetch, get lastFetch from KV
+    if(kv && typeof lastFetch[schoolCode] === "undefined" && Date.now() - lastFetch[schoolCode] < cacheTime) {
         lastFetch[schoolCode] = Number(await kv.get("rc-weather:lastFetch:" + schoolCode)) || 0;
     } else {
         lastFetch[schoolCode] = lastFetch[schoolCode] || 0;
@@ -49,6 +46,9 @@ export async function GET({params, url, platform}: RequestEvent) {
     } else {
         lastFetch[schoolCode] = Date.now();
 
+        if(kv) {
+            lastAccount = Number(await kv.get("rc-weather:lastAccount")) || lastAccount
+        }
 
         lastAccount++;
         if(lastAccount >= accounts.length) {

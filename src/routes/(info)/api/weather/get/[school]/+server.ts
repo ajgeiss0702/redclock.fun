@@ -82,7 +82,7 @@ export async function GET({params, url, platform}: RequestEvent) {
             }
 
             lastFetchData[schoolCode] = response;
-            await kv.put("rc-weather:lastFetchData:" + schoolCode, JSON.stringify(response));
+            if(kv) await kv.put("rc-weather:lastFetchData:" + schoolCode, JSON.stringify(response));
         }
 
         if(kv) {

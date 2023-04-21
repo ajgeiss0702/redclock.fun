@@ -7,7 +7,8 @@ let server;
 let hashedToken = "$2b$15$/wfCzPaons.QED6QVROqe.idCnHwN6GylRHfZzsAFXf1IW8KaiAqW";
 
 console.log("Building server");
-exec("npm run build", async () => {
+exec("npm run build", async (error, stdout, stderr) => {
+    console.log(stdout);
 
     const app = express();
 

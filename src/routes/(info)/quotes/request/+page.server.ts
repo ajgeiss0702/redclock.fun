@@ -1,5 +1,4 @@
-import {building, dev} from "$app/environment";
-import { env } from "$env/dynamic/private";
+import {dev} from "$app/environment";
 import { CF_PAGES } from "$env/static/private";
 import type {ServerLoad} from "@sveltejs/kit";
 import {error} from "@sveltejs/kit";
@@ -10,7 +9,7 @@ let vpnIpv6 = "2001:19f0:6001:1ca2:5400:3ff:feac:5f2e";
 
 let fs: any;
 
-if(!CF_PAGES) {
+if(dev || !CF_PAGES) {
     (async () => {
         fs = await import("fs/promises");
         fs.mkdir("quote-requests").then(() => {}).catch(() => {});
@@ -19,7 +18,7 @@ if(!CF_PAGES) {
 
 
 export const load = (async ({getClientAddress}) => {
-    if(CF_PAGES) throw error(500, "Invalid environment!")
+    if(!dev && CF_PAGES) throw error(500, "Invalid environment!")
     console.log("got " + getClientAddress())
     let admin = dev || getClientAddress() === vpnIp || getClientAddress() === vpnIpv6;
     let list: string[] = [];
@@ -31,4 +30,11 @@ export const load = (async ({getClientAddress}) => {
         list,
         admin
     }
-}) satisfies ServerLoad
+}) satisfies ServerLoad;
+
+
+export const actions = {
+    submit: async ({platform, cookies, request, getClientAddress}) => {
+
+    }
+}

@@ -42,7 +42,7 @@ export async function GET({params, url, platform}: RequestEvent) {
             cached: true,
             lastFetch: lastFetch[schoolCode],
             ...(
-                kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode) :
+                kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode, {type: "json"}) :
                     lastFetchData[schoolCode]
             )
         };
@@ -69,7 +69,7 @@ export async function GET({params, url, platform}: RequestEvent) {
                 weatherAPIError: weatherData.message,
                 lastFetch: lastFetch[schoolCode],
                 ...(
-                    kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode) :
+                    kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode, {type: "json"}) :
                         lastFetchData[schoolCode]
                 )
             };

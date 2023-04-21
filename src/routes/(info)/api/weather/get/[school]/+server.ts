@@ -1,7 +1,7 @@
 import {error, type RequestEvent} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 
-const cacheTime = 20 * 60 * 1000;
+let cacheTime = 20 * 60 * 1000;
 
 
 const accounts = [
@@ -17,6 +17,8 @@ let lastFetchData: {[index: string]: any} = {};
 
 export async function GET({params, url, platform}: RequestEvent) {
     let kv = platform?.env?.CACHE;
+
+    if(kv) cacheTime = 30 * 60 * 1000; // fetch less often when this is a cf function
 
     let schoolCode: string = params.school || "";
 

@@ -15,23 +15,36 @@ let lastAccount = Math.floor(Math.random() * accounts.length);
 let lastFetch: {[index: string]: number} = {};
 let lastFetchData: {[index: string]: any} = {};
 
-export async function GET({params, url}: RequestEvent) {
+export async function GET({params, url, platform}: RequestEvent) {
+    let kv = platform?.env?.CACHE;
+
     let schoolCode: string = params.school || "";
 
     if(!schoolCode) {
         throw error(400, "No school provided");
     }
 
+    if(kv) {
+        lastAccount = Number(await kv.get("rc-weather:lastAccount")) || lastAccount
+    }
+
     let response;
 
-    lastFetch[schoolCode] = lastFetch[schoolCode] || 0;
+    if(kv) {
+        lastFetch[schoolCode] = Number(await kv.get("rc-weather:lastFetch:" + schoolCode)) || 0;
+    } else {
+        lastFetch[schoolCode] = lastFetch[schoolCode] || 0;
+    }
 
     // each school's weather will be cached (but not when we have ?nocache in dev)
     if(Date.now() - lastFetch[schoolCode] < ((dev && url.searchParams.get("nocache") != null) ? 0 : cacheTime)) {
         response = {
             cached: true,
             lastFetch: lastFetch[schoolCode],
-            ...lastFetchData[schoolCode]
+            ...(
+                kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode) :
+                    lastFetchData[schoolCode]
+            )
         };
     } else {
         lastFetch[schoolCode] = Date.now();
@@ -40,6 +53,9 @@ export async function GET({params, url}: RequestEvent) {
         lastAccount++;
         if(lastAccount >= accounts.length) {
             lastAccount = 0
+        }
+        if(kv) {
+            await kv.put("rc-weather:lastAccount", lastAccount)
         }
 
         let weatherData = await fetch("https://api.openweathermap.org/data/2.5/onecall?appid=" + accounts[lastAccount] + "&lat=33.435016&lon=-111.673358&units=imperial")
@@ -52,7 +68,10 @@ export async function GET({params, url}: RequestEvent) {
                 cached: "error",
                 weatherAPIError: weatherData.message,
                 lastFetch: lastFetch[schoolCode],
-                ...lastFetchData[schoolCode]
+                ...(
+                    kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode) :
+                        lastFetchData[schoolCode]
+                )
             };
         } else {
             response = {
@@ -61,6 +80,11 @@ export async function GET({params, url}: RequestEvent) {
             }
 
             lastFetchData[schoolCode] = response;
+            await kv.put("rc-weather:lastFetchData:" + schoolCode, response);
+        }
+
+        if(kv) {
+            await kv.put("rc-weather:lastFetch:" + schoolCode, lastFetch[schoolCode]);
         }
     }
 

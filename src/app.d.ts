@@ -19,6 +19,7 @@ declare namespace App {
 
             D1DB: D1Database;
             SESSION_STORE: KVNamespace;
+            CACHE: KVNamespace;
             SCHEDULE_BUCKET: R2Bucket;
         };
     }

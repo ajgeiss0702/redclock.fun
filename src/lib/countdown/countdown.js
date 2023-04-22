@@ -1,7 +1,8 @@
-import {readable} from "svelte/store";
+import {readable, get as getStore} from "svelte/store";
 import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.ts";
-import {create, get, onChange} from "$lib/settings.ts";
+import {get, onChange} from "$lib/settings.ts";
 import {browser} from "$app/environment";
+import {getScheduleCode, getSchoolCode} from "../utils.js";
 
 let setTimeString = () => {};
 let setPeriodString = () => {};
@@ -24,6 +25,9 @@ let cdd;
 let period;
 
 let first = true;
+
+let currentSchool;
+let currentSchedule;
 
 let calibratingInterval;
 export function calibrateCountdown() {
@@ -75,6 +79,8 @@ export async function recalcCdd() {
     }
     setPeriodString("until " + scheduleKeys[i]);
     cdTick();
+    currentSchool = getSchoolCode();
+    currentSchedule = getScheduleCode();
 }
 
 onChange("skipAHour", recalcCdd);
@@ -116,6 +122,7 @@ async function cdTick() {
 export async function getTimeString() {
     if(typeof cdd === 'undefined') await recalcCdd();
     if(typeof cdd === 'undefined') return 'load';
+    if(currentSchool !== getSchoolCode() || currentSchedule !== getScheduleCode()) await recalcCdd();
     let distance = await getTime();
     if(distance < 0 || typeof distance == 'undefined') {
         return "bell";
@@ -134,6 +141,18 @@ export async function getTimeString() {
         secondss = "";
     }
     return dayss+hourss+minutess+secondss;
+}
+
+export async function getPeriodString() {
+    if(typeof cdd === 'undefined') await recalcCdd();
+    if(typeof cdd === 'undefined') return '';
+    let p = getStore(periodString);
+    if(p) return p;
+
+    await recalcCdd();
+
+    p = getStore(periodString);
+    return p;
 }
 
 export async function getCdd() {

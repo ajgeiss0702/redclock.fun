@@ -8,9 +8,16 @@
 
     export let box = true;
 
+    export let start = undefined;
+
     if(browser) {
         calibrateCountdown();
     }
+
+    onMount(() => {
+        let i = setTimeout(() => start = undefined, 5000);
+        return () => clearTimeout(i);
+    })
 
     onDestroy(() => {
         stopCountdown();
@@ -21,8 +28,15 @@
     <div class:countdown-inner={box}>
         <div class="countdown-text">
             {#if !browser || !_GET("preview")}
-                {#if $timeString === '' || $timeString === 'load'}
-                    <img src="/img/loading.svg" alt="loading" height="200" width="200">
+                {#if !browser || $timeString === '' || $timeString === 'load'}
+                    {#if start?.timeString}
+                        {start.timeString}
+                        <div class="small-load">
+                            <img src="/img/loading.svg" alt="">
+                        </div>
+                    {:else}
+                        <img src="/img/loading.svg" alt="loading" height="200" width="200">
+                    {/if}
                 {:else if $timeString === 'bell'}
                     <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
                 {:else}
@@ -34,8 +48,12 @@
         </div>
         <br>
         <div class="countdown-period">
-            {#if !browser || !_GET("preview")}
-                {$periodString}
+            {#if !$periodString && start?.periodString}
+                {start.periodString}
+            {:else}
+                {#if !browser || !_GET("preview")}
+                    {$periodString}
+                {/if}
             {/if}
         </div>
     </div>
@@ -43,6 +61,15 @@
 
 
 <style>
+
+    .small-load {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .small-load > img {
+        height: 3rem;
+    }
     div {
         text-align: center;
     }

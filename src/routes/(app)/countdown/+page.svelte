@@ -2,7 +2,7 @@
     import CountdownBox from "$lib/countdown/CountdownBox.svelte";
     import Weather from "$lib/countdown/weather/Weather.svelte";
     import Sidebar from "$lib/countdown/Sidebar.svelte";
-    import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
+    import {getScheduleCode, getSchoolCode} from "$lib/utils";
     import {goto} from "$app/navigation";
     import CustomBackground from "$lib/CustomBackground.svelte";
     import Festive from "$lib/Festive.svelte";
@@ -22,11 +22,15 @@
     }
 
     let withWeather = true;
+
+    export let data;
+
+    $: console.log({data});
 </script>
 
 
 <CustomBackground/>
-<CountdownBox bind:withWeather={withWeather}/>
+<CountdownBox bind:withWeather={withWeather} start={data.startTime}/>
 <Weather bind:shown={withWeather}/>
 <Sidebar/>
 

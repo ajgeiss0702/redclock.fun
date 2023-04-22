@@ -23,28 +23,30 @@ export function makeDate(raw: number[]) {
 }
 
 let scheduleCache: {
-    lastGet: number,
-    lastResp?: Promise<SchoolData>
-} = {
-    lastGet: 0
-};
+    [key: string]: {
+        lastGet: number,
+        lastResp: Promise<SchoolData>
+    }
+} = {};
 
 export function getSchedule(): Promise<SchoolData | undefined> {
-    if(typeof scheduleCache == 'undefined') scheduleCache = {lastGet:0}
-    if((Date.now() - scheduleCache.lastGet) < 300e3 && typeof scheduleCache.lastResp != "undefined") {
-        return scheduleCache.lastResp;
+    let school = getSchoolCode();
+    let schedule = getScheduleCode();
+    let key = school + ":" + schedule;
+    if((Date.now() - (scheduleCache[key]?.lastGet ?? 0)) < 300e3 && typeof scheduleCache[key]?.lastResp != "undefined") {
+        return scheduleCache[key].lastResp;
     }
 
     if(!getSchoolCode()) {
-        location.href = "/schools";
+        if(browser) location.href = "/schools?reselect";
         return Promise.resolve(undefined);
     }
     if(!getScheduleCode()) {
-        location.href = "/schedules";
+        if(browser) location.href = "/schedules?reselect";
         return Promise.resolve(undefined);
     }
 
-    schoolExists(getSchoolCode())
+    schoolExists(school)
         .then(e => {
             if(e) return;
             console.warn("School " + getSchoolCode() + " does not exist!");
@@ -53,19 +55,21 @@ export function getSchedule(): Promise<SchoolData | undefined> {
             location.href = "/schools?reselect";
         });
 
-    scheduleCache.lastGet = Date.now();
-    scheduleCache.lastResp = fetch('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode())
-        .then(r => r.json())
-        .then(j => j[getSchoolCode()]);
+    scheduleCache[key] = {
+        lastGet: Date.now(),
+        lastResp: fetch('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode())
+            .then(r => r.json())
+            .then(j => j[getSchoolCode()])
+    };
 
-    scheduleCache.lastResp.then((s) => {
+    scheduleCache[key].lastResp.then((s) => {
         // @ts-ignore
-        if(getScheduleCode() != "rmtv" && !s.schedules[getScheduleCode()]) {
+        if(getScheduleCode() != "rmtv" && !s.schedules[getScheduleCode()] && browser) {
             location.href = "/schedules?reselect"
         }
     })
 
-    return scheduleCache.lastResp;
+    return scheduleCache[key].lastResp;
 }
 
 
@@ -250,6 +254,23 @@ export function schoolExists(key: string) {
     existsCache[key] = promise;
     existsExpiry[key] = Date.now();
     return promise;
+}
+
+export async function scheduleExists(school: string, schedule: string) {
+    if(!await schoolExists(school)) return false;
+
+    if(Object.keys(existsCache).includes(school+":"+schedule) && Date.now() - existsExpiry[school+":"+schedule] < 30 * 60e3) { // cache for 30 minutes
+        return existsCache[school+":"+schedule];
+    }
+    let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?school='+school, {
+        cache: "default"
+    })
+        .then(r => r.json())
+        .then(j => !!j[school]?.schedules?.[schedule]);
+
+    existsCache[school+":"+schedule] = promise;
+    existsExpiry[school+":"+schedule] = Date.now();
+    return await promise;
 }
 
 export type SchoolData = {

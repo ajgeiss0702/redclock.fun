@@ -15,8 +15,9 @@ export const load = (async ({platform, params, locals}) => {
         metadata: {
             quotePreview: "Test Quote",
             authorPreview: "Test Author",
-            status: "pending",
+            status: "denied",
             reason: "test reason",
+            expiration: 1689217077711,
             submitted: 1679217077711
         },
         canManage: true
@@ -56,12 +57,19 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
     let kv = platform?.env?.QUOTE_SUGGESTIONS;
     if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
 
+    let expiration;
+    if(status === "denied") {
+        expiration = Date.now() + 1000 * 60 * 60 * 24 * 90;
+    }
+
     await kv.put(data.id, data.value, {
         metadata: {
             ...data.metadata,
             reason: reason,
-            status: "accepted"
-        }
+            status: "accepted",
+            expiration
+        },
+        expiration
     });
 
 }

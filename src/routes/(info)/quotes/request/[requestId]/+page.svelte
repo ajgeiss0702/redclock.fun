@@ -84,9 +84,19 @@ Request ID: {data?.id}<br>
         <a href="mailto:support@redclock.fun">support@redclock.fun</a>.<br>
         (make sure to include the Request ID in your email)
     {/if}
-
+    <br>
+    <br>
+    {#if data?.metadata?.expiration}
+        <h2>Removal</h2>
+        To save on storage costs, denied quote suggestions are automatically deleted after 90 days.<br>
+        If you want to save this quote, make sure you have already done so.<br>
+        <br>
+        This quote will be deleted in {Math.floor((data?.metadata?.expiration - Date.now()) / (1000 * 60 * 60 * 24))} days.
+    {/if}
 {:else if data?.metadata?.status === "accepted"}
-
+    <h2>Congrats!</h2>
+    This quote has been accepted, and will shortly be a part of Red Clock!<br>
+    Thank you for taking your time to suggest a quote.
 {:else}
     <h2>Please bookmark this page!</h2>
     <br>
@@ -105,6 +115,9 @@ Request ID: {data?.id}<br>
         (make sure to include the Request ID in your email)
     {/if}
 {/if}
+<br>
+<br>
+<br>
 
 
 <style>

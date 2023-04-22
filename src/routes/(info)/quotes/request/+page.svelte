@@ -5,6 +5,7 @@
     import {browser, dev} from "$app/environment";
     import {quotes} from "$lib/quotes";
     import {similarity} from "$lib/utils"
+    import {enhance} from "$app/forms";
 
     export let data;
     export let form;
@@ -62,7 +63,7 @@ I would strongly recommend filling out the "note" box with any info on why you t
 <br>
 
 {#if dev || data?.hasList}
-    <form class="card inline-block p-4" method="POST" action="?/submit">
+    <form class="card inline-block p-4" method="POST" action="?/submit" use:enhance>
 
         <label class="label">
             <span>Quote</span>

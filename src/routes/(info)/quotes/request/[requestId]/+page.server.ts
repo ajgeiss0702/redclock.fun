@@ -1,8 +1,8 @@
 import {dev} from "$app/environment";
-import type {ServerLoad} from "@sveltejs/kit";
-import {error} from "@sveltejs/kit";
+import type {Actions, RequestEvent, ServerLoad} from "@sveltejs/kit";
+import {error, fail} from "@sveltejs/kit";
 
-export const load = (async ({platform, params}) => {
+export const load = (async ({platform, params, locals}) => {
     const id = params.requestId;
     if(!id) throw error(400, "Need a request ID");
     if(dev) return {
@@ -18,7 +18,8 @@ export const load = (async ({platform, params}) => {
             status: "pending",
             reason: "test reason",
             submitted: 1679217077711
-        }
+        },
+        canManage: true
     }
 
     let kv = platform?.env?.QUOTE_SUGGESTIONS;
@@ -32,6 +33,35 @@ export const load = (async ({platform, params}) => {
     return {
         id,
         value,
-        metadata
+        metadata,
+        canManage: (locals?.user?.id === 0)
     }
 }) satisfies ServerLoad;
+
+
+export let actions = {
+    accept: e => setStatus("accepted", e),
+    deny: e => setStatus("denied", e),
+    pend: e => setStatus("pend", e)
+} satisfies Actions;
+
+async function setStatus(status: string, {platform, request, params, locals}: RequestEvent){
+
+    // @ts-ignore im not going to put all million arguments
+    let data = await load({platform, params, locals});
+
+    const formData = await request.formData();
+    const reason = formData.get("reason");
+
+    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+    if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
+
+    await kv.put(data.id, data.value, {
+        metadata: {
+            ...data.metadata,
+            reason: reason,
+            status: "accepted"
+        }
+    });
+
+}

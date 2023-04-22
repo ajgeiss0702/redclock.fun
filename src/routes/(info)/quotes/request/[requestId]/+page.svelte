@@ -1,8 +1,10 @@
 <script>
 
-    import {capitalize} from "../../../../../lib/utils.js";
+    import {capitalize} from "$lib/utils.js";
+    import {enhance} from "$app/forms";
 
     export let data;
+    export let form;
 </script>
 <br>
 <h1>Quote Request</h1>
@@ -11,36 +13,61 @@ Request ID: {data?.id}<br>
 
 <div class="inline-block mx-auto">
     <table class="table table-hover">
-        <tr>
-            <td class="text-right">Quote</td>
-            <td class="text-left">{data?.value?.quote}</td>
-        </tr>
-        <tr>
-            <td class="text-right">Author</td>
-            <td class="text-left">{data?.value?.author}</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-            <td class="text-right">Note</td>
-            <td class="text-left">{data?.value?.note}</td>
-        </tr>
-        <tr>
-            <td class="text-right">Status</td>
-            <td class="text-left">
-                <span
-                        class:accepted={data?.metadata?.status === "accepted"}
-                        class:denied={data?.metadata?.status === "denied"}
-                >
-                    {capitalize(data?.metadata?.status)}
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-right">Date Submitted</td>
-            <td class="text-left">{new Date(data?.metadata?.submitted).toLocaleString()}</td>
-        </tr>
+        <tbody>
+            <tr>
+                <td class="text-right">Quote</td>
+                <td class="text-left">{data?.value?.quote}</td>
+            </tr>
+            <tr>
+                <td class="text-right">Author</td>
+                <td class="text-left">{data?.value?.author}</td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td class="text-right">Note</td>
+                <td class="text-left">{data?.value?.note}</td>
+            </tr>
+            <tr>
+                <td class="text-right">Status</td>
+                <td class="text-left">
+                    <span
+                            class:accepted={data?.metadata?.status === "accepted"}
+                            class:denied={data?.metadata?.status === "denied"}
+                    >
+                        {capitalize(data?.metadata?.status)}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Date Submitted</td>
+                <td class="text-left">{new Date(data?.metadata?.submitted).toLocaleString()}</td>
+            </tr>
+        </tbody>
     </table>
 </div>
+<br>
+<br>
+{#if data?.canManage}
+    <div class="card inline-block mx-auto p-4">
+        <form method="POST" use:enhance>
+            <button formaction="?/accept" class="btn btn-sm variant-ghost-success" disabled={data?.metadata?.status === "accepted"}>
+                Accept
+            </button>
+            <button formaction="?/pend" class="btn btn-sm variant-ghost-surface" disabled={data?.metadata?.status === "pending"}>
+                Pend
+            </button>
+            <button formaction="?/deny" class="btn btn-sm variant-ghost-error" disabled={data?.metadata?.status === "denied"}>
+                Deny
+            </button>
+
+            <input class="input px-3 mt-2" name="reason" type="text" placeholder="Reason" value={data?.metadata?.reason ?? ""}/>
+
+            {#if form?.message}
+                {form?.message}
+            {/if}
+        </form>
+    </div>
+{/if}
 <br>
 <br>
 {#if data?.metadata?.status === "denied"}

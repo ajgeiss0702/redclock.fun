@@ -62,7 +62,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         expiration = Date.now() + 1000 * 60 * 60 * 24 * 90;
     }
 
-    await kv.put(data.id, data.value, {
+    await kv.put(data.id, JSON.stringify(data.value), {
         metadata: {
             ...data.metadata,
             reason: reason,

@@ -51,7 +51,7 @@ Total quotes: {quotes.length}
         max-width: 10in;
         height: max(calc(40vh - 40vw), 7em);
     }
-    h1,h2,h3,h4,h6 {
+    h1,h2 {
         margin-bottom: 0.25em;
         margin-top: 0.25em;
     }

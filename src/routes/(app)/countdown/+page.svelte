@@ -7,6 +7,7 @@
     import CustomBackground from "$lib/CustomBackground.svelte";
     import Festive from "$lib/Festive.svelte";
     import {browser} from "$app/environment";
+    import {getCookie, setCookie} from "$lib/cookieUtils";
 
     if(browser) {
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {

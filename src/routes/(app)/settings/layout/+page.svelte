@@ -2,6 +2,7 @@
     import Layout from "$lib/settings/Layout.svelte";
     import {browser} from "$app/environment";
     import "$lib/css/checkboxes.css"
+    import {getCookie} from "$lib/cookieUtils";
 
     let activeLayout = (browser && getCookie("layout")) || "default";
     let useIframes = false;

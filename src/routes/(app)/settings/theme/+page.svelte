@@ -4,6 +4,7 @@
     import {browser} from "$app/environment";
     import CustomBackground from "$lib/CustomBackground.svelte";
     import CustomBackgroundSelect from "$lib/settings/CustomBackgroundSelect.svelte";
+    import {getCookie, setCookie} from "$lib/cookieUtils";
 
     let followSystem = true;
     if(browser) {

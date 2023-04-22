@@ -7,6 +7,7 @@
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import Links from "$lib/countdown/sidebar/Links.svelte";
     import {Tab, TabGroup} from "@skeletonlabs/skeleton";
+    import {_GET} from "$lib/utils";
 
     let tab = '';
 
@@ -85,8 +86,8 @@
         }
     }
 </style>
-<div class="sidebar" class:center={!(!browser || !window._GET("preview"))}>
-    {#if !browser || !window._GET("preview")}
+<div class="sidebar" class:center={!(!browser || !_GET("preview"))}>
+    {#if !browser || !_GET("preview")}
         <Quote/>
         {#key tab}
             <TabGroup>

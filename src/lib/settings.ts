@@ -1,3 +1,5 @@
+import { _GET } from "./utils";
+
 type Setting = {
     content: boolean,
     description: string,

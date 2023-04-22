@@ -64,11 +64,14 @@
 
     .small-load {
         position: absolute;
-        bottom: 0;
-        right: 0;
+        bottom: 1rem;
+        right: 1rem;
+        height: 3rem;
+        width: 3rem;
     }
     .small-load > img {
         height: 3rem;
+        width: 3rem;
     }
     div {
         text-align: center;

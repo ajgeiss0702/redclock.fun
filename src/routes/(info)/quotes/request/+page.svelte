@@ -113,15 +113,21 @@ I would strongly recommend filling out the "note" box with any info on why you t
 <br>
 <br>
 
-{#if data.admin}
+{#if data.hasList}
     <h2>All requests</h2>
     <br>
-    {#each data.list as file}
-        {file}<br>
+    {#each data.list as request}
+        <hr>
+        <a class="hidden-link" href="request/{request.name}">{request.metadata.quotePreview} —{request.metadata.authorPreview}</a>
+        <hr>
     {:else}
         No requests
     {/each}
 {/if}
+<br>
+<br>
+<br>
+<br>
 
 <style>
     .message {

@@ -6,7 +6,6 @@ import { fail, redirect} from "@sveltejs/kit";
 
 
 export const load = (async ({platform, locals}) => {
-    if(locals?.user?.id != 0) return {};
     if(dev) return {
         hasList: true,
         list: [
@@ -22,16 +21,30 @@ export const load = (async ({platform, locals}) => {
             ]
     }
 
+    if(locals?.user?.id != 0) return {};
+
     let kv = platform?.env?.QUOTE_SUGGESTIONS;
     if(!kv) return {};
 
-    const {keys, list_complete} = await kv.list();
+    let {keys, list_complete, cursor} = await kv.list();
+
+    if(!list_complete) {
+        let more = await kv.list({cursor});
+        keys.push(more.keys);
+        list_complete = more.list_complete;
+        cursor = more.cursor;
+    }
+
+
+    // @ts-ignore
+    keys = keys.filter(r => r.metadata.status === "pending");
 
 
     return {
         hasList: true,
         list: keys,
-        list_complete
+        list_complete,
+        cursor
     }
 }) satisfies ServerLoad;
 

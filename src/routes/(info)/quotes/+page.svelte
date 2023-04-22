@@ -1,7 +1,6 @@
 <script>
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import {quotes} from "$lib/quotes";
-    import {dev} from "$app/environment";
 </script>
 
 <svelte:head>
@@ -21,7 +20,7 @@ This is the same thing that's on the countdown page
 
 <br>
 <br>
-<a class="btn variant-glass-primary" href={dev ? "/quotes/request" : "https://ul.redclock.fun/quotes/request"}>
+<a class="btn variant-glass-primary" href="/quotes/request">
     Request Quote
 </a>
 <br>

@@ -6,6 +6,7 @@ export const load = (async ({platform, params}) => {
     const id = params.requestId;
     if(!id) throw error(400, "Need a request ID");
     if(dev) return {
+        id: "00000000-0000-0000-0000-000000000000",
         value: {
             quote: "Test Quote",
             author: "Test Author",
@@ -15,7 +16,8 @@ export const load = (async ({platform, params}) => {
             quotePreview: "Test Quote",
             authorPreview: "Test Author",
             status: "pending",
-            submitted: 1682197077711
+            reason: "test reason",
+            submitted: 1679217077711
         }
     }
 
@@ -28,6 +30,7 @@ export const load = (async ({platform, params}) => {
 
 
     return {
+        id,
         value,
         metadata
     }

@@ -245,9 +245,7 @@ export function schoolExists(key: string) {
     if(Object.keys(existsCache).includes(key) && Date.now() - existsExpiry[key] < 30 * 60e3) { // cache for 30 minutes
         return existsCache[key];
     }
-    let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?exists='+key, {
-        cache: "default"
-    })
+    let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?exists='+key)
         .then(r => r.json())
         .then(j => j.exists);
 
@@ -262,9 +260,7 @@ export async function scheduleExists(school: string, schedule: string) {
     if(Object.keys(existsCache).includes(school+":"+schedule) && Date.now() - existsExpiry[school+":"+schedule] < 30 * 60e3) { // cache for 30 minutes
         return existsCache[school+":"+schedule];
     }
-    let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?school='+school, {
-        cache: "default"
-    })
+    let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?school='+school)
         .then(r => r.json())
         .then(j => !!j[school]?.schedules?.[schedule]);
 

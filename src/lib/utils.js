@@ -277,7 +277,8 @@ export function h() {
 
 
 // https://stackoverflow.com/a/36566052
-function similarity(s1, s2) {
+export function similarity(s1, s2) {
+    if(typeof s1 !== "string" || typeof s2 !== "string") return 0;
     let longer = s1;
     let shorter = s2;
     if (s1.length < s2.length) {

@@ -21,6 +21,7 @@ declare namespace App {
             SESSION_STORE: KVNamespace;
             CACHE: KVNamespace;
             SCHEDULE_BUCKET: R2Bucket;
+            QUOTE_SUGGESTIONS: KVNamespace;
         };
     }
 }

@@ -12,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
 
     let sessionRead = Date.now();
-    if(event.url.pathname.startsWith("/editor")) {
+    if(event.url.pathname.startsWith("/editor") || event.url.pathname.startsWith("/quotes")) {
         event.locals.user = await getUserFromSession(event?.platform?.env, event.cookies.get("session"))
     }
     sessionRead = Date.now() - sessionRead;

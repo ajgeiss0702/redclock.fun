@@ -1,40 +1,70 @@
 import {dev} from "$app/environment";
-import { CF_PAGES } from "$env/static/private";
-import type {ServerLoad} from "@sveltejs/kit";
-import {error} from "@sveltejs/kit";
+import type {Actions, ServerLoad} from "@sveltejs/kit";
+import { fail, redirect} from "@sveltejs/kit";
 
 
-let vpnIp = "149.28.87.60";
-let vpnIpv6 = "2001:19f0:6001:1ca2:5400:3ff:feac:5f2e";
-
-let fs: any;
-
-if(dev || !CF_PAGES) {
-    (async () => {
-        fs = await import("fs/promises");
-        fs.mkdir("quote-requests").then(() => {}).catch(() => {});
-    })()
-}
 
 
-export const load = (async ({getClientAddress}) => {
-    if(!dev && CF_PAGES) throw error(500, "Invalid environment!")
-    console.log("got " + getClientAddress())
-    let admin = dev || getClientAddress() === vpnIp || getClientAddress() === vpnIpv6;
-    let list: string[] = [];
-    if(admin) {
-        if(!fs) fs = await import("fs/promises");
-        list = await fs.readdir("quote-requests")
+export const load = (async ({platform, locals}) => {
+    if(locals?.user?.id != 0) return {};
+    if(dev) return {
+        hasList: true,
+        list: [
+            {
+                name: "00000000-0000-0000-0000-000000000000",
+                metadata: {
+                    quotePreview: "Test Quote",
+                    authorPreview: "Test Author",
+                    status: "pending",
+                    submitted: 1682197077711
+                }
+            }
+            ]
     }
+
+    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+    if(!kv) return {};
+
+    const {keys, list_complete} = await kv.list();
+
+
     return {
-        list,
-        admin
+        hasList: true,
+        list: keys,
+        list_complete
     }
 }) satisfies ServerLoad;
 
 
 export const actions = {
-    submit: async ({platform, cookies, request, getClientAddress}) => {
+    submit: async ({platform, request}) => {
+
+        const data = await request.formData();
+        const quote = data.get("quote");
+        const author = data.get("author");
+        const note = data.get("note");
+
+        if(typeof quote != "string" || typeof author != "string") {
+            return fail(400, {message: "Please provide a quote and an author!"})
+        }
+
+
+        let kv = platform?.env?.QUOTE_SUGGESTIONS;
+        if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
+
+        const id = crypto.randomUUID();
+
+        await kv.put(id, JSON.stringify({quote, author, note}), {
+            metadata: {
+                quotePreview: author.substring(0, Math.min(128, author.length)),
+                authorPreview: author.substring(0, Math.min(64, author.length)),
+                status: "pending",
+                submitted: Date.now()
+            }
+        });
+
+        throw redirect(302, "/quotes/request/" + id);
+
 
     }
-}
+} satisfies Actions

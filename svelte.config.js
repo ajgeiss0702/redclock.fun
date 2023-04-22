@@ -18,8 +18,8 @@ const config = {
       }),
       cfAdapter({
         routes: {
-          include: ["/api/*", "/editor/*", "/", "/__data.json", "/countdown"],
-          exclude: ["/api/schedule.php"],
+          include: ["/api/*", "/editor/*", "/", "/__data.json", "/countdown", "/quotes/request/*"],
+          exclude: ["/api/schedule.php", "/api/search", "/api/.env"],
         },
       }),
       vercelAdapter({

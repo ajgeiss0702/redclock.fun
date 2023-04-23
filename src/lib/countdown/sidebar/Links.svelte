@@ -4,8 +4,8 @@
     <img src="/img/icons/discord.svg" style="height: 1em;" alt="Discord icon"> Discord
 </a><br>
 <br>
-<a class="btn variant-filled-secondary" href="https://app.feedbacky.net/p/redclockfun" target="_blank" rel="noreferrer">
-    Suggest a feature
+<a class="btn variant-filled-secondary" href="mailto:support@redclock.fun">
+    Support / Feedback
 </a><br>
 <br>
 <a class="btn variant-glass-error" href="/desktop">Desktop App</a><br>
@@ -13,6 +13,8 @@
 <a class="btn variant-ringed-surface" href="/lightweight">Lightweight</a><br>
 <br>
 <a class="btn variant-glass-primary" href="/about">About Red Clock</a><br>
+<br>
+<a class="btn variant-ringed-surface">Quotes</a>
 <br>
 
 

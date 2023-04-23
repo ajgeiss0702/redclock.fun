@@ -11,6 +11,8 @@ export const load = (async ({ cookies, fetch }) => {
     }
 
     return {
-        startTime
+        startTime,
+        school: cookies.get("school"),
+        schedule: cookies.get("schedule")
     };
 }) satisfies ServerLoad;

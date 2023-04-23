@@ -22,9 +22,9 @@
         }
     }
 
-    let withWeather = true;
-
     export let data;
+
+    let withWeather = data.school ? data.school === "rmhs" : true;
 
 </script>
 

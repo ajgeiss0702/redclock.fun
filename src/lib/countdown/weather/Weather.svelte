@@ -6,6 +6,7 @@
     import WeatherIcon from "$lib/countdown/weather/WeatherIcon.svelte";
     import {browser} from "$app/environment";
     import {_GET} from "$lib/utils";
+    import {page} from "$app/stores";
 
     export let shown = true;
     export let enabled = true;

@@ -14,7 +14,7 @@
 <br>
 <a class="btn variant-glass-primary" href="/about">About Red Clock</a><br>
 <br>
-<a class="btn variant-ringed-surface">Quotes</a>
+<a class="btn variant-ringed-surface" href="/quotes">Quotes</a>
 <br>
 
 

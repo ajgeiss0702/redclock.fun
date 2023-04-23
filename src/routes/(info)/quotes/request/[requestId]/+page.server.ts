@@ -46,7 +46,9 @@ export let actions = {
     pend: e => setStatus("pending", e)
 } satisfies Actions;
 
-async function setStatus(status: string, {platform, request, params, locals}: RequestEvent){
+async function setStatus(status: string, {platform, request, params, locals}: RequestEvent) {
+
+    if(locals?.user?.id != 0) return fail(401, {message: "You don't have permission to do this!"})
 
     // @ts-ignore im not going to put all million arguments
     let data = await load({platform, params, locals});

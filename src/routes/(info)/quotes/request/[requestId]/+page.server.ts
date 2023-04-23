@@ -43,7 +43,7 @@ export const load = (async ({platform, params, locals}) => {
 export let actions = {
     accept: e => setStatus("accepted", e),
     deny: e => setStatus("denied", e),
-    pend: e => setStatus("pend", e)
+    pend: e => setStatus("pending", e)
 } satisfies Actions;
 
 async function setStatus(status: string, {platform, request, params, locals}: RequestEvent){

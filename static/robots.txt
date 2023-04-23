@@ -2,3 +2,4 @@ User-Agent: *
 Disallow: /api/
 Disallow: /rmtv
 Disallow: /countdown
+Disallow: /quotes/request/*

@@ -9,7 +9,6 @@
 
     export let data;
     export let form;
-    console.log({data});
 
     let tsPassed = false;
 
@@ -36,6 +35,10 @@
         originalQuote = largestSimilarityQuote;
     }
 </script>
+<svelte:head>
+    <title>Quote Request - Red Clock</title>
+    <meta name="description" content="Suggest a quote to be added to Red Clock"/>
+</svelte:head>
 <br>
 <div class="text-left mx-4">
     <a href={$page.url.hostname === "ul.redclock.fun" ? "https://redclock.fun/quotes" : "/quotes"} class="hover-underline">

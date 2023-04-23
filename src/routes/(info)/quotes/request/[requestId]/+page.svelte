@@ -6,6 +6,13 @@
     export let data;
     export let form;
 </script>
+
+<svelte:head>
+    <title>Quote Request - Red Clock</title>
+    <meta name="description" content="{data?.value?.quote} —{data?.value?.author} (Request ID: {data?.id})"/>
+</svelte:head>
+
+
 <br>
 <h1>Quote Request</h1>
 Request ID: {data?.id}<br>

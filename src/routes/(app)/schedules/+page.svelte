@@ -4,12 +4,13 @@
 <script>
 
     import {onMount} from "svelte";
-    import {goto, preloadData as prefetch} from "$app/navigation";
+    import {goto, invalidate, preloadCode} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
-    import {getSchoolCode} from "$lib/utils.js";
+    import {getSchoolCode} from "$lib/utils";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
     import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
+    import {setCookie} from "$lib/cookieUtils";
 
     export let data;
 
@@ -18,7 +19,7 @@
             goto("/schools");
             return;
         }
-        prefetch("/countdown")
+        preloadCode("/countdown")
     })
 
     let reSelecting = browser ? $page.url.searchParams.has("reselect") : false;

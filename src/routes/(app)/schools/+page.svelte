@@ -48,10 +48,10 @@
 <script>
     import {onDestroy, onMount} from "svelte";
     import School from "$lib/schools/School.svelte";
-    import {goto, preloadData as prefetch} from "$app/navigation";
+    import {goto, preloadData} from "$app/navigation";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
-
+    import {setCookie} from "$lib/cookieUtils";
 
     export let data;
 
@@ -63,7 +63,7 @@
 
     onMount(() => {
         first = localStorage.school === undefined;
-        prefetchTimeout = setTimeout(() => prefetch("/schedules"), 500)
+        prefetchTimeout = setTimeout(() => preloadData("/schedules"), 500)
     });
 
     onDestroy(() => {

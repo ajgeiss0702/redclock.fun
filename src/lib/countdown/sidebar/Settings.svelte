@@ -14,5 +14,5 @@
     <br>
     <a class="btn variant-glass-primary" href="/settings">More settings</a><br>
     <br>
-    <a class="btn variant-outline-primary" data-sveltekit-reload href="/schools">Select a different school or schedule</a>
+    <a class="btn variant-outline-primary" href="/schools">Select a different school or schedule</a>
 </div>

@@ -28,16 +28,15 @@ export const load = (async ({platform, locals}) => {
 
     let {keys, list_complete, cursor} = await kv.list();
 
-    if(!list_complete) {
+    let i = 0;
+    while(!list_complete && i < 500) {
         let more = await kv.list({cursor});
         keys.push(more.keys);
         list_complete = more.list_complete;
         cursor = more.cursor;
+        i++;
     }
 
-
-    // @ts-ignore
-    keys = keys.filter(r => r.metadata.status === "pending");
 
 
     return {

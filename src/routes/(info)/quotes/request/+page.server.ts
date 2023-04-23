@@ -1,6 +1,7 @@
 import {dev} from "$app/environment";
+import { env } from "$env/dynamic/private";
 import type {Actions, ServerLoad} from "@sveltejs/kit";
-import { fail, redirect} from "@sveltejs/kit";
+import {fail, redirect} from "@sveltejs/kit";
 
 
 
@@ -49,7 +50,7 @@ export const load = (async ({platform, locals}) => {
 
 
 export const actions = {
-    submit: async ({platform, request}) => {
+    submit: async ({platform, request, getClientAddress}) => {
 
         const data = await request.formData();
         const quote = data.get("quote");
@@ -58,6 +59,29 @@ export const actions = {
 
         if(typeof quote != "string" || typeof author != "string") {
             return fail(400, {message: "Please provide a quote and an author!"})
+        }
+
+        const token = data.get("cf-turnstile-response");
+
+        if(!token) return fail(400, {message: "Invalid turnstile response!"})
+
+        const ip = request.headers.get('CF-Connecting-IP') || getClientAddress();
+
+        let formData = new FormData();
+        formData.append('secret', env.TURNSTILE_SECRET);
+        formData.append('response', token);
+        formData.append('remoteip', ip);
+
+        const turnstileResponse = await fetch(
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+            {
+                method: "POST",
+                body: formData
+            }
+        ).then(r => r.json());
+
+        if(!turnstileResponse.success) {
+            return fail(400, {message: "Failed turnstile! Errors: " + turnstileResponse["error-codes"]});
         }
 
 

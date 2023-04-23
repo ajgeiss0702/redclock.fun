@@ -9,7 +9,7 @@
 
 <svelte:head>
     <title>Quote Request - Red Clock</title>
-    <meta name="description" content="{data?.value?.quote} —{data?.value?.author} (Request ID: {data?.id})"/>
+    <meta name="description" content="{data?.value?.quote} —{data?.value?.author} (Request ID: {data?.id} | Status: {capitalize(data?.metadata?.status)})"/>
 </svelte:head>
 
 

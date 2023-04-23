@@ -68,7 +68,7 @@ export const actions = {
 
         await kv.put(id, JSON.stringify({quote, author, note}), {
             metadata: {
-                quotePreview: author.substring(0, Math.min(128, author.length)),
+                quotePreview: quote.substring(0, Math.min(128, author.length)),
                 authorPreview: author.substring(0, Math.min(64, author.length)),
                 status: "pending",
                 submitted: Date.now()

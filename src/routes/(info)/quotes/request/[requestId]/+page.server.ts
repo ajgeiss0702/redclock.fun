@@ -66,7 +66,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         metadata: {
             ...data.metadata,
             reason: reason,
-            status: "accepted",
+            status: status,
             expiration
         },
         expiration

@@ -112,46 +112,6 @@ I would strongly recommend filling out the "note" box with any info on why you t
 <br>
 <br>
 <br>
-
-{#if data.hasList}
-    <div class="limit mx-auto">
-        <h2>Pending</h2>
-        <br>
-        {#each data.list.filter(r => r.metadata.status === "pending") as request}
-            <hr>
-            <a class="hidden-link" href="request/{request.name}">{request.metadata.quotePreview} —{request.metadata.authorPreview}</a>
-            <hr>
-        {:else}
-            No pending requests
-        {/each}
-
-        <br>
-        <br>
-        <h2>Others (accepted/denied)</h2>
-        <br>
-        {#each data.list.filter(r => r.metadata.status !== "pending") as request}
-            <hr>
-            <a class="hidden-link" href="request/{request.name}">
-                {request.metadata.quotePreview} —{request.metadata.authorPreview}
-                <span
-                        class:red={request.metadata.status === "denied"}
-                        class:green={request.metadata.status === "accepted"}
-                >
-                {capitalize(request.metadata.status)}
-            </span>
-            </a>
-            <hr>
-        {:else}
-            No other requests
-        {/each}
-        <br>
-        {#if !data?.list_complete}
-            ... and more
-        {/if}
-    </div>
-{/if}
-<br>
-<br>
 <br>
 <br>
 

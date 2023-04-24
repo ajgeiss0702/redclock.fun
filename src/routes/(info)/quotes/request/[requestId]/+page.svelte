@@ -130,9 +130,12 @@ Request ID: {data?.id}<br>
 <style>
     div {
         min-width: min(30em, 90vw);
+        max-width: 95vw;
     }
     td {
         padding-left: 2em;
+        word-wrap: break-word;
+        white-space: normal !important;
     }
     .denied {
         color: red

@@ -55,7 +55,8 @@ Generally, I would like quotes to be inspirational, and mostly lighthearted.
 Remember to check the quote list on the previous page for your quote. Duplicate quotes will be rejected.
 <br><br>
 If you plan on submitting a joke quote, note that I will very rarely accept joke quotes.<br>
-The more joke quotes there are, the less special they become when you get them
+To increase the chances that any joke quotes will be accepted, I would recommend submitting at least 2 other, non-joke, quotes.<br>
+The more joke quotes there are, the less special they become when you get them.
 <br><br>
 I would strongly recommend filling out the "note" box with any info on why you think your quote should be accepted.
 

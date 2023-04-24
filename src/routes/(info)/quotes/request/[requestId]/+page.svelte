@@ -2,9 +2,23 @@
 
     import {capitalize} from "$lib/utils.js";
     import {enhance} from "$app/forms";
+    import {quotes} from "$lib/quotes.js";
 
     export let data;
     export let form;
+
+    let foundQuote;
+    $: if(data?.metadata?.status === "accepted") {
+        for (const i in quotes) {
+            const quote = quotes[i];
+            if(quote.request !== data?.id) continue;
+            foundQuote = {
+                id: i,
+                ...quote
+            };
+            break;
+        }
+    }
 </script>
 
 <svelte:head>
@@ -101,9 +115,14 @@ Request ID: {data?.id}<br>
         This quote will be deleted in {Math.floor(((data?.metadata?.expiration * 1000) - Date.now()) / (1000 * 60 * 60 * 24))} days.
     {/if}
 {:else if data?.metadata?.status === "accepted"}
-    <h2>Congrats!</h2>
-    This quote has been accepted, and will shortly be a part of Red Clock!<br>
-    Thank you for taking your time to suggest a quote.
+    {#if foundQuote}
+        <h2>Quote accepted!</h2>
+        This quote has been accepted and is now <a href="/quotes/{foundQuote.id}">quote #{foundQuote.id}</a>
+    {:else}
+        <h2>Congrats!</h2>
+        This quote has been accepted, and will shortly be a part of Red Clock!<br>
+        Thank you for taking your time to suggest a quote.
+    {/if}
 {:else}
     <h2>Please bookmark this page!</h2>
     <br>

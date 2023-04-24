@@ -42,5 +42,5 @@
 <br>
 {#if quote.request}
     This quote was requested by a user.<br>
-    <a href="/quotes/requests/{quote.request}" class="btn variant-glass-primary">See the request here</a>
+    <a href="/quotes/request/{quote.request}" class="btn variant-glass-primary">See the request here</a>
 {/if}

@@ -769,7 +769,7 @@ export let quotes = [
     },
     {
         quote: "If you want to live a happy life, tie it to a goal, not to people or things.",
-        "author": "Albert Einstein"
+        author: "Albert Einstein"
     },
     {
         quote: "Don't watch the clock; do what it does. Keep going.",

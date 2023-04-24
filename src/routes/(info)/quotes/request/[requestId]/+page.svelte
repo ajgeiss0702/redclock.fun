@@ -112,7 +112,7 @@ Request ID: {data?.id}<br>
         To save on storage costs, denied quote suggestions are automatically deleted after 90 days.<br>
         If you want to save this quote, make sure you have already done so.<br>
         <br>
-        This quote will be deleted in {Math.floor(((data?.metadata?.expiration * 1000) - Date.now()) / (1000 * 60 * 60 * 24))} days.
+        This quote will be deleted in {Math.round(((data?.metadata?.expiration * 1000) - Date.now()) / (1000 * 60 * 60 * 24))} days.
     {/if}
 {:else if data?.metadata?.status === "accepted"}
     {#if foundQuote}

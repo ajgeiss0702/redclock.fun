@@ -787,5 +787,10 @@ export let quotes = [
         quote: "Live Laugh Chicken",
         author: "Grace M",
         request: "fbf13883-c82f-4f9f-ad3a-1839dddc5d09"
+    },
+    {
+        quote: "Not all who wander are lost",
+        author: "J. R. R. Tolkien",
+        request: "9d7b4667-ccc1-4c1e-a3fb-5709826062d9"
     }
 ];

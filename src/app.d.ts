@@ -62,3 +62,15 @@ type EditorDistrict = {
     logo: string,
     display: string
 }
+
+type KVListResponse = {
+    keys: {
+        name: string,
+        metadata: {
+            submitted: number,
+            [key: string]: string
+        }
+    }[],
+    list_complete: boolean,
+    cursor: string
+}

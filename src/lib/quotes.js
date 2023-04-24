@@ -766,5 +766,26 @@ export let quotes = [
     {
         quote: "In the midst of every crisis, lies great opportunity.",
         author: "Albert Einstein"
+    },
+    {
+        quote: "If you want to live a happy life, tie it to a goal, not to people or things.",
+        "author": "Albert Einstein"
+    },
+    {
+        quote: "Don't watch the clock; do what it does. Keep going.",
+        author: "Sam Levenson"
+    },
+    {
+        quote: "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+        author: "Zig Ziglar"
+    },
+    {
+        quote: "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+        author: "Christian D. Larson"
+    },
+    {
+        quote: "Live Laugh Chicken",
+        author: "Grace M",
+        request: "fbf13883-c82f-4f9f-ad3a-1839dddc5d09"
     }
 ];

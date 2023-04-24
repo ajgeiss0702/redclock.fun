@@ -36,3 +36,11 @@
 <h1>{quote.quote}</h1>
 <br>
 <h2>—{quote.author}</h2>
+<br>
+<br>
+<br>
+<br>
+{#if quote.request}
+    This quote was requested by a user.<br>
+    <a href="/quotes/requests/{quote.request}" class="btn variant-glass-primary">See the request here</a>
+{/if}

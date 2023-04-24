@@ -11,7 +11,7 @@
         <br>
         {#each data.list.filter(r => r.metadata.status === "pending") as request}
             <hr>
-            <a class="hidden-link" href="request/{request.name}">{request.metadata.quotePreview} —{request.metadata.authorPreview}</a>
+            <a class="hidden-link" href="{request.name}">{request.metadata.quotePreview} —{request.metadata.authorPreview}</a>
             <hr>
         {:else}
             No pending requests
@@ -23,7 +23,7 @@
         <br>
         {#each data.list.filter(r => r.metadata.status !== "pending") as request}
             <hr>
-            <a class="hidden-link" href="request/{request.name}">
+            <a class="hidden-link" href="{request.name}">
                 {request.metadata.quotePreview} —{request.metadata.authorPreview}
                 <span
                         class:red={request.metadata.status === "denied"}

@@ -792,5 +792,15 @@ export let quotes = [
         quote: "Not all who wander are lost",
         author: "J. R. R. Tolkien",
         request: "9d7b4667-ccc1-4c1e-a3fb-5709826062d9"
+    },
+    {
+        quote: "Leave one wolf alive and the sheep are never safe.",
+        author: "Arya Stark",
+        request: "89420cbc-159a-4196-8f70-33f16652b45c"
+    },
+    {
+        quote: "I have what I have and I am happy. I've lost what i've lost and I am still happy",
+        author: "Rupi Kaur",
+        request: "3c2f100a-9e39-4426-910e-5d4d1ec6076a"
     }
 ];

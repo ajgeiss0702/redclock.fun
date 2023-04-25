@@ -4,6 +4,7 @@
     import {getSchoolCode, daysOfWeek, capitalize, getAPIPrefix} from "$lib/utils";
     import LoadingText from "$lib/LoadingText.svelte";
     import WeatherIcon from "$lib/countdown/weather/WeatherIcon.svelte";
+    import ExclamationTriangle from "svelte-bootstrap-icons/lib/ExclamationTriangle.svelte";
     import {browser} from "$app/environment";
     import {_GET} from "$lib/utils";
     import {page} from "$app/stores";
@@ -28,6 +29,7 @@
 
     let updateInterval;
 
+    let promiseHasData = false;
     let weatherData = new Promise(() => {});
 
     onMount(() => {
@@ -64,14 +66,19 @@
         fetch(getAPIPrefix() + "/api/weather/get/" + getSchoolCode())
             .then(r => r.json())
             .then(d => {
-                weatherData = new Promise((resolve) => resolve(d));
+                if(!d.weatherData) throw new Error("got response, but not weather data!");
+                weatherData = Promise.resolve(d);
+                promiseHasData = true;
                 retryLength = 5;
             })
             .catch(e => {
+                if(!promiseHasData) weatherData = Promise.reject(e);
                 console.warn("Failed to fetch weather: " + e + ". Retrying in " + retryLength + " seconds");
                 clearTimeout(retryTimeout);
-                retryTimeout = setTimeout(update, retryLength);
-                retryLength += 5;
+                retryTimeout = setTimeout(update, retryLength * 1000);
+                if(retryLength < 30) {
+                    retryLength += 5;
+                }
             })
     }
 
@@ -217,6 +224,8 @@
                             <LoadingText circle/>
                         {:then data}
                             <WeatherIcon icon={data.weatherData.current.weather[0].icon}/>
+                        {:catch e}
+                            <ExclamationTriangle height="100%" width="100%" class="p-2"/>
                         {/await}
                     </div>
                 </td>
@@ -230,6 +239,8 @@
                             {:else}
                                 {Math.round(data.weatherData.current.temp)}&deg;
                             {/if}
+                        {:catch e}
+                            <ExclamationTriangle height="1em" width="100%" class="p-2"/>
                         {/await}
                     </h1>
                     <p style='padding-left:0.25em; margin-bottom:0;padding-bottom:0;max-width:35vw;'>
@@ -237,6 +248,9 @@
                             <LoadingText length={20}/>
                         {:then data}
                             {capitalize(data.weatherData.hourly[0].weather[0].description)}.
+                        {:catch e}
+                            An error occurred while fetching weather<br>
+                            I'll retry in a bit
                         {/await}
                         <br><br>
                     <div style='text-align: left;'>
@@ -281,6 +295,16 @@
                                             </span>
                                             </td>
                                         {/each}
+                                    {:catch e}
+                                        {#each orderedDays as day}
+                                            <td>
+                                            <span class="weekly-high">
+                                                <ExclamationTriangle height="1em" width="100%"/>
+                                            </span>
+                                                <br>
+                                                <span class="weekly-low"><ExclamationTriangle height="1em" width="100%"/></span>
+                                            </td>
+                                        {/each}
                                     {/await}
                                 </tr>
                                 <tr>
@@ -291,6 +315,10 @@
                                     {:then data}
                                         {#each  data.weatherData.daily.slice(0, 7) as day}
                                             <td class="precipitation">🌧️{Math.round(day.pop*1000)/10}%</td>
+                                        {/each}
+                                    {:catch e}
+                                        {#each orderedDays as day}
+                                            <td class="precipitation">🌧️<ExclamationTriangle height="1em" class="inline"/> %</td>
                                         {/each}
                                     {/await}
                                 </tr>
@@ -304,12 +332,13 @@
                                         {#await weatherData}
                                             <LoadingText length={2}/>% chance of rain today
                                         {:then data}
-
                                             {Math.round(data.weatherData.daily[0].pop*1000)/10}% chance of rain today
                                             {#if data.weatherData.daily[0].pop > 0.2}
                                                 <br>
                                                 {Math.round(data.weatherData.hourly[0].pop*1000)/10}% chance of rain right now
                                             {/if}
+                                        {:catch e}
+                                            <ExclamationTriangle height="1em" class="inline"/>% chance of rain today
                                         {/await}
                                     </td>
                                 </tr>
@@ -320,6 +349,8 @@
                                             <LoadingText length={2}/>%
                                         {:then data}
                                             {data.weatherData.current.humidity}%
+                                        {:catch e}
+                                            <ExclamationTriangle height="1em" class="inline"/>%
                                         {/await}
                                         humidity<br>
                                     </td>
@@ -329,29 +360,34 @@
                                     <td>
                                         UV index:
                                         {#await weatherData}
-                                        <span class='badge rounded-pill text-bg-secondary'>
-                                            <LoadingText length={2}/> (<LoadingText length={5}/>)
-                                        </span>
+                                            <span class='badge rounded-pill text-bg-secondary'>
+                                                <LoadingText length={2}/> (<LoadingText length={5}/>)
+                                            </span>
                                         {:then data}
-                                        <span
-                                                class='badge'
-                                                class:variant-filled-error={data.weatherData.current.uvi >= 8}
-                                                class:variant-filled-warning={data.weatherData.current.uvi >= 3 && data.weatherData.current.uvi < 8}
-                                                class:variant-filled-success={data.weatherData.current.uvi < 3}
-                                        >
-                                            {#if data.weatherData.current.uvi >= 11}
-                                                Extreme
-                                            {:else if data.weatherData.current.uvi >= 8}
-                                                Very High
-                                            {:else if data.weatherData.current.uvi >= 6}
-                                                High
-                                            {:else if data.weatherData.current.uvi >= 3}
-                                                Moderate
-                                            {:else}
-                                                Low
-                                            {/if}
-                                            ({data.weatherData.current.uvi})
-                                        </span>
+                                            <span
+                                                    class='badge'
+                                                    class:variant-filled-error={data.weatherData.current.uvi >= 8}
+                                                    class:variant-filled-warning={data.weatherData.current.uvi >= 3 && data.weatherData.current.uvi < 8}
+                                                    class:variant-filled-success={data.weatherData.current.uvi < 3}
+                                            >
+                                                {#if data.weatherData.current.uvi >= 11}
+                                                    Extreme
+                                                {:else if data.weatherData.current.uvi >= 8}
+                                                    Very High
+                                                {:else if data.weatherData.current.uvi >= 6}
+                                                    High
+                                                {:else if data.weatherData.current.uvi >= 3}
+                                                    Moderate
+                                                {:else}
+                                                    Low
+                                                {/if}
+                                                ({data.weatherData.current.uvi})
+                                            </span>
+
+                                        {:catch e}
+                                            <span class="badge variant-filled-surface">
+                                                <ExclamationTriangle height="1em" class="inline"/>
+                                            </span>
                                         {/await}
 
                                     </td>

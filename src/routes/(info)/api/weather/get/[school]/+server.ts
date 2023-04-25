@@ -1,4 +1,4 @@
-import {error, type RequestEvent} from "@sveltejs/kit";
+import {error, json, type RequestEvent} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 
 let cacheTime = 20 * 60 * 1000;
@@ -90,9 +90,5 @@ export async function GET({params, url, platform}: RequestEvent) {
         }
     }
 
-    return new Response(JSON.stringify(response), {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
+    return json(response);
 }

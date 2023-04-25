@@ -9,6 +9,9 @@
         invalidateAll();
     }
 </script>
+<svelte:head>
+    <title>List of Quote Requests - Red Clock</title>
+</svelte:head>
 <svelte:window on:focus={onVisible}/>
 <br>
 

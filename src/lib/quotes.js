@@ -807,5 +807,10 @@ export let quotes = [
         quote: "Victory cannot be achieved without sacrifice",
         author: "Viktor Reznov",
         request: "dc799816-29b0-4715-94fd-a57589779cb7"
+    },
+    {
+        quote: "Life Is a Beautiful Struggle",
+        author: "Talib Kewli",
+        request: "57bbb474-dbdc-42a2-bd12-a639e20f0b7f"
     }
 ];

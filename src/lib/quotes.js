@@ -816,5 +816,15 @@ export let quotes = [
     {
         quote: "See You Space Cowboy...",
         author: "Cowboy Bebop"
+    },
+    {
+        quote: "We accept the love we think we deserve.",
+        author: "Stephen Chbosky",
+        request: "55c88163-e491-430f-8229-552e5d5034d9"
+    },
+    {
+        quote: "Good luck, have fun, and remember to drink water.",
+        author: "kissu8",
+        request: "a990f2ed-80f3-4486-896f-cdde1fe1e6e7"
     }
 ];

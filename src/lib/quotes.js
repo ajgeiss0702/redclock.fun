@@ -812,5 +812,9 @@ export let quotes = [
         quote: "Life Is a Beautiful Struggle",
         author: "Talib Kewli",
         request: "57bbb474-dbdc-42a2-bd12-a639e20f0b7f"
+    },
+    {
+        quote: "See You Space Cowboy...",
+        author: "Cowboy Bebop"
     }
 ];

@@ -1,8 +1,15 @@
 <script>
     import {capitalize} from "$lib/utils";
+    import {invalidateAll} from "$app/navigation";
 
     export let data;
+
+
+    function onVisible() {
+        invalidateAll();
+    }
 </script>
+<svelte:window on:focus={onVisible}/>
 <br>
 
 {#if data.hasList}

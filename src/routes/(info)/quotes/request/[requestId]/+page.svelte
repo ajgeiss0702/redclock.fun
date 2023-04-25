@@ -3,6 +3,7 @@
     import {capitalize} from "$lib/utils.js";
     import {enhance} from "$app/forms";
     import {quotes} from "$lib/quotes.js";
+    import {invalidateAll} from "$app/navigation";
 
     export let data;
     export let form;
@@ -19,7 +20,14 @@
             break;
         }
     }
+
+    function onVisible() {
+        if(!data?.metadata?.status || data.metadata.status === "pending") {
+            invalidateAll();
+        }
+    }
 </script>
+<svelte:window on:focus={onVisible}/>
 
 <svelte:head>
     <title>Quote Request - Red Clock</title>

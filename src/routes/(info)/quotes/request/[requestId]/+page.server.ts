@@ -10,12 +10,12 @@ export const load = (async ({platform, params, locals}) => {
         value: {
             quote: "Test Quote",
             author: "Test Author",
-            note: "Very cool quote and stuff yeah this is a very long note ans stuff and more stuff bla bla bla"
+            note: Math.floor(Math.random() * 50) + " Very cool quote and stuff yeah this is a very long note ans stuff and more stuff bla bla bla"
         },
         metadata: {
             quotePreview: "Test Quote",
             authorPreview: "Test Author",
-            status: "denied",
+            status: "pending",
             reason: "test reason",
             expiration: 1683359991,
             submitted: 1679217077711

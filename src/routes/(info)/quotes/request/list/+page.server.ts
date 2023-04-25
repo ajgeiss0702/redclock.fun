@@ -16,7 +16,7 @@ export const load = (async ({platform, locals}) => {
             {
                 name: "00000000-0000-0000-0000-000000000001",
                 metadata: {
-                    quotePreview: "Test Quote 2",
+                    quotePreview: "Test Quote 2 (t:" + Math.floor(Math.random() * 50) + ")",
                     authorPreview: "Test Author",
                     status: "pending",
                     submitted: 1682364416764

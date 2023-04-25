@@ -802,5 +802,10 @@ export let quotes = [
         quote: "I have what I have and I am happy. I've lost what i've lost and I am still happy",
         author: "Rupi Kaur",
         request: "3c2f100a-9e39-4426-910e-5d4d1ec6076a"
+    },
+    {
+        quote: "Victory cannot be achieved without sacrifice",
+        author: "Viktor Reznov",
+        request: "dc799816-29b0-4715-94fd-a57589779cb7"
     }
 ];

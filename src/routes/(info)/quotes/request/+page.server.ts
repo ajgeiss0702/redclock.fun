@@ -1,9 +1,11 @@
-import {dev} from "$app/environment";
 import { env } from "$env/dynamic/private";
 import type {Actions, ServerLoad} from "@sveltejs/kit";
 import {fail, redirect} from "@sveltejs/kit";
+import {dev} from "$app/environment";
 
-
+export const load = (async ({locals}) => {
+    return {isAdmin: dev || locals?.user?.id === 0}
+}) satisfies ServerLoad
 
 export const actions = {
     submit: async ({platform, request, getClientAddress}) => {

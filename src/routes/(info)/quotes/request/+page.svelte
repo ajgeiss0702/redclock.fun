@@ -60,7 +60,13 @@ The more joke quotes there are, the less special they become when you get them.
 <br><br>
 I would strongly recommend filling out the "note" box with any info on why you think your quote should be accepted.
 
-<br><br><br>
+<br><br>
+
+{#if data?.isAdmin}
+    <a href="request/list" class="btn variant-ghost-primary">List</a>
+    <br>
+{/if}
+<br>
 
 
 <h1>Quote Request</h1>

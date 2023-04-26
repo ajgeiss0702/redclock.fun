@@ -846,5 +846,10 @@ export let quotes = [
         quote: "Don't take criticism from someone you wouldn't take advice from.",
         author: "Unknown",
         request: "8fad07ca-0e9b-4586-8d6b-d80e377061df"
+    },
+    {
+        quote: "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them, you are a mile away from them and you have their shoes.",
+        author: "Jack Handey",
+        request: "91ad16fb-9a26-4d9d-8903-8dc6a2fb8626"
     }
 ];

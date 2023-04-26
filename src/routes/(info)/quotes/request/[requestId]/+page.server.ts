@@ -15,7 +15,7 @@ export const load = (async ({platform, params, locals}) => {
         metadata: {
             quotePreview: "Test Quote",
             authorPreview: "Test Author",
-            status: "pending",
+            status: "accepted",
             reason: "test reason",
             expiration: 1683359991,
             submitted: 1679217077711

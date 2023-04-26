@@ -105,7 +105,10 @@ Request ID: {data?.id}<br>
     From being offensive, a duplicate, or just not a good fit for being displayed on this site.<br>
     <br>
     {#if data?.metadata?.reason}
-        The reason given for the denial is: {data?.metadata?.reason}
+        The reason given for the denial is: <br>
+        <div class="inline-block card mx-auto">
+            {data?.metadata?.reason}
+        </div>
     {:else}
         Unfortunately, there is not a public deny reason for this quote. <br>
         Usually this happens when the reason for denial is obvious, such as obvious spam or offensive content<br>
@@ -130,6 +133,15 @@ Request ID: {data?.id}<br>
         <h2>Congrats!</h2>
         This quote has been accepted, and will shortly be a part of Red Clock!<br>
         Thank you for taking your time to suggest a quote.
+    {/if}
+    <br>
+    <br>
+    {#if data?.metadata?.reason}
+        <h2>Note</h2>
+        This quote was accepted with a note:<br>
+        <div class="inline-block card mx-auto">
+            {data?.metadata?.reason}
+        </div>
     {/if}
 {:else}
     <h2>Please bookmark this page!</h2>

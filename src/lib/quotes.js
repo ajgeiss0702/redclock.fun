@@ -841,5 +841,10 @@ export let quotes = [
         quote: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
         author: "Muhammad Ali",
         request: "ef970fdc-89c4-4c1a-8e14-261114a53d4c"
+    },
+    {
+        quote: "Don't take criticism from someone you wouldn't take advice from.",
+        author: "Unknown",
+        request: "8fad07ca-0e9b-4586-8d6b-d80e377061df"
     }
 ];

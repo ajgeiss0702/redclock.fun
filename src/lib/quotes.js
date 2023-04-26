@@ -826,5 +826,10 @@ export let quotes = [
         quote: "Good luck, have fun, and remember to drink water.",
         author: "kissu8",
         request: "a990f2ed-80f3-4486-896f-cdde1fe1e6e7"
+    },
+    {
+        quote: "The secret of success in every field is redefining what success means to you. It can’t be your parent’s definition, the media’s definition, or your neighbor’s definition. Otherwise, success will never satisfy you.",
+        author: "RuPaul",
+        request: "7092dcdc-b94d-4e6e-9f7f-9f4b65dc27b2"
     }
 ];

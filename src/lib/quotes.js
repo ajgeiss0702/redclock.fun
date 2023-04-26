@@ -836,5 +836,10 @@ export let quotes = [
         quote: "Never let the fear of striking out keep you from playing the game.",
         author: "Babe Ruth",
         request: "0cac527b-c373-4dde-b279-c0c45bd9a7ad"
+    },
+    {
+        quote: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
+        author: "Muhammad Ali",
+        request: "ef970fdc-89c4-4c1a-8e14-261114a53d4c"
     }
 ];

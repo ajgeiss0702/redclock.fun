@@ -831,5 +831,10 @@ export let quotes = [
         quote: "The secret of success in every field is redefining what success means to you. It can’t be your parent’s definition, the media’s definition, or your neighbor’s definition. Otherwise, success will never satisfy you.",
         author: "RuPaul",
         request: "7092dcdc-b94d-4e6e-9f7f-9f4b65dc27b2"
+    },
+    {
+        quote: "Never let the fear of striking out keep you from playing the game.",
+        author: "Babe Ruth",
+        request: "0cac527b-c373-4dde-b279-c0c45bd9a7ad"
     }
 ];

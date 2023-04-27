@@ -851,5 +851,30 @@ export let quotes = [
         quote: "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them, you are a mile away from them and you have their shoes.",
         author: "Jack Handey",
         request: "91ad16fb-9a26-4d9d-8903-8dc6a2fb8626"
+    },
+    {
+        quote: "A broken clock is right twice a day.",
+        author: "Unknown",
+        request: "c5698bc0-fe14-4310-b121-ce4c3d4d4df2"
+    },
+    {
+        quote: "We can see the moon passing by the window and it looks what I consider to be a correct size.",
+        author: "Michael Collins",
+        request: "d7373279-39ae-4734-b713-a45b683309ec"
+    },
+    {
+        quote: "It suddenly struck me that that tiny pea, pretty and blue, was the Earth. I put my thumb up and shut one eye, and my thumb blotted out the planet Earth. I didn't feel like a giant. I felt very, very small.",
+        author: "Neil Armstrong",
+        request: "de08062e-4e99-4e9c-9517-6deec59a5730"
+    },
+    {
+        quote: "When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it!",
+        author: "Yuri Gagarin",
+        request: "8e94dc52-0976-4aa1-8254-ad2e60731105"
+    },
+    {
+        quote: "So you have come this far, and still you understand nothing.",
+        author: "Ansem, Seeker of Darkness",
+        request: "75aed4a8-7766-4133-ac66-bde3af41759c"
     }
 ];

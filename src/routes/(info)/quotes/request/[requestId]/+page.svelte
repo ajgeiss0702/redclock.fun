@@ -1,8 +1,8 @@
 <script>
 
-    import {capitalize} from "$lib/utils.js";
+    import {capitalize} from "$lib/utils";
     import {enhance} from "$app/forms";
-    import {quotes} from "$lib/quotes.js";
+    import {quotes} from "$lib/quotes";
     import {invalidateAll} from "$app/navigation";
 
     export let data;
@@ -33,8 +33,6 @@
 
     let originalReason = data?.metadata?.reason ?? "";
     let reason = data?.metadata?.reason ?? "";
-
-    $: console.log({reason})
 
     function onVisible() {
         if(!data?.metadata?.status || data.metadata.status === "pending") {

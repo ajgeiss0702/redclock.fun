@@ -57,18 +57,20 @@ export const actions = {
             }
         });
 
-        await fetch(
-            "https://discord.com/api/webhooks/1100085438510813249/1o-4gnLjHi0I2c2PzCoy4m3RXKkPYblGg5eDbTq6UMZzP-OmdYwockDXuk0sIE5tUoYN",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    content: "New quote request: https://redclock.fun/quotes/request/" + id
-                })
-            }
-        )
+        if(!dev) { // don't send discord webhook in dev
+            await fetch(
+                "https://discord.com/api/webhooks/1100085438510813249/1o-4gnLjHi0I2c2PzCoy4m3RXKkPYblGg5eDbTq6UMZzP-OmdYwockDXuk0sIE5tUoYN",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        content: "New quote request: https://redclock.fun/quotes/request/" + id
+                    })
+                }
+            )
+        }
 
 
         throw redirect(302, "/quotes/request/" + id);

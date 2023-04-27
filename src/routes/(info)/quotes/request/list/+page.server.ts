@@ -2,7 +2,8 @@ import {dev} from "$app/environment";
 import type {ServerLoad} from "@sveltejs/kit";
 
 export const load = (async ({platform, locals}) => {
-    if(dev) {
+    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+    if(dev && !kv) {
         let list = [
             {
                 name: "00000000-0000-0000-0000-000000000000",
@@ -30,9 +31,9 @@ export const load = (async ({platform, locals}) => {
         }
     }
 
-    if(locals?.user?.id != 0) return {};
+    if(!dev && locals?.user?.id != 0) return {};
 
-    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+
     if(!kv) return {};
 
     let {keys, list_complete, cursor} = (await kv.list()) as KVListResponse;

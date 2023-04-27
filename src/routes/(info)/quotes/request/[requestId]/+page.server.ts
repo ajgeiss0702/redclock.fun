@@ -5,7 +5,10 @@ import {error, fail} from "@sveltejs/kit";
 export const load = (async ({platform, params, locals}) => {
     const id = params.requestId;
     if(!id) throw error(400, "Need a request ID");
-    if(dev) return {
+
+    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+
+    if(dev && !kv) return {
         id: "00000000-0000-0000-0000-000000000000",
         value: {
             quote: "Test Quote",
@@ -23,7 +26,7 @@ export const load = (async ({platform, params, locals}) => {
         canManage: true
     }
 
-    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+
     if(!kv) return {};
 
     const {value, metadata} = await kv.getWithMetadata(id, {type: "json"});
@@ -35,7 +38,7 @@ export const load = (async ({platform, params, locals}) => {
         id,
         value,
         metadata,
-        canManage: (locals?.user?.id === 0)
+        canManage: (dev || locals?.user?.id === 0)
     }
 }) satisfies ServerLoad;
 
@@ -48,7 +51,7 @@ export let actions = {
 
 async function setStatus(status: string, {platform, request, params, locals}: RequestEvent) {
 
-    if(locals?.user?.id != 0) return fail(401, {message: "You don't have permission to do this!"})
+    if(!dev && locals?.user?.id != 0) return fail(401, {message: "You don't have permission to do this!"})
 
     // @ts-ignore im not going to put all million arguments
     let data = await load({platform, params, locals});
@@ -61,7 +64,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
 
     let expiration;
     if(status === "denied") {
-        expiration = (Date.now() + (1000 * 60 * 60 * 24 * 90)) / 1000;
+        expiration = Math.round((Date.now() + (1000 * 60 * 60 * 24 * 90)) / 1000);
     }
 
     await kv.put(data.id, JSON.stringify(data.value), {

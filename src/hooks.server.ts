@@ -1,7 +1,17 @@
 import type {Handle} from "@sveltejs/kit";
 import {getUserFromSession} from "./lib/server/users";
+import {dev} from "$app/environment";
 
 export const handle: Handle = async ({ event, resolve }) => {
+
+
+    // KV in dev
+    if (dev) {
+        const { fallBackPlatformToMiniFlareInDev } = await import('$lib/clients/miniflare');
+        event.platform = await fallBackPlatformToMiniFlareInDev(event.platform);
+
+    }
+
 
     if(event.platform?.env?.FUNC_ANAL) {
         event.platform?.env?.FUNC_ANAL.writeDataPoint({

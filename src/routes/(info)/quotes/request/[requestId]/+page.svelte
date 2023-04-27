@@ -21,6 +21,21 @@
         }
     }
 
+    let defaultAction;
+
+    $: if(data?.metadata?.status === "pending") {
+        defaultAction = "?/pend";
+    } else if(data?.metadata?.status === "accepted") {
+        defaultAction = "?/accept";
+    } else if(data?.metadata?.status === "denied") {
+        defaultAction = "?/deny"
+    }
+
+    let originalReason = data?.metadata?.reason ?? "";
+    let reason = data?.metadata?.reason ?? "";
+
+    $: console.log({reason})
+
     function onVisible() {
         if(!data?.metadata?.status || data.metadata.status === "pending") {
             invalidateAll();
@@ -78,18 +93,25 @@ Request ID: {data?.id}<br>
 <br>
 {#if data?.canManage}
     <div class="card inline-block mx-auto p-4">
-        <form method="POST" use:enhance>
-            <button formaction="?/accept" class="btn btn-sm variant-ghost-success" disabled={data?.metadata?.status === "accepted"}>
+        <form method="POST" action={defaultAction} use:enhance={() => {
+            return async ({ update }) => {
+                await update({ reset: false });
+                originalReason = reason;
+            };
+          }}
+        >
+            <button class="hidden"></button>
+            <button formaction="?/accept" class="btn btn-sm variant-ghost-success" disabled={data?.metadata?.status === "accepted" && reason === originalReason}>
                 Accept
             </button>
-            <button formaction="?/pend" class="btn btn-sm variant-ghost-surface" disabled={data?.metadata?.status === "pending"}>
+            <button formaction="?/pend" class="btn btn-sm variant-ghost-surface" disabled={data?.metadata?.status === "pending" && reason === originalReason}>
                 Pend
             </button>
-            <button formaction="?/deny" class="btn btn-sm variant-ghost-error" disabled={data?.metadata?.status === "denied"}>
+            <button formaction="?/deny" class="btn btn-sm variant-ghost-error" disabled={data?.metadata?.status === "denied" && reason === originalReason}>
                 Deny
             </button>
 
-            <input class="input px-3 mt-2" name="reason" type="text" placeholder="Reason" value={data?.metadata?.reason ?? ""}/>
+            <input class="input px-3 mt-2" name="reason" type="text" placeholder="Reason" bind:value={reason}/>
 
             {#if form?.message}
                 {form?.message}

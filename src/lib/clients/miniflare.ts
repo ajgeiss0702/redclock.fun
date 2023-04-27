@@ -1,5 +1,5 @@
-import { Miniflare, Log, LogLevel } from 'miniflare';
-import { dev } from '$app/environment';
+import {Log, LogLevel, Miniflare} from 'miniflare';
+import {dev} from '$app/environment';
 
 export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform | undefined) => {
     if (!dev) return _platform;
@@ -7,8 +7,8 @@ export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform |
     if (_platform) return _platform;
     const mf = new Miniflare({
         log: new Log(LogLevel.INFO),
-        kvPersist: './kv-data', // Use filebase or in memory store
-        kvNamespaces: ['CACHE', 'QUOTE_SUGGESTIONS', 'SCHEDULE_STORE', 'SESSION_STORE'], //Declare array with NameSpaces
+        kvPersist: './kv-data',
+        kvNamespaces: ['CACHE', 'QUOTE_SUGGESTIONS', 'SCHEDULE_STORE', 'SESSION_STORE'],
         globalAsyncIO: true,
         globalTimers: true,
         globalRandom: true,
@@ -25,6 +25,5 @@ export const fallBackPlatformToMiniFlareInDev = async (_platform: App.Platform |
     });
 
     const env = await mf.getBindings();
-    const platform: App.Platform = { env } as App.Platform;
-    return platform;
+    return {env} as App.Platform;
 };

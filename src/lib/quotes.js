@@ -544,10 +544,6 @@ export let quotes = [
         author: "Jamie Paolinetti"
     },
     {
-        quote: "If you’re offered a seat on a rocket ship, don’t ask what seat! Just get on.",
-        author: "Sheryl Sandberg"
-    },
-    {
         quote: "Certain things catch your eye, but pursue only those that capture the heart.",
         author: "Ancient Indian Proverb"
     },

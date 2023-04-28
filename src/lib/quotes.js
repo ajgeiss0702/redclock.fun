@@ -872,5 +872,10 @@ export let quotes = [
         quote: "So you have come this far, and still you understand nothing.",
         author: "Ansem, Seeker of Darkness",
         request: "75aed4a8-7766-4133-ac66-bde3af41759c"
+    },
+    {
+        quote: "They can take your world. They can take your heart. Cut you loose from all you know. But if it's your fate...then every step forward will always be a step closer to home.",
+        author: "Sora",
+        request: "eb83b8bf-2c96-43ed-9df9-5d7a0b848135"
     }
 ];

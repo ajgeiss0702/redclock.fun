@@ -22,6 +22,8 @@ declare namespace App {
             CACHE: KVNamespace;
             SCHEDULE_BUCKET: R2Bucket;
             QUOTE_SUGGESTIONS: KVNamespace;
+            SCHOOLS: KVNamespace;
+            DISTRICTS: KVNamespace;
         };
     }
 }

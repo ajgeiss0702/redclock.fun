@@ -1,26 +1,19 @@
 import type {ServerLoad} from "@sveltejs/kit";
-import {dev} from "$app/environment";
 import {error} from "@sveltejs/kit";
 
 export const load = (async ({locals, platform}) => {
     if(!locals.user) return {};
 
-    if(dev) {
-        return {
-            schools: (await import("$lib/server/devData.js")).devSchools,
-            districts: (await import("$lib/server/devData.js")).devDistricts
-        }
-    }
+    const schools = platform?.env?.SCHOOLS;
+    const districts = platform?.env?.DISTRICTS;
 
-    if(!platform?.env?.D1DB) {
-        throw error(500, "no db!");
+    if(!schools || !districts) {
+        throw error(500, "Missing school or district KV!");
     }
 
     return {
-        schools: (await (
-            platform.env.D1DB.prepare("select * from schools;")
-                .all()
-        )).results
+        schools: ((await schools.list()) as KVListResponse).keys,
+        districts: ((await districts.list()) as KVListResponse).keys
     }
     
 }) satisfies ServerLoad

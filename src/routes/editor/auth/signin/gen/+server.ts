@@ -4,7 +4,7 @@ import {error, text} from "@sveltejs/kit";
 import {pbkdf2} from "$lib/server/crypto-pbkdf2";
 
 export const GET = (async ({url}) => {
-    if(!dev) throw error(401, "Not available in prod");
+    if(!dev) throw error(503, "Not available in production environment");
 
     const pw = url.searchParams.get("pw");
 

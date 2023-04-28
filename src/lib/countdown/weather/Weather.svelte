@@ -252,7 +252,7 @@
                             An error occurred while fetching weather<br>
                             I'll retry in a bit
                         {/await}
-                        <br><br>
+                        <br>
                     <div style='text-align: left;'>
                         <button class="hidden-button weekly-toggle-button" on:click={toggleWeekly}>{weekly ? "This Week" : "Today"}</button>
                     </div>

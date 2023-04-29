@@ -17,7 +17,7 @@ export const actions = {
 
         if(!value) return fail(500, {message: "School doesnt exist?"})
 
-        await schools.put(params.school, value, {
+        await schools.put(params.school, JSON.stringify(value), {
             metadata: {
                 ...metadata,
                 offset: offset

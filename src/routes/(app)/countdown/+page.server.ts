@@ -1,18 +1,21 @@
 import type {ServerLoad} from "@sveltejs/kit";
 
-export const load = (async ({ cookies, fetch }) => {
+export const load = (async ({ cookies, fetch, url}) => {
+
+    const school = url.searchParams.get("school") ?? cookies.get("school") ;
+    const schedule = url.searchParams.get("schedule") ?? cookies.get("schedule");
 
     let startTime;
-    if(cookies.get("school") && cookies.get("schedule")) {
+    if(school && schedule) {
         startTime = await (
-            fetch("/api/countdown/" + cookies.get("school") + "/" + cookies.get("schedule") + "/json")
+            fetch("/api/countdown/" + school + "/" + schedule + "/json")
                 .then(r => r.json())
         )
     }
 
     return {
         startTime,
-        school: cookies.get("school"),
-        schedule: cookies.get("schedule")
+        school,
+        schedule
     };
 }) satisfies ServerLoad;

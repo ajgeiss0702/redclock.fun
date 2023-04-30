@@ -13,18 +13,21 @@
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {
             goto("/");
         } else {
-            if(!getCookie("school")) {
-                setCookie("school", getSchoolCode());
+            if(!getCookie("school") && localStorage.school) {
+                setCookie("school", localStorage.school);
             }
-            if(!getCookie("schedule")) {
-                setCookie("schedule", getScheduleCode())
+            if(!getCookie("schedule") && localStorage.schedule) {
+                setCookie("schedule", localStorage.schedule)
             }
         }
     }
 
     export let data;
 
+
     let withWeather = data.school ? data.school === "rmhs" : true;
+
+    console.log({school: !!data.school})
 
 </script>
 

@@ -27,7 +27,7 @@ export function get(name: string): boolean|undefined {
     if(Object.keys(rmtvSpecials).indexOf(name) != -1 && _GET('rmtv') == "undefined") {
         return rmtvSpecials[name];
     }
-    if(name == "enableWeather" && _GET("school") != null) {
+    if(name == "enableWeather" && _GET("school") != null && _GET("enableWeather") == null) {
         return false;
     }
     return settings[name].content;

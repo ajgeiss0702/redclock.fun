@@ -877,5 +877,30 @@ export let quotes = [
         quote: "They can take your world. They can take your heart. Cut you loose from all you know. But if it's your fate...then every step forward will always be a step closer to home.",
         author: "Sora",
         request: "eb83b8bf-2c96-43ed-9df9-5d7a0b848135"
+    },
+    {
+        quote: "I did absolutely nothing, and it was everything I thought it could be.",
+        author: "Peter Gibbons",
+        request: "43c306a1-81d5-4752-a8aa-1ae3627340c6"
+    },
+    {
+        quote: "If you know the enemy and know yourself, you need not fear the result of a hundred battles. If you know yourself but not the enemy, for every victory gained you will also suffer a defeat. If you know neither the enemy nor yourself, you will succumb in every battle.",
+        author: "Sun Tzu, The Art of War",
+        request: "e6d22fe0-6522-49f9-bd99-dc66857a4580"
+    },
+    {
+        quote: "A river cuts through a rock not because of its power but because of its persistence.",
+        author: "James N Watkins",
+        request: "28c4a4db-5569-4852-8f62-2f59da261433"
+    },
+    {
+        quote: "You can’t stop change any more than you can stop the suns from setting.",
+        author: "Shimi Skywalker",
+        request: "4f78f91d-4c0a-4a65-b8a2-10566558c571"
+    },
+    {
+        quote: "Be careful not to choke on your aspirations",
+        author: "Darth Vader",
+        request: "46fdaad7-bb08-4852-b9af-854d1ebf986e"
     }
 ];

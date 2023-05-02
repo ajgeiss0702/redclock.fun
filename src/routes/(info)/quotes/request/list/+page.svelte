@@ -4,6 +4,9 @@
 
     export let data;
 
+    $: accepted = data.list?.filter(r => r.metadata.status === "accepted").length
+    $: denied = data.list?.filter(r => r.metadata.status === "denied").length
+
 
     function onVisible() {
         invalidateAll();
@@ -29,7 +32,7 @@
 
         <br>
         <br>
-        <h2>Others (accepted/denied)</h2>
+        <h2>Others ({accepted} accepted / {denied} denied)</h2>
         <br>
         {#each data.list.filter(r => r.metadata.status !== "pending") as request}
             <hr>

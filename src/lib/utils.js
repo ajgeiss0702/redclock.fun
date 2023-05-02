@@ -170,7 +170,7 @@ export function capitalize(string) {
 
 export function getAPIPrefix(pre = true) {
     // if UL goes down, set second parameter to be empty aswell
-    return (pre ? dev || prerendering : dev) ? "" : "https://ul.redclock.fun";
+    return (pre ? dev || prerendering : dev) ? "" : /*"https://ul.redclock.fun"*/"";
 }
 
 export const shortMonths = [

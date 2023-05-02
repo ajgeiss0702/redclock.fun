@@ -33,7 +33,11 @@
     <div class="x-container">
         <button class="x" on:click={() => show = false}>x</button>
     </div>
-    <Minesweeper/>
+    {#if msComponent}
+        <svelte:component this={msComponent}/>
+    {:else}
+        Loading..
+    {/if}
     <br>
     <br>
 {/if}
@@ -41,7 +45,13 @@
 <svelte:window on:keypress={keyPress}/>
 <script lang="ts">
     import {dev} from "$app/environment";
-    import Minesweeper from "$lib/countdown/sidebar/minesweeper/Minesweeper.svelte";
+    import {onMount} from "svelte";
+
+    let msComponent = false;
+
+    onMount(async () => {
+        msComponent = (await import("$lib/countdown/sidebar/minesweeper/Minesweeper.svelte")).default;
+    })
 
     let show = dev;
 

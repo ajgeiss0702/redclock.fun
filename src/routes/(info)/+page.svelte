@@ -1,19 +1,24 @@
 <script>
     import {goto, preloadData as prefetch} from "$app/navigation";
-    import {paths as oldPaths} from "$lib/oldPaths.js";
-    import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
+    import {paths as oldPaths} from "$lib/oldPaths";
+    import {getScheduleCode, getSchoolCode, _GET} from "$lib/utils";
     import {browser} from "$app/environment";
     import {SlideToggle} from "@skeletonlabs/skeleton";
     import {page} from "$app/stores";
     import {onDestroy, onMount} from "svelte";
+    import {setCookie} from "$lib/cookieUtils";
 
-    if(browser && (localStorage.alwaysRedirect || "false") === "true" && !$page.url.searchParams.has("noRedirect")) {
+    if(browser) {
         let hash = location.hash.split('#').splice(1).join('#');
         if(Object.keys(oldPaths).includes(hash)) {
             goto("/" + oldPaths[hash]);
         } else if(_GET("rmtv") === "undefined") {
             goto("/rmtv");
-        } else if(typeof getSchoolCode() === 'undefined') {
+        }
+    }
+
+    if(browser && (localStorage.alwaysRedirect || "false") === "true" && !$page.url.searchParams.has("noRedirect")) {
+        if(typeof getSchoolCode() === 'undefined') {
             goto("/schools")
         } else if(typeof getScheduleCode() === 'undefined') {
             goto("/schedules")

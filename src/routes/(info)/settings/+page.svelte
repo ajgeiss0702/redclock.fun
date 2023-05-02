@@ -27,7 +27,7 @@
         }
     }
 </style>
-<div>
+<div class="px-1">
     <!--<Alert class="d-inline-block" color="warning" fade={false} dismissible>
         <h1>Settings page WIP</h1>
         Other than themes and layouts (and the settings that are in the settings tab), im not sure what settings I should have here.<br>
@@ -43,7 +43,7 @@
         at the top
     {/if}-->
     <br>
-    <div class="settings-table p-4">
+    <div class="settings-table p-1">
         <SettingsTable expand={true}/>
     </div>
 </div>

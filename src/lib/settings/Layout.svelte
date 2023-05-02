@@ -42,7 +42,7 @@
         {#if browser && useIframe}
             <iframe src="/countdown?layout={layout}" title={layout}></iframe>
         {:else if browser}
-            <img src="/img/layouts/{layout}-{window.getThemeName()}.png" alt="{capitalize(layout)} layout">
+            <img src="/img/layouts/{layout}-{w_getThemeName()}.png" alt="{capitalize(layout)} layout">
         {/if}
     </div>
     <br>

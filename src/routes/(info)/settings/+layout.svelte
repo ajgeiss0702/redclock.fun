@@ -68,7 +68,7 @@
 <div class="s-container">
     <div class="s-nav">
         <div class="settings-nav">
-            <a class="btn variant-ringed-surface" href="/countdown">Back to countdown</a>
+            <a class="btn variant-ringed-surface my-2" href="/countdown">Back to countdown</a>
             <a class="nav-link selectable" href="/settings" class:selected={$page.url.pathname === "/settings"}>Basic Settings</a>
             <a class="nav-link selectable" href="/settings/theme" class:selected={$page.url.pathname === "/settings/theme"}>Theme Settings</a>
             <a class="nav-link selectable" href="/settings/layout" class:selected={$page.url.pathname === "/settings/layout"}>Layout Settings</a>

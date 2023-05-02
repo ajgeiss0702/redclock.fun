@@ -22,7 +22,7 @@
     import {afterNavigate} from "$app/navigation";
 
     if (browser) {
-        import("$lib/how_many_people.js");
+        import("$lib/how_many_people");
     }
 
     NProgress.configure({

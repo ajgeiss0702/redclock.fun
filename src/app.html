@@ -44,15 +44,15 @@
 	</body>
 	<script data-cfasync="false">
 
-		updateTheme();
+		w_updateTheme();
 		document.body.classList.remove("predark");
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-			if(!shouldSyncThemeWithSystem()) return;
-			updateTheme();
+			if(!w_shouldSyncThemeWithSystem()) return;
+			w_updateTheme();
 		});
 
-		function updateTheme() {
-			if(shouldSyncThemeWithSystem()) {
+		function w_updateTheme() {
+			if(w_shouldSyncThemeWithSystem()) {
 				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					document.body.classList.add("dark");
 					document.body.classList.remove("black");
@@ -61,7 +61,7 @@
 					document.body.classList.remove("black");
 				}
 			} else {
-				let theme = getThemeName();
+				let theme = w_getThemeName();
 				if(theme === "light") {
 					document.body.classList.remove("dark");
 					document.body.classList.remove("black");
@@ -77,35 +77,35 @@
 			}
 		}
 
-		function shouldSyncThemeWithSystem() {
-			if(_GET("theme")) return false;
+		function w_shouldSyncThemeWithSystem() {
+			if(w_GET("theme")) return false;
 			return localStorage.getItem("followSystemTheme") ? localStorage.getItem("followSystemTheme") === "true" : true;
 		}
 
-		function getThemeName() {
-			if(_GET("theme")) return _GET("theme");
-			if(shouldSyncThemeWithSystem()) {
+		function w_getThemeName() {
+			if(w_GET("theme")) return w_GET("theme");
+			if(w_shouldSyncThemeWithSystem()) {
 				return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark" : "light";
 			} else {
-				return getCookie("theme") || "light";
+				return w_getCookie("theme") || "light";
 			}
 		}
 
-		function updateLayout() {
-			let layout = "layout-" + (getCookie("layout") || "default");
-			if(_GET("layout")) {
-				layout = "layout-" + _GET("layout");
+		function w_updateLayout() {
+			let layout = "layout-" + (w_getCookie("layout") || "default");
+			if(w_GET("layout")) {
+				layout = "layout-" + w_GET("layout");
 			}
 			document.body.classList.remove("layout-default", "layout-mirrored", "layout-large", "layout-countdown");
 			document.body.classList.add(layout);
 		}
-		updateLayout()
+		w_updateLayout()
 		function setLayout(layoutName) {
-			setCookie("layout", layoutName);
-			updateLayout()
+			w_setCookie("layout", layoutName);
+			w_updateLayout()
 		}
 
-		function getCookie(cname) {
+		function w_getCookie(cname) {
 			let name = cname + "=";
 			let decodedCookie = decodeURIComponent(document.cookie);
 			let ca = decodedCookie.split(';');
@@ -121,14 +121,14 @@
 			return "";
 		}
 
-		function setCookie(cname, cvalue, exdays = 1e5) {
+		function w_setCookie(cname, cvalue, exdays = 1e5) {
 			const d = new Date();
 			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 			let expires = "expires="+d.toUTCString();
 			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 		}
 
-		function _GET(parameterName) {
+		function w_GET(parameterName) {
 			let result = null,
 					tmp = [];
 			let items = location.search.substring(1).split("&");
@@ -140,8 +140,8 @@
 		}
 
 		if(location.pathname === "/" && (localStorage.alwaysRedirect || "false") === "true") {
-			setCookie("alwaysRedirect", true);
-			if(!_GET("noRedirect")) {
+			w_setCookie("alwaysRedirect", true);
+			if(!w_GET("noRedirect")) {
 				if(localStorage.school && localStorage.schedule) {
 					location.href = "/countdown";
 				} else if(!localStorage.school) {

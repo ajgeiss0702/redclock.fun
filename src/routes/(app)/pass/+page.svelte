@@ -1,5 +1,6 @@
 <script>
     import {browser} from "$app/environment";
+    import {_GET} from "$lib/utils";
 
     let status = "..";
     if(browser) {

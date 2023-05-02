@@ -25,18 +25,18 @@
     function toggleFollowSystem() {
         // this is before we switch the followSystem, so we need to check the opposite
         if(followSystem && !getCookie("theme")) {
-            theme = getThemeName();
+            theme = w_getThemeName();
             themeSelectBox.value = theme;
             setCookie("theme", theme)
         }
         followSystem = !followSystem;
         localStorage.setItem("followSystemTheme", String(followSystem));
-        updateTheme();
+        w_updateTheme();
     }
 
     function changeTheme() {
         setCookie("theme", themeSelectBox.value);
-        updateTheme();
+        w_updateTheme();
     }
 
     let previewCustomBackground = false;

@@ -4,6 +4,7 @@
     import {enhance} from "$app/forms";
     import {quotes} from "$lib/quotes";
     import {invalidateAll} from "$app/navigation";
+    import Quote from "../../../../../lib/countdown/sidebar/Quote.svelte";
 
     export let data;
     export let form;
@@ -170,6 +171,11 @@ Request ID: {data?.id}<br>
     If you do not, it may be lost. There will not be another link to this page on the site.<br>
     <br>
     It will be reviewed at some point in the future. Make sure to check back here to see if the quote has been accepted!<br>
+    <br>
+    <br>
+    <h3>Preview</h3>
+    If your quote is accepted, here is what it might look like:
+    <Quote initialQuote={data?.value} shouldFetch={false} withButtons={false}/>
     <br>
     <br>
     {#if Date.now() - data?.metadata?.submitted > (1000 * 60 * 60 * 24 * 5)}

@@ -6,6 +6,7 @@
     import {quotes} from "$lib/quotes";
     import {similarity, capitalize} from "$lib/utils"
     import {enhance} from "$app/forms";
+    import Quote from "../../../../lib/countdown/sidebar/Quote.svelte";
 
     export let data;
     export let form;
@@ -118,6 +119,9 @@ I would strongly recommend filling out the "note" box with any info on why you t
 </form>
 <br>
 <br>
+<h2>Quote Preview</h2>
+If your quote is accepted, here is what it might look like:
+<Quote initialQuote={{quote, author}} shouldFetch={false} withButtons={false}/>
 <br>
 <br>
 <br>

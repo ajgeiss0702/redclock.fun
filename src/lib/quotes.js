@@ -902,5 +902,20 @@ export let quotes = [
         quote: "Be careful not to choke on your aspirations",
         author: "Darth Vader",
         request: "46fdaad7-bb08-4852-b9af-854d1ebf986e"
+    },
+    {
+        quote: "Tell me every horrible thing you've ever done and let me love you anyways",
+        author: "Andria Zabala",
+        request: "dc919cb0-dfa1-436a-ba41-03c9f94f772b"
+    },
+    {
+        quote: "Why fit in when you were born to stand out?",
+        author: "Dr. Seuss",
+        request: "5ec3c329-d547-4608-809d-74cb0b29c6c6"
+    },
+    {
+        quote: "The way i see it, if you want the rainbow, you gotta put up with the rain.",
+        author: "Dolly parton",
+        request: "c0ca6f94-c610-4f87-a47e-77e9033ab0bf"
     }
 ];

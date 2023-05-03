@@ -81,6 +81,21 @@ Request ID: {data?.id}<br>
                     </span>
                 </td>
             </tr>
+            {#if data?.value?.similarQuotes ?? false}
+                <tr>
+                    <td class="text-right">Similar Quotes</td>
+                    <td class="text-left">
+                        {#each data?.value?.similarQuotes?.filter(q => q.similarity > 0.40) as similar}
+                            <a href="/quotes/{similar.quote.quoteNumber}" target="_blank">
+                                #{similar.quote.quoteNumber}
+                            </a>
+                            &nbsp;
+                        {:else}
+                            No detected similar quotes
+                        {/each}
+                    </td>
+                </tr>
+            {/if}
             <tr>
                 <td class="text-right">Date Submitted</td>
                 <td class="text-left">{new Date(data?.metadata?.submitted).toLocaleString()}</td>

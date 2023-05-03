@@ -2,6 +2,8 @@ import { env } from "$env/dynamic/private";
 import type {Actions, ServerLoad} from "@sveltejs/kit";
 import {fail, redirect} from "@sveltejs/kit";
 import {dev} from "$app/environment";
+import { quotes } from "$lib/quotes";
+import { similarity } from "$lib/utils";
 
 export const load = (async ({locals}) => {
     return {isAdmin: dev || locals?.user?.id === 0}
@@ -46,9 +48,24 @@ export const actions = {
         let kv = platform?.env?.QUOTE_SUGGESTIONS;
         if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
 
+        let similarQuotes = [];
+        for (const i in quotes) {
+            let q = quotes[i].quote;
+            let sim = similarity(quote, q);
+            if(sim > 0.3) {
+                similarQuotes.push({
+                    similarity: sim,
+                    quote: {
+                        quoteNumber: i,
+                        ...quotes[i]
+                    }
+                })
+            }
+        }
+
         const id = crypto.randomUUID();
 
-        await kv.put(id, JSON.stringify({quote, author, note}), {
+        await kv.put(id, JSON.stringify({quote, author, note, similarQuotes}), {
             metadata: {
                 quotePreview: quote.substring(0, Math.min(128, quote.length)),
                 authorPreview: author.substring(0, Math.min(64, author.length)),

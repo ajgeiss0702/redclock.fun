@@ -13,8 +13,8 @@
 
     let tsPassed = false;
 
-    let quote;
-    let author;
+    let quote = "";
+    let author = "";
 
     let quoteSimilarity = 0;
     let originalQuote = -1;

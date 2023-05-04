@@ -917,5 +917,15 @@ export let quotes = [
         quote: "The way i see it, if you want the rainbow, you gotta put up with the rain.",
         author: "Dolly parton",
         request: "c0ca6f94-c610-4f87-a47e-77e9033ab0bf"
+    },
+    {
+        quote: "Remember to drink water and eat something. You are beautiful and you matter.",
+        author: "Unknown",
+        request: "bc10290d-794e-4279-aa8b-b6ceaa674ece"
+    },
+    {
+        quote: "The phrase “it’s just a game” is such a weak mindset. You are ok with what happened, losing, imperfection of a craft. When you stop getting angry after losing, you’ve lost twice. There’s always something to learn, and always room for improvement, never settle.",
+        author: "Tyler Blevins (Ninja)",
+        request: "2a5bba43-c0e6-49e0-b80f-82988ee3c3ff"
     }
 ];

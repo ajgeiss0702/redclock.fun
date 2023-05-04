@@ -17,11 +17,11 @@ import CountdownBox from "$lib/countdown/CountdownBox.svelte";
         font-weight: bold;
     }
 
-    :global(body, html) {
+    div {
         background-color: rgb(140, 0, 0) !important;
     }
 </style>
-<div>
+<div class="h-screen">
     <span class="banner">www.redclock.fun</span>
     <br>
     <CountdownBox box={false}/>

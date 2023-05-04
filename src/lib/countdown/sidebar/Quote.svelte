@@ -104,7 +104,7 @@
     }
 
     :global(.rotate) {
-        transform-origin: 50% 43%;
+        transform-origin: 50% 50%;
         animation: rotation 1s infinite linear;
     }
     @keyframes rotation {
@@ -113,6 +113,15 @@
         }
         to {
             transform: rotate(359deg);
+        }
+    }
+    
+    @media (pointer: coarse) {
+        .button {
+            font-size: 1.75em;
+        }
+        .reload-button {
+            font-size: 2em
         }
     }
 </style>
@@ -127,9 +136,9 @@
             {#if withButtons}
                 <button class="hidden-button button" use:popup={copyHoverSettings} on:click={copy}>
                     {#if copied}
-                        <ClipboardCheck/>
+                        <ClipboardCheck height="1em" width="auto"/>
                     {:else}
-                        <Clipboard/>
+                        <Clipboard height="1em" width="auto"/>
                     {/if}
                 </button>
                 <div class="card p-2 whitespace-nowrap shadow-x1" data-popup="copyHover">
@@ -140,8 +149,8 @@
                     {/if}
                 </div>
                 &nbsp;
-                <button class="hidden-button button reload-button" use:popup={reloadHoverSettings} bind:this={reloadButton} on:click={fetchQuote}>
-                    <ArrowClockwise/>
+                <button class="hidden-button button reload-button rotate" use:popup={reloadHoverSettings} bind:this={reloadButton} on:click={fetchQuote}>
+                    <ArrowClockwise height="1em" width="auto"/>
                 </button>
                 <div class="card p-2 whitespace-nowrap shadow-x1" data-popup="reloadHover">
                     Get a new quote

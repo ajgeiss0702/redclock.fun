@@ -927,5 +927,24 @@ export let quotes = [
         quote: "The phrase “it’s just a game” is such a weak mindset. You are ok with what happened, losing, imperfection of a craft. When you stop getting angry after losing, you’ve lost twice. There’s always something to learn, and always room for improvement, never settle.",
         author: "Tyler Blevins (Ninja)",
         request: "2a5bba43-c0e6-49e0-b80f-82988ee3c3ff"
+    },
+    {
+        quote: "No one bad is every truly bad, and no one good is ever truly good.",
+        author: "Loki"
+    },
+    {
+        quote: "You are ok with what happened, losing, imperfection of a craft. When you stop getting angry after losing, you've lost twice. There's always something to learn, and always room for improvement, never settle.",
+        author: "Tyler Blevins (Ninja)",
+        request: "2a5bba43-c0e6-49e0-b80f-82988ee3c3ff"
+    },
+    {
+        quote: "Life sucks when it includes trauma and depression from the past, but I don't wish to change my past, because it is what made me who I am today.",
+        author: "Zarbee_157",
+        request: "800d87fc-e973-49ac-a777-d6711bcccf23"
+    },
+    {
+        quote: "Kill the part of you that believes it can't survive without someone else.",
+        author: "Sade Andria Zabala",
+        request: "679b5f46-29c3-4770-a1c1-ae53494a3a9f"
     }
 ];

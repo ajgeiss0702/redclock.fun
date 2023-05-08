@@ -946,5 +946,15 @@ export let quotes = [
         quote: "Kill the part of you that believes it can't survive without someone else.",
         author: "Sade Andria Zabala",
         request: "679b5f46-29c3-4770-a1c1-ae53494a3a9f"
+    },
+    {
+        quote: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+        author: "Benjamin Franklin",
+        request: "da590e55-ff67-43ea-97db-dc4da810bb40"
+    },
+    {
+        quote: "Dead people get more flowers than living ones, because regret is stronger than gratitude.",
+        author: "Unknown",
+        request: "1e2c7d6a-9d56-48bc-b8b0-d88212c673c1"
     }
 ];

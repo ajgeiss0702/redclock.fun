@@ -31,7 +31,12 @@
     function fetchQuote() {
         if(!shouldFetch) return;
         reloadButton.classList.add("rotate");
-        let fetchingQuote = fetch(getAPIPrefix() + "/api/quotes/get").then(r => r.json());
+        let fetchingQuote = fetch(
+            getAPIPrefix() + "/api/quotes/get",
+            {
+                cache: "no-cache"
+            }
+        ).then(r => r.json());
         fetchingQuote.then(() => {
             quote = fetchingQuote;
             reloadButton.classList.remove("rotate");

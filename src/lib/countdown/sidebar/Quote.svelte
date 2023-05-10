@@ -34,7 +34,7 @@
         let fetchingQuote = fetch(
             getAPIPrefix() + "/api/quotes/get",
             {
-                cache: "no-cache"
+                cache: "no-store"
             }
         ).then(r => r.json());
         fetchingQuote.then(() => {

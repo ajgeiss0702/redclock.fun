@@ -403,7 +403,7 @@
             <button class="hidden-button stealth-link">
                 <img
                         class="disabled-icon"
-                        src={window.getThemeName() === "light" ? "/img/icons/weather-disabled.svg" : "/img/icons/weather-disabled-white.svg"}
+                        src={window.w_getThemeName() === "light" ? "/img/icons/weather-disabled.svg" : "/img/icons/weather-disabled-white.svg"}
                         alt="Weather disabled icon"
                 >
                 <span class="disabled-text">

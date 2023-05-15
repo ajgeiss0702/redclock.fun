@@ -21,11 +21,24 @@ export const handle: Handle = async ({ event, resolve }) => {
         })
     }
 
-    let sessionRead = Date.now();
-    if(event.url.pathname.startsWith("/editor") || event.url.pathname.startsWith("/quotes")) {
-        event.locals.user = await getUserFromSession(event?.platform?.env, event.cookies.get("session"))
+    const timings: TimingEntry[] = [];
+
+    event.locals.addTiming = (timing: TimingEntry) => {
+        timings.push(timing)
     }
-    sessionRead = Date.now() - sessionRead;
+
+    if(event.url.pathname.startsWith("/editor") || event.url.pathname.startsWith("/quotes")) {
+        let sessionRead = Date.now();
+
+        event.locals.user = await getUserFromSession(event?.platform?.env, event.cookies.get("session"))
+
+        timings.push({
+            id: "sessionRead",
+            duration: Date.now() - sessionRead
+        })
+    }
+
+
 
 
     const response = await resolve(event);
@@ -35,8 +48,26 @@ export const handle: Handle = async ({ event, resolve }) => {
         response.headers.set("Access-Control-Allow-Origin", "*");
     }
 
-    if(event.url.pathname.startsWith("/editor")) {
-        response.headers.append("Server-Timing", "sessionRead;dur=" + sessionRead)
+
+    if(timings.length > 0) {
+        const timingStrings: string[] = [];
+
+        for (const timing of timings) {
+            if(timing.description) {
+                timingStrings.push(
+                    timing.id + ";" +
+                    "desc=\"" + timing.description + "\";" +
+                    "dur=" + timing.duration
+                );
+            } else {
+                timingStrings.push(
+                    timing.id + ";" +
+                    "dur=" + timing.duration
+                );
+            }
+        }
+
+        response.headers.append("Server-Timing", timingStrings.join(","));
     }
 
     return response;

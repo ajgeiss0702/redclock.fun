@@ -3,7 +3,8 @@
 // and what to do when importing types
 declare namespace App {
 	interface Locals {
-        user: User | null
+        user: User | null,
+        addTiming: (timing: TimingEntry) => void
     }
 	// interface PageData {}
 	// interface PageError {}
@@ -75,4 +76,10 @@ type KVListResponse = {
     }[],
     list_complete: boolean,
     cursor: string
+}
+
+type TimingEntry = {
+    id: string,
+    duration: number,
+    description?: string
 }

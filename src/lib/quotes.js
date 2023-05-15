@@ -956,5 +956,25 @@ export let quotes = [
         quote: "Dead people get more flowers than living ones, because regret is stronger than gratitude.",
         author: "Unknown",
         request: "1e2c7d6a-9d56-48bc-b8b0-d88212c673c1"
+    },
+    {
+        quote: "When you do things right, people won't be sure you've done anything at all.",
+        author: "God entity (Futurama)",
+        request: "dfd4c056-b9d5-4951-a928-0ad3a9227e28"
+    },
+    {
+        quote: "Before things come together they have to fall apart",
+        author: "Mac Miller",
+        request: "e2405a53-a2e8-4d17-9eaa-8e4d80ffe0cf"
+    },
+    {
+        quote: "There is no such thing as coincidence, only the inevitable.",
+        author: "Kaho Mizuki",
+        request: "d23ad7a3-8fb2-4fde-8737-de30db58ca7b"
+    },
+    {
+        quote: "I see now that the circumstances of one's birth are irrelevant. It is what you do with the gift of life that determines who you are.",
+        author: "Mewtwo",
+        request: "021fffd1-6bf0-4691-b8f3-002e37d6d0c9"
     }
 ];

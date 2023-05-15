@@ -40,8 +40,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 
 
+    const resolveStart = Date.now();
 
     const response = await resolve(event);
+
+    timings.push({
+        id: "resolve",
+        duration: Date.now() - resolveStart
+    })
 
 
     if(event.url.pathname.startsWith("/api")) {

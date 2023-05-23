@@ -186,7 +186,7 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
 
 
     if(orig && !skipTomorrow) {
-        let temp = new Date();
+        let temp = new Date(now);
         temp.setDate(temp.getDate()+1);
         let tmr = copy(await getScheduleFor(temp, false));
         let tomorrowKeys = Object.keys(tmr);

@@ -976,5 +976,76 @@ export let quotes = [
         quote: "I see now that the circumstances of one's birth are irrelevant. It is what you do with the gift of life that determines who you are.",
         author: "Mewtwo",
         request: "021fffd1-6bf0-4691-b8f3-002e37d6d0c9"
+    },
+    {
+        quote: "Art is a lie that makes us realize the truth",
+        author: "Picasso",
+        request: "f6282671-2dae-485b-a21d-97848dd45990"
+    },
+    {
+        quote: "He He",
+        author: "Michael Jackson",
+        request: "8f49b348-5014-4cea-b7b1-f2d032176549"
+    },
+    {
+        quote: "Live like you were dying",
+        author: "Tim McGraw",
+        request: "d1bd5c85-73bb-42d8-bb6e-3bc97cb2992b"
+    },
+    {
+        quote: "You just gotta keep livin' man, L-I-V-I-N",
+        author: "David Wooderson aka Matthew McConaughey",
+        request: "4ee13e6b-76d9-4185-be99-e6c8e7a19d67"
+    },
+    {
+        quote: "I don’t have any control over what actually happens except for that I have full control over my will for myself, my intention, and why I’m there. That’s all that matters.",
+        author: "SZA",
+        request: "b9c1f54f-8349-4be3-8045-5bdb3f55fb52"
+    },
+    {
+        quote: "Courage need not be remembered, for it is never forgotten.",
+        author: "Princess Zelda",
+        request: "ac3dcdc9-9ece-45e4-8332-53a21858ac6f"
+    },
+    {
+        quote: "Don't take life so seriously. It's not like your getting out alive",
+        author: "The Joker",
+        request: "762e3cd5-5881-4841-a793-cf1e1a4234e4"
+    },
+    {
+        quote: "Sometimes, we have to look beyond what we want and do what's best.",
+        author: "Piccolo",
+        request: "84cf3b9a-5ae1-42af-997f-f103ec5de590"
+    },
+    {
+        quote: "Everything not saved will be lost.",
+        author: "Nintendo \"Quit Screen\" message",
+        request: "9c6925a8-2469-4800-ab06-044785cc7f14"
+    },
+    {
+        quote: "No matter what love throws at you, you have to believe in it. You have to believe in love stories and Prince Charmings and happily ever after. That’s why I write these songs. Because I think love is fearless.",
+        author: "Taylor Swift",
+        request: "4165ea60-83db-4f5c-8a44-f426e0ca7014"
+    },
+    {
+        quote: "Music is powerful, man. It speaks to a primal pit in our brains.",
+        author: "Jake the Dog",
+        request: "b3a08291-60cb-424d-9045-fe19c6ff8d45"
+    },
+    {
+        quote: "If something stands between you and your success, MOVE IT! Never be denied.",
+        author: "Dwayne Johnson",
+        request: "f51b2cf5-296d-4688-98d2-c4aa4c7ecbd1"
+    },
+    {
+        quote: "I'm Still Worthy.",
+        author: "Thor",
+        request: "82293958-5f42-4952-ba7a-e055ef614672"
+    },
+    {
+        quote: "Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has.",
+        author: "Margaret Mead",
+        request: "9e5e0e97-c115-4de5-aa98-7009519e3de2"
     }
+
 ];

@@ -1046,6 +1046,16 @@ export let quotes = [
         quote: "Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has.",
         author: "Margaret Mead",
         request: "9e5e0e97-c115-4de5-aa98-7009519e3de2"
+    },
+    {
+        quote: "It is not despair, for despair is only for those who see the end beyond all doubt. We do not.",
+        author: "Gandalf",
+        request: "74f1ebf3-b9d0-48b4-930e-88d86ddc2b0d"
+    },
+    {
+        quote: "You shall not pass!",
+        author: "Gandalf",
+        request: "b4f42594-7b77-41d8-9abc-c70784dfffc3"
     }
 
 ];

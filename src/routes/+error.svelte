@@ -12,7 +12,7 @@
         text-align: center;
     }
     img {
-        max-width: 90vw;
+        max-height: 90vw;
     }
 </style>
 

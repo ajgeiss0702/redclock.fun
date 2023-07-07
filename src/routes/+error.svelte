@@ -13,6 +13,7 @@
     }
     img {
         height: 90vw;
+        max-height: 70vh;
     }
 </style>
 

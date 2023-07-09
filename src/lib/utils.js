@@ -1,6 +1,8 @@
 import {makeDate} from "$lib/countdown/countdown-utils.ts";
 import {create, get} from "$lib/settings";
 import {browser, dev, building as prerendering} from "$app/environment";
+import {page} from "$app/stores";
+import {get as getStore} from "svelte/store"
 
 let serverSchool;
 let serverSchedule;
@@ -82,6 +84,9 @@ export function httpGet(url, callback = false) {
 
 export function getSchoolCode() {
     if(typeof location === 'undefined' || typeof localStorage === 'undefined') {
+        if(!serverSchool) {
+            return getStore(page).url.searchParams.get("school");
+        }
         return serverSchool;
         //throw new Error("Cannot get school from SSR");
     }
@@ -103,7 +108,7 @@ export function getScheduleCode() {
     }
     let searchParams = new URL(location.href).searchParams;
     if(searchParams.has("schedule")) return searchParams.get("schedule");
-    return localStorage.schedule
+    return localStorage.schedule;
 }
 
 if(browser) {

@@ -1,7 +1,7 @@
 <script>
-    import {onMount} from "svelte";
     import '$lib/css/selectbox.css';
 
+    export let code;
     export let name;
     export let image;
 
@@ -13,8 +13,8 @@
     let style = "background-image: url(\"" + image + "\")"
 </script>
 
-<button class="hidden-button sb-background" {style} on:click>
+<a class="hidden-button sb-background" {style} on:click|preventDefault href="/schedules?school={code}">
     <span class="sb-container">
         <span class="sb">{name}</span>
     </span>
-</button>
+</a>

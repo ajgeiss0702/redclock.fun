@@ -1,4 +1,6 @@
-export function load({ fetch }) {
+import type {PageLoad} from "./$types";
+
+export const load = (async ({fetch}) => {
     return fetch("https://ajg0702.us/api/rmf/schedule.php?school=list")
         .then((response) => response.json())
         .catch(e => {
@@ -8,4 +10,4 @@ export function load({ fetch }) {
                 }
             }
         })
-}
+}) satisfies PageLoad;

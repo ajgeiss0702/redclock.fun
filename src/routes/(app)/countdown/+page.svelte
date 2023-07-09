@@ -8,8 +8,17 @@
     import Festive from "$lib/Festive.svelte";
     import {browser} from "$app/environment";
     import {getCookie, setCookie} from "$lib/cookieUtils";
+    import {page} from "$app/stores";
+    import {onMount} from "svelte";
 
     if(browser) {
+        if(!localStorage.school && getCookie("school")) {
+            localStorage.school = getCookie("school");
+        }
+        if(!localStorage.schedule && getCookie("schedule")) {
+            localStorage.schedule = getCookie("schedule");
+        }
+
         if(typeof getSchoolCode() === "undefined" || typeof getScheduleCode() === "undefined") {
             goto("/");
         } else {
@@ -18,6 +27,13 @@
             }
             if(!getCookie("schedule") && localStorage.schedule) {
                 setCookie("schedule", localStorage.schedule)
+            }
+
+            const searchParams = $page.url.searchParams;
+            if(searchParams.get("school") && searchParams.get("schedule") && searchParams.get("set") === "") {
+                localStorage.school = searchParams.get("school");
+                localStorage.schedule = searchParams.get("schedule");
+                window.history.replaceState({}, document.title, "/countdown");
             }
         }
     }

@@ -51,7 +51,7 @@
     import {goto, preloadData} from "$app/navigation";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
-    import {setCookie} from "$lib/cookieUtils";
+    import {setCookie} from "$lib/cookieUtils.js";
 
     export let data;
 
@@ -104,7 +104,7 @@
 
     <div class="school-list">
         {#each Object.keys(data) as key}
-            <School name="{data[key].display}" image="{data[key].logo}" on:click={() => setSchool(key)}/>
+            <School code={key} name="{data[key].display}" image="{data[key].logo}" on:click={() => setSchool(key)}/>
             &nbsp;
         {/each}
     </div>

@@ -6,21 +6,24 @@
     import {onMount} from "svelte";
     import {goto, invalidate, preloadCode} from "$app/navigation";
     import Schedule from "$lib/schedules/Schedule.svelte";
-    import {getSchoolCode} from "$lib/utils";
+    import {getSchoolCode} from "$lib/utils.js";
     import {page} from "$app/stores";
     import {browser} from "$app/environment";
     import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
-    import {setCookie} from "$lib/cookieUtils";
+    import {setCookie} from "$lib/cookieUtils.js";
 
     export let data;
 
-    onMount(() => {
+    if(browser) {
         if(typeof getSchoolCode() === 'undefined') {
             goto("/schools");
-            return;
+        } else {
+            preloadCode("/countdown");
+            if(getSchoolCode() && !localStorage.school) {
+                localStorage.school = getSchoolCode();
+            }
         }
-        preloadCode("/countdown")
-    })
+    }
 
     let reSelecting = browser ? $page.url.searchParams.has("reselect") : false;
 
@@ -95,13 +98,11 @@
         </a>
     </p>
     <br>
-    <small>At {typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined' ? '' : data[localStorage.school].display}</small>
+    <small>At {!getSchoolCode() ? '' : data[getSchoolCode()].display}</small>
     <div class="schedule-list">
-        {#if typeof localStorage === 'undefined' || typeof localStorage.school === 'undefined'}
-            <img style="height: 4em;" src="/img/loading.svg" alt="loading">
-        {:else if typeof data[localStorage.school].schedules === 'object' && data[localStorage.school].schedules !== null}
-            {#each Object.keys(data[localStorage.school].schedules) as key}
-                <Schedule name={data[localStorage.school].schedules[key]} on:click={() => setSchedule(key)}/>
+        {#if data[getSchoolCode()] && data[getSchoolCode()].schedules}
+            {#each Object.keys(data[getSchoolCode()].schedules) as key}
+                <Schedule code={key} school={getSchoolCode()} name={data[getSchoolCode()].schedules[key]} on:click={() => setSchedule(key)}/>
                 &nbsp;
             {/each}
         {:else}

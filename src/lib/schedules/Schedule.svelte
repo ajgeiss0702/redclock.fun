@@ -1,6 +1,8 @@
 <script>
     import '../css/selectbox.css';
     export let name;
+    export let school;
+    export let code;
 </script>
 
 <style>
@@ -9,8 +11,8 @@
     }
 </style>
 
-<button class="hidden-button sb-background" on:click>
+<a class="hidden-button sb-background" on:click|preventDefault href="/countdown?school={school}&schedule={code}&set">
     <div class="sb-container">
         <span class="sb">{name}</span>
     </div>
-</button>
+</a>

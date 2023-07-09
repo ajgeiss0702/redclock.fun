@@ -43,6 +43,7 @@ export function getSchedule(): Promise<SchoolData | undefined> {
     }
     if(!getScheduleCode()) {
         if(browser) location.href = "/schedules?reselect";
+        console.debug("falsy schedule code " + getScheduleCode())
         return Promise.resolve(undefined);
     }
 
@@ -63,8 +64,10 @@ export function getSchedule(): Promise<SchoolData | undefined> {
     };
 
     scheduleCache[key].lastResp.then((s) => {
+        if(!s) return;
         // @ts-ignore
         if(getScheduleCode() != "rmtv" && !s.schedules[getScheduleCode()] && browser) {
+            console.debug(getScheduleCode() + " not in ", s);
             location.href = "/schedules?reselect"
         }
     })

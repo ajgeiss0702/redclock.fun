@@ -1,7 +1,7 @@
 <script>
     import '../theme.css';
     import '@skeletonlabs/skeleton/styles/all.css';
-    import '../app.postcss';
+    import '../app.css';
 
 
     import NProgress from "nprogress";

@@ -5,7 +5,10 @@
 
     export let id;
 
-    $: request = fetch($page.url.origin + "/api/quotes/request/" + id).then(r => r.json());
+    $: request = fetch($page.url.origin + "/api/quotes/request/" + id)
+        .then(async (request) => {
+            return {request, quote: await request.json()}
+        });
 
 </script>
 {#await request}
@@ -15,19 +18,21 @@
         —<LoadingText length="10"/>
     </a>
     <hr>
-{:then quote}
-    <hr>
-    <a class="hidden-link" href="request/{id}">
-        {quote.metadata.quotePreview} —{quote.metadata.authorPreview}
-        <span
-                class:red={quote.metadata.status === "denied"}
-                class:green={quote.metadata.status === "accepted"}
-                class:gray={quote.metadata.status === "pending"}
-        >
+{:then {request, quote}}
+    {#if request.status === 200}
+        <hr>
+        <a class="hidden-link" href="request/{id}">
+            {quote.metadata.quotePreview} —{quote.metadata.authorPreview}
+            <span
+                    class:red={quote.metadata.status === "denied"}
+                    class:green={quote.metadata.status === "accepted"}
+                    class:gray={quote.metadata.status === "pending"}
+            >
                 {capitalize(quote.metadata.status)}
             </span>
-    </a>
-    <hr>
+        </a>
+        <hr>
+    {/if}
 {/await}
 
 <style>

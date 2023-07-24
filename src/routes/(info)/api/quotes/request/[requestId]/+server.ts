@@ -10,6 +10,8 @@ export const GET = (async ({platform, params}) => {
 
     const {value, metadata} = await requests.getWithMetadata(id, {type: "json"});
 
+    if(!value && !metadata) throw error(404, "Quote not found");
+
     return json({
         id,
         value,

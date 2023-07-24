@@ -6,7 +6,8 @@
     import {quotes} from "$lib/quotes";
     import {similarity, capitalize} from "$lib/utils"
     import {enhance} from "$app/forms";
-    import Quote from "../../../../lib/countdown/sidebar/Quote.svelte";
+    import Quote from "$lib/countdown/sidebar/Quote.svelte";
+    import RequestedQuote from "$lib/quotes/RequestedQuote.svelte";
 
     export let data;
     export let form;
@@ -121,12 +122,29 @@ I would strongly recommend filling out the "note" box with any info on why you t
 <br>
 <h2>Quote Preview</h2>
 If your quote is accepted, here is what it might look like:
-<Quote initialQuote={{quote, author}} shouldFetch={false} withButtons={false}/>
+<div class="quote-container">
+    <Quote initialQuote={{quote, author}} shouldFetch={false} withButtons={false}/>
+</div>
 <br>
+<h2>Your previous requests</h2>
 <br>
+{#if browser}
+    {#each JSON.parse(localStorage.quoteRequests || "[]") || [] as id}
+        <RequestedQuote {id}/>
+    {:else}
+        <span class="opacity-50">You haven't requested any quotes yet!</span>
+    {/each}
+{:else}
+    <span class="opacity-50">Loading..</span>
+{/if}
 <br>
 
+
+<div class="bottom"></div>
 <style>
+    .quote-container {
+        min-height: 6em;
+    }
     .message {
         min-height: 1.5em;
     }
@@ -139,5 +157,9 @@ If your quote is accepted, here is what it might look like:
 
     input[name=quote], .limit {
         width: calc(min(90vw, 56em))
+    }
+
+    .bottom {
+        margin-bottom: 10em;
     }
 </style>

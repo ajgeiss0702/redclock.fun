@@ -27,6 +27,8 @@ export const actions = {
 
         const ip = request.headers.get('CF-Connecting-IP') || getClientAddress();
 
+        if(!env.TURNSTILE_SECRET) return fail(503, {message: "Invalid turnstile secret!"})
+
         let formData = new FormData();
         formData.append('secret', env.TURNSTILE_SECRET);
         formData.append('response', token);
@@ -74,8 +76,8 @@ export const actions = {
             }
         });
 
-        if(!dev) { // don't send discord webhook in dev
-            await fetch(
+        if(!dev && platform?.context?.waitUntil) { // don't send discord webhook in dev
+            platform.context.waitUntil(fetch(
                 "https://discord.com/api/webhooks/1100085438510813249/1o-4gnLjHi0I2c2PzCoy4m3RXKkPYblGg5eDbTq6UMZzP-OmdYwockDXuk0sIE5tUoYN",
                 {
                     method: "POST",
@@ -86,10 +88,10 @@ export const actions = {
                         content: "New quote request: https://redclock.fun/quotes/request/" + id
                     })
                 }
-            )
+            ))
         }
 
 
-        throw redirect(302, "/quotes/request/" + id);
+        throw redirect(302, "/quotes/request/" + id + "?s");
     }
 } satisfies Actions

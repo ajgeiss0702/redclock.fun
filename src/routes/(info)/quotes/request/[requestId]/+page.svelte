@@ -5,9 +5,18 @@
     import {quotes} from "$lib/quotes";
     import {invalidateAll} from "$app/navigation";
     import Quote from "../../../../../lib/countdown/sidebar/Quote.svelte";
+    import {page} from "$app/stores";
+    import {browser} from "$app/environment";
 
     export let data;
     export let form;
+
+    if(browser && $page.url.searchParams.get("s") === "") {
+        const existing = (JSON.parse(localStorage.quoteRequests || "[]") || []);
+        existing.push(data?.id);
+        localStorage.setItem("quoteRequests", JSON.stringify(existing));
+        window.history.replaceState({}, document.title, $page.url.pathname);
+    }
 
     let foundQuote;
     $: if(data?.metadata?.status === "accepted") {

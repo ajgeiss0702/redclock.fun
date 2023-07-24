@@ -26,6 +26,13 @@ declare namespace App {
             SCHOOLS: KVNamespace;
             DISTRICTS: KVNamespace;
         };
+        context?: {
+            /**
+             * Waits for the promise to complete without blocking.
+             * @param promise The promise that is ensured completion
+             */
+            waitUntil: (promise: Promise) => void
+        }
     }
 }
 

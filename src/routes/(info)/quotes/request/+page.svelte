@@ -160,6 +160,6 @@ If your quote is accepted, here is what it might look like:
     }
 
     .bottom {
-        margin-bottom: 10em;
+        margin-bottom: 20em;
     }
 </style>

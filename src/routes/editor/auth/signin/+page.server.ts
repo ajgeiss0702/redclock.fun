@@ -27,7 +27,7 @@ export const actions = {
 
         if(platform?.env?.D1DB) {
             const {key, name, user} = await (
-                platform.env.D1DB.prepare("(select) password as key,name,id as user from users where username=?")
+                platform.env.D1DB.prepare("select password as key,name,id as user from users where username=?")
                 .bind(username)
                 .first()
             ) ?? {};

@@ -6,7 +6,7 @@ export async function getUser(env: App.Platform["env"], id: number): Promise<Use
         return null;
     }
     const {name, username} = await (
-        env.D1DB.prepare("(select) name,username from users where id=?")
+        env.D1DB.prepare("select name,username from users where id=?")
             .bind(id)
             .first()
     ) ?? {};

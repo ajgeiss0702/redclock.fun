@@ -37,7 +37,11 @@
 
     async function tick() {
         let countdownDate, className;
-        if(!cachedNextClass || !cachedNextClass.school || !cachedNextClass.schedule || cachedNextClass.school !== school || cachedNextClass.schedule !== schedule) {
+        if(
+            !cachedNextClass || !cachedNextClass.school || !cachedNextClass.schedule ||
+            cachedNextClass.school !== school || cachedNextClass.schedule !== schedule ||
+            cachedNextClass.countdownDate.getTime() < new Date().getTime()
+        ) {
             const serverNext = $page.data.next;
             const newData = browser || !serverNext ? await getNextClass(school, schedule) : serverNext;
             cachedNextClass = {

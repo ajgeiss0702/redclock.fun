@@ -40,7 +40,7 @@
         if(
             !cachedNextClass || !cachedNextClass.school || !cachedNextClass.schedule ||
             cachedNextClass.school !== school || cachedNextClass.schedule !== schedule ||
-            cachedNextClass.countdownDate.getTime() < new Date().getTime()
+            (cachedNextClass.countdownDate.getTime() + 5e3) < new Date().getTime()
         ) {
             const serverNext = $page.data.next;
             const newData = browser || !serverNext ? await getNextClass(school, schedule) : serverNext;
@@ -58,8 +58,13 @@
         }
         const distance = getDistance(countdownDate)
         const timeString = getTimeString(distance);
-        countdownText = timeString;
-        classText = className;
+        if(distance >= 0) {
+            countdownText = timeString;
+            classText = className;
+        } else {
+            countdownText = "bell"
+            classText = "";
+        }
         currentTime.set(new Date());
         if(typeof document == 'undefined') return;
         if((

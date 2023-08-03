@@ -1,17 +1,18 @@
 <script>
 
-    import {currentTime, periodString} from "$lib/countdown/countdown.js";
-    import {getCurrentSchedule, makeDate} from "$lib/countdown/countdown-utils.ts";
+    import {currentTime, currentClass} from "$lib/countdown/CountdownBox.svelte";
+    import {getCurrentSchedule} from "$lib/countdown/countdown-utils.ts";
     import {onDestroy, onMount} from "svelte";
     import {dateString} from "$lib/utils.js";
     import ScheduleTable from "$lib/countdown/sidebar/ScheduleTable.svelte";
     import AnalogRedClock from "$lib/countdown/sidebar/AnalogRedClock.svelte";
+    import {page} from "$app/stores";
 
     $: if(typeof updateInterval !== "undefined") {
-        update($periodString);
+        update($currentClass);
     }
     async function update() {
-        schedule = await getCurrentSchedule();
+        schedule = await getCurrentSchedule($page.data.school, $page.data.schedule);
     }
 
     let updateInterval;
@@ -40,7 +41,7 @@
     <h1>{dateString($currentTime)}</h1>
     <br>
 
-    <ScheduleTable {schedule} currentPeriod={$periodString.substring("until ".length)}/>
+    <ScheduleTable {schedule} currentPeriod={$currentClass}/>
     <br>
     Issue with the schedule? Notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
     <br>

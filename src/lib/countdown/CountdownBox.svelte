@@ -1,46 +1,124 @@
+<script context="module">
+    import {writable} from "svelte/store";
+
+    export const currentTime = writable(new Date());
+
+    export const currentClass = writable("");
+</script>
 <script>
-    import {calibrateCountdown, periodString, recalcCdd, timeString, stopCountdown} from "$lib/countdown/countdown.js";
+    import { getNextClass, getTimeString, getDistance } from "$lib/countdown/countdown.ts";
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
-    import {_GET} from "$lib/utils";
+    import {page} from "$app/stores";
+    import {off, onChange} from "$lib/settings";
 
     export let withWeather = true;
 
     export let box = true;
 
-    export let start = undefined;
+    export let school = $page.data.school;
+    export let schedule = $page.data.schedule;
 
-    if(browser) {
-        calibrateCountdown();
+    let cachedNextClass = {};
+
+    let countdownText = "load";
+    let classText = "";
+
+    onChange("skipAHour", newNextClass);
+
+    async function newNextClass() {
+        const newData = await getNextClass(school, schedule);
+        cachedNextClass = {
+            ...newData,
+            school,
+            schedule
+        }
     }
 
-    onMount(() => {
-        let i = setTimeout(() => start = undefined, 5000);
-        return () => clearTimeout(i);
-    })
+    async function tick() {
+        let countdownDate, className;
+        if(!cachedNextClass || !cachedNextClass.school || !cachedNextClass.schedule || cachedNextClass.school !== school || cachedNextClass.schedule !== schedule) {
+            const serverNext = $page.data.next;
+            const newData = browser || !serverNext ? await getNextClass(school, schedule) : serverNext;
+            cachedNextClass = {
+                ...newData,
+                school,
+                schedule
+            }
+            countdownDate = newData.countdownDate;
+            className = "until " + newData.className;
+            currentClass.set(newData.className);
+        } else {
+            countdownDate = cachedNextClass.countdownDate;
+            className = "until " + cachedNextClass.className;
+        }
+        const distance = getDistance(countdownDate)
+        const timeString = getTimeString(distance);
+        countdownText = timeString;
+        classText = className;
+        currentTime.set(new Date());
+        if(typeof document == 'undefined') return;
+        if((
+            location.pathname.startsWith("/countdown") ||
+            location.pathname.startsWith("/lightweight")
+        )) {
+            if(timeString !== 'load' && timeString !== '' && timeString !== "bell") {
+                document.title = timeString + className + " - Red Clock";
+            } else if(timeString === "bell") {
+                document.title = "Bell is ringing! - Red Clock";
+            } else if(timeString === 'load' || timeString === '') {
+                document.title = "Countdown - Red Clock";
+            } else {
+                document.title = "Red Clock";
+            }
+        }
+    }
+
+    function setCountdownInterval() {
+        countdownInterval = setInterval(tick, 1e3);
+    }
+
+
+    let calibratingInterval;
+    function calibrateCountdown() {
+        if(!browser) return;
+        clearInterval(calibratingInterval);
+        calibratingInterval = setInterval(() => {
+            let ms = new Date().getMilliseconds();
+            if(ms <= 50) {
+                setCountdownInterval();
+                clearInterval(calibratingInterval);
+            }
+        }, 25);
+    }
+    let calibrateInterval = browser ? setInterval(calibrateCountdown, 300e3) : false;
+    let countdownInterval;
+
+    if(browser) calibrateCountdown();
+
+    onMount(setCountdownInterval)
+    tick();
 
     onDestroy(() => {
-        stopCountdown();
+        clearInterval(countdownInterval);
+        clearInterval(calibrateInterval);
+        off("skipAHour", newNextClass);
     })
 </script>
 
 <div class:countdown-container={box} class:no-weather={!withWeather}>
     <div class:countdown-inner={box}>
         <div class="countdown-text">
-            {#if !browser || !_GET("preview")}
-                {#if !browser || $timeString === '' || $timeString === 'load'}
-                    {#if start?.timeString}
-                        {start.timeString}
-                        <div class="small-load">
-                            <img src="/img/loading.svg" alt="">
-                        </div>
-                    {:else}
-                        <img src="/img/loading.svg" alt="loading" height="200" width="200">
-                    {/if}
-                {:else if $timeString === 'bell'}
+            {#if !browser}
+                <div class="small-load">
+                    <img src="/img/loading.svg" alt="">
+                </div>
+            {/if}
+            {#if !browser || !$page.url.searchParams.has("preview")}
+                {#if countdownText === 'bell'}
                     <img src="/img/bell.svg" class="bell" alt="Bell ringing" height="16" width="16">
                 {:else}
-                    {$timeString}
+                    {countdownText}
                 {/if}
             {:else}
                 Countdown
@@ -48,12 +126,8 @@
         </div>
         <br>
         <div class="countdown-period">
-            {#if !$periodString && start?.periodString}
-                {start.periodString}
-            {:else}
-                {#if !browser || !_GET("preview")}
-                    {$periodString}
-                {/if}
+            {#if !browser || !$page.url.searchParams.has("preview")}
+                {classText}
             {/if}
         </div>
     </div>

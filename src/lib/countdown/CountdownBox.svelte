@@ -8,7 +8,7 @@
 <script>
     import { getNextClass, getTimeString, getDistance } from "$lib/countdown/countdown.ts";
     import {onDestroy, onMount} from "svelte";
-    import {browser} from "$app/environment";
+    import {browser, building} from "$app/environment";
     import {page} from "$app/stores";
     import {off, onChange} from "$lib/settings";
 
@@ -97,7 +97,7 @@
     if(browser) calibrateCountdown();
 
     onMount(setCountdownInterval)
-    tick();
+    if(!building) tick();
 
     onDestroy(() => {
         clearInterval(countdownInterval);

@@ -1,6 +1,6 @@
 import type {Handle} from "@sveltejs/kit";
 import {getUserFromSession} from "./lib/server/users";
-import {dev} from "$app/environment";
+import {building, dev} from "$app/environment";
 
 export const handle: Handle = async ({ event, resolve }) => {
 
@@ -40,7 +40,7 @@ export const handle: Handle = async ({ event, resolve }) => {
         })
     }
 
-    if(url.pathname == "/countdown" || url.pathname == "/lightweight") {
+    if(!building && (url.pathname == "/countdown" || url.pathname == "/lightweight")) {
         const school = url.searchParams.get("school") ?? cookies.get("school") ;
         const schedule = url.searchParams.get("schedule") ?? cookies.get("schedule");
 

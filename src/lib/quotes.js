@@ -1056,6 +1056,11 @@ export let quotes = [
         quote: "You shall not pass!",
         author: "Gandalf",
         request: "b4f42594-7b77-41d8-9abc-c70784dfffc3"
+    },
+    {
+        quote: "Look around you. Nobody is watching, they're going on with their lives. So don't feel anxious. You're okay :)",
+        author: "Fajardo",
+        request: "13f5ed75-d330-4ca3-b9c0-66d947aec133"
     }
 
 ];

@@ -1,22 +1,23 @@
-import {getPeriodString, getTimeString, recalcCdd } from "$lib/countdown/countdown";
-import { setServerData } from "$lib/utils.js";
 import type {RequestHandler} from "@sveltejs/kit";
 import {json} from "@sveltejs/kit";
 import {schoolExists, scheduleExists} from "$lib/countdown/countdown-utils";
+import {getDistance, getNextClass, getTimeString} from "$lib/countdown/countdown";
 
 export const GET = (async ({params, locals}) => {
     const start = Date.now();
-    if(!params.school || !await schoolExists(params.school)) {
+    const school = params.school;
+    const schedule = params.schedule;
+
+    if(!school || !await schoolExists(school)) {
         return json({message: "Invalid school"}, {status: 400});
     }
-    if(!params.schedule || !await scheduleExists(params.school, params.schedule)) {
+    if(!schedule || !await scheduleExists(school, schedule)) {
         return json({message: "Invalid schedule"}, {status: 400});
     }
 
-    setServerData(params.school, params.schedule);
-    await recalcCdd();
-    let timeString = await getTimeString();
-    let periodString = await getPeriodString();
+    const {countdownDate, className} = await getNextClass(school, schedule);
+    const distance = getDistance(countdownDate);
+    const timeString = getTimeString(distance);
 
     locals.addTiming({
         id: "timeCalc",
@@ -24,5 +25,5 @@ export const GET = (async ({params, locals}) => {
         duration: Date.now() - start
     })
 
-    return json({timeString, periodString})
+    return json({timeString, className})
 }) satisfies RequestHandler

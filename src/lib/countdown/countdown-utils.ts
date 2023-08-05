@@ -1,4 +1,4 @@
-import {copy, getScheduleCode, getSchoolCode} from "$lib/utils.js";
+import {copy} from "$lib/utils";
 import {browser} from "$app/environment";
 
 if(browser) {
@@ -29,28 +29,26 @@ let scheduleCache: {
     }
 } = {};
 
-export function getSchedule(): Promise<SchoolData | undefined> {
-    let school = getSchoolCode();
-    let schedule = getScheduleCode();
+export function getSchedule(school: string, schedule: string): Promise<SchoolData | undefined> {
     let key = school + ":" + schedule;
     if((Date.now() - (scheduleCache[key]?.lastGet ?? 0)) < 300e3 && typeof scheduleCache[key]?.lastResp != "undefined") {
         return scheduleCache[key].lastResp;
     }
 
-    if(!getSchoolCode()) {
+    if(!school) {
         if(browser) location.href = "/schools?reselect";
         return Promise.resolve(undefined);
     }
-    if(!getScheduleCode()) {
+    if(!schedule) {
         if(browser) location.href = "/schedules?reselect";
-        console.debug("falsy schedule code " + getScheduleCode())
+        console.debug("falsy schedule code " + schedule)
         return Promise.resolve(undefined);
     }
 
     schoolExists(school)
         .then(e => {
             if(e) return;
-            console.warn("School " + getSchoolCode() + " does not exist!");
+            console.warn("School " + school + " does not exist!");
             if(!browser) return;
 
             location.href = "/schools?reselect";
@@ -58,16 +56,16 @@ export function getSchedule(): Promise<SchoolData | undefined> {
 
     scheduleCache[key] = {
         lastGet: Date.now(),
-        lastResp: fetch('https://ajg0702.us/api/rmf/schedule.php?school='+getSchoolCode())
+        lastResp: fetch('https://ajg0702.us/api/rmf/schedule.php?school='+school)
             .then(r => r.json())
-            .then(j => j[getSchoolCode()])
+            .then(j => j[school])
     };
 
     scheduleCache[key].lastResp.then((s) => {
         if(!s) return;
         // @ts-ignore
-        if(getScheduleCode() != "rmtv" && !s.schedules[getScheduleCode()] && browser) {
-            console.debug(getScheduleCode() + " not in ", s);
+        if(schedule != "rmtv" && !s.schedules[schedule] && browser) {
+            console.debug(schedule + " not in ", s);
             location.href = "/schedules?reselect"
         }
     })
@@ -76,13 +74,13 @@ export function getSchedule(): Promise<SchoolData | undefined> {
 }
 
 
-export async function getCurrentSchedule() {
-    return getScheduleFor(new Date());
+export async function getCurrentSchedule(school: string, schedule: string) {
+    return getScheduleFor(school, schedule, new Date());
 }
 
-export async function getScheduleFor(now: Date | string, orig = true, doBreaks = true): Promise<ClassTimes> {
+export async function getScheduleFor(schoolCode: string, scheduleCode: string, now: Date | string, orig = true, doBreaks = true): Promise<ClassTimes> {
     now = new Date(now);
-    let schedule = copy(await getSchedule());
+    let schedule = copy(await getSchedule(schoolCode, scheduleCode));
     if(!schedule || !schedule.specials || !schedule.normal) {
         return {};
     }
@@ -122,7 +120,7 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
                     } else {
                         found = true;
                         let endDate = new Date(now.getFullYear(), mon2-1, day2, 0, 0, 0, 0);
-                        let end = await getScheduleFor(endDate, false, false);
+                        let end = await getScheduleFor(schoolCode, scheduleCode, endDate, false, false);
                         let fin: ClassTimes = {};
 
                         let k = (Object.keys(end)[0].replace(/tomorrow/g, "")) + " after "+schedule.off[offDates[offDate]]
@@ -151,7 +149,7 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
                         if(parts[part] === nowDate) {
                             found = true;
                             let spec = schedule.specials.date[specialDates[date]];
-                            let scheduleName = Object.keys(spec).indexOf(getScheduleCode()) === -1 ? "*" : getScheduleCode();
+                            let scheduleName = Object.keys(spec).indexOf(scheduleCode) === -1 ? "*" : scheduleCode;
                             foundSchedule = spec[scheduleName];
                         }
                     }
@@ -171,7 +169,7 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
                         found = true;
 
                         let spec = schedule.specials.day[specialDays[day]];
-                        let scheduleName = Object.keys(spec).indexOf(getScheduleCode()) === -1 ? "*" : getScheduleCode();
+                        let scheduleName = Object.keys(spec).indexOf(scheduleCode) === -1 ? "*" : scheduleCode;
                         foundSchedule = spec[scheduleName];
                         break;
                     }
@@ -184,14 +182,14 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
     //If no special dates/days, return normal schedule
     if(found === false && typeof foundSchedule != 'object') {
         console.debug("[schedule] Using normal for day " +now.getDay());
-        foundSchedule = schedule.normal[getScheduleCode()];
+        foundSchedule = schedule.normal[scheduleCode];
     }
 
 
     if(orig && !skipTomorrow) {
         let temp = new Date(now);
         temp.setDate(temp.getDate()+1);
-        let tmr = copy(await getScheduleFor(temp, false));
+        let tmr = copy(await getScheduleFor(schoolCode, scheduleCode, temp, false));
         let tomorrowKeys = Object.keys(tmr);
         if(tomorrowKeys.length > 0) {
             tmr[tomorrowKeys[0]][0] += 1;
@@ -218,7 +216,7 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
         for (let until in foundSchedule) {
             if (foundSchedule.hasOwnProperty(until)) {
                 let data = foundSchedule[until];
-                data[3] += await getOffset();
+                data[3] += await getOffset(schoolCode, scheduleCode);
             }
         }
     }
@@ -227,16 +225,16 @@ export async function getScheduleFor(now: Date | string, orig = true, doBreaks =
 
 }
 
-export function getOffset(): Promise<number> {
-    return getSchedule()
+export async function getOffset(school: string, schedule: string) {
+    return getSchedule(school, schedule)
         .then(async s => {
             if(s == undefined) return 0;
-            return s.offset + await getTZChange();
+            return s.offset + await getTZChange(school, schedule);
         })
 }
 
-async function getTZChange(): Promise<number> {
-    let tz = (await getSchedule())?.tz || 420;
+async function getTZChange(school: string, schedule: string): Promise<number> {
+    let tz = (await getSchedule(school, schedule))?.tz || 420;
 
     return (new Date().getTimezoneOffset() - tz) * -60;
 }
@@ -250,7 +248,7 @@ export function schoolExists(key: string) {
     }
     let promise = fetch('https://ajg0702.us/api/rmf/schedule.php?exists='+key)
         .then(r => r.json())
-        .then(j => j.exists);
+        .then(j => (j.exists as boolean));
 
     existsCache[key] = promise;
     existsExpiry[key] = Date.now();

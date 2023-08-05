@@ -9,7 +9,6 @@
     import {browser} from "$app/environment";
     import {getCookie, setCookie} from "$lib/cookieUtils";
     import {page} from "$app/stores";
-    import {onMount} from "svelte";
 
     if(browser) {
         if(!localStorage.school && getCookie("school")) {
@@ -43,7 +42,7 @@
 
     let withWeather = data.school ? data.school === "rmhs" : true;
 
-    console.log({school: !!data.school})
+    console.debug({data})
 
 </script>
 

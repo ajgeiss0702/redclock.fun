@@ -1,6 +1,6 @@
 <script>
     import {onMount} from "svelte";
-    import {currentTime} from "$lib/countdown/countdown.js";
+    import {currentTime} from "$lib/countdown/CountdownBox.svelte";
 
     let canvas;
     let radius;

@@ -1,6 +1,6 @@
 import type {Handle} from "@sveltejs/kit";
 import {getUserFromSession} from "./lib/server/users";
-import {dev} from "$app/environment";
+import {building, dev} from "$app/environment";
 
 export const handle: Handle = async ({ event, resolve }) => {
 
@@ -10,6 +10,9 @@ export const handle: Handle = async ({ event, resolve }) => {
         const { fallBackPlatformToMiniFlareInDev } = await import('$lib/clients/miniflare');
         event.platform = await fallBackPlatformToMiniFlareInDev(event.platform);
     }
+
+    const url = event.url;
+    const cookies = event.cookies;
 
 
     if(event.platform?.env?.FUNC_ANAL) {
@@ -37,6 +40,27 @@ export const handle: Handle = async ({ event, resolve }) => {
         })
     }
 
+    if(!building && (url.pathname == "/countdown" || url.pathname == "/lightweight")) {
+        const school = url.searchParams.get("school") ?? cookies.get("school") ;
+        const schedule = url.searchParams.get("schedule") ?? cookies.get("schedule");
+
+        const set = url.searchParams.get("set") === "";
+        if(set && school && schedule) {
+            const expires = new Date();
+            expires.setDate(expires.getDate() + 3650);
+
+            const options = {
+                expires,
+                path: "/"
+            }
+
+            cookies.set("school", school, options);
+            cookies.set("schedule", schedule, options);
+        }
+
+        event.params.__c_school = school;
+        event.params.__c_schedule = schedule;
+    }
 
 
     const resolveStart = Date.now();
@@ -49,7 +73,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     })
 
 
-    if(event.url.pathname.startsWith("/api")) {
+    if(url.pathname.startsWith("/api")) {
         response.headers.set("Access-Control-Allow-Origin", "*");
     }
 

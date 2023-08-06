@@ -4,6 +4,7 @@ import {fail} from "@sveltejs/kit";
 export const actions = {
     offset: (async ({locals, request, platform, params}) => {
         if(!locals.user) return fail(401);
+        if(!params.school) return fail(400, {message: "Missing school parameter"});
 
         const formData = await request.formData();
         const offset = Number(formData.get("offset"));
@@ -13,7 +14,7 @@ export const actions = {
         const schools = platform?.env?.SCHOOLS;
         if(!schools) return fail(500, {message: "Missing database!"})
 
-        const {value, metadata} = await schools.getWithMetadata(params.school, {type: "json"});
+        const {value, metadata} = await schools.getWithMetadata<unknown, EditorSchool>(params.school, {type: "json"});
 
         if(!value) return fail(500, {message: "School doesnt exist?"})
 

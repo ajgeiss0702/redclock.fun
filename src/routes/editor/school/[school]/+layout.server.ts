@@ -1,5 +1,6 @@
 import type {ServerLoad} from "@sveltejs/kit";
 import {error} from "@sveltejs/kit";
+import {hasPermission} from "$lib/server/users";
 
 export const load = (async ({params, locals, platform}) => {
     if(!locals.user) return {};
@@ -15,7 +16,11 @@ export const load = (async ({params, locals, platform}) => {
         throw error(500, "Missing school or district KV!");
     }
 
-    const {value, metadata} = await schools.getWithMetadata(params.school, {type: "json"});
+    const permission = hasPermission(platform.env, locals.user.id, "school." + params.school);
+
+    const {value, metadata} = await schools.getWithMetadata<unknown, EditorSchool>(params.school, {type: "json"});
+
+    if(!(await permission)) throw error(400, "You don't have permission for this school!")
 
     if(!value) throw error(404, "School not found.");
 

@@ -20,7 +20,7 @@
     {/each}
     <br>
     <br>
-    {#if data.districts}
+    {#if data.districts && data.districts.length > 0}
         <h1>Districts</h1>
         {#each data.districts as district}
             <HolderSelect {district}/>

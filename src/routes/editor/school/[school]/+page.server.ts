@@ -1,5 +1,6 @@
 import type {Actions} from "@sveltejs/kit";
 import {fail} from "@sveltejs/kit";
+import {hasPermission} from "$lib/server/users";
 
 export const actions = {
     offset: (async ({locals, request, platform, params}) => {
@@ -8,6 +9,10 @@ export const actions = {
 
         const formData = await request.formData();
         const offset = Number(formData.get("offset"));
+
+        if(!await hasPermission(platform?.env, locals.user.id, "school." + params.school)) {
+            return fail(401, {message: "You don't have permission to modify this school!"});
+        }
 
         if(isNaN(offset)) return fail(400, {message: "Missing new offset!"});
 

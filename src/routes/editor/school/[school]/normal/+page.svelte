@@ -1,22 +1,28 @@
 <script>
     import ScheduleEditor from "$lib/editor/ScheduleEditor.svelte";
     import {SlideToggle} from "@skeletonlabs/skeleton";
+    import {enhance} from "$app/forms";
 
     export let data;
+    export let form;
 
     let scheduleOut;
-    let scheduleOutString;
+    $: scheduleOutString = JSON.stringify(scheduleOut);
+    let scheduleOutFormattedString;
 
-    $: scheduleOutString = JSON.stringify(scheduleOut, null, '\t');
+    $: scheduleOutFormattedString = JSON.stringify(scheduleOut, null, '\t');
 
     let scheduleOutFixed;
 
     let showOutput = false;
+    let saving = false;
+
+    $: isSame = scheduleOut ? (Object.keys(scheduleOut).length === 0 ? true : JSON.stringify(data.schedule) === JSON.stringify(scheduleOut)) : true;
 
     $: {
-        if(typeof scheduleOutString === "string") {
+        if(typeof scheduleOutFormattedString === "string") {
             let removing = false;
-            let chars = scheduleOutString.split("");
+            let chars = scheduleOutFormattedString.split("");
             let remove = [];
             for (let i = 0; i < chars.length; i++) {
                 let char = chars[i]
@@ -52,6 +58,28 @@ The "normal" schedule is the schedule that Red Clock will follow if there are no
 <br>
 
 <SlideToggle size="sm" bind:checked={showOutput}>Show output</SlideToggle>
+
+<form method="POST" use:enhance={() => {
+            saving = true;
+            return async ({ update }) => {
+                await update({ reset: false });
+                saving = false;
+            };
+          }}>
+    <button class="btn btn-sm variant-ghost-success" disabled={isSame}>Save Changes</button>
+    {#if saving}
+        <div class="inline-block absolute right-0 mt-2 pl-16">
+            <img class="inline-block relative" style="height: 2em; left: 2.5em" src="/img/loading.svg" alt="Saving">
+        </div>
+    {/if}
+    <input class="hidden" name="new-schedule" bind:value={scheduleOutString}/>
+    {#if form?.message}
+        <br>
+        <span style="color: red">
+            {form.message}
+        </span>
+    {/if}
+</form>
 
 <ScheduleEditor schedule={data.schedule} schedules={data.schedules} bind:scheduleOut={scheduleOut}/>
 

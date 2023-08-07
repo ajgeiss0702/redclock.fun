@@ -67,9 +67,9 @@
                     <table class="mx-auto">
                         {#each schedule as {name, times}, i (name)}
                             <tr
-                                    in:receive={{ key: name }}
-                                    out:send={{ key: name }}
-                                    animate:flip={{ duration: 150 }}
+                                    in:receive|local={{ key: name }}
+                                    out:send|local={{ key: name }}
+                                    animate:flip|local={{ duration: 150 }}
                             >
                                 <td>
                                     <VerticalArrows

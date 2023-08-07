@@ -56,6 +56,13 @@
 <h1>Normal Schedules</h1>
 The "normal" schedule is the schedule that Red Clock will follow if there are no "special" schedules to follow.<br>
 <br>
+<svelte:window on:beforeunload={(event) => {
+    if(isSame) return;
+    event.preventDefault();
+    const message = "You are still editing schedules! Are you sure you want to exit?";
+    event.returnValue = message;
+    return message;
+}}/>
 
 <SlideToggle size="sm" bind:checked={showOutput}>Show output</SlideToggle>
 

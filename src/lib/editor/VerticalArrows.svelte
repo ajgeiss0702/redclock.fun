@@ -3,6 +3,9 @@
     import {createEventDispatcher} from "svelte";
     const dispatch = createEventDispatcher();
 
+    export let allowUp = true;
+    export let allowDown = true;
+
     function up() {
         dispatch("up")
     }
@@ -11,8 +14,8 @@
     }
 </script>
 <div>
-    <button on:click={up}><ArrowUp/></button>
-    <button on:click={down}><ArrowDown/></button>
+    <button on:click={up} disabled={!allowUp}><ArrowUp/></button>
+    <button on:click={down} disabled={!allowDown}><ArrowDown/></button>
 </div>
 
 <style>
@@ -22,10 +25,10 @@
         border-radius: 7px;
         transition: 100ms;
     }
-    button:hover {
+    button:hover:not([disabled]) {
         background-color: rgba(0, 0, 0, 0.1);
     }
-    :global(.dark) button:hover {
+    :global(.dark) button:hover:not([disabled]) {
         background-color: rgba(255, 255, 255, 0.1);
     }
 </style>

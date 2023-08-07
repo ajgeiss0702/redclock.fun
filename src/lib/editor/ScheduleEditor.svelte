@@ -79,6 +79,8 @@
                                         on:down={() => {
                                             schedule = move(schedule, i, i+1);
                                         }}
+                                        allowUp={i !== 0}
+                                        allowDown={i !== schedule.length - 1}
                                     />
                                 </td>
                                 <td class="px-4 py-2"><input type="text" bind:value={name}></td>

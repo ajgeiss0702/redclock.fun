@@ -6,6 +6,8 @@
 
     let originalOffset = data.school?.offset;
     let offset = data.school?.offset;
+
+    let offsetSaving = false;
 </script>
 
 <svelte:head>
@@ -13,9 +15,11 @@
 </svelte:head>
 <br>
 
-<form class="limit mx-auto" method="POST" action="?/offset" use:enhance={() => {
+<form class="inline-block relative" method="POST" action="?/offset" use:enhance={() => {
+            offsetSaving = true;
             return async ({ update }) => {
                 await update({ reset: false });
+                offsetSaving = false;
                 originalOffset = offset;
             };
           }}
@@ -23,12 +27,18 @@
     Offset
     <input class="input px-3" type="number" name="offset" bind:value={offset}/>
     <button class="btn btn-sm variant-ghost-success" disabled={originalOffset === offset}>Save</button>
+    {#if offsetSaving}
+        <div class="inline-block absolute right-0 mt-2 pl-16">
+            <img class="inline-block relative" style="height: 2em; left: 2.5em" src="/img/loading.svg" alt="Saving">
+        </div>
+    {/if}
     {#if form?.message}
         <span style="color: red;">
             {form.message}
         </span>
     {/if}
 </form>
+<br>
 <br>
 
 <a class="btn variant-glass-primary" href="{data.school?.code}/normal">Normal Schedules</a>

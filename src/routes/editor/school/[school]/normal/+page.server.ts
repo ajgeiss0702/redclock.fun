@@ -1,5 +1,4 @@
 import type { PageServerLoad } from './$types';
-import {getNormalSchedule, getScheduleNames} from "$lib/server/schoolSchedules";
 import { devSchedule, devSchedules } from '$lib/server/devData';
 import {dev} from "$app/environment";
 import {error} from "@sveltejs/kit";

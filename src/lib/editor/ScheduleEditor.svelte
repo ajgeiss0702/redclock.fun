@@ -3,9 +3,9 @@
     import {Accordion, AccordionItem} from "@skeletonlabs/skeleton";
     import TimeInput from "./TimeInput.svelte";
     import VerticalArrows from "$lib/editor/VerticalArrows.svelte";
-    import {send, receive} from "$lib/editor/transition"
     import { flip } from 'svelte/animate';
     import {dev} from "$app/environment";
+
 
     export let schedule: ScheduleTimes;
     export let schedules: {[key: string]: string} = {};
@@ -18,6 +18,7 @@
             for (const className in scheduleOrigData) {
                 let classTimes = scheduleOrigData[className];
                 scheduleData.push({
+                    uid: crypto.randomUUID(),
                     name: className,
                     times: classTimes
                 });
@@ -65,10 +66,8 @@
                 <svelte:fragment slot="summary">{schedules[code] ?? code}</svelte:fragment>
                 <svelte:fragment slot="content">
                     <table class="mx-auto">
-                        {#each schedule as {name, times}, i (name)}
+                        {#each schedule as {name, times, uid}, i (uid)}
                             <tr
-                                    in:receive|local={{ key: name }}
-                                    out:send|local={{ key: name }}
                                     animate:flip|local={{ duration: 150 }}
                             >
                                 <td>

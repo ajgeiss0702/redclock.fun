@@ -91,129 +91,6 @@
         localStorage.setItem("weather-weekly", String(weekly));
     }
 </script>
-<style>
-    table {
-        text-align: center;
-    }
-    .weather-container {
-        width: 65vw;
-        min-height: 45vh;
-        padding-top: 1em;
-        padding-bottom: 1em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8px;
-    }
-    :global(.layout-default) .weather-container {
-        position: fixed;
-        top: 53vh;
-        left: 1vw;
-    }
-    :global(.layout-mirrored) .weather-container {
-        position: fixed;
-        top: 53vh;
-        right: 1vw;
-    }
-    :global(.layout-large) .weather-container, :global(.layout-countdown) .weather-container {
-        position: static !important;
-        width: auto !important;
-        margin-bottom: 1em;
-        min-height: 47vh;
-    }
-    .weather-container {
-        background-color: rgba(242, 242, 242, 0.5);
-        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
-    }
-
-    .no-weather {
-        display: none !important;
-    }
-
-    :global(.dark) .weather-container {
-        background-color: rgba(52, 52, 52, 0.5);
-        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
-    }
-
-    :global(.black) .weather-container {
-        background-color: transparent;
-        border-color: rgba(255, 255, 255, 0.15);
-        border-style: solid;
-        border-width: initial;
-    }
-
-    .weather-icon {
-        width: 100px;
-        height: 100px;
-    }
-
-    .dayName {
-        padding-right: 0.5em;
-    }
-
-    .weekly-high {
-        font-size: 1.35em;
-    }
-
-    .weekly-low {
-        font-size: 0.75em;
-    }
-
-    .preview-text {
-        font-size: 10em;
-    }
-
-    .precipitation {
-        font-size: 0.9em;
-    }
-
-    .weekly-toggle-button {
-        color: rgba(0, 0, 0, 0.5);
-    }
-    :global(.dark) .weekly-toggle-button {
-        color: rgba(255, 255, 255, 0.5)
-    }
-    .weekly-toggle-button:hover {
-        text-decoration: underline !important;
-        cursor: pointer;
-    }
-
-    .disabled-icon {
-        width: 5rem;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .disabled-text {
-        display: block;
-        font-size: 0.9em;
-        padding-top: 0;
-        margin-top: 0;
-    }
-
-    .stealth-link {
-        color: inherit;
-        text-decoration: none;
-    }
-    .stealth-link:hover {
-        color: inherit;
-        text-decoration: underline;
-    }
-
-    @media(orientation: portrait) {
-        .weather-container {
-            position: static !important;
-            width: auto !important;
-            margin-bottom: 1em;
-        }
-    }
-
-    .details {
-        max-width: 70vw;
-        overflow-x: auto;
-    }
-</style>
 <div class="weather-container" class:no-weather={!shown}>
     {#if enabled}
         <table>
@@ -235,9 +112,13 @@
                             <LoadingText length={3}/>&deg;
                         {:then data}
                             {#if get("exactTemp")}
-                                {data.weatherData.current.temp}&deg;
+                                <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
+                                    {data.weatherData.current.temp}&deg;
+                                </span>
                             {:else}
-                                {Math.round(data.weatherData.current.temp)}&deg;
+                                <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
+                                    {Math.round(data.weatherData.current.temp)}&deg;
+                                </span>
                             {/if}
                         {:catch e}
                             <ExclamationTriangle height="1em" width="100%" class="p-2"/>
@@ -418,3 +299,127 @@
     {/if}
 
 </div>
+
+<style>
+    table {
+        text-align: center;
+    }
+    .weather-container {
+        width: 65vw;
+        min-height: 45vh;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+    }
+    :global(.layout-default) .weather-container {
+        position: fixed;
+        top: 53vh;
+        left: 1vw;
+    }
+    :global(.layout-mirrored) .weather-container {
+        position: fixed;
+        top: 53vh;
+        right: 1vw;
+    }
+    :global(.layout-large) .weather-container, :global(.layout-countdown) .weather-container {
+        position: static !important;
+        width: auto !important;
+        margin-bottom: 1em;
+        min-height: 47vh;
+    }
+    .weather-container {
+        background-color: rgba(242, 242, 242, 0.5);
+        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+    }
+
+    .no-weather {
+        display: none !important;
+    }
+
+    :global(.dark) .weather-container {
+        background-color: rgba(52, 52, 52, 0.5);
+        box-shadow: 0 0 33px -15px rgba(0,0,0,0.75);
+    }
+
+    :global(.black) .weather-container {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.15);
+        border-style: solid;
+        border-width: initial;
+    }
+
+    .weather-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .dayName {
+        padding-right: 0.5em;
+    }
+
+    .weekly-high {
+        font-size: 1.35em;
+    }
+
+    .weekly-low {
+        font-size: 0.75em;
+    }
+
+    .preview-text {
+        font-size: 10em;
+    }
+
+    .precipitation {
+        font-size: 0.9em;
+    }
+
+    .weekly-toggle-button {
+        color: rgba(0, 0, 0, 0.5);
+    }
+    :global(.dark) .weekly-toggle-button {
+        color: rgba(255, 255, 255, 0.5)
+    }
+    .weekly-toggle-button:hover {
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+
+    .disabled-icon {
+        width: 5rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .disabled-text {
+        display: block;
+        font-size: 0.9em;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .stealth-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    .stealth-link:hover {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    @media(orientation: portrait) {
+        .weather-container {
+            position: static !important;
+            width: auto !important;
+            margin-bottom: 1em;
+        }
+    }
+
+    .details {
+        max-width: 70vw;
+        overflow-x: auto;
+    }
+</style>

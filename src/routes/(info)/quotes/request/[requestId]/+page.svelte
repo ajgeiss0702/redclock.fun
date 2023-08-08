@@ -140,6 +140,14 @@ Request ID: {data?.id}<br>
                 {form?.message}
             {/if}
         </form>
+        {#if data?.metadata.status === "accepted"}
+            <br>
+            <pre class="text-left">&#123;
+    quote: {JSON.stringify(data?.value?.quote)},
+    author: {JSON.stringify(data?.value?.author)},
+    request: {JSON.stringify(data?.id)}
+&#125;</pre>
+        {/if}
     </div>
 {/if}
 <br>

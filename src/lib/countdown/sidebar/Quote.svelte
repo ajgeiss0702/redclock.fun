@@ -5,7 +5,7 @@
     import ClipboardCheck from "svelte-bootstrap-icons/lib/ClipboardCheck.svelte"
     import ArrowClockwise from "svelte-bootstrap-icons/lib/ArrowClockwise.svelte"
     import Clipboard from "svelte-bootstrap-icons/lib/Clipboard.svelte"
-    import {PopupSettings, popup} from "@skeletonlabs/skeleton";
+    import {type PopupSettings, popup} from "@skeletonlabs/skeleton";
 
     export let initialQuote = undefined;
     export let withButtons = true;

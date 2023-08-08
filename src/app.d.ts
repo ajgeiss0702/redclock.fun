@@ -25,6 +25,7 @@ declare namespace App {
             QUOTE_SUGGESTIONS: KVNamespace;
             SCHOOLS: KVNamespace;
             DISTRICTS: KVNamespace;
+            DURABLE: DurableObjectNamespace;
         };
         context?: {
             /**

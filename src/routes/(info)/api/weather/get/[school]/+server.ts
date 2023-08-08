@@ -1,94 +1,52 @@
 import {error, json, type RequestEvent} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 
-let cacheTime = 20 * 60 * 1000;
+const cacheTime = 60e3; // cache responses from DO for 1 minute
 
+let cache: {
+    [key: string]: {
+        lastFetch: number,
+        lastData?: object
+    }
+} = {};
 
-const accounts = [
-    "e500ac4707e2524efaf07a2a96ce92f9", // bill
-    "bf26c7abb25893e59cc5a0afeb62b36c", // ajgeiss72
-    "f2cfe4c7ea4ff8ab12b151b45c9723a0" // aiden
-];
+export async function GET({params, platform}: RequestEvent) {
 
-let lastAccount = Math.floor(Math.random() * accounts.length);
+    const schoolCode = params.school;
 
-let lastFetch: {[index: string]: number} = {};
-let lastFetchData: {[index: string]: any} = {};
+    if(!schoolCode) throw error(400, "No school provided");
 
-export async function GET({params, url, platform}: RequestEvent) {
-    let kv = platform?.env?.CACHE;
+    if(!cache[schoolCode]) cache[schoolCode] = {lastFetch: 0};
 
-    if(kv) cacheTime = 30 * 60 * 1000; // fetch less often when this is a cf function
+    const lastFetch = cache[schoolCode]?.lastFetch || 0;
 
-    let schoolCode: string = params.school || "";
-
-    if(!schoolCode) {
-        throw error(400, "No school provided");
+    if(Date.now() - lastFetch < cacheTime) {
+        return json({
+            edgeCache: true,
+            edgeLastFetch: lastFetch,
+            ...(cache[schoolCode].lastData)
+        });
     }
 
-    let response;
+    cache[schoolCode].lastFetch = Date.now();
 
-    // if kv is available, and we don't have a (recent) lastLetch, get lastFetch from KV
-    if(kv && typeof lastFetch[schoolCode] === "undefined" && Date.now() - lastFetch[schoolCode] < cacheTime) {
-        lastFetch[schoolCode] = Number(await kv.get("rc-weather:lastFetch:" + schoolCode)) || 0;
+    const durable = platform?.env?.DURABLE;
+
+    let stub: DurableObjectStub;
+    if(durable) {
+        const id = durable.idFromName("youtube");
+        stub = durable.get(id, {locationHint: 'wnam'});
+    } else if(dev) {
+        stub = {fetch} as unknown as DurableObjectStub;
     } else {
-        lastFetch[schoolCode] = lastFetch[schoolCode] || 0;
+        throw error(503, "Fetcher not available");
     }
 
-    // each school's weather will be cached (but not when we have ?nocache in dev)
-    if(Date.now() - lastFetch[schoolCode] < ((dev && url.searchParams.get("nocache") != null) ? 0 : cacheTime)) {
-        response = {
-            cached: true,
-            lastFetch: lastFetch[schoolCode],
-            ...(
-                kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode, {type: "json"}) :
-                    lastFetchData[schoolCode]
-            )
-        };
-    } else {
-        lastFetch[schoolCode] = Date.now();
+    if(dev) console.log("Fetching from DO!")
 
-        if(kv) {
-            lastAccount = Number(await kv.get("rc-weather:lastAccount")) || lastAccount
-        }
-
-        lastAccount++;
-        if(lastAccount >= accounts.length) {
-            lastAccount = 0
-        }
-        if(kv) {
-            await kv.put("rc-weather:lastAccount", lastAccount+"")
-        }
-
-        let weatherData = await fetch("https://api.openweathermap.org/data/2.5/onecall?appid=" + accounts[lastAccount] + "&lat=33.435016&lon=-111.673358&units=imperial")
-            .then(r => r.json())
-
-        if(weatherData.message) {
-            console.warn({account: accounts[lastAccount].substring(0, 5), weatherData});
-            lastFetch[schoolCode] = (Date.now() - cacheTime) + 5000;
-            response = {
-                cached: "error",
-                weatherAPIError: weatherData.message,
-                lastFetch: lastFetch[schoolCode],
-                ...(
-                    kv ? await kv.get("rc-weather:lastFetchData:" + schoolCode, {type: "json"}) :
-                        lastFetchData[schoolCode]
-                )
-            };
-        } else {
-            response = {
-                account: accounts[lastAccount].substring(0, 2),
-                weatherData
-            }
-
-            lastFetchData[schoolCode] = response;
-            if(kv) await kv.put("rc-weather:lastFetchData:" + schoolCode, JSON.stringify(response));
-        }
-
-        if(kv) {
-            await kv.put("rc-weather:lastFetch:" + schoolCode, lastFetch[schoolCode]+"");
-        }
-    }
+    const response = await stub.fetch("https://redclock-durable.ajg.workers.dev/weather/" + schoolCode).then(r => r.json()) as object;
+    cache[schoolCode].lastData = response;
 
     return json(response);
+
 }

@@ -34,7 +34,7 @@ export async function GET({params, platform}: RequestEvent) {
 
     let stub: DurableObjectStub;
     if(durable) {
-        const id = durable.idFromName("youtube");
+        const id = durable.idFromName("weather");
         stub = durable.get(id, {locationHint: 'wnam'});
     } else if(dev) {
         stub = {fetch} as unknown as DurableObjectStub;

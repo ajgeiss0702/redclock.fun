@@ -115,6 +115,9 @@
     })
 </script>
 
+<!-- to make sure the bell image is cached -->
+<img src="/img/bell.svg" style="height: 0; width: 0;">
+
 <div class:countdown-container={box} class:no-weather={!withWeather}>
     <div class:countdown-inner={box}>
         <div class="countdown-text">

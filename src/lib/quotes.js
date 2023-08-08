@@ -1091,6 +1091,11 @@ export let quotes = [
         quote: "Hamboning will save your life someday!",
         author: "Rigby (Regular Show)",
         request: "58306cdb-81ae-4fa8-9dfb-8acc286389f0"
+    },
+    {
+        quote: "If you take a chance you risk failure. If you don't you guarantee it.",
+        author: "Unknown",
+        request: "10947848-f85b-4d76-862a-fa081b61d3a4"
     }
 
 ];

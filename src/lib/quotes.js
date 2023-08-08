@@ -1061,6 +1061,36 @@ export let quotes = [
         quote: "Look around you. Nobody is watching, they're going on with their lives. So don't feel anxious. You're okay :)",
         author: "Fajardo",
         request: "13f5ed75-d330-4ca3-b9c0-66d947aec133"
+    },
+    {
+        quote: "If you're good at something, Never do it for free",
+        author: "The Joker",
+        request: "2459b300-aa55-4efb-afa0-ff50ef962351"
+    },
+    {
+        quote: "Because when the legends get written, I didn’t want to be remembered for standing on the sidelines.",
+        author: "Rhysand",
+        request: "d461fba4-0b20-4621-95e2-6f266065e674"
+    },
+    {
+        quote: "You've got to get up every morning with determination if you're going to go to bed with satisfaction.",
+        author: "George Horace Lorimer",
+        request: "5ba77f11-5d1d-4f64-8828-82c2386402b9"
+    },
+    {
+        quote: "What exactly is the function of a rubber duck?",
+        author: "Arthur Weasley",
+        request: "4dda217d-8e3c-41d7-9e3e-ba32a4a01cb3"
+    },
+    {
+        quote: "Dude, suckin' at something is the first step to being sorta good at something",
+        author: "Jake the Dog",
+        request: "fb92d34a-4796-422d-bedf-e8f00319d44d"
+    },
+    {
+        quote: "Hamboning will save your life someday!",
+        author: "Rigby (Regular Show)",
+        request: "58306cdb-81ae-4fa8-9dfb-8acc286389f0"
     }
 
 ];

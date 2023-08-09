@@ -23,5 +23,5 @@ export function getUrl(secret: string) {
 
 export function validate(secret: string, token: string, window = 1) {
     const totp = getTotp(secret);
-    return totp.validate({token, window})
+    return totp.validate({token, window}) != null;
 }

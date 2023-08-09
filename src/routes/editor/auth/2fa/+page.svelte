@@ -1,28 +1,16 @@
-<script lang="ts">
-    import type { ActionData } from './$types';
-    import { enhance } from '$app/forms';
-    import {page} from "$app/stores";
-    export let form: ActionData;
+<script>
+    import {enhance} from "$app/forms";
+
+    export let form;
 </script>
 <h1>Editor Sign-in</h1>
 <br>
-{#if $page.url.searchParams.has("reauth")}
-    <span class="text-primary-500-400-token">
-        Please sign in again
-    </span>
-    <br>
-    <br>
-{/if}
 <div class="mx-auto card signin-box p-4">
+    <h3>Please enter your two-factor token</h3>
+    <br>
     <form method="POST" use:enhance>
         <label class="label">
-            <span>Username</span>
-            <input class="input px-3" name="username" type="text" value={form?.username ?? ''}/>
-        </label>
-        <br>
-        <label class="label">
-            <span>Password</span>
-            <input class="input px-3" name="password" type="password"/>
+            <input class="input px-3" name="token" type="text" placeholder="Two-factor token"/>
         </label>
         <br>
 
@@ -34,7 +22,7 @@
         {/if}
         {#if form?.incorrect}
             <span class="text-primary-500-400-token">
-                Incorrect username or password
+                Invalid two-factor token. Please try again
             </span>
         {/if}
         {#if form?.message}

@@ -1,4 +1,4 @@
-import type {Actions} from "@sveltejs/kit";
+import type {Actions} from "./$types";
 import {fail, redirect} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 import {pbkdf2Verify} from "$lib/server/crypto-pbkdf2";
@@ -34,9 +34,19 @@ export const actions = {
 
             if((key && name && !isNaN(Number(userId))) && await pbkdf2Verify(key as string, password as string)) {
                 const sessionId = crypto.randomUUID();
-                await platform.env.SESSION_STORE.put(sessionId, userId+"", {
-                    expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
-                })
+
+                if(twofa == null) {
+                    await platform.env.SESSION_STORE.put(sessionId, userId+"", {
+                        expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
+                    })
+                } else {
+                    await platform.env.SESSION_STORE.put(sessionId + ":verifying", userId+"", {
+                        expirationTtl: 60 * 5, // 2fa sessions last for 5 minutes
+                        metadata: {
+                            secret: twofa
+                        }
+                    })
+                }
 
                 const futureExpiry = new Date();
                 futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
@@ -45,7 +55,11 @@ export const actions = {
 
                 const to = new URL(request.url).searchParams.get("to");
 
-                throw redirect(303, to == null ? "/editor" : to);
+                if(twofa == null) {
+                    throw redirect(303, to == null ? "/editor" : to);
+                } else {
+                    throw redirect(303, to == null ? "/editor/auth/2fa" : "/editor/auth/2fa?to=" + encodeURIComponent(to));
+                }
             } else {
                 return fail(400, {username, incorrect: true})
             }

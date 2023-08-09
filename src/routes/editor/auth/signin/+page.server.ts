@@ -49,7 +49,7 @@ export const actions = {
                 }
 
                 const futureExpiry = new Date();
-                futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
+                futureExpiry.setDate(futureExpiry.getDate() + 30);
 
                 cookies.set("session", sessionId, {path: "/", expires: futureExpiry});
 

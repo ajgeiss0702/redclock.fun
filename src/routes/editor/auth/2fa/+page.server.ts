@@ -36,9 +36,7 @@ export const actions = {
         if(!token) return fail(400, {missing: true});
 
         if(!validate(secret, token)) {
-            const special = validate(secret, token, 5);
-            console.log("Invalid token", {secret, token, special});
-            return fail(401, {incorrect: true, special});
+            return fail(401, {incorrect: true});
         }
 
         await sessionStore.put(sessionId, session.value, {

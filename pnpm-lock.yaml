@@ -16,6 +16,12 @@ dependencies:
   express:
     specifier: ^4.18.2
     version: 4.18.2
+  hi-base32:
+    specifier: ^0.5.1
+    version: 0.5.1
+  otpauth:
+    specifier: ^9.1.4
+    version: 9.1.4
   svelte-chartjs:
     specifier: ^3.0.1
     version: 3.1.2(chart.js@3.9.1)(svelte@3.59.1)
@@ -2366,6 +2372,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hi-base32@0.5.1:
+    resolution: {integrity: sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==}
+    dev: false
+
   /html-rewriter-wasm@0.4.1:
     resolution: {integrity: sha512-lNovG8CMCCmcVB1Q7xggMSf7tqPCijZXaH4gL6iE8BFghdQCbaY5Met9i1x2Ex8m/cZHDUtXK9H6/znKamRP8Q==}
     dev: true
@@ -2530,6 +2540,10 @@ packages:
   /json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
+
+  /jssha@3.3.1:
+    resolution: {integrity: sha512-VCMZj12FCFMQYcFLPRm/0lOBbLi8uM2BhXPTqw3U4YAfs4AZfiApOoBLoN8cQE60Z50m1MYMTQVCfgF/KaCVhQ==}
+    dev: false
 
   /kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -2921,6 +2935,12 @@ packages:
       type-check: 0.4.0
       word-wrap: 1.2.3
     dev: true
+
+  /otpauth@9.1.4:
+    resolution: {integrity: sha512-T6T0E1WlzwKWESq8K0Ja47u01XjmDmRY/AiUoMAc6xZI/OsTsD4cqBrfpt2WfJ29W5pRiWkuUuyHdNQl0/Ic+Q==}
+    dependencies:
+      jssha: 3.3.1
+    dev: false
 
   /p-limit@3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}

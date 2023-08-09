@@ -26,15 +26,15 @@ export const actions = {
         simpleRateLimit[getClientAddress()] = limits;
 
         if(platform?.env?.D1DB) {
-            const {key, name, user} = await (
-                platform.env.D1DB.prepare("select password as key,name,id as user from users where username=?")
+            const {key, name, userId, twofa} = await (
+                platform.env.D1DB.prepare("select password as key,name,id as userId, '2fa' as twofa from users where username=?")
                 .bind(username)
                 .first()
             ) ?? {};
 
-            if((key && name && !isNaN(Number(user))) && await pbkdf2Verify(key, password as string)) {
+            if((key && name && !isNaN(Number(userId))) && await pbkdf2Verify(key as string, password as string)) {
                 const sessionId = crypto.randomUUID();
-                await platform.env.SESSION_STORE.put(sessionId, user, {
+                await platform.env.SESSION_STORE.put(sessionId, userId+"", {
                     expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
                 })
 

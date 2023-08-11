@@ -19,7 +19,7 @@ export const actions = ({
         if(!name || !wantCreditString) throw fail(400, {blank: true});
 
         await db.prepare("update users set name=?, wantsCredit=?")
-            .bind(name, wantCreditString == "true")
+            .bind(name, wantCreditString == "true" ? 1 : 0)
             .run()
     }
 }) satisfies Actions

@@ -65,8 +65,4 @@
     .green {
         color: green
     }
-
-    .limit {
-        width: calc(min(90vw, 56em))
-    }
 </style>

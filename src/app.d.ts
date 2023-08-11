@@ -51,7 +51,8 @@ declare interface Window {
 type User = {
     id: number,
     username: string,
-    name: string
+    name: string,
+    has2fa?: boolean
 }
 
 type Session = {

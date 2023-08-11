@@ -51,7 +51,10 @@ export const actions = {
                 const futureExpiry = new Date();
                 futureExpiry.setDate(futureExpiry.getDate() + 30);
 
-                cookies.set("session", sessionId, {path: "/", expires: futureExpiry});
+                const secure = dev ? false : undefined;
+                console.log({secure})
+
+                cookies.set("session", sessionId, {path: "/", expires: futureExpiry, secure});
 
                 const to = new URL(request.url).searchParams.get("to");
 
@@ -68,7 +71,7 @@ export const actions = {
             const futureExpiry = new Date();
             futureExpiry.setFullYear(futureExpiry.getFullYear() + 1);
 
-            cookies.set("session", "00000000-0000-0000-0000-000000000000", {path: "/"});
+            cookies.set("session", "00000000-0000-0000-0000-000000000000", {path: "/", secure: false});
 
             const to = new URL(request.url).searchParams.get("to");
 

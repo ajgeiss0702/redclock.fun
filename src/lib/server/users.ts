@@ -5,15 +5,15 @@ export async function getUser(env: App.Platform["env"], id: number): Promise<Use
         console.warn("Unable to get user because D1DB is unavailable");
         return null;
     }
-    const {name, username} = (await (
-        env.D1DB.prepare("select name,username from users where id=?")
+    const {name, username, twofa} = (await (
+        env.D1DB.prepare("select name,username,`2fa` as twofa from users where id=?")
             .bind(id)
             .first()
-    ) ?? {}) as {name?: string, username?: string};
+    ) ?? {}) as {name?: string, username?: string, twofa?: string};
 
     if(!name && !username) return null;
 
-    return { id, username, name } as User
+    return { id, username, name, has2fa: twofa != null } as User
 }
 
 export async function getSessionInfo(env: App.Platform["env"], sessionId: string): Promise<Session | null> {
@@ -37,7 +37,8 @@ export async function getUserFromSession(env: App.Platform["env"], sessionId: st
     if(dev) return {
         id: 0,
         name: "Dev User",
-        username: "DevUser"
+        username: "DevUser",
+        has2fa: false
     }
     const session = await getSessionInfo(env, sessionId);
     if(session == null) return null;

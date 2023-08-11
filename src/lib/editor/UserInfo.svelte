@@ -5,7 +5,8 @@
 </script>
 
 {#if user}
-    Logged in as {user.name}
+    <a href="/editor/user">Logged in as {user.name}</a>
+    &nbsp;
     <a href="/editor/auth/signout" class="btn variant-glass-primary">Sign out</a>
 {:else}
     <a href="/editor/auth/signin?to={$page.url.pathname}" class="btn variant-glass-primary">Sign in</a>

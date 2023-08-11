@@ -4,6 +4,10 @@ button.hidden-button {
   color: inherit;
 }
 
+.limit {
+    width: calc(min(90vw, 56em))
+}
+
 a.hidden-link {
     color: inherit !important;
     text-decoration: none !important;

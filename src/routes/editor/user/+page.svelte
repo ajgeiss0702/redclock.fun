@@ -15,7 +15,11 @@
 
 
     <h2>Personal Preferences</h2>
-    <form method="POST" use:enhance>
+    <form method="POST" use:enhance={() => {
+            return async ({ update }) => {
+                await update({ reset: false });
+            };
+          }}>
         <div class="inline-block mx-auto">
             <table class="table table-hover">
                 <tbody>

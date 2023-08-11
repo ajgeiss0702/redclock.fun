@@ -1,9 +1,18 @@
 import type {RequestHandler} from "@sveltejs/kit";
 import QRCode from 'qrcode';
+import {error} from "@sveltejs/kit";
 
 
-export const GET = (async ({url}) => {
-    const text = url.searchParams.get("text") ?? "https://redclock.fun"
+export const GET = (async ({url, platform}) => {
+    let tempText;
+    const id = url.searchParams.get("id");
+    if(id) {
+        const cache = platform?.env?.CACHE;
+        if(!cache) throw error(503, "Cache not available!");
+        tempText = await cache.get("rc:temp_id:" + id);
+        if(!tempText) throw error(404, "ID not found");
+    }
+    const text = url.searchParams.get("text") ?? tempText ?? "https://redclock.fun"
     const image = await QRCode.toString(text, {type: "svg"});
 
     return new Response(image, {

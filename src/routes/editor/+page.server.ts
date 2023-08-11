@@ -17,15 +17,27 @@ export const load = (async ({locals, platform}) => {
         .then(response => response.keys)
         .then(async (keys) => {
             const permissions = await getPermissions(platform.env, user.id);
-            if(permissions.includes("*") || permissions.includes("school.*")) return keys;
-            return keys.filter(school => permissions.includes("school." + school.name));
+            return keys.filter(school =>
+                !school.name.includes("backup") &&
+                (
+                    permissions.includes("*") ||
+                    permissions.includes("school.*") ||
+                    permissions.includes("school." + school.name)
+                )
+            );
         });
     const districtList = districts.list()
         .then(response => response.keys)
         .then(async (keys) => {
             const permissions = await getPermissions(platform.env, user.id);
-            if(permissions.includes("*") || permissions.includes("district.*")) return keys;
-            return keys.filter(district => permissions.includes("district." + district.name));
+            return keys.filter(district =>
+                !district.name.includes("backup") &&
+                (
+                    permissions.includes("*") ||
+                    permissions.includes("district.*") ||
+                    permissions.includes("district." + district.name)
+                )
+            );
         });
 
     return {

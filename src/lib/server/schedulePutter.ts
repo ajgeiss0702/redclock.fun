@@ -18,7 +18,7 @@ export async function putSchedule(schools: KVNamespace, school: string, newSched
     }
 
     await Promise.all([
-        schools.put("backup:" + school + ":" + Date.now(), JSON.stringify(schedule), {metadata: existing.metadata}),
+        schools.put("zzz:backup:" + school + ":" + Date.now(), JSON.stringify(schedule), {metadata: existing.metadata}),
         schools.put(school, JSON.stringify(schedule), {metadata: existing.metadata})
     ])
 }

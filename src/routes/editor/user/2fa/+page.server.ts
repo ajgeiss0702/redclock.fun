@@ -99,12 +99,18 @@ export const actions = ({
         if(!db && dev) return;
         if(!db) return fail(503, {message: "Missing DB!"});
 
+        console.log("un-enrolling user");
+
         const secret = await db.prepare("select `2fa` from users where id=?")
             .bind(user.id)
             .first<string>("2fa")
         if(!secret) return fail(400, {message: "You do not have 2fa, so you cannot be un-enrolled!"});
 
+        console.log("secret fetched")
+
         if(!validate(secret, code)) return fail(400, {message: "Invalid code! Please try again"});
+
+        console.log("code is valid")
 
         await db.prepare("update users set `2fa`=NULL WHERE id=?")
             .bind(user.id)

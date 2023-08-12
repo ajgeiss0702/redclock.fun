@@ -5,6 +5,9 @@
     export let data;
     export let form;
 </script>
+<svelte:head>
+    <title>User settings - Red Clock</title>
+</svelte:head>
 <br>
 <div class="limit mx-auto text-left">
     <h1 class="mb-2">
@@ -63,6 +66,46 @@
             </table>
         </div>
     </form>
+
+    <br>
+    <br>
+
+    <h2>Authentication</h2>
+    <div class="inline-block mx-auto">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <form method="POST" action="/?password" use:enhance={() => {
+                            return async ({ update }) => {
+                                await update({ reset: false });
+                            };
+                          }}>
+                            <input name="old-password" placeholder="Old Password" type="password" class="input px-2 mb-2">
+                            {#if data.user.has2fa}
+                                <input name="two-factor" placeholder="Two Factor Confirmation Code" class="input px-2 mb-2 two-factor">
+                            {/if}
+                            <input name="new-password" placeholder="New Password" type="password" class="input px-2 mb-2">
+                            <button class="btn btn-sm variant-ghost-success">Update Password</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Two-Factor</td>
+                    <td>
+                        {#if data.user.has2fa}
+                            <a class="btn btn-sm variant-ghost-warning" href="/editor/user/2fa">Remove two-factor authentication</a>
+                        {:else}
+                            <a class="btn btn-sm variant-ghost-success" href="/editor/user/2fa">Enable two-factor authentication</a>
+                        {/if}
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 <style>
@@ -78,5 +121,9 @@
 
     .red {
         color: red;
+    }
+
+    .two-factor {
+        width: 15em;
     }
 </style>

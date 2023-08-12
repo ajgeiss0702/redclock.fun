@@ -37,7 +37,10 @@ export const actions = {
 
                 if(twofa == null) {
                     await platform.env.SESSION_STORE.put(sessionId, userId+"", {
-                        expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
+                        expirationTtl: 60 * 60 * 24 * 30, // sessions last for 30 days
+                        metadata: {
+                            created: Date.now()
+                        }
                     })
                 } else {
                     await platform.env.SESSION_STORE.put(sessionId + ":verifying", userId+"", {

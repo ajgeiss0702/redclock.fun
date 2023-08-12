@@ -40,7 +40,10 @@ export const actions = {
         }
 
         await sessionStore.put(sessionId, session.value, {
-            expirationTtl: 60 * 60 * 24 * 30 // sessions last for 30 days
+            expirationTtl: 60 * 60 * 24 * 30, // sessions last for 30 days
+            metadata: {
+                created: Date.now()
+            }
         })
 
         const to = new URL(request.url).searchParams.get("to");

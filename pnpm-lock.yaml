@@ -19,6 +19,9 @@ dependencies:
   hi-base32:
     specifier: ^0.5.1
     version: 0.5.1
+  highlight.js:
+    specifier: ^11.8.0
+    version: 11.8.0
   otpauth:
     specifier: ^9.1.4
     version: 9.1.4
@@ -2422,6 +2425,11 @@ packages:
 
   /hi-base32@0.5.1:
     resolution: {integrity: sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==}
+    dev: false
+
+  /highlight.js@11.8.0:
+    resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /html-rewriter-wasm@0.4.1:

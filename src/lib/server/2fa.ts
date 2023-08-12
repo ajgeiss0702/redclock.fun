@@ -1,9 +1,9 @@
-import {encode} from "hi-base32";
+import base32 from "hi-base32";
 import * as OTPAuth from "otpauth";
 
 export function generateRandomBase32() {
     const buffer = crypto.getRandomValues(new Uint8Array(15));
-    return encode(buffer).replace(/=/g, "").substring(0, 24);
+    return base32.encode(buffer).replace(/=/g, "").substring(0, 24);
 }
 
 export function getTotp(secret: string) {

@@ -3,6 +3,7 @@
     import {onMount} from "svelte";
     import {getTimeString} from "$lib/countdown/countdown";
     import {enhance} from "$app/forms";
+    import {dev} from "$app/environment";
 
     export let data;
     export let form;
@@ -30,6 +31,20 @@
 
 <br>
 <div class="limit mx-auto text-left">
+    {#if form?.success}
+        <div class="card mx-auto p-4">
+            {#if data.user.has2fa}
+                You are now successfully enrolled in two-factor authentication!<br>
+                You will need to provide your two-factor code the next time you log in.
+            {:else}
+                You have successfully un-enrolled in two-factor authentication.<br>
+                You will no longer need to provide your two-factor code the next time you log in.<br>
+                <br>
+                For security reasons, it is strongly recommended that you use two-factor authentication
+            {/if}
+        </div>
+        <br>
+    {/if}
     {#if form?.message}
         <span style="color: red">
             {form.message}

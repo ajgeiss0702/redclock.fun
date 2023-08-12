@@ -22,6 +22,10 @@
 
     $: checkQuote(quote);
 
+    let quoteRequests = browser ? JSON.parse(localStorage.quoteRequests || "[]") || [] : undefined;
+
+    let banned = browser ? quoteRequests.includes("a7a97477-0467-49e3-b4ea-2f1e7678ac95") : false;
+
     function checkQuote(quote) {
         let largestSimilarity = 0;
         let largestSimilarityQuote = -1;
@@ -108,7 +112,7 @@ I would strongly recommend filling out the "note" box with any info on why you t
             {/if}
         </span>
     <br>
-    <button class="btn variant-glass-primary" disabled={(!tsPassed || !browser || !quote || !author)}>Submit</button>
+    <button class="btn variant-glass-primary" class:variant-glass-warning={banned} disabled={(!tsPassed || !browser || !quote || !author || banned)}>Submit</button>
 
     <div class="message">
         {#if quoteSimilarity > 0.6}
@@ -129,7 +133,7 @@ If your quote is accepted, here is what it might look like:
 <h2>Your previous requests</h2>
 <br>
 {#if browser}
-    {#each JSON.parse(localStorage.quoteRequests || "[]") || [] as id}
+    {#each quoteRequests as id}
         <RequestedQuote {id}/>
     {:else}
         <span class="opacity-50">You haven't requested any quotes yet!</span>

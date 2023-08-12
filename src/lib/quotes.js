@@ -1096,6 +1096,51 @@ export let quotes = [
         quote: "If you take a chance you risk failure. If you don't you guarantee it.",
         author: "Unknown",
         request: "10947848-f85b-4d76-862a-fa081b61d3a4"
+    },
+    {
+        quote: "Just because you need to try to cheat, does not mean cheating is trying.",
+        author: "some guy probably.",
+        request: "8c7fb56c-ecf7-4c71-aaf8-bd0784377542"
+    },
+    {
+        quote: "Perfection is a figment of perception. Just because someone doesn't think something is perfect, doesn't mean no one else will.",
+        author: "Owen Hestand",
+        request: "fb654801-4764-4245-9697-2e01d7189049"
+    },
+    {
+        quote: "It's a beautiful day outside, birds are singing, flowers are blooming, on days like these, kids like you... should be learning. Stop reading quotes and get to work!",
+        author: "Sans Undertale",
+        request: "b9cd2c67-7402-4bb2-9bde-df9a67acf343"
+    },
+    {
+        quote: "Those who do not learn from history are doomed to repeat it",
+        author: "Churchill",
+        request: "98a1cdd4-bca1-4a76-98bf-6e2863b04ca9"
+    },
+    {
+        quote: "Hey, how'd you know I was hungry? This looks delicious!",
+        author: "Abigail (Stardew Valley)",
+        request: "586e3f1f-ffac-4f7a-90df-09b191f0b928"
+    },
+    {
+        quote: "When you die, your life is going to flash before your eyes, so make sure its worth watching.",
+        author: "Gerard Way",
+        request: "bc78ce64-193c-424e-bc95-b04034864d56"
+    },
+    {
+        quote: "If you have a dream, don't wait. Act. One of life's little rules.",
+        author: "Axel, Kingdom Hearts II",
+        request: "b265c3b8-61de-4015-b3e6-4b9c771cbfda"
+    },
+    {
+        quote: "We had homework...?",
+        author: "That guy who sits to the side of you",
+        request: "6cca28d0-e9a0-447a-8728-7dc9029edc43"
+    },
+    {
+        quote: "The past can be a great teacher",
+        author: "Aang, from Avatar, The Last Airbender",
+        request: "0633a543-9703-4d91-89d1-1c020d0f7a09"
     }
 
 ];

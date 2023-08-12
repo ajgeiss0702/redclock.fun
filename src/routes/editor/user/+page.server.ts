@@ -4,8 +4,9 @@ import {error, fail} from "@sveltejs/kit";
 
 
 export const actions = ({
-    default: async ({platform, request}) => {
+    default: async ({platform, request, locals}) => {
         const db = platform?.env?.D1DB as D1Database;
+        if(!locals.user) return fail(401, {message: "Not logged in!"});
 
         if(!db) {
             if(dev) return;
@@ -18,8 +19,8 @@ export const actions = ({
 
         if(!name || !wantCreditString) throw fail(400, {blank: true});
 
-        await db.prepare("update users set name=?, wantsCredit=?")
-            .bind(name, wantCreditString == "true" ? 1 : 0)
+        await db.prepare("update users set name=?, wantsCredit=? where id=?")
+            .bind(name, wantCreditString == "true" ? 1 : 0, locals.user.id)
             .run()
     }
 }) satisfies Actions

@@ -82,7 +82,7 @@ export const actions = ({
         if(!db) return fail(503, {message: "Missing DB!"});
 
         await db.prepare("update users set `2fa`=? WHERE id=?")
-            .bind(totp.secret, user.id)
+            .bind(totp.secret.base32, user.id)
             .run()
 
     },

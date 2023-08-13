@@ -77,7 +77,7 @@
                 <tr>
                     <td>Password</td>
                     <td>
-                        <form method="POST" action="/?password" use:enhance={() => {
+                        <form method="POST" action="?/password" use:enhance={() => {
                             return async ({ update }) => {
                                 await update({ reset: false });
                             };

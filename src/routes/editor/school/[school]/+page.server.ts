@@ -17,7 +17,7 @@ export const actions = {
         if(isNaN(offset)) return fail(400, {message: "Missing new offset!"});
 
         const schools = platform?.env?.SCHOOLS;
-        if(!schools) return fail(500, {message: "Missing database!"})
+        if(!schools) return fail(500, {message: "Missing schools!"})
 
         const {value, metadata} = await schools.getWithMetadata<unknown, EditorSchool>(params.school, {type: "json"});
 
@@ -27,6 +27,35 @@ export const actions = {
             metadata: {
                 ...metadata,
                 offset: offset
+            }
+        })
+    }),
+    schedules: (async ({locals, params, platform, request}) => {
+        if(!locals.user) return fail(401);
+        if(!params.school) return fail(400, {message: "Missing school parameter!"});
+
+        const formData = await request.formData();
+        const rawSchedules = formData.get("schedules") as string;
+
+        if(!await hasPermission(platform?.env, locals.user.id, "school." + params.school)) {
+            return fail(401, {message: "You don't have permission to modify this school!"});
+        }
+
+        if(!rawSchedules) return fail(400, {message: "Missing schedules!"});
+
+        const schedules = JSON.parse(rawSchedules);
+
+        const schools = platform?.env?.SCHOOLS;
+        if(!schools) return fail(500, {message: "Missing schools!"})
+
+        const {value, metadata} = await schools.getWithMetadata<unknown, EditorSchool>(params.school, {type: "json"});
+
+        if(!value) return fail(500, {message: "School doesnt exist?"})
+
+        await schools.put(params.school, JSON.stringify(value), {
+            metadata: {
+                ...metadata,
+                schedules
             }
         })
     })

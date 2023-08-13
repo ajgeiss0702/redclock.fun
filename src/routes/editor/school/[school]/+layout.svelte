@@ -1,9 +1,9 @@
 <script>
-    export let data;
-
+    import School from "$lib/editor/School.svelte";
     import {page} from "$app/stores";
-
     import CaretLeftFill from "svelte-bootstrap-icons/lib/CaretLeftFill.svelte";
+
+    export let data;
 
     let href;
     let text;
@@ -30,18 +30,6 @@
     </a>
 </div>
 
-<div class="flex justify-items-center">
-    <div class="inline-block pb-2 text-left mx-auto flex">
-        <div class="flex-none self-center">
-            <img src={data.school.logo} style="max-height: 6em;" alt="{data.school.code}">
-        </div>
-        <div class="flex-1 self-center">
-            <h2>{data.school.display}</h2>
-            <span class="text-surface-400-500-token">
-                {data.school.code}
-            </span>
-        </div>
-    </div>
-</div>
+<School school={data.school}/>
 
 <slot/>

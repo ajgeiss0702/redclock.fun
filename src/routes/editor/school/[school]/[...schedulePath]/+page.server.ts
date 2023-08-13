@@ -19,10 +19,22 @@ export const load = (async ({locals, parent, platform, params}) => {
         throw error(500, "No school store!")
     }
     
-    const {value, metadata} = await schools.getWithMetadata<SchoolData, SchoolData>(params.school, {type: "json"})
+    const {value, metadata} = await schools.getWithMetadata<SchoolData, SchoolData>(params.school, {type: "json"});
+
+    if(value == null) throw error(404, "School not found");
+
+    let current = value;
+    const parts = params.schedulePath.split("/");
+    for (let part of parts) {
+        part = part.replaceAll("-", "/");
+        // @ts-ignore
+        let newCurrent = current[part];
+        if(!newCurrent) throw error(404, "Unknown schedule name (lost at " + part + ")")
+        current = newCurrent;
+    }
 
     return {
-        schedule: value?.normal,
+        schedule: current,
         schedules: metadata?.schedules
     }
 
@@ -48,6 +60,11 @@ export const actions = {
         const schools = platform?.env?.SCHOOLS;
         if(!schools) return fail(503, {message: "Missing schools!"})
 
-        await putSchedule(schools, params.school, newSchedule, "normal");
+        if(!params.schedulePath) return fail(400, {message: "Invalid schedule path"});
+
+        const scheduleParts = params.schedulePath.split("/");
+        if(scheduleParts.length > 1) scheduleParts.shift()
+
+        await putSchedule(schools, params.school, newSchedule, scheduleParts[0], scheduleParts[1]);
     })
 } satisfies Actions

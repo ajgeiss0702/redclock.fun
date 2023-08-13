@@ -2,6 +2,9 @@
     import ScheduleEditor from "$lib/editor/ScheduleEditor.svelte";
     import {SlideToggle} from "@skeletonlabs/skeleton";
     import {enhance} from "$app/forms";
+    import {page} from "$app/stores";
+    import {scheduleTypes} from "./scheduleTypes";
+    import {capitalize, shortMonths} from "$lib/utils";
 
     export let data;
     export let form;
@@ -16,6 +19,31 @@
 
     let showOutput = false;
     let saving = false;
+
+    let scheduleName;
+    let scheduleDescription;
+    let extraName;
+    $: {
+        const schedulePath = $page.params.schedulePath;
+        const parts = schedulePath.split("/");
+        let extra;
+        if(parts.length > 1) extra = parts.pop().replaceAll("-", "/");
+        scheduleName = parts.join("/");
+
+        console.log({extra})
+
+        if(extra) {
+            extraName = extra.split(",").map((a => {
+                const parts = a.split("/");
+                const month = parts[0];
+                const date = parts[1];
+
+                return shortMonths[month-1] + " " + date;
+            })).join(", ");
+        }
+
+        scheduleDescription = scheduleTypes[scheduleName].description;
+    }
 
     $: isSame = scheduleOut ? (Object.keys(scheduleOut).length === 0 ? true : JSON.stringify(data.schedule) === JSON.stringify(scheduleOut)) : true;
 
@@ -53,8 +81,11 @@
         }
     }
 </script>
-<h1>Normal Schedules</h1>
-The "normal" schedule is the schedule that Red Clock will follow if there are no "special" schedules to follow.<br>
+<h1>{capitalize(scheduleName)} Schedules</h1>
+{#if scheduleName.includes("specials")}
+    <h2>{extraName}</h2>
+{/if}
+{scheduleDescription}<br>
 <br>
 <svelte:window on:beforeunload={(event) => {
     if(isSame) return;

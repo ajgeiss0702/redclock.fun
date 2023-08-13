@@ -14,7 +14,7 @@ export async function putSchedule(schools: KVNamespace, school: string, newSched
     } else if(type == "day" && extra) {
         schedule.specials.day[extra] = newSchedule;
     } else {
-        throw new Error("Invalid type!");
+        throw new Error("Invalid type! " + type);
     }
 
     await Promise.all([

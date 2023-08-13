@@ -4,12 +4,29 @@
     import {page} from "$app/stores";
 
     import CaretLeftFill from "svelte-bootstrap-icons/lib/CaretLeftFill.svelte";
+
+    let href;
+    let text;
+    $: {
+        let pathname = $page.url.pathname;
+        if(pathname.endsWith(data.school.code)) {
+            href = "/editor";
+            text = "school list";
+        } else if(pathname.includes("specials")) {
+            href = "/editor/school/" + data.school.code + "/special"
+            text = "specials";
+        } else {
+            href = "/editor/school/" + data.school.code;
+            text = data.school.display;
+        }
+    }
+
 </script>
 
 <div class="text-left mx-4">
-    <a href={$page.url.pathname.endsWith(data.school.code) ? "/editor" : "/editor/school/" + data.school.code} class="hover-underline">
+    <a {href} class="hover-underline">
         <CaretLeftFill class="inline-block"/>
-        Back to {$page.url.pathname.endsWith(data.school.code) ? "school list" : data.school.display}
+        Back to {text}
     </a>
 </div>
 

@@ -6,7 +6,6 @@
     let days = time[0]
 
     let inValue = twoDigits(time[1]) + ":" + twoDigits(time[2]) + ":" + twoDigits(time[3]);
-    $: console.log({inValue})
 
     $: updateTime(days, inValue);
 
@@ -18,7 +17,6 @@
             Number(parts[1]),
             Number(parts[2])
         ];
-        console.log("time is now ", time)
     }
 </script>
 <style>

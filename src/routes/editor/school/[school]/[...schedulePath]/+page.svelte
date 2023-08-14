@@ -4,7 +4,7 @@
     import {enhance} from "$app/forms";
     import {page} from "$app/stores";
     import {scheduleTypes} from "./scheduleTypes";
-    import {capitalize, shortMonths} from "$lib/utils";
+    import {capitalize, shortMonths, daysOfWeek} from "$lib/utils";
 
     export let data;
     export let form;
@@ -34,11 +34,15 @@
 
         if(extra) {
             extraName = extra.split(",").map((a => {
-                const parts = a.split("/");
-                const month = parts[0];
-                const date = parts[1];
+                if(scheduleName.includes("date")) {
+                    const parts = a.split("/");
+                    const month = parts[0];
+                    const date = parts[1];
 
-                return shortMonths[month-1] + " " + date;
+                    return shortMonths[month-1] + " " + date;
+                } else if(scheduleName.includes("day")) {
+                    return daysOfWeek[Number(a)];
+                }
             })).join(", ");
         }
 
@@ -119,7 +123,10 @@
     {/if}
 </form>
 
-<ScheduleEditor schedule={data.schedule} schedules={data.schedules} bind:scheduleOut={scheduleOut}/>
+<br>
+<div class="card limit mx-auto p-2 mb-64">
+    <ScheduleEditor schedule={data.schedule} schedules={data.schedules} bind:scheduleOut={scheduleOut}/>
+</div>
 
 <div class="preview" class:hidden={!showOutput}>
     <pre class="text-left inline-block">{scheduleOutFixed}</pre>

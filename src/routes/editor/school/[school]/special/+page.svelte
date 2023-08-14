@@ -1,5 +1,7 @@
 <script lang="ts">
     import {capitalize, daysOfWeek, shortMonths} from "$lib/utils";
+    import TrashFill from "svelte-bootstrap-icons/lib/TrashFill.svelte";
+    import {enhance} from "$app/forms";
 
     export let data;
 
@@ -10,24 +12,71 @@
 
         return shortMonths[month-1] + " " + date;
     }
+
+    let newDay = "";
+    $: disallowAddingDay = newDay === "" || Object.keys(data.school.specials.day).includes(newDay+"")
+
+    let year = new Date().getFullYear();
+    $: specialDates = Object.entries(data.school.specials.date)
+        .sort((a, b) => {
+            const aParts = a[0].split(",");
+            const bParts = b[0].split(",");
+
+            const aDate = new Date(aParts[0] + "/" + year);
+            const bDate = new Date(bParts[0] + "/" + year);
+            return aDate - bDate;
+        });
+
 </script>
 <h1>Special Schedules</h1>
 <br>
-<div class="limit mx-auto">
+<div class="small-limit mx-auto">
     <br>
     <h2>Day</h2>
     <hr>
-    {#each Object.entries(data.school.specials.day) as [scheduleName, data]}
-        <a href="specials/day/{scheduleName}" class="hidden-link">
-            {daysOfWeek[Number(scheduleName)]}
-            <hr>
-        </a>
-    {/each}
+    <form method="POST" use:enhance>
+        {#each Object.entries(data.school.specials.day) as [scheduleName, data]}
+            <div class="relative pt-1">
+                <a href="specials/day/{scheduleName}" class="hidden-link relative bottom-1">
+                    {daysOfWeek[Number(scheduleName)]}
+                </a>
+                <hr>
+                <button
+                        class="absolute right-0 top-0 btn btn-sm variant-ghost-error"
+                        formaction="?/removeDay&day={scheduleName}"
+                        on:click={(e) => {
+                            if(!confirm("Are you sure? This cannot be undone!")) e.preventDefault()
+                        }}
+                >
+                    <TrashFill/>
+                </button>
+            </div>
+        {/each}
+    </form>
+    <hr class="mt-5">
+    <select bind:value={newDay} class="select inline-block w-32 my-1">
+        <option value=""></option>
+        {#each daysOfWeek as day, i}
+            <option value="{i}">{day}</option>
+        {/each}
+    </select>
+    <a
+            href="specials/day/{newDay}?new"
+            class="btn btn-sm variant-ghost-success"
+            disabled={disallowAddingDay}
+            on:click={(e) => {
+                if(disallowAddingDay) e.preventDefault();
+            }}
+    >
+        Add
+    </a>
+    <hr>
+    <br>
 
     <br>
     <h2>Date</h2>
     <hr>
-    {#each Object.entries(data.school.specials.date) as [scheduleName, data]}
+    {#each specialDates as [scheduleName, data]}
         {@const displayName = scheduleName.split(",").map(dateDisplayMap).join(", ")}
         <a href="specials/date/{scheduleName.replaceAll('/', '-')}" class="hidden-link">
             {capitalize(displayName)}
@@ -35,3 +84,15 @@
         </a>
     {/each}
 </div>
+<style>
+    input {
+        background-color: transparent;
+    }
+    a[disabled=true] {
+        cursor: not-allowed !important;
+        opacity: 0.5 !important;
+    }
+    .small-limit {
+        width: calc(min(90vw, 20em))
+    }
+</style>

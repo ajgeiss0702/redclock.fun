@@ -1,12 +1,12 @@
 import type { PageServerLoad } from './$types';
 import { devSchedule, devSchedules } from '$lib/server/devData';
 import {dev} from "$app/environment";
-import {type Actions, error, fail} from "@sveltejs/kit";
+import {type Actions, error, fail, redirect} from "@sveltejs/kit";
 import type {SchoolData} from "$lib/countdown/countdown-utils";
 import {hasPermission} from "$lib/server/users";
 import {putSchedule} from "$lib/server/schedulePutter";
 
-export const load = (async ({locals, parent, platform, params}) => {
+export const load = (async ({locals, parent, platform, params, url}) => {
     if(!locals.user) return {};
 
     const schools = platform?.env?.SCHOOLS as KVNamespace | undefined;
@@ -23,14 +23,25 @@ export const load = (async ({locals, parent, platform, params}) => {
 
     if(value == null) throw error(404, "School not found");
 
-    let current = value;
+    let current: unknown = value;
+    let isNew = false;
     const parts = params.schedulePath.split("/");
     for (let part of parts) {
         part = part.replaceAll("-", "/");
         // @ts-ignore
         let newCurrent = current[part];
-        if(!newCurrent) throw error(404, "Unknown schedule name (lost at " + part + ")")
+        if(!newCurrent && url.searchParams.has("new")) {
+            current = {};
+            isNew = true;
+            break;
+        } else if(!newCurrent) {
+            throw error(404, "Unknown schedule name (lost at " + part + ")")
+        }
         current = newCurrent;
+    }
+
+    if(!isNew && url.searchParams.has("new")) {
+        throw redirect(302, url.pathname);
     }
 
     return {
@@ -65,6 +76,6 @@ export const actions = {
         const scheduleParts = params.schedulePath.split("/");
         if(scheduleParts.length > 1) scheduleParts.shift()
 
-        await putSchedule(schools, params.school, newSchedule, scheduleParts[0], scheduleParts[1]);
+        await putSchedule(locals.user, schools, params.school, newSchedule, scheduleParts[0], scheduleParts[1]);
     })
 } satisfies Actions

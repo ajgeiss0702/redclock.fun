@@ -166,7 +166,7 @@
                 </svelte:fragment>
             </AccordionItem>
         {:else}
-            Hm, something is missing here..
+            No schedules yet! Add one below
         {/each}
     </Accordion>
 
@@ -175,7 +175,7 @@
     <hr>
     <br>
     <h3 class="text-left">Add Schedule</h3>
-    <div class="card p-2 mb-64">
+    <div class="card p-2">
         <input
                 class="input autocomplete px-2 w-64 relative z-10"
                 type="search"

@@ -4,7 +4,10 @@
     import TimeInput from "./TimeInput.svelte";
     import VerticalArrows from "$lib/editor/VerticalArrows.svelte";
     import { flip } from 'svelte/animate';
+    import {fly} from "svelte/transition";
     import {dev} from "$app/environment";
+    import TrashFill from "svelte-bootstrap-icons/lib/TrashFill.svelte";
+    import PlusCircleFill from "svelte-bootstrap-icons/lib/PlusCircleFill.svelte";
 
 
     export let schedule: ScheduleTimes;
@@ -50,25 +53,37 @@
             }
             o[code] = times;
         }
-        console.log({scheduleOut: o})
         return o;
     })();
 
-    $: console.log({loopableSchedule})
+    function removeSchedule(index: number) {
+        loopableSchedule.splice(index, 1);
+        loopableSchedule = loopableSchedule;
+    }
+
+    let newClass = "";
+    let newTime = null;
+
+    let newTimeVersion = 0;
+
 </script>
 
 <!-- TODO: https://svelte.dev/repl/3bf15c868aa94743b5f1487369378cf3?version=3.21.0 -->
 
 <div class="schedulesContainer m-2 mx-auto">
     <Accordion>
-        {#each loopableSchedule as {code, schedule}}
+        {#each loopableSchedule as {code, schedule}, li}
             <AccordionItem open={dev}>
                 <svelte:fragment slot="summary">{schedules[code] ?? code}</svelte:fragment>
                 <svelte:fragment slot="content">
+                    <div class="text-right">
+                        <button class="btn btn-sm variant-ghost-error" on:click={() => removeSchedule(li)}>Remove Schedule</button>
+                    </div>
                     <table class="mx-auto">
                         {#each schedule as {name, times, uid}, i (uid)}
                             <tr
                                     animate:flip|local={{ duration: 150 }}
+                                    in:fly|local={{duration: 100, y: 100}}
                             >
                                 <td>
                                     <VerticalArrows
@@ -86,8 +101,47 @@
                                 <td class="px-4 py-2">
                                     <TimeInput bind:time={times}/>
                                 </td>
+                                <td>
+                                    <button class="btn btn-sm variant-ghost-error" on:click={() => {
+                                        schedule.splice(i, 1);
+                                        schedule = schedule;
+                                    }}>
+                                        <TrashFill/>
+                                    </button>
+                                </td>
                             </tr>
                         {/each}
+                        <tr><td><span class="spacer">.</span></td></tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="text" bind:value={newClass} placeholder="New Class starts">
+                            </td>
+                            <td>
+                                {#key newTimeVersion}
+                                    <TimeInput bind:time={newTime}/>
+                                {/key}
+                            </td>
+                            <td>
+                                <button
+                                        class="btn btn-sm variant-ghost-success"
+                                        disabled={!newClass || !newTime || Object.keys(scheduleOut).includes(newClass)}
+                                        on:click={() => {
+                                            schedule.push({
+                                                uid: crypto.randomUUID(),
+                                                name: newClass,
+                                                times: newTime
+                                            });
+                                            schedule = schedule;
+                                            newClass = "";
+                                            newTime = null;
+                                            newTimeVersion++;
+                                        }}
+                                >
+                                    <PlusCircleFill/>
+                                </button>
+                            </td>
+                        </tr>
                     </table>
                 </svelte:fragment>
             </AccordionItem>
@@ -112,5 +166,10 @@
     :global(.dark) td {
         border-bottom: 1px solid rgba(255, 255, 255, 0.56);
         border-top: 1px solid rgba(255, 255, 255, 0.56);
+    }
+
+    .spacer {
+        height: 1em;
+        color: rgba(0, 0, 0, 0);
     }
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
-    import {ArrowUp, ArrowDown} from "svelte-bootstrap-icons";
+    import ArrowUp from "svelte-bootstrap-icons/lib/ArrowUp.svelte";
+    import ArrowDown from "svelte-bootstrap-icons/lib/ArrowDown.svelte";
     import {createEventDispatcher} from "svelte";
     const dispatch = createEventDispatcher();
 

@@ -74,7 +74,12 @@
                 <input type="text" bind:value={newDisplay} placeholder="New Display" on:keydown={checkNewEnter}>
             </td>
             <td>
-                <button on:click|preventDefault={addNew} class="btn btn-sm variant-ghost-success">Add</button>
+                <button
+                        on:click|preventDefault={addNew}
+                        class="btn btn-sm variant-ghost-success" disabled={!newCode || !newDisplay || Object.keys(schedulesOut).includes(newCode)}
+                >
+                    Add
+                </button>
             </td>
         </tr>
     </tbody>

@@ -14,6 +14,14 @@
     let schedulesSaving = false;
 </script>
 
+<svelte:window on:beforeunload={(event) => {
+    if(JSON.stringify(schedules) === JSON.stringify(originalSchedules) && originalOffset === offset) return;
+    event.preventDefault();
+    const message = "You have unsaved changes! Are you sure you want to exit?";
+    event.returnValue = message;
+    return message;
+}}/>
+
 <svelte:head>
     <title>{(data.school?.display ?? "").length < 10 ? data.school?.display : data.school?.code.toUpperCase()} Schedules - Red Clock</title>
 </svelte:head>

@@ -1,13 +1,13 @@
 <script lang="ts">
     import type {ClassTimes, ScheduleTimes} from "../countdown/countdown-utils";
-    import {Accordion, AccordionItem} from "@skeletonlabs/skeleton";
+    import {Accordion, AccordionItem, Autocomplete, type AutocompleteOption} from "@skeletonlabs/skeleton";
     import TimeInput from "./TimeInput.svelte";
     import VerticalArrows from "$lib/editor/VerticalArrows.svelte";
     import { flip } from 'svelte/animate';
     import {fly} from "svelte/transition";
-    import {dev} from "$app/environment";
     import TrashFill from "svelte-bootstrap-icons/lib/TrashFill.svelte";
     import PlusCircleFill from "svelte-bootstrap-icons/lib/PlusCircleFill.svelte";
+    import {popup} from "@skeletonlabs/skeleton";
 
 
     export let schedule: ScheduleTimes;
@@ -66,6 +66,26 @@
 
     let newTimeVersion = 0;
 
+    let addedScheduleName = "";
+
+    $: scheduleOptions = (() => {
+        let o: AutocompleteOption[] = [];
+        for (let scheduleName in schedules) {
+            let scheduleDisplay = schedules[scheduleName];
+            o.push({
+                label: scheduleDisplay,
+                value: scheduleName,
+                keywords: scheduleName + ", " + scheduleDisplay
+            })
+        }
+        o.push({
+            label: "All schedules (*)",
+            value: "*",
+            keywords: "all, *"
+        })
+        return o;
+    })();
+
 </script>
 
 <!-- TODO: https://svelte.dev/repl/3bf15c868aa94743b5f1487369378cf3?version=3.21.0 -->
@@ -73,7 +93,7 @@
 <div class="schedulesContainer m-2 mx-auto">
     <Accordion>
         {#each loopableSchedule as {code, schedule}, li}
-            <AccordionItem open={dev}>
+            <AccordionItem>
                 <svelte:fragment slot="summary">{schedules[code] ?? code}</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="text-right">
@@ -149,6 +169,52 @@
             Hm, something is missing here..
         {/each}
     </Accordion>
+
+
+    <br>
+    <hr>
+    <br>
+    <h3 class="text-left">Add Schedule</h3>
+    <div class="card p-2 mb-64">
+        <input
+                class="input autocomplete px-2 w-64 relative z-10"
+                type="search"
+                name="autocomplete-search"
+                bind:value={addedScheduleName}
+                placeholder="Schedule Name"
+                use:popup={{
+                event: 'focus-click',
+                target: 'popupAutocomplete',
+                placement: 'bottom',
+            }}
+        />
+        <div data-popup="popupAutocomplete">
+            <div class="card w-64 p-1 pt-6 rounded-t-none relative bottom-6 z-0">
+                <Autocomplete
+                        bind:input={addedScheduleName}
+                        options={scheduleOptions}
+                        on:selection={(e) => {
+                        addedScheduleName = e.detail.value;
+                    }}
+                        emptyState="No schedule found with that name"
+                />
+            </div>
+        </div>
+
+        <button
+                class="btn btn-sm variant-ghost-success"
+                on:click={() => {
+                    loopableSchedule.push({
+                        code: addedScheduleName,
+                        schedule: []
+                    })
+                    loopableSchedule = loopableSchedule;
+                    addedScheduleName = "";
+                }}
+        >
+            Add
+        </button>
+    </div>
 </div>
 
 

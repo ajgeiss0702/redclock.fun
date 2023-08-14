@@ -73,8 +73,9 @@ export const actions = {
 
         if(!params.schedulePath) return fail(400, {message: "Invalid schedule path"});
 
-        const scheduleParts = params.schedulePath.split("/");
+        let scheduleParts = params.schedulePath.split("/");
         if(scheduleParts.length > 1) scheduleParts.shift()
+        scheduleParts = scheduleParts.map(a => a.replaceAll('-', '/'));
 
         await putSchedule(locals.user, schools, params.school, newSchedule, scheduleParts[0], scheduleParts[1]);
     })

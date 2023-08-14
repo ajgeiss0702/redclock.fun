@@ -14,7 +14,10 @@
     }
 
     let newDay = "";
-    $: disallowAddingDay = newDay === "" || Object.keys(data.school.specials.day).includes(newDay+"")
+    $: disallowAddingDay = newDay === "" || Object.keys(data.school.specials.day).includes(newDay+"");
+
+    let newDate = "";
+    $: disallowAddingDate = newDate === "" || Object.keys(data.school.specials.date).includes(newDate)
 
     let year = new Date().getFullYear();
     $: specialDates = Object.entries(data.school.specials.date)
@@ -30,7 +33,7 @@
 </script>
 <h1>Special Schedules</h1>
 <br>
-<div class="small-limit mx-auto">
+<div class="small-limit mx-auto mb-32">
     <br>
     <h2>Day</h2>
     <hr>
@@ -54,7 +57,7 @@
         {/each}
     </form>
     <hr class="mt-5">
-    <select bind:value={newDay} class="select inline-block w-32 my-1">
+    <select bind:value={newDay} class="select inline-block w-32 my-1 py-0">
         <option value=""></option>
         {#each daysOfWeek as day, i}
             <option value="{i}">{day}</option>
@@ -76,13 +79,39 @@
     <br>
     <h2>Date</h2>
     <hr>
-    {#each specialDates as [scheduleName, data]}
-        {@const displayName = scheduleName.split(",").map(dateDisplayMap).join(", ")}
-        <a href="specials/date/{scheduleName.replaceAll('/', '-')}" class="hidden-link">
-            {capitalize(displayName)}
-            <hr>
-        </a>
-    {/each}
+    <form method="POST" use:enhance>
+        {#each specialDates as [scheduleName, data]}
+            {@const displayName = scheduleName.split(",").map(dateDisplayMap).join(", ")}
+            <div class="relative pt-1">
+                <a href="specials/date/{scheduleName.replaceAll('/', '-')}" class="hidden-link relative bottom-1">
+                    {displayName}
+                </a>
+                <hr>
+                <button
+                        class="absolute right-0 top-0 btn btn-sm variant-ghost-error"
+                        formaction="?/removeDate&date={scheduleName}"
+                        on:click={(e) => {
+                            if(!confirm("Are you sure? This cannot be undone!")) e.preventDefault()
+                        }}
+                >
+                    <TrashFill/>
+                </button>
+            </div>
+        {/each}
+    </form>
+    <hr class="mt-5">
+    <input bind:value={newDate} class="select inline-block w-32 my-1 py-0">
+    <a
+            href="specials/date/{newDate.replaceAll('/', '-')}?new"
+            class="btn btn-sm variant-ghost-success"
+            disabled={disallowAddingDate}
+            on:click={(e) => {
+                if(disallowAddingDate) e.preventDefault();
+            }}
+    >
+        Add
+    </a>
+    <hr>
 </div>
 <style>
     input {

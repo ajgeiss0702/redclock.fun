@@ -1145,6 +1145,61 @@ export let quotes = [
     {
         quote: "When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your lemons, what am I supposed to do with these? Demand to see life's manager! Make life rue the day it thought it could give Cave Johnson lemons! Do you know who I am? I’m the man who’s gonna burn your house down! With the lemons! I’m gonna get my engineers to invent a combustible lemon that burns your house down!",
         author: "Cave Johnson (Portal 2)"
+    },
+    {
+        quote: "I’d rather regret the risks that didn't work out than the chances I didn't take at all.",
+        author: "Simone Biles",
+        request: "a0f1b67f-a65c-4c0f-bb36-759f539b44fe"
+    },
+    {
+        quote: "Math is MATH!",
+        author: "Mr. Incredible",
+        request: "598f0a32-1e66-4d35-8d1e-52cd8b4b1ed6"
+    },
+    {
+        quote: "Those who don't like themselves set high expectations for themselves.",
+        author: "Unknown",
+        request: "7deb16cf-7aae-472b-91fa-cf17cfe960d5"
+    },
+    {
+        quote: "Well well well... How the turn tables",
+        author: "Michael Scott",
+        request: "eda37825-12f9-4fa0-9857-bd7285ba9c1b"
+    },
+    {
+        quote: "Life is like a basketball, when you fall down you always bounce back.",
+        author: "Justin Jones",
+        request: "e8b2eef9-26a0-4a02-ac33-c6f4419dc422"
+    },
+    {
+        quote: "When is class over?",
+        author: "The roach on the floor",
+        request: "8b126ea0-0124-473c-8af4-cf3db3a0ef9c"
+    },
+    {
+        quote: "When life gives you melons, you could be dyslexic.",
+        author: "Unkown",
+        request: "2fe91997-da29-4d5a-9091-7d6a3a454836"
+    },
+    {
+        quote: "Stop playing games go do that math homework",
+        author: "Your self conscious ",
+        request: "bb08e21f-cc3b-46f7-80ee-a25da867d8a2"
+    },
+    {
+        quote: "The end of the world as we know it begins now",
+        author: "Inspirobot",
+        request: "59f5038c-9f10-4e89-8743-805ed7537dd2"
+    },
+    {
+        quote: "I'm having the best time in my life right now!",
+        author: "DRG Mining Dwarf",
+        request: "54cbbe8e-6a6f-41f9-8afc-6c9c80f14914"
+    },
+    {
+        quote: "Before the universe, comes the music.",
+        author: "Inspirobot",
+        request: "c6ad676c-3c88-40b0-a1d6-5045317574b6"
     }
 
 ];

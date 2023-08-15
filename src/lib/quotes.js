@@ -1200,6 +1200,11 @@ export let quotes = [
         quote: "Before the universe, comes the music.",
         author: "Inspirobot",
         request: "c6ad676c-3c88-40b0-a1d6-5045317574b6"
+    },
+    {
+        quote: "They may not be the richest people with the dopest cribs, but it's a utopia wherever they are, and that's the most you can have",
+        author: "Travis Scott",
+        request: "1e7c4b76-bf17-4849-816f-cd7b9cf5219e"
     }
 
 ];

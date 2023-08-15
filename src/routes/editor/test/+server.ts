@@ -14,7 +14,8 @@ export const GET = (async ({platform, url, locals}) => {
     const value = url.searchParams.get("value");
     const obj = await bucket.put("test", JSON.stringify({value}), {
         httpMetadata: {
-            contentType: "application/json"
+            contentType: "application/json",
+            cacheControl: "max-age=30, must-revalidate"
         }
     });
 

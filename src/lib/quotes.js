@@ -1205,6 +1205,152 @@ export let quotes = [
         quote: "They may not be the richest people with the dopest cribs, but it's a utopia wherever they are, and that's the most you can have",
         author: "Travis Scott",
         request: "1e7c4b76-bf17-4849-816f-cd7b9cf5219e"
+    },
+    {
+        quote: "There is always room for family",
+        author: "Dominic Toretto",
+        request: "8b531fe4-76c6-4d40-9bc4-90a538e42244"
+    },
+    {
+        quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.\t",
+        author: "Unknown",
+        request: "db5b9da7-bfa5-4e6e-b035-5df0cc34932d"
+    },
+    {
+        quote: "No Sacrifice, No Victory",
+        author: "Archibald Witwicky",
+        request: "9b2aaf82-d541-43a6-9a8f-9ff73bc20643"
+    },
+    {
+        quote: "People are afraid of change, but change can also mean possibilities and new things to explore.",
+        author: "Sean Murray",
+        request: "03cc191f-6ec8-41d2-9b43-b8034237e5c5"
+    },
+    {
+        quote: "Be yourself, everyone else is already taken",
+        author: "Marilyn Monroe",
+        request: "9e617216-580e-40ef-8976-802d484b3c7a"
+    },
+    {
+        quote: "Keep your face always towards the sunshine, and your shadow will fall behind you",
+        author: "Walt Whitman",
+        request: "2a18836e-3166-4a9b-878a-855fe7134348"
+    },
+    {
+        quote: "Don't follow the eyes, follow the heart",
+        author: "Native American Proverb",
+        request: "bafdb777-0e2b-4b34-a376-5e9fef51ea15"
+    },
+
+    {
+        quote: "Don't judge a man, unless you have walked two moons in his mocasines",
+        author: "Native American Proverb",
+        request: "774faec6-1df5-408a-9588-a8363db9f539"
+    },
+    {
+        quote: "Around here, however, we don't look backwards for very long. We keep moving forward, opening up new doors, and doing new things because we're curious, and curiosity keeps leading us down new paths.",
+        author: "Walt Disney",
+        request: "b91b1690-5c10-4b1d-8e9c-6663d9b3f170"
+    },
+    {
+        quote: "It doesn't matter how it's done. It doesn't matter what needs to be sacrificed. In this world, winning is everything.",
+        author: "Ayanokouji Kiyotaka",
+        request: "74fb5416-1758-4c65-ab0e-3a40dc7d9820"
+    },
+    {
+        quote: "42, the meaning of life, the universe, and everything.",
+        author: "Douglas Adams",
+        request: "545b0582-bb41-4627-b4c1-ce58075e26f9"
+    },
+    {
+        quote: "Remember, a stupid person is always harder to convince than a stubborn person.",
+        author: "Unknown",
+        request: "92fa2304-81cc-4bf7-812e-08a5aebb15df"
+    },
+    {
+        quote: "Nanomachines, son!",
+        author: "Senator Armstrong",
+        request: "f7eb4731-c0b2-4ced-9b01-fe664e7b952f"
+    },
+    {
+        quote: "No, you can be so much more.",
+        author: "Hero (Big Hero Six)",
+        request: "bfe5cd3c-d4e5-4c15-9d2d-39f39247c818"
+    },
+    {
+        quote: "The past is only the future with the lights on",
+        author: "Mark Hoppus (Blink-182)",
+        request: "3f7f6528-157b-4c2b-ac46-f33d6f464632"
+    },
+    {
+        quote: "Even in the deepest darkness, there will always be light to guide you. Beleive in that light, and the darkness will never defeat you.",
+        author: "Kairi's Grandmother",
+        request: "7a4e1708-0b4a-4f9f-a0ef-71832cc3b70d"
+    },
+    {
+        quote: "We may never meet again, but we'll never forget each other.",
+        author: "Leon, Kingdom Hearts",
+        request: "bbc926d5-eaeb-4967-8178-72d5d620cf28"
+    },
+    {
+        quote: "Pain is being human.",
+        author: "Sora",
+        request: "c71c3164-f5ff-45b0-8cbe-59ff191e57e2"
+    },
+    {
+        quote: "By ourselves, we’re no one. It’s when other people look at us, and see someone — that’s the moment we each start to exist.",
+        author: "Joshua, Kingdom Hearts",
+        request: "193ec9a7-1dfd-46b3-8a42-6c2f8a1cbfbe"
+    },
+    {
+        quote: "May your heart be your guiding key.",
+        author: "Kingdom Hearts",
+        request: "60dee239-c687-4685-8ee8-f7fb9574f68f"
+    },
+    {
+        quote: "Shoot for the moon. Even if you miss, you'll land among the stars.",
+        author: "Les Brown",
+        request: "5b05c135-34e2-41de-9260-ba34c5132fb0"
+    },
+    {
+        quote: "Sometimes... sometimes it's not as simple as that. This kind of stuff gets messy, and everybody's got issues, especially dads. And sometimes they mess up — well, all the time. That doesn't mean they don't care.",
+        author: "Loona",
+        request: "1d9e68e4-11d4-4e93-9230-9f9e9ec34013"
+    },
+    {
+        quote: "Most people possessed both a public face and a private inner self after all.",
+        author: "Ayanokouji Kiyotaka",
+        request: "66ab4fe7-3f08-4038-8f16-af5d1cb8d5e3"
+    },
+    {
+        quote: "Confessing your feelings to someone isn’t an easy thing. You spend every day in anguish, yet you still can’t do it. The words “I love you” hang in your throat, and you can’t seem to force them out.",
+        author: "Ayanokouji Kiyotaka",
+        request: "eae13eba-3836-4486-b9f5-99722e36809c"
+    },
+    {
+        quote: "If a person ever claims to live their life without telling a lie, their life itself is probably a lie.",
+        author: "Ayanokouji Kiyotaka",
+        request: "915abe49-261a-41d5-a5b3-7b8b732c5f82"
+    },
+    {
+        quote: "Smiling means letting your guard down in front of another person, even if just a little.",
+        author: "Ayanokouji Kiyotaka",
+        request: "b1f0744e-286e-4f93-8217-669c46ada665"
+    },
+    {
+        quote: "Your shortcoming is that you assume others will hold you back, and put them at a distance from the start.",
+        author: "Ayanokouji Kiyotaka",
+        request: "7160900d-dd74-4306-b61b-a99b7c74f433"
+    },
+    {
+        quote: "Are all human beings truly equal? These days everywhere you go there’s a talk about fight for equality. As a wise man once said, 'Heaven doesn't create one person above or below another'",
+        author: "Ayanokouji Kiyotaka",
+        request: "367fed07-1719-4eaa-b78b-dd7fe7dc16f6"
+    },
+    {
+        quote: " At any rate, humans change over time based on their actions. Truth be told, at the end of the day, equality is just a fantasy. And most of us go through life denying the fact that we live in a meritocracy.",
+        author: "Ayanokouji Kiyotaka",
+        request: "f0c3ddb6-19de-476c-9065-da147c29ada7"
     }
 
 ];

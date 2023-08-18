@@ -84,6 +84,7 @@
     }
 
     function setCountdownInterval() {
+        clearInterval(countdownInterval)
         countdownInterval = setInterval(tick, 1e3);
     }
 

@@ -1351,6 +1351,11 @@ export let quotes = [
         quote: " At any rate, humans change over time based on their actions. Truth be told, at the end of the day, equality is just a fantasy. And most of us go through life denying the fact that we live in a meritocracy.",
         author: "Ayanokouji Kiyotaka",
         request: "f0c3ddb6-19de-476c-9065-da147c29ada7"
+    },
+    {
+        quote: "Whatever you are be a good one",
+        author: "William Makepeace Thackeray",
+        request: "8d968118-332d-445e-904e-4113462da64a"
     }
 
 ];

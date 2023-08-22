@@ -1356,6 +1356,146 @@ export let quotes = [
         quote: "Whatever you are be a good one",
         author: "William Makepeace Thackeray",
         request: "8d968118-332d-445e-904e-4113462da64a"
+    },
+    {
+        quote: "The only true failure lies in the failure to start",
+        author: "Deborah Moggach",
+        request: "6cb2a962-90be-4612-aaea-92269382a539"
+    },
+    {
+        quote: "You think darkness is your ally? You merely adopted the dark. I was born in it, molded by it. I didn't see the light  until I was already a man. By then it was nothing to me but Blinding!",
+        author: "Bane",
+        request: "f0fad95a-04f0-4c00-9c41-8094bbc817ac"
+    },
+    {
+        quote: "When the chips are down, these... these civilized people... they'll eat each other. See, I'm not a monster. I'm just ahead of the curve.",
+        author: "The Joker",
+        request: "bea20af9-d5b7-42e0-b6a9-c360f0fa1ca5"
+    },
+    {
+        quote: "The problem is not the problem. The problem is your attitude about the problem. Do you understand?",
+        author: "Jack Sparrow ",
+        request: "40e60760-724c-4b0b-9948-aace9fe100a0"
+    },
+    {
+        quote: "Failure is simply the opportunity to begin again, this time more intelligently.",
+        author: "Henry Ford",
+        request: "94950614-d87f-4402-a8b9-8960e7b1bfd0"
+    },
+    {
+        quote: "Keep movin' forward!",
+        author: "Mr. Robinson, from Meet The Robinsons",
+        request: "ed239f07-adc3-4a1c-abfd-15fdabd5df93"
+    },
+    {
+        quote: "Life isn't always about being the best at everything, It's about enjoying it, whether you win or lose doesn't matter, after all, Life is what we make it.",
+        author: "GoldenCow ",
+        request: "636ffedc-1318-4449-9072-ce27a87c8d3f"
+    },
+    {
+        quote: "When the pin is pulled Mr.Grenade is no longer our friend",
+        author: "Call Of Duty 4",
+        request: "de3cf6ee-29ad-4b07-bb55-8819f7bcff7a"
+    },
+    {
+        quote: "Life is a highway... and I'm gonna ride it all night long",
+        author: "Rascal Flatts",
+        request: "8c9bc41d-aeed-4555-aa71-ce6f13d232f9"
+    },
+    {
+        quote: "The cake was a lie",
+        author: "Portal 2",
+        request: "699be595-ea9d-4b87-abda-2403391cb99b"
+    },
+    {
+        quote: "A bucket... Dear god",
+        author: "Soldier, TF2",
+        request: "8ff99c53-1afa-4d18-8075-979b673dfe05"
+    },
+    {
+        quote: "There is always someone who cares, just give them a chance.",
+        author: "Emma Sperling",
+        request: "c7cc1b33-a8bc-44c5-8664-8aaed78a313a"
+    },
+    {
+        quote: "I don't dream at night, I dream at day, I dream all day; I'm dreaming for a living.",
+        author: "Steven Spielberg",
+        request: "d6276e4f-1a62-4911-b94c-ae2d02a4a0ec"
+    },
+    {
+        quote: "The idea that you are not in control of your own life is absurd. You don't control what happens in life, but, you control what you do with it.",
+        author: "Unknown",
+        request: "bcf86259-8d3f-4e1d-8e3b-a7303a7f99db"
+    },
+    {
+        quote: "The spy has already breached our defenses, You've seen what he's done to our colleagues! And worst of all, he could be any one of us. He could be you, he could be me, he could even be- ",
+        author: "Blu Spy (Team Fortress 2)",
+        request: "d48b7989-c80d-4c31-9405-bbf52bf28d3d"
+    },
+    {
+        quote: "Do you know what happens to those who lose their true purpose? Inevitably, they destroy themselves.",
+        author: "Saïx, Kingdom Hearts II",
+        request: "c144c859-5bce-455a-aa5d-2054f7b4a305"
+    },
+    {
+        quote: "Looks like my summer vacation is...over.",
+        author: "Roxas, Kingdom Hearts II",
+        request: "604a915e-4d4d-41d5-b185-596ba3b86db0"
+    },
+    {
+        quote: "Stay in school, kids. It makes you better at PvP",
+        author: "Technoblade",
+        request: "92cbc8db-aa98-46fd-8cd8-a311409c0284"
+    },
+    {
+        quote: "Do the right thing, and the bell will ring.",
+        author: "Tyler James Roy Wilkins",
+        request: "e7d78183-9ed9-47c1-8e7f-81109e58e704"
+    },
+    {
+        quote: "Sometimes you have to take 2 steps backwards to take 10 forward",
+        author: "Nipsey Hussle",
+        request: "1ac95b8d-fbd5-42ec-add9-6dd4305e6ab2"
+    },
+    {
+        quote: "Never hurts to help!",
+        author: "Wander (Wander Over Yonder)",
+        request: "b5d51735-41a5-4768-a241-2ef848c7d81d"
+    },
+    {
+        quote: "F.E.A.R has two meanings: Forget everything And Run, or Face Everything And Rise. The choice is yours.",
+        author: "Zig Ziglar",
+        request: "b2e8346b-45db-4228-8f3f-ca7b6eebefcf"
+    },
+    {
+        quote: "Train go boom",
+        author: "John Taylor",
+        request: "2196755f-b14d-4b8b-9f68-1ed4e9271d3f"
+    },
+    {
+        quote: "It's Funny How Cozy Doesn't Always Mean 'Comfortable' Hm?",
+        author: "Tom nook",
+        request: "489969cd-e926-4dd9-adcb-f6bb2c1f66b6"
+    },
+    {
+        quote: "The evening swan strikes again",
+        author: "Zanny",
+        request: "9703697c-d804-4a64-a5e8-de702ccefa70"
+    },
+    {
+        quote: "It doesn't matter what they call you, it's the deeds that make the man",
+        author: "The man with no name (Rango)",
+        request: "997c32d6-5f26-4207-b9fd-c546f411b978"
+    },
+    {
+        quote: "So make the friendship bracelets, take the moment and taste it, you've got no reason to be afraid.",
+        author: "Taylor Swift",
+        request: "1f9cbc6c-7480-4710-9989-7f9d8d596bbb"
+    },
+    {
+        quote: "Thou she be but little she is fierce",
+        author: "Shakespeare ",
+        request: "87abd04e-c1e8-4686-a04a-96ea6dac86df"
     }
 
 ];

@@ -7,14 +7,14 @@
     import Clipboard from "svelte-bootstrap-icons/lib/Clipboard.svelte"
     import {type PopupSettings, popup} from "@skeletonlabs/skeleton";
 
-    export let initialQuote = undefined;
+    export let initialQuote: Quote | undefined = undefined;
     export let withButtons = true;
     export let shouldFetch = true;
 
     type Quote = {
         quote: string,
         author: string,
-        quoteNumber: number
+        quoteNumber?: number
     }
 
     let quote: Promise<Quote> = new Promise(() => {});

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import CaretLeftFill from "svelte-bootstrap-icons/lib/CaretLeftFill.svelte";
     import {page} from "$app/stores";
     import Turnstile from "$lib/quotes/Turnstile.svelte";
@@ -8,6 +8,7 @@
     import {enhance} from "$app/forms";
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import RequestedQuote from "$lib/quotes/RequestedQuote.svelte";
+    import {onMount} from "svelte";
 
     export let data;
     export let form;
@@ -41,7 +42,21 @@
         }
     }
 
-    function checkQuote(quote) {
+    const lastSubmitted = browser ? Number(localStorage.lastSubmittedQuote || 0) : 0;
+    const nextAllowedSubmittable = lastSubmitted + (15 * 60 * 60e3);
+    let allowedToSubmit = Date.now() > nextAllowedSubmittable;
+    let hoursUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60 * 60e3));
+    let minutesUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60e3));
+    onMount(() => {
+        let interval = setInterval(() => {
+            hoursUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60 * 60e3));
+            minutesUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60e3));
+            allowedToSubmit = Date.now() > nextAllowedSubmittable;
+        }, 30e3);
+        return () => clearInterval(interval);
+    })
+
+    function checkQuote(quote: string) {
         let largestSimilarity = 0;
         let largestSimilarityQuote = -1;
         for (const i in quotes) {
@@ -49,7 +64,7 @@
             let sim = similarity(quote, q);
             if(sim > largestSimilarity) {
                 largestSimilarity = sim;
-                largestSimilarityQuote = i;
+                largestSimilarityQuote = Number(i);
             }
         }
         quoteSimilarity = largestSimilarity;
@@ -111,13 +126,33 @@ I would strongly recommend filling out the "note" box with any info on why you t
         <input class="input px-3" name="note" type="text" placeholder="I like this quote because..."/>
         The note will not be with the final quote. It is only used during the approval process.
     </label>
+    <br>
+    <br>
 
 
     <span class="message red">
-            {#if form?.message}
-                {form?.message}
+        {#if form?.message}
+            {form?.message}
+        {/if}
+    </span>
+
+    Due to a larger than expected amount of quote requests, you are limited to 1 quote request every 15 hours.
+    <div class="message red">
+        {#if hoursUntilSubmittable >= 0 && minutesUntilSubmittable >= 0}
+            You submitted a quote request recently. You cannot submit another one for
+            {#if hoursUntilSubmittable > 1}
+                {hoursUntilSubmittable} hours
+            {:else if hoursUntilSubmittable === 1}
+                {hoursUntilSubmittable} hour
+            {:else if hoursUntilSubmittable === 0}
+                {#if minutesUntilSubmittable !== 1}
+                    {minutesUntilSubmittable} minutes
+                {:else}
+                    {minutesUntilSubmittable} minute
+                {/if}
             {/if}
-        </span>
+        {/if}
+    </div>
 
     <Turnstile siteKey="0x4AAAAAAAA-6mZxvGLiTiQC" bind:passed={tsPassed}/>
 
@@ -127,7 +162,7 @@ I would strongly recommend filling out the "note" box with any info on why you t
             {/if}
         </span>
     <br>
-    <button class="btn variant-glass-primary" class:variant-glass-warning={banned} disabled={(!tsPassed || !browser || !quote || !author || banned)}>Submit</button>
+    <button class="btn variant-glass-primary" class:variant-glass-warning={banned} disabled={(!tsPassed || !browser || !quote || !author || banned || !allowedToSubmit)}>Submit</button>
 
     <div class="message">
         {#if quoteSimilarity > 0.6}

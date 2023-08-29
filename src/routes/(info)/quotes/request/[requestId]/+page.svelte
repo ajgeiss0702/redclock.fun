@@ -15,6 +15,7 @@
         const existing = (JSON.parse(localStorage.quoteRequests || "[]") || []);
         existing.push(data?.id);
         localStorage.setItem("quoteRequests", JSON.stringify(existing));
+        localStorage.setItem("lastSubmittedQuote", Date.now()+"");
         window.history.replaceState({}, document.title, $page.url.pathname);
     }
 

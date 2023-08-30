@@ -29,7 +29,8 @@
         "a7a97477-0467-49e3-b4ea-2f1e7678ac95",
         "57223137-ef36-4a38-8752-ac67d6e5aac5",
         "f33c7926-f4ed-4f56-96f4-2d7437070a90",
-        "eb5fc81b-983d-41ae-acdc-d7a23f5d3575"
+        "eb5fc81b-983d-41ae-acdc-d7a23f5d3575",
+        "e98525f8-ddfa-4594-b61f-a889fbc6a7cf"
     ]
 
     let banned = false;

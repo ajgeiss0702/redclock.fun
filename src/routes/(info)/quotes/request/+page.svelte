@@ -25,23 +25,34 @@
 
     let quoteRequests = browser ? JSON.parse(localStorage.quoteRequests || "[]") || [] : undefined;
 
-    let bannedQuotes = [
+    const bannedQuotes = [
         "a7a97477-0467-49e3-b4ea-2f1e7678ac95",
         "57223137-ef36-4a38-8752-ac67d6e5aac5",
         "f33c7926-f4ed-4f56-96f4-2d7437070a90",
         "eb5fc81b-983d-41ae-acdc-d7a23f5d3575",
         "e98525f8-ddfa-4594-b61f-a889fbc6a7cf"
+    ];
+
+    const bannedPhrases = [
+        "never back down",
+        "back down"
     ]
 
-    let banned = false;
-    if(browser) {
+    $: banned = browser ? (() => {
         for (let bannedQuote of bannedQuotes) {
             if(quoteRequests.includes(bannedQuote)) {
-                banned = true;
-                break;
+                return true;
             }
         }
-    }
+
+        for (let bannedPhrase of bannedPhrases) {
+            if(quote.toLowerCase().includes(bannedPhrase)) {
+                return true;
+            }
+        }
+
+        return false;
+    })() : false;
 
     const lastSubmitted = browser ? Number(localStorage.lastSubmittedQuote || 0) : 0;
     const nextAllowedSubmittable = lastSubmitted + (15 * 60 * 60e3);

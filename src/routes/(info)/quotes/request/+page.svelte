@@ -9,6 +9,7 @@
     import Quote from "$lib/countdown/sidebar/Quote.svelte";
     import RequestedQuote from "$lib/quotes/RequestedQuote.svelte";
     import {onMount} from "svelte";
+    import {bannedPhrases} from "$lib/quoteSettings";
 
     export let data;
     export let form;
@@ -32,11 +33,6 @@
         "eb5fc81b-983d-41ae-acdc-d7a23f5d3575",
         "e98525f8-ddfa-4594-b61f-a889fbc6a7cf"
     ];
-
-    const bannedPhrases = [
-        "never back down",
-        "back down"
-    ]
 
     $: banned = browser ? (() => {
         for (let bannedQuote of bannedQuotes) {
@@ -142,11 +138,11 @@ I would strongly recommend filling out the "note" box with any info on why you t
     <br>
 
 
-    <span class="message red">
+    <div class="message red">
         {#if form?.message}
             {form?.message}
         {/if}
-    </span>
+    </div>
 
     Due to a larger than expected amount of quote requests, you are limited to 1 quote request every 15 hours.
     <div class="message red">

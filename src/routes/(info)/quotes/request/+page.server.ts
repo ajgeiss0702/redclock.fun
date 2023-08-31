@@ -4,6 +4,7 @@ import {fail, redirect} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 import { quotes } from "$lib/quotes";
 import { similarity } from "$lib/utils";
+import {bannedPhrases} from "$lib/quoteSettings";
 
 export const load = (async ({locals}) => {
     return {isAdmin: dev || locals?.user?.id === 0}
@@ -34,7 +35,7 @@ export const actions = {
         formData.append('response', token);
         formData.append('remoteip', ip);
 
-        const turnstileResponse = await fetch(
+        const turnstileResponse: {success: boolean, "error-codes"?: string[]} = await fetch(
             "https://challenges.cloudflare.com/turnstile/v0/siteverify",
             {
                 method: "POST",
@@ -44,6 +45,12 @@ export const actions = {
 
         if(!turnstileResponse.success) {
             return fail(400, {message: "Failed turnstile! Errors: " + turnstileResponse["error-codes"]});
+        }
+
+        for (let bannedPhrase of bannedPhrases) {
+            if(quote.toLowerCase().includes(bannedPhrase)) {
+                return fail(400, {message: "Quote banned!"})
+            }
         }
 
 

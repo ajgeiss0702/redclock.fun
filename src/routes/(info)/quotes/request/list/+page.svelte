@@ -4,6 +4,7 @@
 
     export let data;
 
+    $: pending = data.list?.filter(r => r.metadata.status === "pending").length
     $: accepted = data.list?.filter(r => r.metadata.status === "accepted").length
     $: denied = data.list?.filter(r => r.metadata.status === "denied").length
 
@@ -20,7 +21,7 @@
 
 {#if data.hasList}
     <div class="limit mx-auto">
-        <h2>Pending</h2>
+        <h2>Pending ({pending})</h2>
         <br>
         {#each data.list.filter(r => r.metadata.status === "pending") as request}
             <hr>

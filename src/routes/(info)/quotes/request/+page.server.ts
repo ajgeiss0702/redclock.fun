@@ -48,7 +48,7 @@ export const actions = {
         }
 
         for (let bannedPhrase of bannedPhrases) {
-            if(quote.toLowerCase().includes(bannedPhrase)) {
+            if(quote.trim().toLowerCase().includes(bannedPhrase)) {
                 return fail(400, {message: "Quote banned!"})
             }
         }

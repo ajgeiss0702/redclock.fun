@@ -31,7 +31,8 @@
         "57223137-ef36-4a38-8752-ac67d6e5aac5",
         "f33c7926-f4ed-4f56-96f4-2d7437070a90",
         "eb5fc81b-983d-41ae-acdc-d7a23f5d3575",
-        "e98525f8-ddfa-4594-b61f-a889fbc6a7cf"
+        "e98525f8-ddfa-4594-b61f-a889fbc6a7cf",
+        "36188931-f1be-4af1-a20f-77bd467984be"
     ];
 
     $: banned = browser ? (() => {
@@ -42,7 +43,7 @@
         }
 
         for (let bannedPhrase of bannedPhrases) {
-            if(quote.toLowerCase().includes(bannedPhrase)) {
+            if(quote.trim().toLowerCase().includes(bannedPhrase)) {
                 return true;
             }
         }

@@ -6,6 +6,7 @@
     import ArrowClockwise from "svelte-bootstrap-icons/lib/ArrowClockwise.svelte"
     import Clipboard from "svelte-bootstrap-icons/lib/Clipboard.svelte"
     import {type PopupSettings, popup} from "@skeletonlabs/skeleton";
+    import {getQuote} from "$lib/quoteGetter";
 
     export let initialQuote: Quote | undefined = undefined;
     export let withButtons = true;
@@ -31,12 +32,7 @@
     function fetchQuote() {
         if(!shouldFetch) return;
         reloadButton.classList.add("rotate");
-        let fetchingQuote = fetch(
-            getAPIPrefix() + "/api/quotes/get",
-            {
-                cache: "no-store"
-            }
-        ).then(r => r.json());
+        let fetchingQuote = getQuote();
         fetchingQuote.then(() => {
             quote = fetchingQuote;
             reloadButton.classList.remove("rotate");

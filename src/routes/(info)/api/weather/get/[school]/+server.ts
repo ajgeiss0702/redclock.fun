@@ -1,7 +1,7 @@
 import {error, json, type RequestEvent} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 
-const cacheTime = 60e3; // cache responses from DO for 1 minute
+const cacheTime = 5 * 60e3; // cache responses from DO for 5 minutes
 
 let cache: {
     [key: string]: {

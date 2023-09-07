@@ -33,7 +33,7 @@
     let weatherData = new Promise(() => {});
 
     onMount(() => {
-        updateInterval = setInterval(update, 10 * 60 * 1000);
+        updateInterval = setInterval(update, 29 * 60 * 1000);
 
         update();
     });

@@ -198,10 +198,7 @@ Request ID: {data?.id}<br>
         </div>
     {/if}
 {:else}
-    <h2>Please bookmark this page!</h2>
-    <br>
-    If you want to check the status of your quote suggestion, make sure to bookmark this page.<br>
-    If you do not, it may be lost. There might not be another link to this page on the site.<br>
+    <h2>Please be patient while your quote is pending review</h2>
     <br>
     It will be reviewed at some point in the future. Make sure to check back here to see if the quote has been accepted!<br>
     <br>

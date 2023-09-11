@@ -1496,6 +1496,71 @@ export let quotes = [
         quote: "Thou she be but little she is fierce",
         author: "Shakespeare ",
         request: "87abd04e-c1e8-4686-a04a-96ea6dac86df"
+    },
+    {
+        quote: "UNLIMITED POWER!!!!!!!",
+        author: "Chancellor Palpatine",
+        request: "c19ece78-18ac-47f8-9f45-9859d4a08d12"
+    },
+    {
+        quote: "Do it",
+        author: "Emperor Palpatine",
+        request: "f1a562a5-120c-4b85-bb7c-23c37784bcab"
+    },
+    {
+        quote: "Sometimes when your crying you have to ask yourself, I'm I dating a boy or an onion?",
+        author: "unknown",
+        request: "c30ab647-834f-4b20-82ff-a6282dbe1c47"
+    },
+    {
+        quote: "Evil is just a cry for help from a heart that's hurtin'.",
+        author: "Papa G (Kid Cosmic)",
+        request: "ec3fee07-d77b-48c1-9f8f-beaca925d342"
+    },
+    {
+        quote: "You're doing good, lad.",
+        author: "Demoman",
+        request: "f83744f1-29ac-482c-b9d8-b12497d25c1b"
+    },
+    {
+        quote: "Allright, Allright, Allright",
+        author: "Matthew McConaughey",
+        request: "aa3097c6-33a2-4f27-a0cf-e1ac47cecea4"
+    },
+    {
+        quote: "I thought I'd reached the bottom a few times, but then I'd realize there was another 30 floors of despair below that.",
+        author: "Trent Reznor",
+        request: "e81722b0-9ca4-4a82-8522-56fb35c5adb3"
+    },
+    {
+        quote: "Enjoy Money.",
+        author: "Inspirobot",
+        request: "56a5f8d5-00f8-4988-8212-68094932678c"
+    },
+    {
+        quote: "There are regular brain cells, and there are other brain cells.",
+        author: "Inspirobot",
+        request: "a14a1d6a-b730-4c3b-be30-d009c37c393e"
+    },
+    {
+        quote: "Cats are problematic",
+        author: "Inspirobot",
+        request: "335e8f17-ee6a-48ca-8c2e-87c990ae2f48"
+    },
+    {
+        quote: "Even the weakest of warriors can become the strongest.",
+        author: "Goku",
+        request: "5e8de75e-81d1-4ad5-9fd8-96de0dfc33a3"
+    },
+    {
+        quote: "Now... We practice medicine.",
+        author: "Medic (Team Fortress 2)",
+        request: "e8cc8ea4-d14f-45e7-bd8c-43b32336afcd"
+    },
+    {
+        quote: "If you ever get bored, punch an orphan. What are they gonna do? Tell their parents?",
+        author: "Technoblade",
+        request: "659ffec5-b755-4f7c-9a62-5b2be59638a1"
     }
 
 ];

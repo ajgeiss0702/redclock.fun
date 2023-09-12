@@ -33,7 +33,8 @@
     let weatherData = new Promise(() => {});
 
     onMount(() => {
-        updateInterval = setInterval(update, 29 * 60 * 1000);
+        // the update task runs every 5 minutes, but a limiter inside the function only lets it run (at most) every 29 minutes
+        updateInterval = setInterval(update, 5 * 60 * 1000);
 
         update();
     });
@@ -57,12 +58,25 @@
     let retryLength = 5;
     let retryTimeout;
 
+    let lastUpdate = 0;
+
     function update() {
         calcShown();
         enabled = get("enableWeather") && shown && !_GET("preview");
 
         if(!enabled) return;
 
+        if(lastUpdate !== 0 && browser) {
+            const distance = Date.now() - lastUpdate
+            if(!document.hasFocus()) {
+                // in the background, limit weather updates to every 3 hours
+                if(distance < 3 * 60 * 60e3) return;
+            } else {
+                if(distance < 29 * 60e3) return;
+            }
+        }
+
+        lastUpdate = Date.now();
         fetch(getAPIPrefix() + "/api/weather/get/" + getSchoolCode())
             .then(r => r.json())
             .then(d => {
@@ -91,6 +105,7 @@
         localStorage.setItem("weather-weekly", String(weekly));
     }
 </script>
+<svelte:window on:focus={update}/>
 <div class="weather-container" class:no-weather={!shown}>
     {#if enabled}
         <table>

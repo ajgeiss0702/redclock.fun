@@ -1561,6 +1561,36 @@ export let quotes = [
         quote: "If you ever get bored, punch an orphan. What are they gonna do? Tell their parents?",
         author: "Technoblade",
         request: "659ffec5-b755-4f7c-9a62-5b2be59638a1"
+    },
+    {
+        quote: "Always try, even when you don’t know how. You might surprise yourself",
+        author: "Jake J.",
+        request: "e5505bb9-10ad-4f10-9123-86cd21da1afd"
+    },
+    {
+        quote: "No one expects you to be great, until you give them a reason",
+        author: "Jake J.",
+        request: "edca113c-8cae-45f9-bc28-438e32d382a4"
+    },
+    {
+        quote: "Your future isn’t dictated by other’s beliefs but by your own dreams",
+        author: "Jake J.",
+        request: "085be322-b834-4af8-a41b-746ea3c8e89b"
+    },
+    {
+        quote: "What’s done is done, do something else and learn from it",
+        author: "Unknown",
+        request: "4995b393-c5cd-4f48-836d-2d11c0130859"
+    },
+    {
+        quote: "Everything will be alright in the end. If it's not alright, it's not the end.",
+        author: "Domingos Sabino",
+        request: "92ba2429-a688-4a42-9bd5-b0c53110387e"
+    },
+    {
+        quote: "The mind is not a book, to be opened at will and examined at leisure.",
+        author: "Severus Snape",
+        request: "d59471b6-f32a-4788-baf0-18f96989a149"
     }
 
 ];

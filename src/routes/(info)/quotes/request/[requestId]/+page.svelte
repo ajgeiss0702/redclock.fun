@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 
     import {capitalize} from "$lib/utils";
     import {enhance} from "$app/forms";
@@ -19,7 +19,22 @@
         window.history.replaceState({}, document.title, $page.url.pathname);
     }
 
-    let foundQuote;
+    let fixedQuote: string = "";
+    $: {
+        fixedQuote = data.value?.quote;
+        if(fixedQuote.length > 1) {
+            // if first character is a double quote
+            if(["\"", "“"].includes(fixedQuote.substring(0, 1))) {
+                fixedQuote = fixedQuote.substring(1);
+            }
+            // if last character is a double quote
+            if(["\"", "”"].includes(fixedQuote.substring(fixedQuote.length - 1))) {
+                fixedQuote = fixedQuote.substring(0, fixedQuote.length - 1);
+            }
+        }
+    }
+
+    let foundQuote: Quote;
     $: if(data?.metadata?.status === "accepted") {
         for (const i in quotes) {
             const quote = quotes[i];
@@ -144,7 +159,7 @@ Request ID: {data?.id}<br>
         {#if data?.metadata.status === "accepted"}
             <br>
             <pre class="text-left">&#123;
-    quote: {JSON.stringify(data?.value?.quote)},
+    quote: {JSON.stringify(fixedQuote)},
     author: {JSON.stringify(data?.value?.author)},
     request: {JSON.stringify(data?.id)}
 &#125;</pre>
@@ -205,7 +220,7 @@ Request ID: {data?.id}<br>
     <br>
     <h3>Preview</h3>
     If your quote is accepted, here is what it might look like:
-    <Quote initialQuote={data?.value} shouldFetch={false} withButtons={false}/>
+    <Quote initialQuote={{...data?.value, quote: fixedQuote}} shouldFetch={false} withButtons={false}/>
     <br>
     <br>
     {#if Date.now() - data?.metadata?.submitted > (1000 * 60 * 60 * 24 * 5)}

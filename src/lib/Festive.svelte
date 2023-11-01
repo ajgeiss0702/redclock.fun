@@ -2,8 +2,9 @@
 
     import {browser} from "$app/environment";
     import {tomorrow} from "$lib/utils.js";
-    import {onDestroy} from "svelte";
+    import {onDestroy, onMount} from "svelte";
     import {create, get, off, onChange} from "$lib/settings";
+    import {fly} from "svelte/transition";
 
     let festive = false;
     let festiveExtension;
@@ -30,7 +31,7 @@
     let updateTimeout;
     let updateInterval;
 
-    if(browser) {
+    onMount(() => {
         updateTimeout = setTimeout(() => {
             checkFestiveness();
             updateInterval = setInterval(checkFestiveness, 24 * 60 * 60 * 1e3);
@@ -38,7 +39,7 @@
         checkFestiveness();
 
         onChange("festive", checkFestiveness);
-    }
+    })
 
     onDestroy(() => {
         clearTimeout(updateTimeout);
@@ -87,7 +88,7 @@
     }
 </style>
 {#if festive}
-    <div>
+    <div transition:fly={{x: -100, y: -100}}>
         <img src="/img/festive/{festive}.{festiveExtension}" class="festive-{festive}" alt="{festive}">
     </div>
 {/if}

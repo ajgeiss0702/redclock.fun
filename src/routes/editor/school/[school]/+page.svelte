@@ -27,14 +27,15 @@
 </svelte:head>
 <br>
 
-<form class="inline-block relative" method="POST" action="?/offset" use:enhance={() => {
-            offsetSaving = true;
-            return async ({ update }) => {
-                await update({ reset: false });
-                offsetSaving = false;
-                originalOffset = offset;
-            };
-          }}
+<form class="inline-block relative" method="POST" action="?/offset"
+    use:enhance={() => {
+        offsetSaving = true;
+        return async ({ update }) => {
+            await update({ reset: false });
+            offsetSaving = false;
+            originalOffset = offset;
+        };
+    }}
 >
     Offset
     <input class="input px-3" type="number" name="offset" bind:value={offset}/>

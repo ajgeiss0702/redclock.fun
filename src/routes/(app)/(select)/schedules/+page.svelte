@@ -1,6 +1,3 @@
-<svelte:head>
-    <title>Schedule Selector - Red Clock</title>
-</svelte:head>
 <script>
 
     import {onMount} from "svelte";
@@ -37,6 +34,44 @@
         goto("/countdown")
     }
 </script>
+
+<svelte:head>
+    <title>{!getSchoolCode() ? '' : data[getSchoolCode()].display + ' '}Schedule Selector - Red Clock</title>
+</svelte:head>
+
+<div>
+    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.webp"><br>
+
+    <span class="header">Schedule</span>
+    <br>
+    <p>
+        {#if reSelecting}
+            <b>The schedule you had selected before no longer exists. Please select a new one.</b>
+        {:else}
+            Please select which schedule you are on.
+            <br>
+            <br>
+            <small>Don't know what this website is? <a href="/about">Read about it</a>.</small>
+        {/if}
+        <br>
+        <a class="btn variant-ringed-surface hidden-link" href="/schools">
+            <ArrowLeftCircle/> &nbsp; Back
+        </a>
+    </p>
+    <br>
+    <small>At {!getSchoolCode() ? '' : data[getSchoolCode()].display}</small>
+    <div class="schedule-list">
+        {#if data[getSchoolCode()] && data[getSchoolCode()].schedules}
+            {#each Object.keys(data[getSchoolCode()].schedules) as key}
+                <Schedule code={key} school={getSchoolCode()} name={data[getSchoolCode()].schedules[key]} on:click={() => setSchedule(key)}/>
+                &nbsp;
+            {/each}
+        {:else}
+            <br>
+            Invalid data (no schedule object)
+        {/if}
+    </div>
+</div>
 
 <style>
     div {
@@ -78,36 +113,3 @@
     }
 
 </style>
-<div>
-    <img class="header-image inline-block" alt="Red Clock logo" src="/red_clock.webp"><br>
-
-    <span class="header">Schedule</span>
-    <br>
-    <p>
-        {#if reSelecting}
-            <b>The schedule you had selected before no longer exists. Please select a new one.</b>
-        {:else}
-            Please select which schedule you are on.
-            <br>
-            <br>
-            <small>Don't know what this website is? <a href="/about">Read about it</a>.</small>
-        {/if}
-        <br>
-        <a class="btn variant-ringed-surface hidden-link" href="/schools">
-            <ArrowLeftCircle/> &nbsp; Back
-        </a>
-    </p>
-    <br>
-    <small>At {!getSchoolCode() ? '' : data[getSchoolCode()].display}</small>
-    <div class="schedule-list">
-        {#if data[getSchoolCode()] && data[getSchoolCode()].schedules}
-            {#each Object.keys(data[getSchoolCode()].schedules) as key}
-                <Schedule code={key} school={getSchoolCode()} name={data[getSchoolCode()].schedules[key]} on:click={() => setSchedule(key)}/>
-                &nbsp;
-            {/each}
-        {:else}
-            <br>
-            Invalid data (no schedule object)
-        {/if}
-    </div>
-</div>

@@ -1591,6 +1591,16 @@ export let quotes = [
         quote: "The mind is not a book, to be opened at will and examined at leisure.",
         author: "Severus Snape",
         request: "d59471b6-f32a-4788-baf0-18f96989a149"
+    },
+    {
+        quote: "Never follow anyone else’s path. Unless you’re in the woods and you’re lost and you see a path. Then by all means follow that path.",
+        author: "Ellen DeGeneres",
+        request: "20bfc0bb-1e47-4101-8250-32bfdb7b0b84"
+    },
+    {
+        quote: "InspiroCorp©™® can neither confirm or deny the accusations of being insectoids ",
+        author: "Inspriobot",
+        request: "7045c4c7-8657-4fb3-9d10-4740e871ef65"
     }
 
 ];

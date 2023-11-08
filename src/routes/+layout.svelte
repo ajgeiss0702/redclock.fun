@@ -75,6 +75,13 @@
     </Drawer>
 {/if}
 
+<svelte:head>
+    {#if $page.url.hostname !== "redclock.fun"}
+        <meta name="robots" content="noindex">
+
+    {/if}
+</svelte:head>
+
 <slot/>
 
 <style>

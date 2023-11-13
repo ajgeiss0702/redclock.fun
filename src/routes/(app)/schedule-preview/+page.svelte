@@ -2,6 +2,7 @@
     import ScheduleTable from "$lib/countdown/sidebar/ScheduleTable.svelte";
     import {getScheduleFor} from "$lib/countdown/countdown-utils.ts";
     import ArrowLeftCircle from "svelte-bootstrap-icons/lib/ArrowLeftCircle.svelte"
+    import {getScheduleCode, getSchoolCode} from "$lib/utils.js";
 
     let dateInput;
 
@@ -17,7 +18,7 @@
         let date = new Date(dateInput);
         date.setDate(date.getDate() + 1);
         console.log(date);
-        schedule = await getScheduleFor(date);
+        schedule = await getScheduleFor(getSchoolCode(), getScheduleCode(), date);
     }
 
 </script>

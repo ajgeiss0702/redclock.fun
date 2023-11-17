@@ -43,8 +43,8 @@
                         class:red={request.metadata.status === "denied"}
                         class:green={request.metadata.status === "accepted"}
                 >
-                {capitalize(request.metadata.status)}
-            </span>
+                    {capitalize(request.metadata.status)}
+                </span>
             </a>
             <hr>
         {:else}

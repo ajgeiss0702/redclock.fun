@@ -1,6 +1,8 @@
 import {dev} from "$app/environment";
 import type {Actions, RequestEvent, ServerLoad} from "@sveltejs/kit";
 import {error, fail} from "@sveltejs/kit";
+import type {Quote, QuoteRequestMetadata, QuoteRequestValue} from "$lib/quoteSettings";
+import {similarity} from "$lib/utils";
 
 export const load = (async ({platform, params, locals}) => {
     const id = params.requestId;
@@ -29,16 +31,51 @@ export const load = (async ({platform, params, locals}) => {
 
     if(!kv) return {};
 
-    const {value, metadata} = await kv.getWithMetadata(id, {type: "json"});
+    const canManage = (dev || locals?.user?.id === 0);
+
+    const {value, metadata} = await kv.getWithMetadata<QuoteRequestValue, QuoteRequestMetadata>(id, {type: "json"});
 
     if(!value) throw error(404, "Quote not found");
+
+    let similarQuoteRequests: (Quote & {id: string, similarity: number, status: string})[] = [];
+
+    if(canManage && metadata) {
+        // @ts-ignore
+        let {keys, list_complete, cursor} = (await kv.list<QuoteRequestMetadata>());
+
+        let i = 0;
+        while(!list_complete && i < 500) {
+            let more = await kv.list<QuoteRequestMetadata>({cursor});
+            keys.push(...more.keys);
+            list_complete = more.list_complete;
+            // @ts-ignore
+            cursor = more.cursor;
+            i++;
+        }
+
+        for (let key of keys) {
+            if(!key?.metadata) continue;
+            if(key.name == id) continue;
+            const sim = similarity(metadata.quotePreview, key.metadata.quotePreview);
+            if(sim > 0.3) {
+                similarQuoteRequests.push({
+                    id: key.name,
+                    quote: key.metadata.quotePreview,
+                    author: key.metadata.authorPreview,
+                    status: key.metadata.status,
+                    similarity: sim
+                })
+            }
+        }
+    }
 
 
     return {
         id,
         value,
         metadata,
-        canManage: (dev || locals?.user?.id === 0)
+        canManage,
+        similarQuoteRequests
     }
 }) satisfies ServerLoad;
 

@@ -36,13 +36,15 @@ export const load = (async ({platform, locals}) => {
 
     if(!kv) return {};
 
-    let {keys, list_complete, cursor} = (await kv.list()) as KVListResponse;
+    // @ts-ignore
+    let {keys, list_complete, cursor} = (await kv.list());
 
     let i = 0;
     while(!list_complete && i < 500) {
         let more = await kv.list({cursor});
-        keys.push(more.keys);
+        keys.push(...more.keys);
         list_complete = more.list_complete;
+        // @ts-ignore
         cursor = more.cursor;
         i++;
     }

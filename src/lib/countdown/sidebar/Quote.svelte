@@ -7,16 +7,11 @@
     import Clipboard from "svelte-bootstrap-icons/lib/Clipboard.svelte"
     import {type PopupSettings, popup} from "@skeletonlabs/skeleton";
     import {getQuote} from "$lib/quoteGetter";
+    import type {Quote} from "$lib/quoteSettings";
 
     export let initialQuote: Quote | undefined = undefined;
     export let withButtons = true;
     export let shouldFetch = true;
-
-    type Quote = {
-        quote: string,
-        author: string,
-        quoteNumber?: number
-    }
 
     let quote: Promise<Quote> = new Promise(() => {});
     $: if(initialQuote) quote = Promise.resolve(initialQuote);

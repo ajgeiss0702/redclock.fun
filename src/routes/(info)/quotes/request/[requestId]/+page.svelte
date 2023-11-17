@@ -164,6 +164,27 @@ Request ID: {data?.id}<br>
     request: {JSON.stringify(data?.id)}
 &#125;</pre>
         {/if}
+        <br>
+        <h3>Similar Quote Requests</h3>
+        {#each data.similarQuoteRequests as request}
+            <hr>
+            <a class="hidden-link" href="{request.id}">
+                {request.quote} —{request.author}
+                <span
+                        class:red={request.status === "denied"}
+                        class:opacity-75={request.status === "pending"}
+                        class:green={request.status === "accepted"}
+                >
+                    {capitalize(request.status)}
+                </span>
+                <span class="opacity-75">
+                    {Math.round(request.similarity * 10000)/100}%
+                </span>
+            </a>
+            <hr>
+        {:else}
+            No similar requests!
+        {/each}
     </div>
 {/if}
 <br>

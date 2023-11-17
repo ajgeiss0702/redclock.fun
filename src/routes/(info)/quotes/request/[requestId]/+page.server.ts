@@ -39,7 +39,7 @@ export const load = (async ({platform, params, locals}) => {
 
     let similarQuoteRequests: (Quote & {id: string, similarity: number, status: string})[] = [];
 
-    if(canManage && metadata) {
+    if(canManage && metadata && metadata.status === "pending") {
         // @ts-ignore
         let {keys, list_complete, cursor} = (await kv.list<QuoteRequestMetadata>());
 
@@ -53,7 +53,7 @@ export const load = (async ({platform, params, locals}) => {
             i++;
         }
 
-        for (let key of keys) {
+        for (let key of keys.filter(k => k.metadata?.status === "pending")) {
             if(!key?.metadata) continue;
             if(key.name == id) continue;
             const sim = similarity(metadata.quotePreview, key.metadata.quotePreview);
@@ -104,7 +104,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         expiration = Math.round((Date.now() + (1000 * 60 * 60 * 24 * 90)) / 1000);
     }
 
-    await kv.put(data.id, JSON.stringify(data.value), {
+    await kv.put(data.id as string, JSON.stringify(data.value), {
         metadata: {
             ...data.metadata,
             reason: reason,

@@ -166,7 +166,7 @@ Request ID: {data?.id}<br>
         {/if}
         <br>
         <h3>Similar Quote Requests</h3>
-        {#each data.similarQuoteRequests as request}
+        {#each data.similarQuoteRequests.filter(q => q.similarity > 0.6) as request}
             <hr>
             <a class="hidden-link" href="{request.id}">
                 {request.quote} —{request.author}

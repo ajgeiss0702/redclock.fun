@@ -53,7 +53,7 @@ export const load = (async ({platform, params, locals}) => {
             i++;
         }
 
-        for (let key of keys.filter(k => k.metadata?.status === "pending")) {
+        for (let key of keys/*.filter(k => k.metadata?.status === "pending")*/) {
             if(!key?.metadata) continue;
             if(key.name == id) continue;
             const sim = similarity(metadata.quotePreview, key.metadata.quotePreview);

@@ -1601,6 +1601,31 @@ export let quotes = [
         quote: "InspiroCorp©™® can neither confirm or deny the accusations of being insectoids ",
         author: "Inspriobot",
         request: "7045c4c7-8657-4fb3-9d10-4740e871ef65"
+    },
+    {
+        quote: "He doesn't possess wealth, wealth possess him",
+        author: "Benjamin Franklin",
+        request: "64311e25-d773-4296-b07e-fe16fae4ecc2"
+    },
+    {
+        quote: "Friendship is freakin' magic, pal!",
+        author: "Scout",
+        request: "7c2ed71c-f977-4b45-bd2a-d78dbe4b126f"
+    },
+    {
+        quote: "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not.",
+        author: "Dr. Seuss",
+        request: "4107a64d-583a-4ffd-93f5-774ee6c89359"
+    },
+    {
+        quote: "Behold! The Underminer!",
+        author: "Underminer",
+        request: "b910c68f-3e14-4feb-8022-f8638eb7d981"
+    },
+    {
+        quote: "Who else will I have ice cream with?",
+        author: "Roxas, Kingdom Hearts",
+        request: "c62774e7-64fb-43e1-ad9a-299603ec8330"
     }
 
 ];

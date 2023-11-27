@@ -37,8 +37,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/workers-types':
-    specifier: ^4.20230801.0
-    version: 4.20230801.0
+    specifier: ^4.20231121.0
+    version: 4.20231121.0
   '@macfja/svelte-multi-adapter':
     specifier: ^1.0.2
     version: 1.0.2
@@ -153,8 +153,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/workers-types@4.20230801.0:
-    resolution: {integrity: sha512-RzRUR+J/T3h58qbTZHYntYsnZXu3JnrlZIhqP2hhdyfoZAZ/+ko4wX0foAqlYHi+kXWaWtySHBuMcx6ec6TXlQ==}
+  /@cloudflare/workers-types@4.20231121.0:
+    resolution: {integrity: sha512-+kWfpCkqiepwAKXyHoE0gnkPgkLhz0/9HOBIGhHRsUvUKvhUtm3mbqqoGRWgF1qcjzrDUBbrrOq4MYHfFtc2RA==}
     dev: true
 
   /@esbuild-plugins/node-globals-polyfill@0.1.1(esbuild@0.16.3):
@@ -1246,7 +1246,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@cloudflare/workers-types': 4.20230801.0
+      '@cloudflare/workers-types': 4.20231121.0
       '@sveltejs/kit': 1.22.4(svelte@3.59.1)(vite@4.3.9)
       esbuild: 0.16.17
       worktop: 0.8.0-next.14

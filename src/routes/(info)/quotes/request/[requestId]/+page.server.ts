@@ -3,6 +3,7 @@ import type {Actions, RequestEvent, ServerLoad} from "@sveltejs/kit";
 import {error, fail} from "@sveltejs/kit";
 import type {Quote, QuoteRequestMetadata, QuoteRequestValue} from "$lib/quoteSettings";
 import {similarity} from "$lib/utils";
+import {updatePendingCount} from "$lib/server/quoteUtils";
 
 export const load = (async ({platform, params, locals}) => {
     const id = params.requestId;
@@ -30,6 +31,7 @@ export const load = (async ({platform, params, locals}) => {
 
 
     if(!kv) return {};
+    if(id === "count") throw error(404, "Quote not found");
 
     const canManage = (dev || locals?.user?.id === 0);
 
@@ -52,6 +54,7 @@ export const load = (async ({platform, params, locals}) => {
             cursor = more.cursor;
             i++;
         }
+        keys = keys.filter(k => k.name !== "count")
 
         for (let key of keys/*.filter(k => k.metadata?.status === "pending")*/) {
             if(!key?.metadata) continue;
@@ -113,5 +116,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         },
         expiration
     });
+
+    await updatePendingCount(kv);
 
 }

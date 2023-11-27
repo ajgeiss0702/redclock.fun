@@ -5,9 +5,14 @@ import {dev} from "$app/environment";
 import { quotes } from "$lib/quotes";
 import { similarity } from "$lib/utils";
 import {bannedPhrases} from "$lib/quoteSettings";
+import {updatePendingCount} from "$lib/server/quoteUtils";
 
-export const load = (async ({locals}) => {
-    return {isAdmin: dev || locals?.user?.id === 0}
+export const load = (async ({locals, platform}) => {
+    const count = platform?.env?.QUOTE_SUGGESTIONS?.get("count").then(r => Number(r))
+    return {
+        isAdmin: dev || locals?.user?.id === 0,
+        pendingCount: await count
+    }
 }) satisfies ServerLoad
 
 export const actions = {
@@ -98,6 +103,7 @@ export const actions = {
             ))
         }
 
+        await updatePendingCount(kv);
 
         throw redirect(302, "/quotes/request/" + id + "?s");
     }

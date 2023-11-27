@@ -1,5 +1,6 @@
 import {dev} from "$app/environment";
 import type {ServerLoad} from "@sveltejs/kit";
+import type {QuoteRequestMetadata} from "$lib/quoteSettings";
 
 export const load = (async ({platform, locals}) => {
     let kv = platform?.env?.QUOTE_SUGGESTIONS;
@@ -37,17 +38,18 @@ export const load = (async ({platform, locals}) => {
     if(!kv) return {};
 
     // @ts-ignore
-    let {keys, list_complete, cursor} = (await kv.list());
+    let {keys, list_complete, cursor} = (await kv.list<QuoteRequestMetadata>());
 
     let i = 0;
     while(!list_complete && i < 500) {
-        let more = await kv.list({cursor});
+        let more = await kv.list<QuoteRequestMetadata>({cursor});
         keys.push(...more.keys);
         list_complete = more.list_complete;
         // @ts-ignore
         cursor = more.cursor;
         i++;
     }
+    keys = keys.filter(k => k.name !== "count");
 
     keys.sort((a, b) => b.metadata.submitted - a.metadata.submitted);
 

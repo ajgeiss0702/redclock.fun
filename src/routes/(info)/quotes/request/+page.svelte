@@ -104,6 +104,8 @@ To increase the chances that any joke quotes will be accepted, I would recommend
 The more joke quotes there are, the less special they become when you get them.
 <br><br>
 I would strongly recommend filling out the "note" box with any info on why you think your quote should be accepted.
+<br><br>
+There are currently {data.pendingCount} pending quote requests.
 
 <br><br>
 
@@ -115,7 +117,7 @@ I would strongly recommend filling out the "note" box with any info on why you t
 
 
 <h1>Quote Request</h1>
-<br>
+<br>}
 
 <form class="card inline-block p-4" method="POST" action="?/submit" use:enhance>
 

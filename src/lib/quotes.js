@@ -1626,6 +1626,61 @@ export let quotes = [
         quote: "Who else will I have ice cream with?",
         author: "Roxas, Kingdom Hearts",
         request: "c62774e7-64fb-43e1-ad9a-299603ec8330"
+    },
+    {
+        quote: "My Sun and my Star. You came.",
+        author: "Rick Riordan, The Sun and The Star",
+        request: "4f58d471-d9f8-44c8-a732-f9a415b11253"
+    },
+    {
+        quote: "Feel what you need to feel, then let it go, do not let it consume you. ",
+        author: "Unknown",
+        request: "65c050fd-4c57-4701-90e6-8b126b6ddec1"
+    },
+    {
+        quote: "A watched pot is slow to boil",
+        author: "Unknown",
+        request: "3c6823b5-e0f8-46b8-97ff-13b7c0d2f44b"
+    },
+    {
+        quote: "Flowers may bloom again, but a person never has a chance to be young again.",
+        author: "Bandit (Bluey's Dad)",
+        request: "c8d8f442-f007-4983-b80c-dec90c418684"
+    },
+    {
+        quote: "Don't be the bug be the windshield",
+        author: "Unknown",
+        request: "bb486e35-23e0-47cd-927f-fa479cef7f1e"
+    },
+    {
+        quote: "Dying, Is bad for you.",
+        author: "Unknown",
+        request: "f3f9e7c4-56dd-4e3c-afc0-7ea734c53311"
+    },
+    {
+        quote: "Die with good memories, not with unfulfilled dreams.",
+        author: "Invajy",
+        request: "352fa623-ba52-4ccd-9701-dcdc6169d16a"
+    },
+    {
+        quote: "You don’t need an identity to have a life.",
+        author: "Niklas Göke",
+        request: "460e0f49-11d4-4adf-9a12-9f14c092611a"
+    },
+    {
+        quote: ".. ._.. ___ ..._ . _.__ ___ .._",
+        author: "Samuel Morse, Alfred Vail",
+        request: "703dc13d-5a42-4b89-b846-bd5abe67dc47"
+    },
+    {
+        quote: "The helper seeks to help, because he knows what it is to be helpless.",
+        author: "Zen Wander (Wander Over Yonder)",
+        request: "bd9bd129-d1da-41d7-9ffb-c9d0c22d1a79"
+    },
+    {
+        quote: "Just keep swimming",
+        author: "Dory (Finding Nemo)",
+        request: "4398dd8d-2b78-4857-b4fd-760ef275bc17"
     }
 
 ];

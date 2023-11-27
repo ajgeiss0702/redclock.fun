@@ -210,7 +210,7 @@ Request ID: {data?.id}<br>
     <br>
     {#if data?.metadata?.expiration}
         <h2>Removal</h2>
-        To save on storage costs, denied quote suggestions are automatically deleted after 90 days.<br>
+        To save on storage costs, denied quote suggestions are automatically deleted after 180 days.<br>
         If you want to save this quote, make sure you have already done so.<br>
         <br>
         This quote will be deleted in {Math.round(((data?.metadata?.expiration * 1000) - Date.now()) / (1000 * 60 * 60 * 24))} days.

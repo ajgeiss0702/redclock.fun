@@ -101,7 +101,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
 
     let expiration;
     if(status === "denied") {
-        expiration = Math.round((Date.now() + (1000 * 60 * 60 * 24 * 90)) / 1000);
+        expiration = Math.round((Date.now() + (1000 * 60 * 60 * 24 * 180)) / 1000);
     }
 
     await kv.put(data.id as string, JSON.stringify(data.value), {

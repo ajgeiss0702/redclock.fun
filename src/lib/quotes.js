@@ -1681,6 +1681,71 @@ export let quotes = [
         quote: "Just keep swimming",
         author: "Dory (Finding Nemo)",
         request: "4398dd8d-2b78-4857-b4fd-760ef275bc17"
+    },
+    {
+        quote: "If a picture is worth a thousand words, a lifetime is worth one hundred forty-one trillion nine hundred twelve billion words, which is much bigger than any book.",
+        author: "Fred R. Barnard",
+        request: "8bcff573-3c9b-44bf-984d-873cf2984391"
+    },
+    {
+        quote: "On a dark day, Yeah I need you",
+        author: "Ken Carson",
+        request: "c78d9cce-8822-4890-8f7c-252de89faf7a"
+    },
+    {
+        quote: "With great power, comes great need to take a nap",
+        author: "Nico di Angelo",
+        request: "42b12d00-b9f2-4af1-9c5a-70d7f9760b09"
+    },
+    {
+        quote: "All of us get lost in the darkness, dreamers learn to steer by the stars. All of us do time in the gutter, dreamers turn to look at the cars",
+        author: "Neil Peart",
+        request: "678fbace-88f1-47cd-95f2-404d8cd06593"
+    },
+    {
+        quote: "Can we fix it? Yes we can!",
+        author: "Bob the Builder",
+        request: "999d4833-dbf6-4aab-8cfb-9c138e47658a"
+    },
+    {
+        quote: "What are you? President of his fan club",
+        author: "Scout TF2",
+        request: "e8b96f70-ded6-4ec6-908c-2ebfcc4becde"
+    },
+    {
+        quote: "When you're having a bad day, just remember that there's people who will brighten it.",
+        author: "Alyson",
+        request: "e10ca66b-a8ed-49bc-8489-8d32caebe34a"
+    },
+    {
+        quote: "Evil will always triumph because good is dumb.",
+        author: "Dark Helmet",
+        request: "5c58733f-b715-47b4-a479-85908d0d0206"
+    },
+    {
+        quote: "People are going to judge you anyway, so you might as well do what you want.",
+        author: "Taylor Swift",
+        request: "a0248152-7c00-4c26-80ab-16186d28e68d"
+    },
+    {
+        quote: "It's not just good, It good enough",
+        author: "Adam (North of The Border)",
+        request: "bec795df-7f8a-406b-ad0d-cdb46e427945"
+    },
+    {
+        quote: "Life is short, and it's here to be lived.",
+        author: "Kate Winslet",
+        request: "14dbcc3f-e4f7-4ff9-b46a-40691ecc690a"
+    },
+    {
+        quote: "Sometimes it's hard to tell the difference between stubbornness and determination, isn't it?",
+        author: "Granny (Celeste 2018)",
+        request: "dd2b1e50-aa9a-414c-a7e2-3a01f6f9195d"
+    },
+    {
+        quote: "Mmmmm, Monkey",
+        author: "Master Oogway",
+        request: "716fba64-a6e2-41d7-adbb-910aa83d0b45"
     }
 
 ];

@@ -52,7 +52,7 @@
     })() : false;
 
     const lastSubmitted = browser ? Number(localStorage.lastSubmittedQuote || 0) : 0;
-    const nextAllowedSubmittable = lastSubmitted + (15 * 60 * 60e3);
+    const nextAllowedSubmittable = data.pendingCount > 100 ? lastSubmitted + (15 * 60 * 60e3) : 0;
     let allowedToSubmit = Date.now() > nextAllowedSubmittable;
     let hoursUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60 * 60e3));
     let minutesUntilSubmittable = Math.round((nextAllowedSubmittable - Date.now()) / (60e3));
@@ -143,17 +143,19 @@ I would strongly recommend filling out the "note" box with any info on why you t
         <input class="input px-3" name="note" type="text" placeholder="I like this quote because..."/>
         The note will not be with the final quote. It is only used during the approval process.
     </label>
-    <br>
-    <br>
 
 
     <div class="message red">
+        <br>
         {#if form?.message}
             {form?.message}
         {/if}
     </div>
 
-    Due to a larger than expected amount of quote requests, you are limited to 1 quote request every 15 hours.
+    {#if data.pendingCount > 100}
+        <br>
+        Due to a larger than expected amount of quote requests, you are limited to 1 quote request every 15 hours.
+    {/if}
     <div class="message red">
         {#if hoursUntilSubmittable >= 0 && minutesUntilSubmittable >= 0}
             You submitted a quote request recently. You cannot submit another one for

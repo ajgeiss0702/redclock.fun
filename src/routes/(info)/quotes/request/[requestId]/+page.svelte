@@ -6,7 +6,7 @@
     import {invalidateAll} from "$app/navigation";
     import Quote from "../../../../../lib/countdown/sidebar/Quote.svelte";
     import {page} from "$app/stores";
-    import {browser} from "$app/environment";
+    import {browser, dev} from "$app/environment";
 
     export let data;
     export let form;
@@ -247,12 +247,22 @@ Request ID: {data?.id}<br>
     {#if Date.now() - data?.metadata?.submitted > (1000 * 60 * 60 * 24 * 5)}
         <!-- show message to contact support if it is still pending after 5 days-->
         <h3>It looks like this quote has been pending for a long time.</h3>
+        {#if data.pendingCount > 100 || dev}
+            <br>
+            <div class="limit mx-auto">
+                Note that there are currently {data.pendingCount} other pending quote requests,
+                so it might just take a while to get to your quote. Quotes are processed in the order they were submitted,
+                and each quote requires research to ensure that it is accurate and doesn't have some hidden meaning.
+            </div>
+        {/if}
         <br>
         Feel free to contact support to be sure it wasn't forgotten about:
         <a href="mailto:support@redclock.fun">support@redclock.fun</a><br>
         (make sure to include the Request ID in your email)
     {/if}
 {/if}
+<br>
+<br>
 <br>
 <br>
 <br>

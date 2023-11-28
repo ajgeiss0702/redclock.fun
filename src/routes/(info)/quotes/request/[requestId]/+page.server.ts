@@ -35,6 +35,8 @@ export const load = (async ({platform, params, locals}) => {
 
     const canManage = (dev || locals?.user?.id === 0);
 
+    const countPromise = kv.get("count").then(r => Number(r));
+
     const {value, metadata} = await kv.getWithMetadata<QuoteRequestValue, QuoteRequestMetadata>(id, {type: "json"});
 
     if(!value) throw error(404, "Quote not found");
@@ -78,7 +80,8 @@ export const load = (async ({platform, params, locals}) => {
         value,
         metadata,
         canManage,
-        similarQuoteRequests
+        similarQuoteRequests,
+        pendingCount: await countPromise
     }
 }) satisfies ServerLoad;
 

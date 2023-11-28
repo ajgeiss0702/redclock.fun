@@ -120,9 +120,9 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         expiration
     });
 
-    platform?.context?.waitUntil(async () => {
+    platform?.context?.waitUntil((async () => {
         await wait(500) // wait to ensure that the change was recorded
         await updatePendingCount(kv);
-    })
+    })())
 
 }

@@ -103,10 +103,10 @@ export const actions = {
             ))
         }
 
-        platform?.context?.waitUntil(async () => {
+        platform?.context?.waitUntil((async () => {
             await wait(500) // wait to ensure that the change was recorded
             await updatePendingCount(kv);
-        })
+        })())
 
         throw redirect(302, "/quotes/request/" + id + "?s");
     }

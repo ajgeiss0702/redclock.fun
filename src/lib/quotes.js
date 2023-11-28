@@ -1746,6 +1746,137 @@ export let quotes = [
         quote: "Mmmmm, Monkey",
         author: "Master Oogway",
         request: "716fba64-a6e2-41d7-adbb-910aa83d0b45"
+    },
+    {
+        quote: "I always come back",
+        author: "William Afton",
+        request: "f9bf8e13-011e-4c5e-ad88-7227e308d65e"
+    },
+    {
+        quote: "All our dreams can come true, if we have the courage to pursue them.” ",
+        author: "Walt Disney",
+        request: "9b0c36a2-6f50-4d9e-ac4c-184feff6bb73"
+    },
+    {
+        quote: "I yam what I yam",
+        author: "Popeye",
+        request: "37290787-b967-4bf7-93d2-bc3ae42e6c5f"
+    },
+    {
+        quote: "The Fool is not the Jester, who acts himself a fool, but the man who is foolish enough to fall for such a guise.",
+        author: "King's Royal Adviser",
+        request: "053a648c-5689-46dd-a0ea-19e7750edeac"
+    },
+    {
+        quote: "My goals are beyond your understanding",
+        author: "The Reverse Flash",
+        request: "742f70f6-ba66-4583-9d16-ac7ae581658f"
+    },
+    {
+        quote: "You can eat anything, but it doesn't mean it's edible.",
+        author: "McKinley",
+        request: "ff07db6a-77f0-4b80-aa8c-aa1dfae8c4de"
+    },
+    {
+        quote: "Honey, where are my paaaaaannnts?",
+        author: "some lego dude",
+        request: "bc81e327-00b5-424c-9d3c-42c86c3cab94"
+    },
+    {
+        quote: "You're something courageous, amazing, contagious, and kind all combined!",
+        author: "Taylor Trensch (Dear Evan Hansen Bonus Track: Obvious)",
+        request: "c2cc1ca8-bd1e-4847-a220-ed312ac68f43"
+    },
+    {
+        quote: "When the power of love overcomes the love of power, the world will know peace.",
+        author: "Jimi Hendrix",
+        request: "49baf02b-ec07-4019-bcda-8b192910704f"
+    },
+    {
+        quote: "The only thing that anyone needs to be special, is to believe that you can be. I know that sounds like a cat poster, but its true.",
+        author: "Ghost Vitruvius",
+        request: "c7fbff4b-14cf-4599-bdc7-8e79b6ac7386"
+    },
+    {
+        quote: "It's not your fault.",
+        author: "Emma Sperling",
+        request: "251fedcc-d7b0-4aff-8ba7-de0ea75f3aeb"
+    },
+    {
+        quote: "Float like a butterfly sting like a bee",
+        author: "Muhammad Ali",
+        request: "fee193c1-137e-4c4b-a4e1-77d778845a80"
+    },
+    {
+        quote: "Sometimes, things have to get worse before they can get better.",
+        author: "Keefe Sencen",
+        request: "562a43f1-7324-46ea-8c4c-75ff017c09a4"
+    },
+    {
+        quote: "I don't stop when I'm tired. I stop when I'm done.",
+        author: "David Goggins",
+        request: "2241132b-5153-4a44-86cc-89c72852a707"
+    },
+    {
+        quote: "This is my playhouse, and you're just living in it",
+        author: "Zuri Ross",
+        request: "dd58107c-59b0-455c-ae3f-be34523a74d2"
+    },
+    {
+        quote: "Makin Bacon!",
+        author: "Engineer TF2",
+        request: "87bd9bbb-09c6-47a7-9b0e-7e0e67415101"
+    },
+    {
+        quote: "They don’t care about you until you reach a certain altitude, and even then, you're still just a number to them.",
+        author: "CoryXKenshin ",
+        request: "cd80bb5c-092b-484a-8137-4050eff95c95"
+    },
+    {
+        quote: "Officer, I drop kicked that child in self defense",
+        author: "Technoblade",
+        request: "de6f5653-77a1-43c0-8690-a8815300d2af"
+    },
+    {
+        quote: "The true soldier does not fight because he hates what is in front of him, but because he loves what's behind him.",
+        author: "G.K Chesterton",
+        request: "713e709e-2421-4158-8285-d7a2641db3ee"
+    },
+    {
+        quote: "People are where they are because that is exactly where they really want to be - whether they will admit that or not.",
+        author: "Earl Nightingale",
+        request: "976bf0fe-5e88-4b0d-b626-64d210af91c2"
+    },
+    {
+        quote: "Giving up isn’t always quitting",
+        author: "Holly Whitaker",
+        request: "c1fb1475-4457-48b3-a389-a0838d7165fd"
+    },
+    {
+        quote: "The only limiter that you have is you.",
+        author: "CoryxKenshin",
+        request: "416ade11-c789-4920-8efe-6a083c072e34"
+    },
+    {
+        quote: "Books are a uniquely portable magic.",
+        author: "Stephen King",
+        request: "8b74e24a-8f1e-4ce6-9d6c-a950f8bcf330"
+    },
+    {
+        quote: "Life isn't a support system for art. It's the other way around",
+        author: "Stephen King",
+        request: "6cd17ec0-8735-4be2-95fc-f03304bf0d30"
+    },
+    {
+        quote: "A person's true worth is not measured by their abilities alone, but by how they use them",
+        author: "Ayanokouji Kiyotaka",
+        request: "bc77a6f3-86de-4d7f-808d-74c30088cd8c"
+    },
+
+    {
+        quote: "WAS THAT THE BITE OF '87???!!!!",
+        author: "Markiplier",
+        request: "05aa599e-4577-4ac7-9279-88611e641426"
     }
 
 ];

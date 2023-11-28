@@ -207,6 +207,16 @@ export function h() {
 }
 
 
+/**
+ * @param {number} ms
+ */
+export function wait(ms) {
+    return new Promise((res) => {
+        setTimeout(res, Math.floor(ms));
+    });
+}
+
+
 
 // https://stackoverflow.com/a/36566052
 export function similarity(s1, s2) {

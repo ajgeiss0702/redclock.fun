@@ -2,7 +2,7 @@ import {dev} from "$app/environment";
 import type {Actions, RequestEvent, ServerLoad} from "@sveltejs/kit";
 import {error, fail} from "@sveltejs/kit";
 import type {Quote, QuoteRequestMetadata, QuoteRequestValue} from "$lib/quoteSettings";
-import {similarity} from "$lib/utils";
+import {similarity, wait} from "$lib/utils";
 import {updatePendingCount} from "$lib/server/quoteUtils";
 
 export const load = (async ({platform, params, locals}) => {
@@ -102,7 +102,7 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
     const formData = await request.formData();
     const reason = formData.get("reason");
 
-    let kv = platform?.env?.QUOTE_SUGGESTIONS;
+    const kv = platform?.env?.QUOTE_SUGGESTIONS;
     if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
 
     let expiration;
@@ -120,6 +120,9 @@ async function setStatus(status: string, {platform, request, params, locals}: Re
         expiration
     });
 
-    await updatePendingCount(kv);
+    platform?.context?.waitUntil(async () => {
+        await wait(500) // wait to ensure that the change was recorded
+        await updatePendingCount(kv);
+    })
 
 }

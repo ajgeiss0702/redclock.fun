@@ -3,7 +3,7 @@ import type {Actions, ServerLoad} from "@sveltejs/kit";
 import {fail, redirect} from "@sveltejs/kit";
 import {dev} from "$app/environment";
 import { quotes } from "$lib/quotes";
-import { similarity } from "$lib/utils";
+import {similarity, wait} from "$lib/utils";
 import {bannedPhrases} from "$lib/quoteSettings";
 import {updatePendingCount} from "$lib/server/quoteUtils";
 
@@ -59,7 +59,7 @@ export const actions = {
         }
 
 
-        let kv = platform?.env?.QUOTE_SUGGESTIONS;
+        const kv = platform?.env?.QUOTE_SUGGESTIONS;
         if(!kv) return fail(500, {message: "Invalid platform (no kv)"})
 
         let similarQuotes = [];
@@ -103,7 +103,10 @@ export const actions = {
             ))
         }
 
-        await updatePendingCount(kv);
+        platform?.context?.waitUntil(async () => {
+            await wait(500) // wait to ensure that the change was recorded
+            await updatePendingCount(kv);
+        })
 
         throw redirect(302, "/quotes/request/" + id + "?s");
     }

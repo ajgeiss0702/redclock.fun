@@ -250,7 +250,7 @@ Request ID: {data?.id}<br>
         {#if data.pendingCount > 100 || dev}
             <br>
             <div class="limit mx-auto">
-                Note that there are currently {data.pendingCount} other pending quote requests,
+                Note that there are currently {data.pendingCount - 1} other pending quote requests,
                 so it might just take a while to get to your quote. Quotes are processed in the order they were submitted,
                 and each quote requires research to ensure that it is accurate and doesn't have some hidden meaning.
             </div>

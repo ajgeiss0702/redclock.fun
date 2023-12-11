@@ -1931,6 +1931,101 @@ export let quotes = [
         quote: "All great artists suffer before they become famous. That lady wrote Harry Potter in a ditch.",
         author: "E.B from Hop",
         request: "b0a6ceec-ff25-488e-903e-34f889a4a3ed"
+    },
+    {
+        quote: "If it can't fly, it can't get away. A downed dragon is a dead dragon.",
+        author: "Gobber the Belch",
+        request: "fcf076fe-98cf-4a1d-9243-d91a6490ccb2"
+    },
+    {
+        quote: "Detective, your problem is you always want to think ten, twenty steps ahead of me. Yet you've never thought to simply take one step back and see the full picture.",
+        author: "Aziel Mhant (Magpie Detective)",
+        request: "7b6ba34c-49c7-4052-8937-f22121784f47"
+    },
+    {
+        quote: "unfortunately, denial also includes ignoring the possibility of peril  ",
+        author: "The Navision Record (House of Leaves)",
+        request: "c22872f2-2bde-4aaf-8cf4-0d6efb360c30"
+    },
+    {
+        quote: "What kind of muppet name is Soap anyways",
+        author: "Captain Price",
+        request: "5375d0d0-9da1-433e-81e6-4faafa9339e4"
+    },
+    {
+        quote: "There Are No Heroes or Villains In This World… Only Those Who Use Their Power And Those Who Are Used By It.",
+        author: "Tomura Shigaraki",
+        request: "b09f313b-7137-4a7d-b7cb-63707b5a9905"
+    },
+    {
+        quote: "you always put your effort in everything. ",
+        author: "bobby jones",
+        request: "29510531-9316-45f9-bba8-6328b66798ed"
+    },
+    {
+        quote: "Wow",
+        author: "Owen Wilson",
+        request: "79fafa07-53a2-4ba4-8593-c630f62a6380"
+    },
+    {
+        quote: "We're the ones who live",
+        author: "Rick Grimes (The Walking Dead)",
+        request: "bcb67995-a4e0-49ff-9b83-b9277fa7b435"
+    },
+    {
+        quote: "Fate rarely calls upon us at a moment of our choosing ",
+        author: "Optimus Prime",
+        request: "98d406a8-efcc-461a-874a-9c19b809528a"
+    },
+    {
+        quote: "Always listen to your heart because even though it's on your left, its always right",
+        author: "Nicholas Sparks",
+        request: "fbc59778-1ff6-4914-9583-40c6d6c3b710"
+    },
+    {
+        quote: "BOY!!!",
+        author: "Kratos",
+        request: "5e5c6267-44c3-4ef2-8cd5-374718d65958"
+    },
+    {
+        quote: "Where is she!",
+        author: "Batman",
+        request: "5b7dd9d6-2a7e-41a1-97a0-1c109d890cc7"
+    },
+    {
+        quote: "Yearbook wouldn't let me admit to setting off the fire alarm in my quote. They cannot silence me. I have no regrets.",
+        author: "A person",
+        request: "501376fa-6df7-478e-917e-9ae592f07d8e"
+    },
+    {
+        quote: "Dont watch the mouth, watch the hands.",
+        author: "Peter B. Parker ",
+        request: "e7e2db8f-9027-4e78-8556-11714c4decf3"
+    },
+    {
+        quote: "Miracles are illusions caused by insufficient observation and understanding. They’re just… glorious misunderstandings.",
+        author: "Tanya Degurechaff",
+        request: "d0859551-3017-4b0f-b1be-de1bf0f0b1b9"
+    },
+    {
+        quote: "Be Careful Who You Trust, Sergeant. People You Know Can Hurt You The Most",
+        author: "Ghost",
+        request: "c90d76d0-1ee2-40b3-82f9-6779b4dcd793"
+    },
+    {
+        quote: "You looked like you needed saving",
+        author: "Deku, My Hero Academia ",
+        request: "9e514b8d-93e3-400b-9709-63151e9dc17a"
+    },
+    {
+        quote: "Supercalifragilisticexpialidocious",
+        author: "Mary Poppins",
+        request: "57e52566-b3e7-4938-8714-f680b8d7db32"
+    },
+    {
+        quote: "I'LL KIDNAP A THOUSAND CHILDREN BEFORE I LET THIS COMPANY DIE!!!!",
+        author: "Mr. Waternoose",
+        request: "e46e1df3-0dce-493b-aaf2-60762edc87f4"
     }
 
 ];

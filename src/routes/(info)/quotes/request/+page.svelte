@@ -10,6 +10,7 @@
     import RequestedQuote from "$lib/quotes/RequestedQuote.svelte";
     import {onMount} from "svelte";
     import {bannedPhrases} from "$lib/quoteSettings";
+    import {getCookie} from "$lib/cookieUtils";
 
     export let data;
     export let form;
@@ -21,6 +22,8 @@
 
     let quoteSimilarity = 0;
     let originalQuote = -1;
+
+    const hasSchool = browser ? !!getCookie("school") : true;
 
     $: checkQuote(quote);
 
@@ -125,7 +128,7 @@ I would strongly recommend filling out the "note" box with any info on why you t
 <h1>Quote Request</h1>
 <br>
 
-<form class="card inline-block p-4" method="POST" action="?/submit" use:enhance>
+<form class="card inline-block p-4" method="POST" action="?/submit" use:enhance disabled>
 
     <label class="label">
         <span>Quote</span>
@@ -176,12 +179,15 @@ I would strongly recommend filling out the "note" box with any info on why you t
     <Turnstile siteKey="0x4AAAAAAAA-6mZxvGLiTiQC" bind:passed={tsPassed}/>
 
     <span class="message red">
-            {#if !tsPassed}
-                Please submit the cloudflare challenge
-            {/if}
-        </span>
+        {#if !tsPassed && hasSchool}
+            Please submit the cloudflare challenge
+        {/if}
+        {#if !hasSchool}
+            You must use this site before submitting a quote request.
+        {/if}
+    </span>
     <br>
-    <button class="btn variant-glass-primary" class:variant-glass-warning={banned} disabled={(!tsPassed || !browser || !quote || !author || banned || !allowedToSubmit)}>Submit</button>
+    <button class="btn variant-glass-primary" class:variant-glass-warning={banned} disabled={(!tsPassed || !browser || !quote || !author || banned || !allowedToSubmit || !hasSchool)}>Submit</button>
 
     <div class="message">
         {#if quoteSimilarity > 0.6}

@@ -1872,11 +1872,65 @@ export let quotes = [
         author: "Ayanokouji Kiyotaka",
         request: "bc77a6f3-86de-4d7f-808d-74c30088cd8c"
     },
-
     {
         quote: "WAS THAT THE BITE OF '87???!!!!",
         author: "Markiplier",
         request: "05aa599e-4577-4ac7-9279-88611e641426"
+    },
+    {
+        quote: "No cost too great",
+        author: "The Pale King (Hollow Knight)",
+        request: "aa481a3d-7260-4f44-aea5-0f825aea51b0"
+    },
+    {
+        quote: "Every existing thing is born without reason, prolongs itself out of weakness, and dies by chance",
+        author: "Jean Paul Sartre",
+        request: "2deaada9-4d36-478d-85a5-0c69b8dcbe1e"
+    },
+    {
+        quote: "The best thing to hold onto in life is each other.",
+        author: "Audrey Hepburn",
+        request: "620cf4ed-e09c-48c3-a4af-a5abdcfa0d79"
+    },
+    {
+        quote: "The pain you feel today will be the strength you feel tomorrow",
+        author: "Unknown",
+        request: "80c71fcf-d437-4333-97d7-05b1358e8e98"
+    },
+    {
+        quote: "Don't count the days. Make the days count.",
+        author: "Muhammad Ali",
+        request: "4c286c56-06e7-4417-aca9-46b99a770f12"
+    },
+    {
+        quote: "Anyone can cook, but only the fearless can be great.",
+        author: "Gusteau",
+        request: "a7e7d444-66c0-42ae-b106-41d23a567afd"
+    },
+    {
+        quote: "I try not to think. It interferes with me being nuts.",
+        author: "Leo Valdez",
+        request: "f793cb26-6588-4173-9ba2-463f0e5bf621"
+    },
+    {
+        quote: "If you have to choose between me and her, choose her, because if you really loved me, there wouldn' t be any other choice.",
+        author: "Tinkerbell",
+        request: "1e40672f-e9f6-4fdd-991f-df17d21fa641"
+    },
+    {
+        quote: "Do I look like I know what a JPEG is?",
+        author: "Hank Hill",
+        request: "22d46f2c-62bb-4c38-bf0f-ba02627cc52f"
+    },
+    {
+        quote: "What Are You Doing In My Swamp?",
+        author: "Shrek",
+        request: "541e68c4-0759-4be7-bed5-744626b88d46"
+    },
+    {
+        quote: "All great artists suffer before they become famous. That lady wrote Harry Potter in a ditch.",
+        author: "E.B from Hop",
+        request: "b0a6ceec-ff25-488e-903e-34f889a4a3ed"
     }
 
 ];

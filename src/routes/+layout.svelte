@@ -47,6 +47,14 @@
         }
     }
 
+    if (browser && navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (let registration of registrations) {
+                console.log("I see " + registration);
+            }
+        });
+    }
+
     afterNavigate(() => {
         drawerStore.close();
     })

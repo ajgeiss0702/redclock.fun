@@ -10,10 +10,22 @@ import { build, files, version } from '$service-worker';
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`;
 
+const dontCache = [
+    "/android-chrome-192x192.png",
+    "/android-chrome-256x256.png",
+    "/apple-touch-icon-120x120.png",
+    "apple-touch-icon-120x120-precomposed.png",
+    "apple-touch-icon-precomposed.png",
+    "_redirects",
+    "discord",
+    ""
+]
+
 const ASSETS = [
     ...build, // the app itself
     ...files  // everything in `static`
-];
+].filter((a) => !dontCache.includes(a));
+
 
 sw.addEventListener('install', (event) => {
     // Create a new cache and add all files to it

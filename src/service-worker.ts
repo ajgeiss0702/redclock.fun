@@ -14,11 +14,10 @@ const dontCache = [
     "/android-chrome-192x192.png",
     "/android-chrome-256x256.png",
     "/apple-touch-icon-120x120.png",
-    "apple-touch-icon-120x120-precomposed.png",
-    "apple-touch-icon-precomposed.png",
-    "_redirects",
-    "discord",
-    ""
+    "/apple-touch-icon-120x120-precomposed.png",
+    "/apple-touch-icon-precomposed.png",
+    "/_redirects",
+    "/discord"
 ]
 
 const ASSETS = [

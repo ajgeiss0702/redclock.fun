@@ -10,10 +10,12 @@
     }
     div.inner {
         text-align: center;
+        @apply px-2;
     }
     img {
         height: 90vw;
         max-height: 70vh;
+        @apply mx-auto;
     }
 </style>
 
@@ -23,5 +25,11 @@
         <br>
         <h1>{$page.status}</h1>
         {$page.error.message}
+        {#if $page.status !== 404}
+            <br>
+            <br>
+            Try reloading.<br>
+            If the issue keeps happening, please email <a href="mailto:support@redclock.fun">support@redclock.fun</a> with what page this is on, and what you did right before this page appeared
+        {/if}
     </div>
 </div>

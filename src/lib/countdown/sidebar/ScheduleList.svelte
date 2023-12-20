@@ -40,7 +40,10 @@
 
     <h1>{dateString($currentTime)}</h1>
     <br>
-    Issue with the schedule? Notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
+    <span style="font-size: 0.9em">
+        If there are any issues with the schedule, or you want to make sure I know about a future schedule, please
+    notify me by emailing <a href="mailto:schedule@redclock.fun">schedule@redclock.fun</a>
+    </span>
 
     <ScheduleTable {schedule} currentPeriod={$currentClass}/>
     <br>

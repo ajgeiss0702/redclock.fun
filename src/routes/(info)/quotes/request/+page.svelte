@@ -118,6 +118,12 @@ I would strongly recommend filling out the "note" box with any info on why you t
 
 <br><br>
 
+If you are submitting a quote that you or someone you know said (not something you can find online)<br>
+then make sure to note that in the notes box, stating who that person is to you (your friend, your mom, etc).<br>
+Any quote that I cannot find a trace of online (that you dont talk about the person who said it in the note) will be rejected.
+
+<br><br>
+
 {#if data?.isAdmin}
     <a href="request/list" class="btn variant-ghost-primary">List</a>
     <br>

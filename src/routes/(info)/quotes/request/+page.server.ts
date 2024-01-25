@@ -7,8 +7,20 @@ import {similarity, wait} from "$lib/utils";
 import {bannedPhrases} from "$lib/quoteSettings";
 import {updatePendingCount} from "$lib/server/quoteUtils";
 
+const countCache: {
+    lastFetch: number,
+    lastCount?: number
+} = {lastFetch: 0};
+
 export const load = (async ({locals, platform}) => {
-    const count = platform?.env?.QUOTE_SUGGESTIONS?.get("count").then(r => Number(r))
+    let count;
+
+    if(Date.now() - countCache.lastFetch < 30e3) {
+        count = Promise.resolve(countCache.lastCount)
+    } else {
+        count = platform?.env?.QUOTE_SUGGESTIONS?.get("count").then(r => Number(r));
+    }
+
     return {
         isAdmin: dev || locals?.user?.id === 0,
         pendingCount: await count

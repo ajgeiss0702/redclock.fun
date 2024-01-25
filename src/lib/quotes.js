@@ -2026,6 +2026,72 @@ export let quotes = [
         quote: "I'LL KIDNAP A THOUSAND CHILDREN BEFORE I LET THIS COMPANY DIE!!!!",
         author: "Mr. Waternoose",
         request: "e46e1df3-0dce-493b-aaf2-60762edc87f4"
+    },
+    {
+        quote: "I'll have a Neopolitan cappuccino, more cappu than cino, make sure it's got no more than four ounces of milk, the beans won't have the right texture otherwise, and make sure they spell my name correctly on the cup they always put \"Foxy\" or \"Roxy\", I hate that. If you can't handle that, I'll have a Venti traditional Misto. Please use soy milk with two blond shots Affogato and Ristretto. I'd also love-",
+        author: "Moxxie",
+        request: "e74ba7e3-3187-4bc2-a2fd-2e176af260d7"
+    },
+    {
+        quote: "Life. Roadblocks. Don’t let nothing stop you, ’Cause we ain’t stopping. We gon’ keep going.",
+        author: "DJ Khalid",
+        request: "36c894d8-88e1-4b28-9d0b-db1b5ebeb2cf"
+    },
+    {
+        quote: "You understand that humans only have one ending. Ideas live forever, humans not so much.",
+        author: "Barbie Movie",
+        request: "b70d6586-f8dc-451a-b638-111e4b8bb3c3"
+    },
+
+    {
+        quote: "Everybody loves a bad idea when it works",
+        author: "Cayde-6",
+        request: "327f9b5f-74a5-4556-b08b-6751b6f254e2"
+    },
+    {
+        quote: "Now who's gonna stop me?",
+        author: "Bowser, Mario Movie",
+        request: "5c0c2055-b587-4678-b548-dfd9b8d91ad7"
+    },
+    {
+        quote: "Now's your chance to be a [ BIG SHOT ]",
+        author: "Spamton G. Spamton",
+        request: "f681d81c-4f1b-4119-a255-2220845fd9eb"
+    },
+    {
+        quote: "Have patience. All things are difficult before they become easy.",
+        author: "Saadi",
+        request: "5a7bc666-ac24-4bb9-8eff-03fcf96d0070"
+    },
+    {
+        quote: "We can't always fight nature John... We can't fight change. We can't fight nothin'.",
+        author: "Dutch van der Linde",
+        request: "e964e686-7a0c-46bb-a3e5-46826d83593f"
+    },
+    {
+        quote: "Show me your moves",
+        author: "Captain Falcon",
+        request: "0022e38d-f0e5-457f-a774-bb5db27a1336"
+    },
+    {
+        quote: "Don't do suicide that stuff kills you",
+        author: "Weird yoda",
+        request: "ad58a722-e906-49dd-b3fd-0dcb01495496"
+    },
+    {
+        quote: "Your math is no match for my gun, you idiot!!",
+        author: "Stanford Pines (Gravity Falls)",
+        request: "88afb0f0-b681-49e7-8f3b-47b460800e4d"
+    },
+    {
+        quote: "I'm the greatest. I said that before I was.",
+        author: "Mahammad Ali ",
+        request: "e7d90b41-5df0-4166-be0f-41f61b0a02d2"
+    },
+    {
+        quote: "People will hate you, rate you, shake you, and break you. But how strong you stand is what makes you.",
+        author: "LeBron James",
+        request: "b3e448d3-29c7-42bf-894f-32af65829369"
     }
 
 ];

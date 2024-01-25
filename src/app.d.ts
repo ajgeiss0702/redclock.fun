@@ -18,13 +18,15 @@ declare namespace App {
                 }) => void
             };
 
+            KV_ANALYTICS?: AnalyticsEngineDataset;
+
             D1DB: D1Database;
             SESSION_STORE: KVNamespace;
             CACHE: KVNamespace;
-            SCHEDULE_BUCKET: R2Bucket;
-            QUOTE_SUGGESTIONS: KVNamespace;
             SCHOOLS: KVNamespace;
             DISTRICTS: KVNamespace;
+            QUOTE_SUGGESTIONS: KVNamespace;
+            SCHEDULE_BUCKET: R2Bucket;
             DURABLE: DurableObjectNamespace;
         };
         context?: {

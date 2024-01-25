@@ -15,11 +15,14 @@ const countCache: {
 export const load = (async ({locals, platform}) => {
     let count;
 
+    const start = Date.now();
     if(Date.now() - countCache.lastFetch < 30e3) {
         count = Promise.resolve(countCache.lastCount)
     } else {
         count = platform?.env?.QUOTE_SUGGESTIONS?.get("count").then(r => Number(r));
     }
+
+    locals.addTiming({id: "countFetch", duration: Date.now() - start})
 
     return {
         isAdmin: dev || locals?.user?.id === 0,

@@ -2092,6 +2092,61 @@ export let quotes = [
         quote: "People will hate you, rate you, shake you, and break you. But how strong you stand is what makes you.",
         author: "LeBron James",
         request: "b3e448d3-29c7-42bf-894f-32af65829369"
+    },
+    {
+        quote: "-\"Here's what I would do, You cry, then pick yourself up, and keep moving.\" -\"But I only know how to do one of those things and it's crying.\" -\"Then if that's all you can do right now, do that.",
+        author: "Chilli Heeler talking to Bingo",
+        request: "82dcf161-5fb3-42c8-a7f2-27cd1ff9e9a2"
+    },
+    {
+        quote: "Don't get so busy making a living that you forget to make a life ",
+        author: "Dolly Parton",
+        request: "4480f3c4-618a-458c-809a-1d08c0269713"
+    },
+    {
+        quote: "Hello, this is Cayde-6 of the Vanguard. I realize that this is an abuse of the Tower PA, but whoever took my Sparrow, I will find you. And you'll wear a sign that says you stole from... never mind. It's right here. Sorry.",
+        author: "Cayde-6",
+        request: "0ced05f3-f4e8-423b-8624-5a4e62f8d13d"
+    },
+    {
+        quote: "Spider? Y-uhh, yes, the, the spyee-ider. Even the smallest bite from Arachnus deathicus will instantly paralyze - OH! Get if off!",
+        author: "Megamind",
+        request: "a54692f6-b6a7-4beb-837f-d295ca682449"
+    },
+    {
+        quote: "I never look back darling. It distracts from the now ",
+        author: "Edna Mode ",
+        request: "8cf8c503-2501-4cef-915c-3831992d5221"
+    },
+    {
+        quote: "I've never been a business man. Im a business, man.",
+        author: "JAY-Z",
+        request: "c29781e4-3071-4f42-b9ec-1bc40ef9546c"
+    },
+    {
+        quote: "If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward.",
+        author: "Martin Luther King Jr.",
+        request: "19b5c7a5-0100-4c69-ab87-ee89be10bece"
+    },
+    {
+        quote: "Life is like a box of chocolates. You never know what you're gonna get",
+        author: "Forrest Gump",
+        request: "c6e1c4fd-cf6f-4132-b5f9-6789cf7d4c00"
+    },
+    {
+        quote: "If There's Bad, Good Will Rise Up Against It.",
+        author: "Megamind ",
+        request: "2f5c7bbe-a662-458f-b785-f89b3e5830b1"
+    },
+    {
+        quote: "The only true knowledge is in knowing you know nothing.",
+        author: "Socrates",
+        request: "2df447a3-c580-4894-89b9-66cee8ccc1af"
+    },
+    {
+        quote: "OOH! How about this guy? He looks extremely punchable.",
+        author: "Nimona",
+        request: "ce5ec832-d81c-4720-95c5-5ffcacd32206"
     }
 
 ];

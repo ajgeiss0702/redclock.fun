@@ -36,7 +36,8 @@
         "eb5fc81b-983d-41ae-acdc-d7a23f5d3575",
         "e98525f8-ddfa-4594-b61f-a889fbc6a7cf",
         "36188931-f1be-4af1-a20f-77bd467984be",
-        "471516a0-d214-41b0-afad-423c578c15df"
+        "471516a0-d214-41b0-afad-423c578c15df",
+        "8b801f3e-bec7-4477-a9e8-eebd07fbddd7"
     ];
 
     $: banned = browser ? (() => {

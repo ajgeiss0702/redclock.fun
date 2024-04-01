@@ -9,6 +9,7 @@
     import {browser} from "$app/environment";
     import {getCookie, setCookie} from "$lib/cookieUtils";
     import {page} from "$app/stores";
+    import {isAprilFools} from "$lib/aprilFools";
 
     if(browser) {
         if(!localStorage.school && getCookie("school")) {
@@ -47,9 +48,26 @@
 </script>
 
 
-<CustomBackground/>
-<CountdownBox bind:withWeather={withWeather} start={data.startTime}/>
-<Weather bind:shown={withWeather}/>
-<Sidebar/>
+<div class="big-container" class:flip={$isAprilFools}>
 
-<Festive/>
+    <CustomBackground/>
+    <CountdownBox bind:withWeather={withWeather} start={data.startTime}/>
+    <Weather bind:shown={withWeather}/>
+    <Sidebar/>
+
+    <Festive/>
+
+</div>
+
+
+<style>
+    .big-container.flip {
+        position: absolute;
+        bottom: 0;
+
+        max-height: 100vh;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+</style>

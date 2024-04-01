@@ -80,6 +80,7 @@
     }*/
 
    .big-container.flip {
+       width: 100vw;
        max-height: 100vh;
        overflow: auto;
 

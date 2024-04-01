@@ -2147,6 +2147,11 @@ export let quotes = [
         quote: "OOH! How about this guy? He looks extremely punchable.",
         author: "Nimona",
         request: "ce5ec832-d81c-4720-95c5-5ffcacd32206"
+    },
+    {
+        quote: "Live every moment, Laugh everyday, Love beyond words",
+        author: "Bessie Anderson Stanley",
+        request: "9b4a48ef-6986-41fb-b699-68043a3581bf"
     }
 
 ];

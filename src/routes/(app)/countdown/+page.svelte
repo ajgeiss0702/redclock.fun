@@ -61,13 +61,26 @@
 
 
 <style>
-    .big-container.flip {
-        position: absolute;
-        bottom: 0;
+   /* @media(orientation: landscape) {
+        .big-container.flip {
+            position: absolute;
+            bottom: 0;
 
-        max-height: 100vh;
-        overflow-y: hidden;
-        display: flex;
-        flex-direction: column-reverse;
+            max-height: 100vh;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column-reverse;
+        }
     }
+    @media(orientation: portrait) {
+        .big-container.flip {
+            max-height: 100vh;
+            overflow: auto;
+        }
+    }*/
+
+   .big-container.flip {
+       max-height: 100vh;
+       overflow: auto;
+   }
 </style>

@@ -82,5 +82,8 @@
    .big-container.flip {
        max-height: 100vh;
        overflow: auto;
+
+       position: absolute;
+       bottom: 0;
    }
 </style>

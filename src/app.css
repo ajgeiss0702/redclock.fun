@@ -45,3 +45,7 @@ body.black {
 .flip {
     transform: rotate(180deg);
 }
+
+.newsbox.flip {
+    border: red 1px solid;
+}

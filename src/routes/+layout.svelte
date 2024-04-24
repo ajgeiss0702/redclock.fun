@@ -39,7 +39,7 @@
                 if ($navigating) {
                     NProgress.start();
                 }
-            }, 150);
+            }, 100);
         }
         if (!$navigating) {
             clearTimeout(progressTimeout);

@@ -2152,6 +2152,26 @@ export let quotes = [
         quote: "Live every moment, Laugh everyday, Love beyond words",
         author: "Bessie Anderson Stanley",
         request: "9b4a48ef-6986-41fb-b699-68043a3581bf"
+    },
+    {
+        quote: "Never be rude to the slow walkers in the hallway, because what are you rushing for? You're about to sit in 7 different chairs for 7 hours. ",
+        author: "A Slow Walker",
+        request: "e7f3e908-714a-4959-adbd-9ce49b9ececc"
+    },
+    {
+        quote: "The world could always use more heroes",
+        author: "Tracer (Overwatch)",
+        request: "149cecd4-c176-4f71-bedb-2eaeaefc0c09"
+    },
+    {
+        quote: "Sometimes saying hi to someone is the best thing to do. You may just make a new best friend. That is how I met mine.",
+        author: "Paige D",
+        request: "3d59b23a-7ab0-48c0-a977-6a75d99d7688"
+    },
+    {
+        quote: "I believe what doesn't kill you simply makes you stranger.",
+        author: "Joker.",
+        request: "0a8ee66d-99d2-4f03-8a83-8da1aa94f593"
     }
 
 ];

@@ -1,7 +1,7 @@
 import type {RequestEvent} from "@sveltejs/kit";
 import {error} from "@sveltejs/kit";
 
-const token = "glpat-sSHP7KNyoCsxc4x1QwYi";
+const token = "glpat-qzcyzKYsWqTX2CzgP-uu";
 
 export async function GET({params}: RequestEvent) {
     const platform = params.platform || "";

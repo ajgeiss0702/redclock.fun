@@ -1,5 +1,5 @@
 
-const token = "glpat-sSHP7KNyoCsxc4x1QwYi";
+const token = "glpat-qzcyzKYsWqTX2CzgP-uu";
 
 let cache: string;
 let lastGet = 0;

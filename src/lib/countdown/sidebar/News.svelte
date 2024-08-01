@@ -26,7 +26,7 @@
     function refreshNews() {
         if(Date.now() - lastFetch < 300e3) return; // throttle news updating
         lastFetch = Date.now();
-        fetch("https://ajg0702.us/api/rmf/news.html")
+        fetch("https://temp-schedules.redclock.fun/news.html")
             .then(response => response.text())
             .then(response => {
                 response = response.replace('<script', '&ltscript');

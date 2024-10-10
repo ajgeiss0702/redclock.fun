@@ -63,6 +63,8 @@ export const actions = {
             }
         ).then(r => r.json());
 
+        console.debug({turnstileResponse})
+
         if(!turnstileResponse.success) {
             return fail(400, {message: "Failed turnstile! Errors: " + turnstileResponse["error-codes"]});
         }

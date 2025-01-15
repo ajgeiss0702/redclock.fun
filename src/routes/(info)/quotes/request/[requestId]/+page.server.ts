@@ -43,7 +43,7 @@ export const load = (async ({platform, params, locals}) => {
 
     let similarQuoteRequests: (Quote & {id: string, similarity: number, status: string})[] = [];
 
-    if(canManage && metadata && metadata.status === "pending") {
+    if(canManage && metadata && (metadata.status === "pending" || metadata.status === "denied")) {
         // @ts-ignore
         let {keys, list_complete, cursor} = (await kv.list<QuoteRequestMetadata>());
 

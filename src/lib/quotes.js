@@ -2172,6 +2172,141 @@ export let quotes = [
         quote: "I believe what doesn't kill you simply makes you stranger.",
         author: "Joker.",
         request: "0a8ee66d-99d2-4f03-8a83-8da1aa94f593"
+    },
+    {
+        quote: "You're the best of all of us, Miles. You're on your way. Just... just keep going... just keep going...",
+        author: "Uncle Aaron",
+        request: "020c3425-877a-4e6c-96b8-e3fbf4b16829"
+    },
+    {
+        quote: "Hakuna Matata",
+        author: "Timon & Pumbaa",
+        request: "94c4b078-22e7-4523-b46f-2150f738f7e5"
+    },
+    {
+        quote: "For what is a Man? What has he got?",
+        author: "Frank Sinatra",
+        request: "e80a6fba-d995-4ece-9432-89e3630ab34a"
+    },
+    {
+        quote: "When life gives you lemons, call them 'yellow oranges' and sell them for double price",
+        author: "Stanley Pines (Gravity Falls)",
+        request: "e55b3f79-1855-4ede-bf5c-1b7f638f251a"
+    },
+    {
+        quote: "Everything happens for a reason",
+        author: "Greek Philosopher Aristotle",
+        request: "33f28a06-1804-48dc-88e8-dfdbe3f862be"
+    },
+    {
+        quote: "Gotta go fast ",
+        author: "Sonic",
+        request: "24000d88-73c1-4bc2-8244-2627bc18c56a"
+    },
+    {
+        quote: "WERE AM I",
+        author: "Waldo",
+        request: "a733637a-7be9-4077-8a65-a57dd26f095c"
+    },
+    {
+        quote: "Nuts!",
+        author: "General Anthony McAuliffe",
+        request: "6c33d64a-103c-4d43-b134-dad720f491e8"
+    },
+    {
+        quote: "Good, better, best, never rest until good is better and better is best",
+        author: "Unknown",
+        request: "7a460426-e924-4ff8-9797-ceb100fc215d"
+    },
+    {
+        quote: "TECHNOBLADE NEVER DIES",
+        author: "Technoblade",
+        request: "32bb8e2d-b552-4a66-8e36-ace3d89feedf"
+    },
+    {
+        quote: "Don't change yourself for someone else",
+        author: "Mrs. Tidwell",
+        request: "4bcdf48f-6a4e-416a-9930-7552a9cf0e7d"
+    },
+    {
+        quote: "Life is really simple, but we insist on making it complicated",
+        author: "Confucius",
+        request: "cddcf922-b3eb-4553-8512-9db7343523b7"
+    },
+    {
+        quote: "A fourth wall break inside a fourth wall break, that’s like sixteen walls!",
+        author: "Deadpool",
+        request: "d0f26caf-6f2e-4763-b37e-d75a243fcf02"
+    },
+    {
+        quote: "This... is a bucket! Dear God... There's more.. NO!",
+        author: "Soldier, TF 2",
+        request: "8b0b34dc-1f97-4e9f-8c5a-c4fa29d9b1da"
+    },
+    {
+        quote: "ain't no rule says a dog can't play basketball",
+        author: "Air Bud",
+        request: "34335c79-68e3-4d23-9543-96876dcab533"
+    },
+    {
+        quote: "I had a purpose before anybody had an opinion.",
+        author: "Jalen Hurts ",
+        request: "77c8f820-5be5-4b94-9631-acb88097f465"
+    },
+    {
+        quote: "Don't be such a baby, ribs grow back... (whispering) no they don't ",
+        author: "Medic (Team Fortress 2)",
+        request: "c3266b59-6637-4d38-a9b1-ce25b6d0c4ef"
+    },
+    {
+        quote: "The love of money is the root of all evil.",
+        author: "1 Timothy 6:10",
+        request: "25200881-292a-4fc2-aa28-a846973fdd5e"
+    },
+    {
+        quote: "Only cool people use Red Clock",
+        author: "Anonymous",
+        request: "46f5d764-eeda-4079-a505-2b3c2d57459a"
+    },
+    {
+        quote: "Stop it. Get some help.",
+        author: "Lebron James",
+        request: "3697bda6-f3c8-404b-8242-6f57f853ec4d"
+    },
+    {
+        quote: "It is what it is",
+        author: "Unknown",
+        request: "570995a9-670f-461c-9f85-f6270cd5c580"
+    },
+    {
+        quote: "My treasure? If you want it, you can have it. Seek it out!",
+        author: "Gold Roger",
+        request: "f7fc5654-22f0-4ebb-b9fd-289e61e5d985"
+    },
+    {
+        quote: "Sometimes you can do everything right and things will still go wrong. The key is to never stop doing right.",
+        author: "Angie Thomas",
+        request: "f000b3e5-9bcc-4086-973c-296e2cd059dd"
+    },
+    {
+        quote: "I fear not the man who has practiced 10,000 kicks once. I fear the man who has practiced one kick 10,000 times.",
+        author: "Bruce Lee",
+        request: "4c1e5da8-835c-4d49-94a9-8d4f6867e7f1"
+    },
+    {
+        quote: "😡Do the dishes or else😡",
+        author: "A Angry Mom",
+        request: "73efd9d8-2541-4c18-8ce3-7964ba46681a"
+    },
+    {
+        quote: "Everything can change in an instant, and the future you plan for yourself shifts - whether or not your ready. At some point, it happens to us all.",
+        author: "The Sole Survivor (Fallout 4)",
+        request: "3bb75c21-a079-4729-aca5-5aba68a6afa9"
+    },
+    {
+        quote: "If Men are to be precluded from offering their sentiments on a matter, [...] the freedom of Speech may be taken away — and, dumb & silent we may be led, like sheep, to the Slaughter.",
+        author: "George Washington",
+        request: "87787056-34a6-421c-b604-b3d82298ffdd"
     }
 
 ];

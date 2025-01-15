@@ -2295,7 +2295,7 @@ export let quotes = [
     },
     {
         quote: "😡Do the dishes or else😡",
-        author: "A Angry Mom",
+        author: "An Angry Mom",
         request: "73efd9d8-2541-4c18-8ce3-7964ba46681a"
     },
     {

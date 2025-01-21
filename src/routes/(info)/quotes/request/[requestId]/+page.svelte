@@ -21,15 +21,15 @@
 
     let fixedQuote: string = "";
     $: {
-        fixedQuote = data.value?.quote;
+        fixedQuote = data.value?.quote?.trim();
         if(fixedQuote.length > 1) {
             // if first character is a double quote
             if(["\"", "“"].includes(fixedQuote.substring(0, 1))) {
-                fixedQuote = fixedQuote.substring(1);
+                fixedQuote = fixedQuote.substring(1).trim();
             }
             // if last character is a double quote
             if(["\"", "”"].includes(fixedQuote.substring(fixedQuote.length - 1))) {
-                fixedQuote = fixedQuote.substring(0, fixedQuote.length - 1);
+                fixedQuote = fixedQuote.substring(0, fixedQuote.length - 1).trim();
             }
         }
     }

@@ -1212,7 +1212,7 @@ export let quotes = [
         request: "8b531fe4-76c6-4d40-9bc4-90a538e42244"
     },
     {
-        quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.\t",
+        quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.",
         author: "Unknown",
         request: "db5b9da7-bfa5-4e6e-b035-5df0cc34932d"
     },
@@ -2307,6 +2307,125 @@ export let quotes = [
         quote: "If Men are to be precluded from offering their sentiments on a matter, [...] the freedom of Speech may be taken away — and, dumb & silent we may be led, like sheep, to the Slaughter.",
         author: "George Washington",
         request: "87787056-34a6-421c-b604-b3d82298ffdd"
+    },
+    {
+        quote: "I'd rather be myself and hated for it than be what everyone else wants and hate myself.",
+        author: "Kurt Cobain",
+        request: "f2566a27-c908-40e6-b71f-3967e3a2632f"
+    },
+    {
+        quote: "Happiness can be found even in the darkest of times, if one only remembers to turn on the light.",
+        author: "Albus Percival Wulfric Brian Dumbledore",
+        request: "b2c7d316-f730-4f34-8d04-ed590a7fe116"
+    },
+    {
+        quote: "Friend, be wary of the path of vengeance. That tree will bear bitter fruit.",
+        author: "Bullfrog (Captain Laserhawk: A Blood Dragon Remix)",
+        request: "389e5c46-56f3-438e-809c-5fe0fd7f71b9"
+    },
+    {
+        quote: "War... War never changes.",
+        author: "Fallout",
+        request: "75a1bbe0-0cfa-4c7b-ab7b-c1a9d09fcf8e"
+    },
+    {
+        quote: "Family don't end with blood",
+        author: "Bobby Singer",
+        request: "385e5b0c-0cec-44a1-8b0e-927ee033de94"
+    },
+    {
+        quote: "Then you know why we can't be together.",
+        author: "spider-man",
+        request: "8d9cfecb-16fe-45f2-9033-f7db7ba0ff01"
+    },
+    {
+        quote: "Hesitation is Defeat",
+        author: "Isshin Ashina",
+        request: "a25933d4-ba28-45d6-b1a7-4a7a41637bfc"
+    },
+    {
+        quote: "Health must come first, or else evil can't prosper.",
+        author: "Team Rocket, Pokémon",
+        request: "b700b8ef-2aaf-4e2c-afba-3cc0d161481d"
+    },
+    {
+        quote: "United we stand, divided we fall.",
+        author: "Aesop",
+        request: "d5f00ef1-d880-45fd-82ce-bf6b9c817f62"
+    },
+    {
+        quote: "He who has a why can live to bear almost any how.",
+        author: "Friedrich Nietzsche",
+        request: "1dac50c3-2859-4f91-bb51-3bd99d053027"
+    },
+    {
+        quote: "Yesterday is history. Tomorrow is a mystery. But today is a gift. That is why it is called the present.",
+        author: "Master Oogway",
+        request: "0dad9574-05bc-4c33-90c8-891f7c086227"
+    },
+    {
+        quote: "You DON'T GET THE UNICORN.",
+        author: "Carnival booth guy from Despicable Me",
+        request: "5ef87390-9932-4682-974f-9a47a138ced4"
+    },
+    {
+        quote: "Not all treasure is silver and gold, mate.",
+        author: "Jack Sparrow",
+        request: "378ba731-3397-4f7f-b99f-985eb1131321"
+    },
+    {
+        quote: "Those who treat me with kindness, I will repay that kindness tenfold. And those that treat with injustice, that use me, that hunt me down, that hurt my friends, I shall repay that injustice a thousand times over.",
+        author: "Technoblade",
+        request: "883a43aa-9a10-4568-a31c-23851b67de0e"
+    },
+    {
+        quote: "Remember! Reality's an illusion, the universe is a hologram, buy gold! Byeeee!",
+        author: "Bill Cipher",
+        request: "a9d472dd-8a46-4e3e-9163-e58674c67a99"
+    },
+    {
+        quote: "If it's not hard, you're not dreaming big enough.",
+        author: "Shalane Flanagan",
+        request: "860503c4-c2d8-4494-ab40-4c7f5ed9453b"
+    },
+    {
+        quote: "Perfectly balanced as all things should be",
+        author: "Thanos",
+        request: "f1a0dd94-0f45-4ec3-a639-2ffa6b074d2f"
+    },
+    {
+        quote: "Success is not an accident, success is actually a choice.",
+        author: "Steph Curry",
+        request: "c485380e-38f4-4472-933b-ff94748762b7"
+    },
+    {
+        quote: "You'll never get the motivation if you don't start it first.",
+        author: "Mr. Graves",
+        request: "d8112ba7-fd18-4e8d-a701-826736a540f4"
+    },
+    {
+        quote: "Find out who you are and do it on purpose.",
+        author: "Dolly Parton",
+        request: "5155affe-7f9f-4e7a-bb50-a780f087e8cb"
+    },
+    {
+        quote: "If something terrible happens, just know it was even worse for someone else.",
+        author: "Unknown",
+        request: "89b99727-8126-497d-92fb-c57d656a003b"
+    },
+    {
+        quote: "There is a time for everything",
+        author: "Unknown",
+        request: "ff881500-753e-4ec1-b507-f95ef6e1e931"
+    },
+    {
+        quote: "If it's the right person, there is no wrong time.",
+        author: "Unknown",
+        request: "46850df2-9ee4-452b-8468-5954ead3016d"
+    },
+    {
+        quote: "Sad backwards is das, and das sad.",
+        author: "Unknown",
+        request: "7b702c0b-3b5e-4d67-a9df-0738db81e43f"
     }
-
 ];

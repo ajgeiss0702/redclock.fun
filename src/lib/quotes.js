@@ -2427,5 +2427,25 @@ export let quotes = [
         quote: "Sad backwards is das, and das sad.",
         author: "Unknown",
         request: "7b702c0b-3b5e-4d67-a9df-0738db81e43f"
+    },
+    {
+        quote: "Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win",
+        author: "Sun Tzu",
+        request: "d8b28016-9853-412e-8696-9d04d49451bd"
+    },
+    {
+        quote: "Life is like a marathon, not a sprint. We all need to take life at a constant speed and focus on the long term, not the short term rewards.",
+        author: "Unknown",
+        request: "6cc04655-35ff-49d2-a3e1-9c0ac1abad96"
+    },
+    {
+        quote: "Dont wish for it, work for it",
+        author: "Unknown ",
+        request: "4fd1c009-41e0-406b-a42d-34f8d6aa1b4a"
+    },
+    {
+        quote: "Never interrupt your enemy when he is making a mistake",
+        author: "Napoleon Bonaparte",
+        request: "6c377825-cf57-425d-a69b-77638852c817"
     }
 ];

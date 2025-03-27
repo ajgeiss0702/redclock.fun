@@ -1,7 +1,8 @@
+import { GITLAB_DESKTOP_ACCESS_TOKEN } from "$env/static/private";
 import type {RequestEvent} from "@sveltejs/kit";
 import {error} from "@sveltejs/kit";
 
-const token = "glpat-qzcyzKYsWqTX2CzgP-uu";
+const token = GITLAB_DESKTOP_ACCESS_TOKEN;
 
 export async function GET({params}: RequestEvent) {
     const platform = params.platform || "";

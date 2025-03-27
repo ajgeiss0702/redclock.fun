@@ -58,6 +58,9 @@
     let retryLength = 5;
     let retryTimeout;
 
+    /** @type boolean | undefined */
+    let lastExactTemp;
+
     let lastUpdate = 0;
 
     function update() {
@@ -65,6 +68,9 @@
         enabled = get("enableWeather") && shown && !_GET("preview");
 
         if(!enabled) return;
+
+        const currentExactTemp = get("exactTemp");
+        if(currentExactTemp !== lastExactTemp) lastExactTemp = currentExactTemp;
 
         if(lastUpdate !== 0 && browser) {
             const distance = Date.now() - lastUpdate
@@ -126,15 +132,17 @@
                         {#await weatherData}
                             <LoadingText length={3}/>&deg;
                         {:then data}
-                            {#if get("exactTemp")}
-                                <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
-                                    {data.weatherData.current.temp}&deg;
-                                </span>
-                            {:else}
-                                <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
-                                    {Math.round(data.weatherData.current.temp)}&deg;
-                                </span>
-                            {/if}
+                            {#key lastExactTemp}
+                                {#if get("exactTemp")}
+                                    <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
+                                        {data.weatherData.current.temp}&deg;
+                                    </span>
+                                {:else}
+                                    <span title={new Date(data.weatherData.current.dt * 1e3).toLocaleString()}>
+                                        {Math.round(data.weatherData.current.temp)}&deg;
+                                    </span>
+                                {/if}
+                            {/key}
                         {:catch e}
                             <ExclamationTriangle height="1em" width="100%" class="p-2"/>
                         {/await}
@@ -175,19 +183,23 @@
                                         {#each data.weatherData.daily.slice(0, 7) as day}
                                             <td>
                                             <span class="weekly-high">
-                                                {#if get("exactTemp")}
-                                                    {day.temp.max}°
-                                                {:else}
-                                                    {Math.round(day.temp.max)}°
-                                                {/if}
+                                                {#key lastExactTemp}
+                                                    {#if get("exactTemp")}
+                                                        {day.temp.max}°
+                                                    {:else}
+                                                        {Math.round(day.temp.max)}°
+                                                    {/if}
+                                                {/key}
                                             </span>
                                                 <br>
                                                 <span class="weekly-low">
-                                                {#if get("exactTemp")}
-                                                    {day.temp.min}°
-                                                {:else}
-                                                    {Math.round(day.temp.min)}°
-                                                {/if}
+                                                {#key lastExactTemp}
+                                                    {#if get("exactTemp")}
+                                                        {day.temp.min}°
+                                                    {:else}
+                                                        {Math.round(day.temp.min)}°
+                                                    {/if}
+                                                {/key}
                                             </span>
                                             </td>
                                         {/each}

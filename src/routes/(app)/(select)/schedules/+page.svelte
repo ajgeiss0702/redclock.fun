@@ -33,6 +33,12 @@
         setCookie("schedule", key);
         goto("/countdown")
     }
+
+    onMount(() => {
+        if(Object.keys(data[getSchoolCode()]).length === 1) {
+            setSchedule(Object.keys(data[getSchoolCode()])[0]);
+        }
+    })
 </script>
 
 <svelte:head>

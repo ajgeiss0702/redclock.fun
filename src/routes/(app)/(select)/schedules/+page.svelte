@@ -35,7 +35,10 @@
     }
 
     onMount(() => {
-        if(Object.keys(data[getSchoolCode()].schedules).length === 1) {
+        const numSchedules = Object.keys(data[getSchoolCode()].schedules).length;
+        console.debug({numSchedules})
+        if(numSchedules === 1) {
+            console.debug("Only one schedule, setting it automatically")
             setSchedule(Object.keys(data[getSchoolCode()].schedules)[0]);
         }
     })

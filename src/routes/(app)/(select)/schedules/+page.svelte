@@ -35,8 +35,8 @@
     }
 
     onMount(() => {
-        if(Object.keys(data[getSchoolCode()]).length === 1) {
-            setSchedule(Object.keys(data[getSchoolCode()])[0]);
+        if(Object.keys(data[getSchoolCode()].schedules).length === 1) {
+            setSchedule(Object.keys(data[getSchoolCode()].schedules)[0]);
         }
     })
 </script>

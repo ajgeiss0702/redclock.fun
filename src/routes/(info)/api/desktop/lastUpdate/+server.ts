@@ -6,6 +6,7 @@ let lastGet = 0;
 export const prerender = true;
 
 export async function GET() {
+    if(building) return {lastUpdate: "2024-08-22T14:30:42.000-07:00"}
 
     let r;
 

@@ -27,7 +27,8 @@ export async function GET() {
 
     return new Response(r, {
         headers: {
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "content-type": "text/plain"
         }
     });
 }

@@ -1,12 +1,14 @@
-import {GITLAB_DESKTOP_ACCESS_TOKEN} from "$env/static/private"
+import {building} from "$app/environment";
+import {text} from "@sveltejs/kit";
 
-const token = GITLAB_DESKTOP_ACCESS_TOKEN;
+const token = "glpat-qzcyzKYsWqTX2CzgP-uu";
 
 let cache: string;
 let lastGet = 0;
 export const prerender = true;
 
 export async function GET() {
+    if(building) return text("2024-08-22T14:30:42.000-07:00")
 
     let r;
 
@@ -28,7 +30,8 @@ export async function GET() {
 
     return new Response(r, {
         headers: {
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "content-type": "text/plain"
         }
     });
 }

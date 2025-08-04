@@ -43,7 +43,7 @@
 
     $: banned = browser ? (() => {
         for (let bannedQuote of bannedQuotes) {
-            if(quoteRequests.includes(bannedQuote)) {
+            if(quoteRequests.includes(bannedQuote) || dev) {
                 return true;
             }
         }

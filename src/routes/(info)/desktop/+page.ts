@@ -1,5 +1,6 @@
 import { getAPIPrefix } from "$lib/utils";
 import type {LoadEvent} from "@sveltejs/kit";
+import {building} from "$app/environment";
 
 export async function load({fetch}: LoadEvent) {
     return {

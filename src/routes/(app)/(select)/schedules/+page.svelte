@@ -33,6 +33,15 @@
         setCookie("schedule", key);
         goto("/countdown")
     }
+
+    onMount(() => {
+        const numSchedules = Object.keys(data[getSchoolCode()].schedules).length;
+        console.debug({numSchedules})
+        if(numSchedules === 1) {
+            console.debug("Only one schedule, setting it automatically")
+            setSchedule(Object.keys(data[getSchoolCode()].schedules)[0]);
+        }
+    })
 </script>
 
 <svelte:head>

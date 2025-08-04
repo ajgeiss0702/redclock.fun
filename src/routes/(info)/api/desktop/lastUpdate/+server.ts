@@ -1,3 +1,4 @@
+import {building} from "$app/environment";
 
 const token = "glpat-qzcyzKYsWqTX2CzgP-uu";
 
